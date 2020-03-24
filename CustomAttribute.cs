@@ -17,11 +17,13 @@ namespace P02.Course.Attribute
 
         public CustomAttribute(int id)
         {
+            this._Id = id;
             Console.WriteLine($"{this.GetType().Name} int param construct");
         }
 
         public CustomAttribute(string name)
         {
+            this._Name = name;
             Console.WriteLine($"{this.GetType().Name} string param contruct");
         }
 
@@ -41,7 +43,7 @@ namespace P02.Course.Attribute
 
     public class CustomAttributeChild : CustomAttribute
     {
-        public CustomAttributeChild(): base(123)
+        public CustomAttributeChild() : base(123)
         { }
     }
 

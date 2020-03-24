@@ -46,9 +46,11 @@
     <Compile Include="CustomAttribute.cs" />
     <Compile Include="EnumExtend\Enum.cs" />
     <Compile Include="EnumExtend\RemarkAttribute.cs" />
+    <Compile Include="InvokeCenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Student.cs" />
+    <Compile Include="StudentVip.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
