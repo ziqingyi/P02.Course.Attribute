@@ -46,6 +46,7 @@
     <Compile Include="CustomAttribute.cs" />
     <Compile Include="EnumExtend\Enum.cs" />
     <Compile Include="EnumExtend\RemarkAttribute.cs" />
+    <Compile Include="EnumExtend\RemarkExtend.cs" />
     <Compile Include="InvokeCenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
