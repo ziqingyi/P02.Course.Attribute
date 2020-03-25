@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,7 +22,7 @@ namespace P02.Course.Attribute
         [Custom]
         public void Study()
         {
-            Console.WriteLine($"这里是{this.Name}跟着Eleven老师学习");
+            Console.WriteLine($"--------------Name: {this.Name}-----------------");
         }
 
         [return: Custom, Custom, Custom(), Custom(0, Remark = "123", Description = "456")]
@@ -30,6 +31,7 @@ namespace P02.Course.Attribute
         [Custom(0, Remark = "123", Description = "456")]
         public string Answer([Custom]string name)
         {
+            Console.WriteLine($"This is {name}");
             return $"This is {name}";
         }
     }

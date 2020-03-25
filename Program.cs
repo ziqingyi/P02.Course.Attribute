@@ -16,7 +16,7 @@ namespace P02.Course.Attribute
             Student s = new Student()
             {
                 Id = 123,
-                Name = ""
+                Name = " Tom "
             };
             s.Study();
             s.Answer(" Tom ");
@@ -24,6 +24,17 @@ namespace P02.Course.Attribute
             #region MyRegion
 
             UserState userState = UserState.Frozen;
+
+            {
+                Student student = new Student()
+                {
+                    Id = 123,
+                    Name = "Alex"
+                };
+
+                InvokeCenter.ManagerStudent(student);
+            }
+
 
 
             #endregion
