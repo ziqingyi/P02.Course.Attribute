@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace P02.Course.Attribute.EnumExtend
 {
+    [AttributeUsage(AttributeTargets.Enum | AttributeTargets.Field)]
     public class RemarkAttribute : System.Attribute
     {
         //only provide get method to outside
