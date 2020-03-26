@@ -12,7 +12,6 @@ namespace P02.Course.Attribute
         static void Main(string[] args)
         {
             Console.WriteLine("---------------Attribute --------------");
-
             Student s = new Student()
             {
                 Id = 123,
@@ -24,7 +23,6 @@ namespace P02.Course.Attribute
             #region MyRegion
 
             UserState userState = UserState.Frozen;
-
             {
                 Student student = new Student()
                 {
@@ -34,10 +32,30 @@ namespace P02.Course.Attribute
 
                 InvokeCenter.ManagerStudent(student);
             }
-
             string remark = AttributeExtend.GetRemark(userState);
 
             #endregion
+
+            #region validate
+
+            StudentVip sp = new StudentVip()
+            {
+                Id = 123,
+                Name = "vip student 1",
+                QQ = 12345,
+                Salary = 500000
+            };
+            if (sp.Validate())
+            {
+                Console.WriteLine("validate is success!!!!!!");
+            }
+
+
+            #endregion
+
+
+
+
 
         }
     }
