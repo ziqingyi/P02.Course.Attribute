@@ -44,9 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomAttribute.cs" />
+    <Compile Include="EnumExtend\AttributeExtend.cs" />
     <Compile Include="EnumExtend\Enum.cs" />
     <Compile Include="EnumExtend\RemarkAttribute.cs" />
-    <Compile Include="EnumExtend\RemarkExtend.cs" />
     <Compile Include="InvokeCenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,6 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ValidateExtend\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
