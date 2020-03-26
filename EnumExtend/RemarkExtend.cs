@@ -15,8 +15,8 @@ namespace P02.Course.Attribute.EnumExtend
             FieldInfo field = type.GetField(enumValue.ToString());
             if(field.IsDefined( typeof(RemarkAttribute), true) )
             {
-                RemarkAttribute remarkAttribute =(RemarkAttribute)field.GetCustomAttributes(typeof(RemarkAttribute)));
-                return remarkAttribute._Remark;
+                RemarkAttribute remarkAttribute =(RemarkAttribute)field.GetCustomAttributes(typeof(RemarkAttribute));
+                return remarkAttribute.Remark;
             }
             else
             {

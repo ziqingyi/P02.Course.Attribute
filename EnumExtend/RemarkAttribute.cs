@@ -9,14 +9,14 @@ namespace P02.Course.Attribute.EnumExtend
     public class RemarkAttribute : System.Attribute
     {
         //only provide get method to outside
-        public string _Remark
+        public string Remark
         {
             get;
             private set;
         }
         public RemarkAttribute(string remark)
         {
-            this._Remark = remark;
+            this.Remark = remark;
         }
 
     }
