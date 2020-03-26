@@ -13,11 +13,18 @@ namespace P02.Course.Attribute
         [Custom(123, Remark = "VIP", Description = "VIP student")]
         public string VipGroup { get; set; }
 
+
+
+        public long QQ { get; set; }
+
+
+        public long Salary { get; set; }
+
+
         [Custom(123, Remark = "VIP", Description = "VIP student")]
         public void Homework()
         {
 
         }
-
     }
 }

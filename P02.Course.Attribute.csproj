@@ -52,12 +52,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="StudentVip.cs" />
+    <Compile Include="ValidateExtend\AbstractValidateAttribute.cs" />
+    <Compile Include="ValidateExtend\LongAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ValidateExtend\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
