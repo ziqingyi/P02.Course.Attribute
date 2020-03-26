@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P02.Course.Attribute.ValidateExtend
 {
-
+    [AttributeUsage(AttributeTargets.Property)]
     public class LongAttribute: AbstractValidateAttribute
     {
         private long _Min = 0;
@@ -21,12 +21,10 @@ namespace P02.Course.Attribute.ValidateExtend
         public override bool Validate(object oValue)
         {
             bool test1 = oValue != null;
-
             bool test2 = oValue.ToString().Length > this._Min;
             bool test3 = oValue.ToString().Length > this._Max;
 
             return test1 && test2 && test3;
-
         }
 
 

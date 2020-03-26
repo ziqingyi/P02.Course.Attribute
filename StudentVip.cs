@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using P02.Course.Attribute.ValidateExtend;
 
 namespace P02.Course.Attribute
 {
@@ -14,10 +15,10 @@ namespace P02.Course.Attribute
         public string VipGroup { get; set; }
 
 
-
+        [Long(10000,100000)]
         public long QQ { get; set; }
 
-
+        [Long(200_000,1_000_000)]
         public long Salary { get; set; }
 
 

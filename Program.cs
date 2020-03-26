@@ -35,7 +35,7 @@ namespace P02.Course.Attribute
                 InvokeCenter.ManagerStudent(student);
             }
 
-
+            string remark = AttributeExtend.GetRemark(userState);
 
             #endregion
 

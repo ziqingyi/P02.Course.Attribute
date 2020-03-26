@@ -10,13 +10,13 @@ namespace P02.Course.Attribute.EnumExtend
     public enum UserState
     {
         //normal state user
-        [Remark("Normal")]
+        [Remark("Normal......")]
         Normal=0,
 
-        [Remark("Freeze")]
+        [Remark("Freeze........")]
         Frozen =1,
 
-        [Remark("Delete")]
+        [Remark("Delete........")]
         Deleted = 2 
 
     }
