@@ -19,6 +19,7 @@ namespace P02.Course.Attribute
         public long QQ { get; set; }
 
         [Long(200_000,1_000_000)]
+        [Required]
         public long Salary { get; set; }
 
 
