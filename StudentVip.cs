@@ -12,6 +12,7 @@ namespace P02.Course.Attribute
     public class StudentVip : Student
     {
         [Custom(123, Remark = "VIP", Description = "VIP student")]
+        [StringLength(4,10)]
         public string VipGroup { get; set; }
 
 

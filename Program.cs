@@ -42,6 +42,7 @@ namespace P02.Course.Attribute
             {
                 Id = 123,
                 Name = "vip student 1",
+                VipGroup = "12345",
                 QQ = 12345,
                 Salary = 500000
             };

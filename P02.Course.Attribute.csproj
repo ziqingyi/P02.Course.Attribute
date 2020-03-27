@@ -55,6 +55,7 @@
     <Compile Include="ValidateExtend\AbstractValidateAttribute.cs" />
     <Compile Include="ValidateExtend\LongAttribute.cs" />
     <Compile Include="ValidateExtend\RequiredAttribute.cs" />
+    <Compile Include="ValidateExtend\StringLengthAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
