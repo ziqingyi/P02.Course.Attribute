@@ -21,8 +21,9 @@ namespace P02.Course.Attribute.ValidateExtend
         public override bool Validate(object oValue)
         {
             bool test1 = oValue != null;
-            bool test2 = oValue.ToString().Length > this._Min;
-            bool test3 = oValue.ToString().Length > this._Max;
+            var val = long.TryParse(oValue.ToString(), out long lValue);
+            bool test2 = lValue >= this._Min;
+            bool test3 = lValue <= this._Max;
 
             return test1 && test2 && test3;
         }

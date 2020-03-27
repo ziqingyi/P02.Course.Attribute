@@ -49,6 +49,10 @@ namespace P02.Course.Attribute
             {
                 Console.WriteLine("validate is success!!!!!!");
             }
+            else
+            {
+                Console.WriteLine("some is not validate");
+            }
             
 
             #endregion
