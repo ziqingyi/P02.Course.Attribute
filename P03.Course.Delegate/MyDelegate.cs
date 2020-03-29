@@ -14,11 +14,42 @@ namespace P03.Course.Delegate
 
         public delegate int WithReturnNoPara();
 
-        public delegate MyDelegate WithReturnWIthPara();
+        public delegate MyDelegate WithReturnWIthPara(out int x, ref int y);
 
         public void Show()
         {
+            Student s = new Student()
+            {
+                Id = 96,
+                Name = "Tom"
+            };
+            s.Study();
+            {
+                NoReturnNoPara method = new NoReturnNoPara(this.DoNothing);
+                method.Invoke();// same to this.DoNothing();
+                method();// can also remove Invoke()
+                method.BeginInvoke(null,null);// run a thread 
+                method.EndInvoke(null);
+            }
+           
+
+
+            WithReturnWIthPara method2 = new WithReturnWIthPara(this.PraReturn);
+            
+
+
 
         }
+
+        private MyDelegate PraReturn(out int x, ref int y)
+        {
+            throw new Exception();
+        }
+
+        private void DoNothing()
+        {
+            Console.WriteLine("this is doing nothing");
+        }
+    
     }
 }
