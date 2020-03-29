@@ -31,11 +31,13 @@ namespace P03.Course.Delegate
                 method.BeginInvoke(null,null);// run a thread 
                 method.EndInvoke(null);
             }
-           
+
+            {
+                WithReturnWIthPara method2 = new WithReturnWIthPara(this.PraReturn);
+                //method2.Invoke(out int a, ref int b );
+            }
 
 
-            WithReturnWIthPara method2 = new WithReturnWIthPara(this.PraReturn);
-            
 
 
 
