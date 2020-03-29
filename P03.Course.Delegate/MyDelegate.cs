@@ -26,15 +26,21 @@ namespace P03.Course.Delegate
             s.Study();
             {
                 NoReturnNoPara method = new NoReturnNoPara(this.DoNothing);
-                method.Invoke();// same to this.DoNothing();
-                method();// can also remove Invoke()
-                method.BeginInvoke(null,null);// run a thread 
+                method.Invoke(); // same to this.DoNothing();
+                method(); // can also remove Invoke()
+                method.BeginInvoke(null, null); // run a thread 
                 method.EndInvoke(null);
             }
 
             {
                 WithReturnWIthPara method2 = new WithReturnWIthPara(this.PraReturn);
-                //method2.Invoke(out int a, ref int b );
+                int i = 10;
+                method2.Invoke(out int a, ref i);
+
+
+                WithReturnNoPara w = new WithReturnNoPara(Get);
+                w.Invoke(); // same to this.Get();
+
             }
 
             {
@@ -45,16 +51,41 @@ namespace P03.Course.Delegate
                     Age = 23,
                     ClassId = 1
                 };
-                 ss.SayHi("Cath", PeopleType.Chinese);
+                ss.SayHi("Cath", PeopleType.Chinese);
 
-                 ss.SayHiPerfect("tom", ss.SayHiEnglish);
+                ss.SayHiPerfect("tom", ss.SayHiEnglish);
             }
 
+            {
+                Action a = new Action(this.DoNothing); // up to 16 param, no return 
+                Action aa = this.DoNothing; // Syntactic sugar
+                Action<int> a_in = this.ShowInt; // ni 
 
+                Func<int> fun_out = this.Get; // can have return, no param
+                int iRes = fun_out.Invoke();
+
+                Func<int, string> func1 = this.ToStringFunc;
+
+            }
 
 
         }
 
+        private string ToStringFunc(int i)
+        {
+            return i.ToString() + " string";
+        }
+
+    public void ShowInt(int i)
+        {
+            Console.WriteLine(i);
+        }
+
+
+        public int Get()
+        {
+            return 10;
+        }
         private MyDelegate PraReturn(out int x, ref int y)
         {
             throw new Exception();
