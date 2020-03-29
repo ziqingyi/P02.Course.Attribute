@@ -37,6 +37,18 @@ namespace P03.Course.Delegate
                 //method2.Invoke(out int a, ref int b );
             }
 
+            {
+                Student ss = new Student()
+                {
+                    Id = 123,
+                    Name = "Rab",
+                    Age = 23,
+                    ClassId = 1
+                };
+                 ss.SayHi("Cath", PeopleType.Chinese);
+
+                 ss.SayHiPerfect("tom", ss.SayHiEnglish);
+            }
 
 
 
