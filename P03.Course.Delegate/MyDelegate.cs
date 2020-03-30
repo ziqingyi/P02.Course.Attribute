@@ -97,12 +97,31 @@ namespace P03.Course.Delegate
                     NoReturnNoPara method2 = Student.Staticstudy;
                     Action m = Student.Staticstudy;
                 }
-
-
-
-
             }
+            {
+                //multicast delegate 
+                Action method = this.DoNothing;
+                method += DONothintgStatic;
+                method += this.DoNothing;
+                method += new Student().Study;
+                method += Student.Staticstudy;
 
+                foreach (Action item in method.GetInvocationList())
+                {
+                    item.Invoke();
+                    item.BeginInvoke(null,null);
+
+                }
+
+
+                method -= this.DoNothing;
+                method -= new Student().Study;//will not remove that one,because different obj. 
+
+
+                //method.Invoke();
+                //new thread to run //but multicast delegate cannot async. 
+                method.BeginInvoke(null, null);
+            }
 
         }
 
