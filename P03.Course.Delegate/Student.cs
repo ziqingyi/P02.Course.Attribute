@@ -54,6 +54,11 @@ namespace P03.Course.Delegate
             method.Invoke(name);
         }
 
+        public static void Staticstudy()
+        {
+            Console.WriteLine("study as static");
+        }
+
 
     }
 

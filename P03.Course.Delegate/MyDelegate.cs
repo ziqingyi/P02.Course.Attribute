@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -67,8 +68,47 @@ namespace P03.Course.Delegate
                 Func<int, string> func1 = this.ToStringFunc;
 
             }
+            {
+                Action a0 = this.DoNothing;
+                NoReturnNoPara method = this.DoNothing;
+
+                this.DOAction(a0);
+                //this.DOAction(method);//wrong, different kind of delegate.
+            }
+            { 
+                //many ways to init, must keep same param and return value with delegate
+                {
+                    NoReturnNoPara method = new NoReturnNoPara(this.DoNothing);
+                    NoReturnNoPara method2 = this.DoNothing;
+                    Action m = this.DoNothing;
+                }
+                {
+                    NoReturnNoPara method = new NoReturnNoPara(DONothintgStatic);
+                    NoReturnNoPara method2 = DONothintgStatic;
+                    Action m = DONothintgStatic;
+                }
+                {
+                    NoReturnNoPara method = new NoReturnNoPara(new Student().Study);
+                    NoReturnNoPara method2 = new Student().Study;
+                    Action m = new Student().Study;
+                }
+                {
+                    NoReturnNoPara method = new NoReturnNoPara(Student.Staticstudy);
+                    NoReturnNoPara method2 = Student.Staticstudy;
+                    Action m = Student.Staticstudy;
+                }
 
 
+
+
+            }
+
+
+        }
+
+        private void DOAction(Action act)
+        {
+            act.Invoke();
         }
 
         private string ToStringFunc(int i)
@@ -76,7 +116,7 @@ namespace P03.Course.Delegate
             return i.ToString() + " string";
         }
 
-    public void ShowInt(int i)
+        public void ShowInt(int i)
         {
             Console.WriteLine(i);
         }
@@ -94,6 +134,11 @@ namespace P03.Course.Delegate
         private void DoNothing()
         {
             Console.WriteLine("this is doing nothing");
+        }
+
+        private static void DONothintgStatic()
+        {
+            Console.WriteLine("This is static do nothing");
         }
     
     }
