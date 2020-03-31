@@ -58,6 +58,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Event\Baby.cs" />
+    <Compile Include="Event\Brother.cs" />
+    <Compile Include="Event\Cat.cs" />
+    <Compile Include="Event\Dog.cs" />
+    <Compile Include="Event\Father.cs" />
+    <Compile Include="Event\IObject.cs" />
+    <Compile Include="Event\Mother.cs" />
+    <Compile Include="Event\Mouse.cs" />
+    <Compile Include="Event\Neighbor.cs" />
+    <Compile Include="Event\Stealer.cs" />
     <Compile Include="MyDelegate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

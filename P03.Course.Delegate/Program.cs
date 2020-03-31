@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using P03.Course.Delegate.Event;
 
 namespace P03.Course.Delegate
 {
@@ -27,7 +28,17 @@ namespace P03.Course.Delegate
                 SayHiDelegate method = new SayHiDelegate(ss.SayHiChinese);
                 ss.SayHiPerfect("wang", method);
             }
+            {
+                Console.WriteLine("---------Action Func-------------");
+                MyDelegate myDelegate = new MyDelegate();
+                myDelegate.Show();
+            }
+            {
+                Console.WriteLine("-------------------");
+                Cat a = new Cat();
+                a.Miao();
 
+            }
 
         }
     }
