@@ -89,7 +89,7 @@ namespace P03.Course.Delegate.Event
     {
         public void DO()
         {
-            this.CatMiaoActionHandler = null;
+            //this.CatMiaoActionHandler = null;
         }
     }
 
