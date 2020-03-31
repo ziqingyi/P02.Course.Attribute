@@ -68,9 +68,9 @@ namespace P03.Course.Delegate.Event
             Console.WriteLine("*&^&*^*^*(^&*^&*^&*^&*^");
 
         }
-
+        // cannot be used outside of the class, not available in subclass. 
+        // support by compiler. 
         public event Action CatMiaoActionHandler;
-
         public void MiaoEvent()
         {
             Console.WriteLine("{0} MiaoEvent", this.GetType().Name);
@@ -81,10 +81,18 @@ namespace P03.Course.Delegate.Event
             Console.WriteLine("*&^&*^*^*(^&*^&*^&*^&*^");
             Console.WriteLine("*&^&*^*^*(^&*^&*^&*^&*^");
             Console.WriteLine("*&^&*^*^*(^&*^&*^&*^&*^");
-
-
         }
 
-
     }
+
+    public class Cat2 : Cat
+    {
+        public void DO()
+        {
+            this.CatMiaoActionHandler = null;
+        }
+    }
+
+
+
 }
