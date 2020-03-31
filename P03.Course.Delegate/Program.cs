@@ -38,6 +38,29 @@ namespace P03.Course.Delegate
                 Cat a = new Cat();
                 a.Miao();
 
+                a.CatMiaoAction += new Dog().Wang;
+                a.CatMiaoAction += new Mouse().Run;
+                a.CatMiaoAction += new Baby().Cry;
+                a.CatMiaoAction += new Mother().Wispher;
+                a.CatMiaoAction += new Brother().Turn;
+                a.CatMiaoAction += new Father().Roar;
+                a.CatMiaoAction += new Neighbor().Awake;
+                a.CatMiaoAction += new Stealer().Hide;
+
+                a.MiaoDelegate();
+
+                Console.WriteLine("&&&&&&&&add to private IObject List &&&&&&&&&");
+                a.AddObserver(new Dog());
+                a.AddObserver(new Mouse());
+                a.AddObserver(new Baby());
+                a.AddObserver(new Mother());
+                a.AddObserver(new Brother());
+                a.AddObserver(new Father());
+                a.AddObserver(new Neighbor());
+                a.AddObserver(new Stealer());
+
+                a.MiaoObserver();
+
             }
 
         }

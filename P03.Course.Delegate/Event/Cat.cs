@@ -53,7 +53,14 @@ namespace P03.Course.Delegate.Event
         public void MiaoDelegate()
         {
             Console.WriteLine("{0} MiaoDelegate ", this.GetType().Name);
+            ////original use: 
+            //if (this.CatMiaoAction != null)
+            //{
+            //    this.CatMiaoAction.Invoke();
+            //}
+            //for simple: 
             this.CatMiaoAction?.Invoke();
+
             Console.WriteLine("*&^&*^*^*(^&*^&*^&*^&*^");
             Console.WriteLine("*&^&*^*^*(^&*^&*^&*^&*^");
             Console.WriteLine("*&^&*^*^*(^&*^&*^&*^&*^");

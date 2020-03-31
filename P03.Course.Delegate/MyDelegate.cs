@@ -30,12 +30,13 @@ namespace P03.Course.Delegate
                 method.Invoke(); // same to this.DoNothing();
                 method(); // can also remove Invoke()
                 method.BeginInvoke(null, null); // run a thread 
-                method.EndInvoke(null);
+                //method.EndInvoke(null);
             }
 
             {
                 WithReturnWIthPara method2 = new WithReturnWIthPara(this.PraReturn);
-                int i = 10;
+                int i = 1;
+                
                 method2.Invoke(out int a, ref i);
 
 
@@ -110,17 +111,14 @@ namespace P03.Course.Delegate
                 {
                     item.Invoke();
                     item.BeginInvoke(null,null);
-
                 }
-
 
                 method -= this.DoNothing;
                 method -= new Student().Study;//will not remove that one,because different obj. 
 
-
                 //method.Invoke();
                 //new thread to run //but multicast delegate cannot async. 
-                method.BeginInvoke(null, null);
+                //method.BeginInvoke(null, null);
             }
 
         }
@@ -147,7 +145,10 @@ namespace P03.Course.Delegate
         }
         private MyDelegate PraReturn(out int x, ref int y)
         {
-            throw new Exception();
+            //throw new Exception();
+            x =  1;
+            y = y + 1;
+            return null;
         }
 
         private void DoNothing()

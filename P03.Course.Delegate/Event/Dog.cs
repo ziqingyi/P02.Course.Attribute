@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P03.Course.Delegate.Event
 {
-    class Dog
+    class Dog : IObject
     {
         public void DoAction()
         {
