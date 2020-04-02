@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventStandard.cs" />
     <Compile Include="Event\Baby.cs" />
     <Compile Include="Event\Brother.cs" />
     <Compile Include="Event\Cat.cs" />
