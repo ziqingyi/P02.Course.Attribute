@@ -67,7 +67,7 @@ namespace P03.Course.Delegate
             public int Id { get; set; }
             public string tag { get; set; }
 
-            private int _price;
+            private int _price = 10000;
 
             public int Price 
             {
