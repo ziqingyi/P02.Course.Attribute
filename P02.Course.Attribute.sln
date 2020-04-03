@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P03.Course.Delegate", "P03.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P03.Course.winForm", "P03.Course.winForm\P03.Course.winForm.csproj", "{A367C7A9-DEE5-4BE8-9813-DB56C336C837}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P04.Course.Lambda", "P04.Course.Lambda\P04.Course.Lambda.csproj", "{A24EF6A4-403B-47A0-A03F-A0F34125AB27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A367C7A9-DEE5-4BE8-9813-DB56C336C837}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A367C7A9-DEE5-4BE8-9813-DB56C336C837}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A367C7A9-DEE5-4BE8-9813-DB56C336C837}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A24EF6A4-403B-47A0-A03F-A0F34125AB27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A24EF6A4-403B-47A0-A03F-A0F34125AB27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A24EF6A4-403B-47A0-A03F-A0F34125AB27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A24EF6A4-403B-47A0-A03F-A0F34125AB27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
