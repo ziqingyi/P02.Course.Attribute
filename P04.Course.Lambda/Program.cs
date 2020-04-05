@@ -83,9 +83,18 @@ namespace P04.Course.Lambda
 
                 string longtext = "adfakfkajflwjerjwqofjeqljldkfa".ToLength(20);//notice the 2nd param
 
+                   // 6 to Extend any class, but it will affect any type. 
+                   //   so normally don't USE extend method for T XXX without limitation in T. 
+                   i.ToStringCust();
+                   student.ToStringCust();
+                   object o = "";
+                   o.ToStringCust();
+                   
+
             }
 
             #endregion
+
 
 
         }

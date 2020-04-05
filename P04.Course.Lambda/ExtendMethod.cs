@@ -37,6 +37,22 @@ namespace P04.Course.Lambda
                 return text;
             }
         }
+        // for any object 
+        public static string ToStringCust<T>(this T t)
+        {
+            if (t is Guid)
+            {
+                return t.ToString().Replace("-","");
+            }
+            //else.....
+            else
+            {
+                return t.ToString();
+            }
+
+
+        }
+
 
     }
 }
