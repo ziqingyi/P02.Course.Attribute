@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -82,7 +83,15 @@ namespace P04.Course.Lambda
 
                 mm.Invoke(888, "multi");
             }
+            {
+                // anomymous class can have return value. 
+                Action action0 = () => { };
+                Action<string> a1 = s => Console.WriteLine(s);
 
+                Func<int> func0 = () => DateTime.Now.Month;
+                Func<int, string, int> func11 = (id,name)=>id;
+                ;
+            }
 
         }
 
