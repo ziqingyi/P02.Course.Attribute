@@ -18,7 +18,7 @@ namespace P04.Course.Lambda
             //    lambdaShow.Show();
             //}
 
-            #region 3.0出了个匿名类 var
+            #region .net 3.0
 
             {
                 Console.WriteLine("****************anonymous class***************");
@@ -85,10 +85,11 @@ namespace P04.Course.Lambda
 
                    // 6 to Extend any class, but it will affect any type. 
                    //   so normally don't USE extend method for T XXX without limitation in T. 
-                   i.ToStringCust();
-                   student.ToStringCust();
+                   i.ToStringCustt();
+                   student.ToStringCustt();
                    object o = "";
-                   o.ToStringCust();
+                   o.ToStringCustt();
+                   
                    
 
             }

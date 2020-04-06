@@ -38,7 +38,7 @@ namespace P04.Course.Lambda
             }
         }
         // for any object 
-        public static string ToStringCust<T>(this T t)
+        public static string ToStringCustt<T>(this T t)
         {
             if (t is Guid)
             {
