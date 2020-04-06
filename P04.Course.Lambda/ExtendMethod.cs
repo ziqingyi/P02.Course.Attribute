@@ -11,6 +11,30 @@ namespace P04.Course.Lambda
     //Extend method: static method in static class, 
     public static class ExtendMethod
     {
+        #region for Linq
+
+        //condition should be passed by delegate 
+        public static List<Student> ExtendWhere(this List<Student> resource,Func<Student,bool> func)
+        {
+            //normal way
+            var list = new List<Student>();
+            foreach (var item in resource)
+            {
+                //if (item.Age < 30
+                 //   && item.Name.Length > 2)
+                 if(func.Invoke(item))
+                {
+                    list.Add(item);
+                }
+            }
+
+            return list;
+        }
+
+        #endregion
+
+
+        #region for delegate
         //if first param has this, stu.StudyPractise() can be used. //
         public static void StudyPractise(this Student stu)
         {
@@ -42,16 +66,17 @@ namespace P04.Course.Lambda
         {
             if (t is Guid)
             {
-                return t.ToString().Replace("-","");
+                return t.ToString().Replace("-", "");
             }
             //else.....
             else
             {
                 return t.ToString();
             }
-
-
         }
+
+        #endregion
+
 
 
     }

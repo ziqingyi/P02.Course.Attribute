@@ -90,7 +90,7 @@ namespace P04.Course.Lambda
 
                 Func<int> func0 = () => DateTime.Now.Month;
                 Func<int, string, int> func11 = (id,name)=>id;
-                ;
+                int IResult = func11.Invoke(11, "test");
             }
 
         }
