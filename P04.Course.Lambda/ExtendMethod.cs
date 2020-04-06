@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace P04.Course.Lambda
@@ -12,7 +13,6 @@ namespace P04.Course.Lambda
     public static class ExtendMethod
     {
         #region for Linq
-
         //condition should be passed by delegate 
         public static List<Student> ExtendWhere(this List<Student> resource,Func<Student,bool> func)
         {
@@ -27,11 +27,47 @@ namespace P04.Course.Lambda
                     list.Add(item);
                 }
             }
-
             return list;
         }
-
         #endregion
+
+        #region for Linq for generic
+        //condition should be passed by delegate 
+        public static List<T> ExtendWhereT<T>(this List<T> resource, Func<T, bool> func)
+        {
+            var list = new List<T>();
+            foreach (var item in resource)
+            {
+                Console.WriteLine(" data check T-------------");
+                Thread.Sleep(100);
+                if (func.Invoke(item))
+                {
+                    list.Add(item);
+                }
+            }
+            return list;
+        }
+        #endregion
+
+        #region for Linq for Iterator
+        //condition should be passed by delegate 
+        public static IEnumerable<T> ExtendWhereTIterator<T>(this IEnumerable<T> resource, Func<T, bool> func)
+        {
+            
+            foreach (var item in resource)
+            {
+                Console.WriteLine(" data check Iterator-------------");
+                Thread.Sleep(100);
+                if (func.Invoke(item))
+                {
+                    yield return item;
+                }
+            }
+            
+        }
+        #endregion
+
+
 
 
         #region for delegate

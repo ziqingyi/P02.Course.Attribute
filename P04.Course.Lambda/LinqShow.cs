@@ -229,52 +229,79 @@ namespace P04.Course.Lambda
         {
             var studentlist = this.GetStudentList();
 
-            {
-                //normal way
-                Console.WriteLine("************normal way***************");
-                var list = new List<Student>();
-                foreach (var item in studentlist)
-                {
-                    if (item.Age < 30 
-                        && item.Name.Length > 2)
-                    {
-                        list.Add(item);
-                        Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, list.Count);
-                    }
-                }
-            }
+            //{
+            //    //normal way
+            //    Console.WriteLine("************normal way***************");
+            //    var list = new List<Student>();
+            //    foreach (var item in studentlist)
+            //    {
+            //        if (item.Age < 30 
+            //            && item.Name.Length > 2)
+            //        {
+            //            list.Add(item);
+            //            Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, list.Count);
+            //        }
+            //    }
+            //}
 
             #region Linq
 
-            {
-                Console.WriteLine("************Linq 1***************");
-                var list = studentlist.Where<Student>(s => s.Age < 30 && s.Name.Length > 2);
-                int i = 1;
-                foreach (var item in list)
-                {
-                    Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++ );
-                }
-            }
-            {
-                Console.WriteLine("***********Linq 2****************");
-                int i = 1;
-                var list = from s in studentlist
-                           where s.Age < 30 && s.Name.Length > 2
-                           select s;
+            //{
+            //    Console.WriteLine("************Linq 1***************");
+            //    var list = studentlist.Where<Student>(s => s.Age < 30 && s.Name.Length > 2);
+            //    int i = 1;
+            //    foreach (var item in list)
+            //    {
+            //        Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++ );
+            //    }
+            //}
+            //{
+            //    Console.WriteLine("***********Linq 2****************");
+            //    int i = 1;
+            //    var list = from s in studentlist
+            //               where s.Age < 30 && s.Name.Length > 2
+            //               select s;
 
-                foreach (var item in list)
-                {
-                    Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
-                }
-            }
+            //    foreach (var item in list)
+            //    {
+            //        Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
+            //    }
+            //}
 
             {
                 Console.WriteLine("***********Linq 3, for extend****************");
-
+                int i = 1;
                 var result = ExtendMethod.ExtendWhere(studentlist, new Func<Student, bool>(s => s.Name.Length > 2 && s.Age < 30));
+                foreach (var item in result)
+                {
+                    Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
+                }
 
-                // if use this
+                // same to use this
+                Console.WriteLine("          extend simplify****************");
+                i = 1;
                 var result2 = studentlist.ExtendWhere(s => s.Name.Length > 2 && s.Age < 30);
+                foreach (var item in result2)
+                {
+                    Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
+                }
+                //var result3 = studentlist.ExtendWhereT<Student>(s => s.Name.Length > 2 && s.Age < 30); // <T> is not necessary, s is based on para
+                
+                Console.WriteLine("        generic ****************");
+                i = 1;
+                var result4 = studentlist.ExtendWhereT(s => s.Name.Length > 2 && s.Age < 30);
+                foreach (var item in result4)
+                {
+                    Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
+                }
+
+                Console.WriteLine("        iterator ****************");
+                i = 1;
+                var result5 = studentlist.ExtendWhereTIterator(s => s.Name.Length > 2 && s.Age < 30);
+                foreach (var item in result5)
+                {
+                    Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
+                }
 
 
             }
