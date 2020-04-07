@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
@@ -95,7 +96,11 @@ namespace P04.Course.Lambda
             #region Linq
             LinqShow linq = new LinqShow();
             linq.Show();
-            
+
+            //test: Extend method used for object, not static class. 
+            yyy yy = new yyy();
+            Console.WriteLine(yy.ToStringCustt());
+
 
             #endregion
 
@@ -103,5 +108,16 @@ namespace P04.Course.Lambda
 
 
         }
+    }
+
+    public static class iii
+    {
+        public static int Id { get; set; }
+        public static string ClassName { get; set; }
+    }
+    public class yyy
+    {
+        public static int Id { get; set; }
+        public static string ClassName { get; set; }
     }
 }
