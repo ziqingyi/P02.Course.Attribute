@@ -302,13 +302,61 @@ namespace P04.Course.Lambda
                 {
                     Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
                 }
+            }
+            #endregion
+            #region   linq to object  ---where   filter
 
+            
+            {
+                Console.WriteLine("------where--------------");
+                var list = studentlist.Where<Student>(s=>s.Age < 30)
+                    .Select(s=>new
+                    {
+                        IdName = s.Id + s.Name,
+                        ClassName = s.ClassId ==2? "advanced": "basic"
+                    });
+                foreach (var item in list)
+                {
+                    Console.WriteLine("Name = {0} Age = {1} ", item.ClassName, item.IdName);
+                }
+            }
+            {
+                Console.WriteLine("------from where--------------");
+                var list = from s in studentlist
+                    where s.Age < 30
+                    select new
+                    {
+                        IdName = s.Id + s.Name,
+                        ClassName = s.ClassId == 2 ? "advanced" : "basic"
+                    };
+                foreach (var item in list)
+                {
+                    Console.WriteLine("Name = {0} Age = {1} ", item.ClassName, item.IdName);
+                }
+
+            }
+            {
+                Console.WriteLine("------in --------------");
+                var list = studentlist.Where<Student>(s => s.Age < 30)
+                    .Where(s => new int[]{1,2,3,4}.Contains(s.ClassId))
+                    .Select(s=> new
+                    {
+                        IdName = s.Id + s.Name,
+                        ClassName = s.ClassId == 2 ? "advanced" : "basic"
+                    });
+                foreach (var item in list)
+                {
+                    Console.WriteLine("Name = {0} Age = {1} ", item.ClassName, item.IdName);
+                }
 
             }
 
 
-            #endregion
 
+
+
+
+            #endregion
 
 
         }
