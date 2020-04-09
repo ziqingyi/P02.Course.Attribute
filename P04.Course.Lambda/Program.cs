@@ -97,10 +97,33 @@ namespace P04.Course.Lambda
             LinqShow linq = new LinqShow();
             linq.Show();
 
+
+
             //test: Extend method used for object, not static class. 
             yyy yy = new yyy();
             Console.WriteLine(yy.ToStringCustt());
+            // test for some sturcture.
+            Dictionary<string, int> recommendWH = new Dictionary<string, int>();
 
+            recommendWH.Add("R", 100);
+            recommendWH.Add("T", 200);
+
+            Console.WriteLine(recommendWH[recommendWH.Keys.First()].ToString());
+
+            List<List<int>> t = new List<List<int>>();
+            string[] tt = new string[2];
+
+            SortedList<String, int> ttest = new SortedList<string, int>();
+            ttest.Add("R", 100);
+            ttest.Add("T", 100);
+
+            List<KeyValuePair<String, int>> ll = new List<KeyValuePair<string, int>>();
+            KeyValuePair<string, int> one = new KeyValuePair<string, int>("R", 100);
+            ll.Add(one);
+            KeyValuePair<string, int> tw = new KeyValuePair<string, int>("R", 100);
+            ll.Add(tw);
+
+            Console.WriteLine("list with key value pair " + ll[1].Key + "  " + ll[1].Value);
 
             #endregion
 

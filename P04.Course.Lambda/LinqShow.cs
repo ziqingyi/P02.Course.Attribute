@@ -308,7 +308,7 @@ namespace P04.Course.Lambda
 
             
             {
-                Console.WriteLine("------where--------------");
+                Console.WriteLine("------where and select : Projects each element of a sequence into a new form.--------------");
                 var list = studentlist.Where<Student>(s=>s.Age < 30)
                     .Select(s=>new
                     {
