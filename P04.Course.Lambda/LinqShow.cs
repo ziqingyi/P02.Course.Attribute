@@ -20,7 +20,7 @@ namespace P04.Course.Lambda
                 {
                     Id=1,
                     Name="s1o",
-                    ClassId=2,
+                    ClassId=1,
                     Age=35
                 },
                 new Student()
@@ -41,7 +41,7 @@ namespace P04.Course.Lambda
                 {
                     Id=1,
                     Name="s4h",
-                    ClassId=2,
+                    ClassId=1,
                     Age=26
                 },
                 new Student()
@@ -55,7 +55,7 @@ namespace P04.Course.Lambda
                 {
                     Id=1,
                     Name="s6kj",
-                    ClassId=2,
+                    ClassId=1,
                     Age=24
                 },
                 new Student()
@@ -69,7 +69,7 @@ namespace P04.Course.Lambda
                 {
                     Id=1,
                     Name="s8",
-                    ClassId=2,
+                    ClassId=1,
                     Age=22
                 },
                  new Student()
@@ -83,7 +83,7 @@ namespace P04.Course.Lambda
                 {
                     Id=1,
                     Name="s10",
-                    ClassId=2,
+                    ClassId=1,
                     Age=20
                 },
                 new Student()
@@ -97,7 +97,7 @@ namespace P04.Course.Lambda
                 {
                     Id=1,
                     Name="s12kjk",
-                    ClassId=2,
+                    ClassId=1,
                     Age=30
                 },
                 new Student()
@@ -111,7 +111,7 @@ namespace P04.Course.Lambda
                 {
                     Id=1,
                     Name="s14ioio",
-                    ClassId=2,
+                    ClassId=1,
                     Age=30
                 },
                  new Student()
@@ -125,7 +125,7 @@ namespace P04.Course.Lambda
                 {
                     Id=4,
                     Name="s16fgf",
-                    ClassId=4,
+                    ClassId=3,
                     Age=30
                 }
                   ,
@@ -133,7 +133,7 @@ namespace P04.Course.Lambda
                 {
                     Id=4,
                     Name="s17",
-                    ClassId=4,
+                    ClassId=3,
                     Age=30
                 }
                   ,
@@ -141,56 +141,56 @@ namespace P04.Course.Lambda
                 {
                     Id=4,
                     Name="s18",
-                    ClassId=4,
+                    ClassId=1,
                     Age=30
                 },
                   new Student()
                 {
                     Id=4,
                     Name="s19gffg",
-                    ClassId=4,
+                    ClassId=1,
                     Age=30
                 },
                   new Student()
                 {
                     Id=4,
                     Name="s20",
-                    ClassId=4,
+                    ClassId=3,
                     Age=22
                 },
                   new Student()
                 {
                     Id=4,
                     Name="s21jhjh",
-                    ClassId=4,
+                    ClassId=3,
                     Age=23
                 },
                   new Student()
                 {
                     Id=4,
                     Name="s22",
-                    ClassId=4,
+                    ClassId=1,
                     Age=25
                 },
                   new Student()
                 {
                     Id=4,
                     Name="s23oioi",
-                    ClassId=4,
+                    ClassId=1,
                     Age=26
                 },
                   new Student()
                 {
                     Id=4,
                     Name="s24",
-                    ClassId=4,
+                    ClassId=3,
                     Age=28
                 },
                   new Student()
                 {
                     Id=4,
                     Name="s25ioi",
-                    ClassId=4,
+                    ClassId=2,
                     Age=22
                 },
                   new Student()
@@ -204,7 +204,7 @@ namespace P04.Course.Lambda
                 {
                     Id=4,
                     Name="s27",
-                    ClassId=4,
+                    ClassId=2,
                     Age=30
                 },
                   new Student()
@@ -248,7 +248,7 @@ namespace P04.Course.Lambda
             #region Linq
 
             //{
-            //    Console.WriteLine("************Linq 1***************");
+            //    Console.WriteLine("************lambda ***************");
             //    var list = studentlist.Where<Student>(s => s.Age < 30 && s.Name.Length > 2);
             //    int i = 1;
             //    foreach (var item in list)
@@ -257,7 +257,7 @@ namespace P04.Course.Lambda
             //    }
             //}
             //{
-            //    Console.WriteLine("***********Linq 2****************");
+            //    Console.WriteLine("***********Linq ****************");
             //    int i = 1;
             //    var list = from s in studentlist
             //               where s.Age < 30 && s.Name.Length > 2
@@ -270,7 +270,7 @@ namespace P04.Course.Lambda
             //}
 
             //{
-            //    Console.WriteLine("***********Linq 3, for extend****************");
+            //    Console.WriteLine("***********lambda , for extend****************");
             //    int i = 1;
             //    var result = ExtendMethod.ExtendWhere(studentlist, new Func<Student, bool>(s => s.Name.Length > 2 && s.Age < 30));
             //    foreach (var item in result)
@@ -321,7 +321,7 @@ namespace P04.Course.Lambda
             //    }
             //}
             //{
-            //    Console.WriteLine("------from where--------------");//be compiled to the upper case
+            //    Console.WriteLine("------linq from where--------------");//be compiled to the upper case
             //    var list = from s in studentlist
             //        where s.Age < 30
             //        select new
@@ -336,7 +336,7 @@ namespace P04.Course.Lambda
             //}
 
             //{
-            //    Console.WriteLine("------in --------------");
+            //    Console.WriteLine("------labmda and linq in --------------");
             //    var list = studentlist.Where<Student>(s => s.Age < 30)
             //        .Where(s => new int[]{1,2,3,4}.Contains(s.ClassId))
             //        .Select(s=> new
@@ -350,9 +350,8 @@ namespace P04.Course.Lambda
             //    }
             //}
 
-
             //{
-            //    Console.WriteLine("------order by skip and take --------------");
+            //    Console.WriteLine("------linq order by skip and take --------------");
             //    var list = studentlist.Where(s => s.Age < 30)
             //        .Select(s => new
             //        {
@@ -372,7 +371,7 @@ namespace P04.Course.Lambda
             //    }
             //}
             //{
-            //    Console.WriteLine("------  group by --------------");
+            //    Console.WriteLine("------ linq  group by --------------");
             //    var list = from s in studentlist
             //               where s.Age < 30
             //               group s by s.ClassId 
@@ -438,6 +437,74 @@ namespace P04.Course.Lambda
                 }
             };
 
+            {
+                Console.WriteLine("------  use Join with lambda--------------");
+                var list = studentlist.Join(classList, s => s.ClassId, c => c.Id,
+                    (s, c) => new 
+                    {
+                        Name = s.Name,
+                        ClassName = c.ClassName
+                    });
+                foreach (var item in list)
+                {
+                    Console.WriteLine($"Name = {item.Name}, Class Name = {item.ClassName}");
+                }
+            }
+            {
+                Console.WriteLine("------  use Join with from in --------------");
+                var list = from s in studentlist
+                    join c in classList
+                        on s.ClassId equals c.Id // cannot use ==
+                    select new
+                    {
+                        Name = s.Name,
+                        ClassName = c.ClassName
+                    };
+                foreach (var item in list)
+                {
+                    Console.WriteLine($"Name = {item.Name}, Class Name = {item.ClassName}");
+                }
+
+            }
+            {
+                Console.WriteLine("------  use left Join with linq--------------");
+                var testlist = from s in studentlist
+                               join c in classList
+                                   on s.ClassId equals c.Id
+                                   into tt
+                               select tt;
+
+
+                var list = from s in studentlist
+                           join c in classList
+                               on s.ClassId equals c.Id
+                               into scList  //add in a new group
+                           from sc in scList.DefaultIfEmpty() // for left join,because it display students without class
+                           select new
+                           {
+                               Name = s.Name,
+                               ClassName = sc == null ? "no class" : sc.ClassName
+                           };
+
+                foreach (var item in list)
+                {
+                    Console.WriteLine($"Name = {item.Name}, Class Name = {item.ClassName}");
+                }
+                Console.WriteLine(list.Count());
+            }
+            {
+                Console.WriteLine("------  use left Join with labmda--------------");
+                var list = studentlist.Join(classList, s => s.ClassId, c => c.Id,
+                    (s, c) => new
+                    {
+                        Name = s.Name,
+                        ClassName = c.ClassName
+                    }).DefaultIfEmpty();// if
+
+
+
+
+            }
 
 
 
