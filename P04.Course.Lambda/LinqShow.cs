@@ -245,7 +245,7 @@ namespace P04.Course.Lambda
             //    }
             //}
 
-            #region Linq
+            #region Linq to Object, the object is in memory
 
             //{
             //    Console.WriteLine("************lambda ***************");
@@ -304,8 +304,8 @@ namespace P04.Course.Lambda
             //        Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
             //    }
             //}
-            //#endregion
-            //#region   linq to object  ---where   filter
+            //
+            //                       ---where   filter
 
             //{
             //    Console.WriteLine("------where and select: Projects each element of a sequence into a new type---------");
@@ -349,7 +349,6 @@ namespace P04.Course.Lambda
             //        Console.WriteLine("Name = {0} Age = {1} ", item.ClassName, item.IdName);
             //    }
             //}
-
             //{
             //    Console.WriteLine("------linq order by skip and take --------------");
             //    var list = studentlist.Where(s => s.Age < 30)
@@ -413,10 +412,8 @@ namespace P04.Course.Lambda
             //    {
             //        Console.WriteLine("group key = {0} max age = {1} ", item.key, item.maxAge);
             //    }
-
             //}
 
-            #endregion
             Console.WriteLine("------  use Join --------------");
             List<Class> classList = new List<Class>()
             {
@@ -500,12 +497,24 @@ namespace P04.Course.Lambda
                         Name = s.Name,
                         ClassName = c.ClassName
                     }).DefaultIfEmpty();// if
-
-
-
-
             }
 
+            #endregion
+
+
+            {
+                //linq to sql
+                IQueryable<Student> list = studentlist.AsQueryable();
+                list.Where<Student>(s => s.Age > 30);
+
+
+
+                studentlist.Where<Student>(s =>// this cannnot be used to linq to sql,case that is Expressions
+                {
+                    Console.WriteLine("1231");
+                    return s.Age > 3;
+                });
+            }
 
 
 
