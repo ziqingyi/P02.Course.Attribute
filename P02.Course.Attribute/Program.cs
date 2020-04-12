@@ -46,6 +46,11 @@ namespace P02.Course.Attribute
                 QQ = 12345,
                 Salary = 500000
             };
+
+            Student sss = sp;
+            sss.Study();
+            
+            sp.Study();
             //use sp to call as Validate is static method with (this T t) param
             //same to AttributeExtend.Validate(sp);
             if (sp.Validate())

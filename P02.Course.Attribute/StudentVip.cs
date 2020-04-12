@@ -23,6 +23,10 @@ namespace P02.Course.Attribute
         [Required]
         public long Salary { get; set; }
 
+        public new void Study()
+        {
+            Console.WriteLine($"--------vip------Name: {this.Name}-----------------");
+        }
 
         [Custom(123, Remark = "VIP", Description = "VIP student")]
         public void Homework()
