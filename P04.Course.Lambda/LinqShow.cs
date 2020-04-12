@@ -335,21 +335,21 @@ namespace P04.Course.Lambda
             //    }
             //}
 
-            //{
-            //    Console.WriteLine("------labmda and linq in --------------");
-            //    var list = studentlist.Where<Student>(s => s.Age < 30)
-            //        .Where(s => new int[]{1,2,3,4}.Contains(s.ClassId))
-            //        .Select(s=> new
-            //        {
-            //            IdName = s.Id + s.Name,
-            //            ClassName = s.ClassId == 2 ? "advanced" : "basic"
-            //        });
-            //    foreach (var item in list)
-            //    {
-            //        Console.WriteLine("Name = {0} Age = {1} ", item.ClassName, item.IdName);
-            //    }
-            //}
-            //{
+            {
+                Console.WriteLine("------labmda and linq   in search--------------");
+                var list = studentlist.Where<Student>(s => s.Age < 30)
+                    .Where(s => new int[] { 1, 2, 3, 4 }.Contains(s.ClassId))//sub search 
+                    .Select(s => new
+                    {
+                        IdName = s.Id + s.Name,
+                        ClassName = s.ClassId == 2 ? "advanced" : "basic"
+                    });
+                foreach (var item in list)
+                {
+                    Console.WriteLine("Name = {0} Age = {1} ", item.ClassName, item.IdName);
+                }
+            }
+            {
             //    Console.WriteLine("------linq order by skip and take --------------");
             //    var list = studentlist.Where(s => s.Age < 30)
             //        .Select(s => new
@@ -386,33 +386,40 @@ namespace P04.Course.Lambda
             //    }
 
             //    Console.WriteLine("------  check group property --------------");
-            //    var list2 = from s in studentlist
-            //        where s.Age < 30
-            //        group s by s.ClassId
-            //        into sg
-            //        select sg;
-            //    foreach (var egroup in list2)
-            //    {
-            //        Console.WriteLine("group key = {0} ", egroup.Key);
-            //        foreach (var item in egroup)
-            //        {
-            //            Console.WriteLine("id = {0} Name = {1} Age = {2} ", item.Id, item.Name, item.Age);
-            //        }
-            //    }
-            //    Console.WriteLine("------  use delegate --------------");
+                var list2 = from s in studentlist
+                    where s.Age < 30
+                    group s by s.ClassId
+                    into sg
+                    select sg;
+                foreach (var egroup in list2)
+                {
+                    Console.WriteLine("group key = {0} ", egroup.Key);
+                    foreach (var item in egroup)
+                    {
+                        Console.WriteLine("id = {0} Name = {1} Age = {2} ", item.Id, item.Name, item.Age);
+                    }
+                }
+                Console.WriteLine("------  use delegate --------------");
 
-            //    var list3 = studentlist.GroupBy(s => s.ClassId)
-            //        .Select(sg => new
-            //        {
-            //            key = sg.Key,
-            //            maxAge = sg.Max(t => t.Age)
-            //        });
+                var testGroup = studentlist.GroupBy(s => new {s.ClassId, s.Age});
+                foreach (var g in testGroup)
+                {
+                    Console.WriteLine(g.Key+ "  value is " + g.ElementAt(0)+ " total " + g.Count());
+                }
 
-            //    foreach (var item in list3)
-            //    {
-            //        Console.WriteLine("group key = {0} max age = {1} ", item.key, item.maxAge);
-            //    }
-            //}
+
+                var list3 = studentlist.GroupBy(s => s.ClassId)
+                    .Select(sg => new
+                    {
+                        key = sg.Key,
+                        maxAge = sg.Max(t => t.Age)
+                    });
+
+                foreach (var item in list3)
+                {
+                    Console.WriteLine("group key = {0} max age = {1} ", item.key, item.maxAge);
+                }
+            }
 
             Console.WriteLine("------  use Join --------------");
             List<Class> classList = new List<Class>()

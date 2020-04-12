@@ -8,5 +8,7 @@ namespace P04.Course.Lambda
 {
     public class YieldShow
     {
+
+
     }
 }
