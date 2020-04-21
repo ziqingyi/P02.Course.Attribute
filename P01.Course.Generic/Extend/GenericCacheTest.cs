@@ -11,8 +11,15 @@ namespace P01.Course.Generic.Extend
     {
         public static void Show()
         {
+            var ii = 3;
+            Console.WriteLine(ii);
+            List<Bird> bb= new List<Bird>(5);
             for (int i = 0; i < 5; i++)
             {
+                Bird a = new Bird();
+                a.name = i.ToString();
+                bb.Add(a);
+                Thread.Sleep(10);
                 Console.WriteLine(GenericCache<int>.GetCache());
                 Thread.Sleep(10);
                 Console.WriteLine(GenericCache<long>.GetCache());
@@ -25,12 +32,11 @@ namespace P01.Course.Generic.Extend
                 Thread.Sleep(10);
             }
 
-
-
         }
 
-
     }
+
+
 
     class GenericCache<T>
     {
@@ -46,9 +52,12 @@ namespace P01.Course.Generic.Extend
             return _type;
         }
         
-
-
     }
 
+    class Bird
+    {
+        public string name = "";
+    }
+        
 
 }
