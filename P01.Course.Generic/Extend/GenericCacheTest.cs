@@ -13,10 +13,10 @@ namespace P01.Course.Generic.Extend
         {
             var ii = 3;
             Console.WriteLine(ii);
-            List<Bird> bb= new List<Bird>(5);
+            List<Birdt> bb= new List<Birdt>(5);
             for (int i = 0; i < 5; i++)
             {
-                Bird a = new Bird();
+                Birdt a = new Birdt();
                 a.name = i.ToString();
                 bb.Add(a);
                 Thread.Sleep(10);
@@ -54,7 +54,7 @@ namespace P01.Course.Generic.Extend
         
     }
 
-    class Bird
+    class Birdt
     {
         public string name = "";
     }
