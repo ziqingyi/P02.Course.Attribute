@@ -11,36 +11,31 @@ namespace P01.Course.Generic.Extend
     {
         public static void Show()
         {
+            //{
+            //    Bird bird1 = new Bird();
+            //    Bird bird2 = new Sparrow();
+            //    Sparrow sparrow1 = new Sparrow();
+            //    //Sparrow sparrow2 = new Bird();
+            //}
+            //{
+            //    List<Bird> birdList1 = new List<Bird>();
+            //    //List<Bird> birdList2 = new List<Sparrow>();
+
+            //    List<Bird> birdList3 = new List<Sparrow>().Select(c => (Bird)c).ToList();
+            //}
             {
-                Bird bird1 = new Bird();
-                Bird bird2 = new Sparrow();
-                Sparrow sparrow1 = new Sparrow();
-                //Sparrow sparrow2 = new Bird();
+            IEnumerable<Bird> birdList1 = new List<Bird>();
+            IEnumerable<Bird> birdList2 = new List<Sparrow>();
+
+            Func<Bird> func = new Func<Sparrow>(() => null);
+
+            ICustomerListOut<Bird> customerList1 = new CustomerListOut<Bird>();
+            Console.WriteLine("co variant get the default of T "+customerList1.Get());
+            
+            ICustomerListOut<Bird> customerList2 = new CustomerListOut<Sparrow>();
+            Console.WriteLine("co variant run get child class"+customerList2.Get());
             }
-
-
             {
-                List<Bird> birdList1 = new List<Bird>();
-                //List<Bird> birdList2 = new List<Sparrow>();
-
-                List<Bird> birdList3 = new List<Sparrow>().Select(c => (Bird)c).ToList();
-            }
-
-
-
-            {//
-                IEnumerable<Bird> birdList1 = new List<Bird>();
-                IEnumerable<Bird> birdList2 = new List<Sparrow>();
-
-                Func<Bird> func = new Func<Sparrow>(() => null);
-
-                ICustomerListOut<Bird> customerList1 = new CustomerListOut<Bird>();
-                ICustomerListOut<Bird> customerList2 = new CustomerListOut<Sparrow>();
-            }
-
-
-
-            {//
                 ICustomerListIn<Sparrow> customerList2 = new CustomerListIn<Sparrow>();
                 ICustomerListIn<Sparrow> customerList1 = new CustomerListIn<Bird>();
                 customerList1.Show(new Sparrow());
@@ -52,13 +47,11 @@ namespace P01.Course.Generic.Extend
 
                 Action<Sparrow> act = new Action<Bird>((Bird i) => { });
             }
-
-
             {
                 IMyList<Sparrow, Bird> myList1 = new MyList<Sparrow, Bird>();
-                IMyList<Sparrow, Bird> myList2 = new MyList<Sparrow, Sparrow>();//
-                IMyList<Sparrow, Bird> myList3 = new MyList<Bird, Bird>();//
-                IMyList<Sparrow, Bird> myList4 = new MyList<Bird, Sparrow>();//
+                IMyList<Sparrow, Bird> myList2 = new MyList<Sparrow, Sparrow>();
+                IMyList<Sparrow, Bird> myList3 = new MyList<Bird, Bird>();
+                IMyList<Sparrow, Bird> myList4 = new MyList<Bird, Sparrow>();
             }
         }
     }
@@ -72,10 +65,9 @@ namespace P01.Course.Generic.Extend
         public string Name { get; set; }
     }
 
-    public interface ICustomerListIn<in T>
+    public interface ICustomerListIn<in T> 
     {
         //T Get();
-
         void Show(T t);
     }
 
@@ -85,9 +77,10 @@ namespace P01.Course.Generic.Extend
         //{
         //    return default(T);
         //}
-
         public void Show(T t)
         {
+            Console.WriteLine("contra variant show" + t.GetType());
+
         }
     }
 
@@ -95,34 +88,27 @@ namespace P01.Course.Generic.Extend
     /// out
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface ICustomerListOut<out T>
+    public interface ICustomerListOut<out T> where T:new()
     {
         T Get();
-
         //void Show(T t);
     }
 
-    public class CustomerListOut<T> : ICustomerListOut<T>
+    public class CustomerListOut<T> : ICustomerListOut<T> where T : new()
     {
         public T Get()
         {
-            return default(T);
+            return new T(); //default(T);
         }
 
         public void printS()
         {
-            Console.WriteLine("print s ");
+            Console.WriteLine("co variant show " + typeof(T));
         }
-
         //public void Show(T t)
         //{
-
         //}
     }
-
-
-
-
 
     public interface IMyList<in inT, out outT>
     {
@@ -138,18 +124,15 @@ namespace P01.Course.Generic.Extend
 
     public class MyList<T1, T2> : IMyList<T1, T2>
     {
-
         public void Show(T1 t)
         {
             Console.WriteLine(t.GetType().Name);
         }
-
         public T2 Get()
         {
             Console.WriteLine(typeof(T2).Name);
             return default(T2);
         }
-
         public T2 Do(T1 t)
         {
             Console.WriteLine(t.GetType().Name);

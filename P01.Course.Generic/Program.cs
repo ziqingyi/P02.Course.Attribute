@@ -12,8 +12,8 @@ namespace P01.Course.Generic
         public static void Main(string[] args)
         {
             Console.WriteLine("---------test generic cache-----------");
-            GenericCacheTest.Show();
-
+            //GenericCacheTest.Show();
+            variantTest.Show();
             Console.WriteLine("--------test end--------------");
 
 
