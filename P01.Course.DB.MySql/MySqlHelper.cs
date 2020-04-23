@@ -18,4 +18,16 @@ namespace P01.Course.DB.MySql
             Console.WriteLine("{0}.Query is being called", this.GetType().Name);
         }
     }
+
+    public class MySqlHelper2 : IDBHelper
+    {
+        public MySqlHelper2()
+        {
+            Console.WriteLine("{0} is being initialized ", this.GetType().Name);
+        }
+        public void Query()
+        {
+            Console.WriteLine("{0}.Query is being called", this.GetType().Name);
+        }
+    }
 }
