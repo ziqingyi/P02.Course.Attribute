@@ -31,9 +31,9 @@ namespace P01.Course.Reflection
                    // full path
 
                    // load from current folder 
-                   Assembly a3 = Assembly.LoadFrom("P01.Course.DB.SqlServerHelper.dll"); 
+                   Assembly a3 = Assembly.LoadFrom("P01.Course.DB.SqlServer.dll"); 
                    Assembly a4 = Assembly.LoadFrom(
-                       @"C:\Users\adrian_sun\Source\Repos\ziqingyi\P02.Course.Attribute\P01.Course.Reflection\bin\Debug\P01.Course.DB.SqlServerHelper.dll");
+                       @"C:\Users\adrian_sun\Source\Repos\ziqingyi\P02.Course.Attribute\P01.Course.Reflection\bin\Debug\P01.Course.DB.SqlServer.dll");
                    foreach (var type in a1.GetTypes())
                    {
                        Console.WriteLine(type.Name);
