@@ -17,32 +17,32 @@ namespace P01.Course.Reflection
         {
             try
             {
-                Console.WriteLine("------------reflection--------------------");
-                {
-                    Console.WriteLine("---------common--------------");
-                    IDBHelper iDbHelper = new MySqlHelper();
-                    iDbHelper.Query();
-                }
-                {
-                    Console.WriteLine("------------reflection 1--------------------");
-                    Assembly a1 =   Assembly.Load("P01.Course.DB.MySql");//just dll name, find dll first then exe
-                   Assembly a2 = Assembly.LoadFile(
-                       @"C:\Users\adrian_sun\Source\Repos\ziqingyi\P02.Course.Attribute\P01.Course.Reflection\bin\Debug\P01.Course.DB.MySql.dll");
-                   // full path
+                //{
+                //    Console.WriteLine("------------reflection--------------------");
+                //    Console.WriteLine("---------common--------------");
+                //    IDBHelper iDbHelper = new MySqlHelper();
+                //    iDbHelper.Query();
+                //}
+                //{
+                //    Console.WriteLine("------------reflection 1--------------------");
+                //    Assembly a1 =   Assembly.Load("P01.Course.DB.MySql");//just dll name, find dll first then exe
+                //    Assembly a2 = Assembly.LoadFile(
+                //       @"C:\Users\adrian_sun\Source\Repos\ziqingyi\P02.Course.Attribute\P01.Course.Reflection\bin\Debug\P01.Course.DB.MySql.dll");
+                //   // full path
 
-                   // load from current folder 
-                   Assembly a3 = Assembly.LoadFrom("P01.Course.DB.SqlServerHelper.dll"); 
-                   Assembly a4 = Assembly.LoadFrom(
-                       @"C:\Users\adrian_sun\Source\Repos\ziqingyi\P02.Course.Attribute\P01.Course.Reflection\bin\Debug\P01.Course.DB.SqlServerHelper.dll");
-                   foreach (var type in a1.GetTypes())
-                   {
-                       Console.WriteLine(type.Name);
-                       foreach (var method in type.GetMethods())
-                       {
-                           Console.WriteLine(method.Name);
-                       }
-                   }
-                }
+                //   // load from current folder 
+                //   Assembly a3 = Assembly.LoadFrom("P01.Course.DB.SqlServerHelper.dll"); 
+                //   Assembly a4 = Assembly.LoadFrom(
+                //       @"C:\Users\adrian_sun\Source\Repos\ziqingyi\P02.Course.Attribute\P01.Course.Reflection\bin\Debug\P01.Course.DB.SqlServerHelper.dll");
+                //   foreach (var type in a1.GetTypes())
+                //   {
+                //       Console.WriteLine(type.Name);
+                //       foreach (var method in type.GetMethods())
+                //       {
+                //           Console.WriteLine(method.Name);
+                //       }
+                //   }
+                //}
                 {
                     Console.WriteLine("------------reflection with create object--------------------");
                     Assembly a1 = Assembly.Load("P01.Course.DB.MySql"); // 1 load with Assembly

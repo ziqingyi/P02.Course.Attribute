@@ -23,7 +23,7 @@ namespace P01.Course.Reflection
             Type t = a1.GetType(TypeName); // 2 get type
 
             object oo = Activator.CreateInstance(t);    // 3 createInstance
-            IDBHelper iDbHelper = oo as MySqlHelper;  //4 transfer and call method
+            IDBHelper iDbHelper = oo as IDBHelper;  //4 transfer and call method
 
             return iDbHelper;
         }

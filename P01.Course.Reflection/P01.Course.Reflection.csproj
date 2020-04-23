@@ -60,6 +60,10 @@
       <Project>{c07bf1e1-3bd6-4e7f-87fd-dd080b7df1b0}</Project>
       <Name>P01.Course.DB.MySql</Name>
     </ProjectReference>
+    <ProjectReference Include="..\P01.Course.DB.Oracle\P01.Course.DB.Oracle.csproj">
+      <Project>{0648c238-9db2-4441-b566-78fb4ddad500}</Project>
+      <Name>P01.Course.DB.Oracle</Name>
+    </ProjectReference>
     <ProjectReference Include="..\P01.Course.DB.SqlServerHelper\P01.Course.DB.SqlServerHelper.csproj">
       <Project>{a2e3555a-07cc-426d-b91c-9e50769abf91}</Project>
       <Name>P01.Course.DB.SqlServerHelper</Name>
