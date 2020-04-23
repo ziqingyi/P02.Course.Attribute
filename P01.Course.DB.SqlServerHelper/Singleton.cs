@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P01.Course.DB.SqlServerHelper
+namespace P01.Course.DB.SqlServer
 {
     public sealed class Singleton
     {
@@ -14,7 +14,7 @@ namespace P01.Course.DB.SqlServerHelper
         {
             Console.WriteLine("private ");
         }
-         static Singleton()
+         static Singleton()//only call one time
         {
             _singleton = new Singleton();
         }
