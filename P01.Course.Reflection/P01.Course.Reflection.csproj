@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\P01.Course.DB.Interface\P01.Course.DB.Interface.csproj">
-      <Project>{09A405B0-5130-4E29-B048-D78034F979B3}</Project>
+      <Project>{09a405b0-5130-4e29-b048-d78034f979b3}</Project>
       <Name>P01.Course.DB.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\P01.Course.DB.MySql\P01.Course.DB.MySql.csproj">

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A2E3555A-07CC-426D-B91C-9E50769ABF91}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>P01.Course.DB.SqlServerHelper</RootNamespace>
     <AssemblyName>P01.Course.DB.SqlServerHelper</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\P01.Course.DB.Interface\P01.Course.DB.Interface.csproj">
-      <Project>{09A405B0-5130-4E29-B048-D78034F979B3}</Project>
+      <Project>{09a405b0-5130-4e29-b048-d78034f979b3}</Project>
       <Name>P01.Course.DB.Interface</Name>
     </ProjectReference>
   </ItemGroup>
