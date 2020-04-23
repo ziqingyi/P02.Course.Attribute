@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using P01.Course.DB.MySql;
@@ -43,31 +45,55 @@ namespace P01.Course.Reflection
                 //       }
                 //   }
                 //}
+                //{
+                //    Console.WriteLine("------------reflection with create object--------------------");
+                //    Assembly a1 = Assembly.Load("P01.Course.DB.MySql"); // 1 load with Assembly
+                //    Type t = a1.GetType("P01.Course.DB.MySql.MySqlHelper"); // 2 get type
+
+                //    // create the object by the type, then three ways to call the query method. 
+
+                //    object o = Activator.CreateInstance(t);  // 3 createInstance
+                //    //((MySqlHelper2)o).Query();               //4 transfer and call method
+                //    ////() if o is not that class, it will through error: Unable to cast object  
+
+                //    dynamic odInstance = Activator.CreateInstance(t);  // 3 create Instance
+                //    odInstance.Query(); // bypass the compiler's check  // 4 call method
+
+                //    object oo= Activator.CreateInstance(t);    // 3 createInstance
+                //    IDBHelper iDbHelper = oo as MySqlHelper;  //4 transfer and call method
+                //    iDbHelper.Query();
+                //    // as will return null if not available.
+                //}
+                //{
+                //    Console.WriteLine("--------------Encapsulation----reflection + factory + config----------------");
+                //    IDBHelper iDbHelper =SimpleFactory.CreateInstance();
+                //    iDbHelper.Query();
+                //}
                 {
-                    Console.WriteLine("------------reflection with create object--------------------");
-                    Assembly a1 = Assembly.Load("P01.Course.DB.MySql"); // 1 load with Assembly
-                    Type t = a1.GetType("P01.Course.DB.MySql.MySqlHelper"); // 2 get type
+                    Console.WriteLine("--------------------create instance with different parameters---------------------");
+                    Assembly a1 = Assembly.Load("P01.Course.DB.SqlServerHelper");
+                        object test = a1.CreateInstance("SqlServerHelper");//just test
+                    Type t = a1.GetType("P01.Course.DB.SqlServerHelper.ReflectionTest");
 
-                    // create the object by the type, then three ways to call the query method. 
+                    foreach (ConstructorInfo ctor in t.GetConstructors())
+                    {
+                        Console.WriteLine(ctor.Name);
+                        foreach (var param in ctor.GetParameters())
+                        {
+                            Console.WriteLine(param.Name+" " + param.ParameterType);
+                        }
 
-                    object o = Activator.CreateInstance(t);  // 3 createInstance
-                    //((MySqlHelper2)o).Query();               //4 transfer and call method
-                    ////() if o is not that class, it will through error: Unable to cast object  
 
-                    dynamic odInstance = Activator.CreateInstance(t);  // 3 create Instance
-                    odInstance.Query(); // bypass the compiler's check  // 4 call method
+                    }
 
-                    object oo= Activator.CreateInstance(t);    // 3 createInstance
-                    IDBHelper iDbHelper = oo as MySqlHelper;  //4 transfer and call method
-                    iDbHelper.Query();
-                    // as will return null if not available.
+
+                    object o1 = Activator.CreateInstance(t);
+                    object o2 = Activator.CreateInstance(t, "name1");
+                    object o3 = Activator.CreateInstance(t,new object[]{ 123 });
+
+
                 }
-                {
-                    Console.WriteLine("--------------Encapsulation----reflection + factory + config----------------");
 
-                    IDBHelper iDbHelper =SimpleFactory.CreateInstance();
-                    iDbHelper.Query();
-                }
 
             }
             catch (Exception ex)
