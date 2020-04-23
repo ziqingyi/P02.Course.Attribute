@@ -10,9 +10,9 @@ namespace P01.Course.DB.SqlServer
     {
         private static Singleton _singleton = null;
 
-        private Singleton()
+        private Singleton()//not allowed to be called outside, unless activator..
         {
-            Console.WriteLine("private ");
+            Console.WriteLine("private constructor is being called");
         }
          static Singleton()//only call one time
         {

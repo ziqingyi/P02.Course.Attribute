@@ -62,21 +62,25 @@ namespace P01.Course.Reflection
                 //    iDbHelper.Query();
                 //    // as will return null if not available.
                 //}
-                {
-                    Console.WriteLine("--------------Encapsulation----reflection + factory + config----------------");
+                //{
+                //    Console.WriteLine("--------------Encapsulation----reflection + factory + config----------------");
 
-                    IDBHelper iDbHelper =SimpleFactory.CreateInstance();
-                    iDbHelper.Query();
-                }
+                //    IDBHelper iDbHelper =SimpleFactory.CreateInstance();
+                //    iDbHelper.Query();
+                //}
+                //{
+                //    Console.WriteLine("--------------create singleton, only one object--------------------");
+                //    Singleton s1 = Singleton.GetInstance();
+                //    Singleton s2 = Singleton.GetInstance();
+                //    Console.WriteLine(object.ReferenceEquals(s1, s2));
+                //}
                 {
-                    Singleton s1 = Singleton.GetInstance();
-                    Singleton s2 = Singleton.GetInstance();
-                    Console.WriteLine(object.ReferenceEquals(s1, s2));
-
+                    Console.WriteLine("------reflection to use private constructor-----------------");
                     Assembly a1 = Assembly.Load("P01.Course.DB.SqlServer");
                     Type t = a1.GetType("P01.Course.DB.SqlServer.Singleton");
-                    object o =  Activator.CreateInstance(t,true);
+                    Singleton s1 =  Activator.CreateInstance(t,true) as Singleton;//will call two times of private constructor
 
+                    Singleton s2 = Activator.CreateInstance(t, true) as Singleton;// call private constructor once 
 
                 }
 
