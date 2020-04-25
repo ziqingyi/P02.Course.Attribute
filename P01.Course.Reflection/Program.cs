@@ -117,6 +117,22 @@ namespace P01.Course.Reflection
                 {
                     Console.WriteLine(
                         "--------reflection create method, just call method without convert----------");
+                    // dll name --> type name --> create instance --> method name --> then we can call method
+
+                    /*eg1. MVC http://localhost:9090/home/index    router--> HomeController--> Index
+                         server will use reflection to know the type name and method name
+                         MVC will scan all dll and save all controller, it will use request's controller name, find dll and type,
+                         then create type and invoke method
+
+                      drawback: overload of method. if index method have many overloads. 
+                      if Action have overload, MVC has to distinguish with HttpMethod + httpget/httppost method.
+                      so the Action can be overloaded, but the get/post attribute must be different 
+                    */
+                    /*
+                      eg2.
+                       AOP: easy to add some more logic if you call the method using reflection, 
+                            means do something before invoke or after invoke. 
+                     */
                     Assembly a1 = Assembly.Load("P01.Course.DB.SqlServer");
                     Type t = a1.GetType("P01.Course.DB.SqlServer.ReflectionTest");
                     object oTest = Activator.CreateInstance(t);
@@ -156,7 +172,10 @@ namespace P01.Course.Reflection
                         m8.Invoke(null, new object[] { "staticName2" });// instance is not necessary
 
                     }
-
+                    {
+                        ReflectionTest refl = new ReflectionTest();
+                        refl.Show1();
+                    }
 
 
                 }
