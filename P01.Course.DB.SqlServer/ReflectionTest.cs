@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P01.Course.DB.SqlServerHelper
+namespace P01.Course.DB.SqlServer
 {
     public class ReflectionTest
     {

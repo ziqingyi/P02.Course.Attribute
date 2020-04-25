@@ -73,29 +73,58 @@ namespace P01.Course.Reflection
                 //    iDbHelper.Query();
                 //}
                 //{
-                //    Console.WriteLine("--------------create singleton, only one object--------------------");
-                //    Singleton s1 = Singleton.GetInstance();
-                //    Singleton s2 = Singleton.GetInstance();
-                //    Console.WriteLine(object.ReferenceEquals(s1, s2));
+                //    Console.WriteLine(
+                //        "--------------------create instance with different parameters---------------------");
+                //    Assembly a1 = Assembly.Load("P01.Course.DB.SqlServerHelper");
+                //    object test = a1.CreateInstance("SqlServerHelper"); //just test
+                //    Type t = a1.GetType("P01.Course.DB.SqlServerHelper.ReflectionTest");
+
+                //    foreach (ConstructorInfo ctor in t.GetConstructors())
+                //    {
+                //        Console.WriteLine(ctor.Name);
+                //        foreach (var param in ctor.GetParameters())
+                //        {
+                //            Console.WriteLine(param.Name + " " + param.ParameterType);
+                //        }
+                //    }
+                //    object o1 = Activator.CreateInstance(t);
+                //    object o2 = Activator.CreateInstance(t, "name1");
+                //    object o3 = Activator.CreateInstance(t, new object[] {123});
                 //}
                 //{
-                //    Console.WriteLine("------reflection to use private constructor-----------------");
-                //    Assembly a1 = Assembly.Load("P01.Course.DB.SqlServer");
-                //    Type t = a1.GetType("P01.Course.DB.SqlServer.Singleton");
-                //    Singleton s1 =  Activator.CreateInstance(t,true) as Singleton;//will call two times of private constructor
+                    //    Console.WriteLine("--------------create singleton, only one object--------------------");
+                    //    Singleton s1 = Singleton.GetInstance();
+                    //    Singleton s2 = Singleton.GetInstance();
+                    //    Console.WriteLine(object.ReferenceEquals(s1, s2));
+                    //}
+                    //{
+                    //    Console.WriteLine("------reflection to use private constructor-----------------");
+                    //    Assembly a1 = Assembly.Load("P01.Course.DB.SqlServer");
+                    //    Type t = a1.GetType("P01.Course.DB.SqlServer.Singleton");
+                    //    Singleton s1 =  Activator.CreateInstance(t,true) as Singleton;//will call two times of private constructor
 
-                //    Singleton s2 = Activator.CreateInstance(t, true) as Singleton;// call private constructor once 
-                //}
-                {
-                    Console.WriteLine("------------reflection and generic--------------------------");
-                    Assembly a1 = Assembly.Load("P01.Course.DB.SqlServer");
-                    Type t = a1.GetType("P01.Course.DB.SqlServer.GenericClass`3");
-                    //must notice `3
-                    Type typeMake = t.MakeGenericType(new Type[]{typeof(String), typeof(int),typeof(DateTime)});
-                    // make generic type first, then you can create object.
-                    object oGeneric = Activator.CreateInstance(typeMake);
+                    //    Singleton s2 = Activator.CreateInstance(t, true) as Singleton;// call private constructor once 
+                    //}
+                    //{
+                    //    Console.WriteLine("------------reflection with create generic class object--------------");
+                    //    Assembly a1 = Assembly.Load("P01.Course.DB.SqlServer");
+                    //    Type t = a1.GetType("P01.Course.DB.SqlServer.GenericClass`3");
+                    //    //must notice `3
+                    //    Type typeMake = t.MakeGenericType(new Type[]{typeof(String), typeof(int),typeof(DateTime)});
+                    //    // make generic type first, then you can create object.
+                    //    object oGeneric = Activator.CreateInstance(typeMake);
+                    //}
+                    {
+                        Console.WriteLine(
+                            "--------reflection create method, just call method without convert----------");
+                        Assembly a1 = Assembly.Load("P01.Course.DB.SqlServer");
+                        Type t = a1.GetType("P01.Course.DB.SqlServer.ReflectionTest");
 
-                }
+                    }
+            
+
+
+
 
             }
             catch (Exception ex)
