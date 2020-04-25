@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P01.Course.DB.Interface", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P01.Course.DB.MySql", "P01.Course.DB.MySql\P01.Course.DB.MySql.csproj", "{C07BF1E1-3BD6-4E7F-87FD-DD080B7DF1B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P01.Course.DB.SqlServerHelper", "P01.Course.DB.SqlServerHelper\P01.Course.DB.SqlServerHelper.csproj", "{A2E3555A-07CC-426D-B91C-9E50769ABF91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P01.Course.DB.SqlServer", "P01.Course.DB.SqlServerHelper\P01.Course.DB.SqlServer.csproj", "{A2E3555A-07CC-426D-B91C-9E50769ABF91}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P01.Course.DB.Oracle", "P01.Course.DB.Oracle\P01.Course.DB.Oracle.csproj", "{0648C238-9DB2-4441-B566-78FB4DDAD500}"
 EndProject
