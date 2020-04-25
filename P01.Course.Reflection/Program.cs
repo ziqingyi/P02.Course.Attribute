@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using P01.Course.DB.MySql;
@@ -176,7 +177,13 @@ namespace P01.Course.Reflection
                         ReflectionTest refl = new ReflectionTest();
                         refl.Show1();
                     }
+                    {
+                        Console.WriteLine("--------------reflection to call private method-------------------");
+                        object oTestforPrivate = Activator.CreateInstance(t);
+                        var method = t.GetMethod("Show4",BindingFlags.Instance|BindingFlags.NonPublic);
+                        method.Invoke(oTestforPrivate, new object[] {"name for private method"});
 
+                    }
 
                 }
             

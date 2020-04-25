@@ -61,7 +61,7 @@ namespace P01.Course.DB.SqlServer
 
         private void Show4(string name)
         {
-            Console.WriteLine(" Type: {0} Show4() is privat e", this.GetType());
+            Console.WriteLine(" Type: {0} Show4() is private", this.GetType());
         }
 
         public static void Show5(string name)
