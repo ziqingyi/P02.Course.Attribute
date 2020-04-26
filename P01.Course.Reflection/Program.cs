@@ -179,11 +179,47 @@ namespace P01.Course.Reflection
                     }
                     {
                         Console.WriteLine("--------------reflection to call private method-------------------");
+                        // when test private method, don't need to change original method.
                         object oTestforPrivate = Activator.CreateInstance(t);
                         var method = t.GetMethod("Show4",BindingFlags.Instance|BindingFlags.NonPublic);
                         method.Invoke(oTestforPrivate, new object[] {"name for private method"});
 
                     }
+                    {
+                        Console.WriteLine("--------------------reflection to call generic method---------");
+                        Assembly a2 = Assembly.Load("P01.Course.DB.SqlServer");
+                        Type t2 = a2.GetType("P01.Course.DB.SqlServer.GenericMethod");
+
+                        object ogeric = Activator.CreateInstance(t2);
+                        foreach (var m in t2.GetMethods())
+                        {
+                            Console.WriteLine(m.Name);
+                        }
+
+
+                        MethodInfo method = t2.GetMethod("Show");
+                        MethodInfo methodnew = method.MakeGenericMethod(new Type[] { typeof(int), typeof(string), typeof(DateTime)});
+                        methodnew.Invoke(ogeric,new object[]{ 123,"kevin", DateTime.Now});
+                    }
+                    {
+                        Console.WriteLine("--------------------reflection to call generic class and method---------");
+                        Assembly a3 = Assembly.Load("P01.Course.DB.SqlServer");
+
+                        //remember to make generic type
+                        Type t3 = a1.GetType("P01.Course.DB.SqlServer.GenericDouble`1");
+                        Type t33 = t3.MakeGenericType(typeof(string));
+
+                        MethodInfo m1 = t33.GetMethod("Show");
+                        MethodInfo m1new = m1.MakeGenericMethod(typeof(int), typeof(DateTime));
+
+                        // remember m1 is metadata, you need to bind with object
+                        object o3 = Activator.CreateInstance(t33);
+                        m1new.Invoke(o3, new object[]{"tom", 777,DateTime.Now.AddDays(2)});
+
+
+
+                    }
+
 
                 }
             
