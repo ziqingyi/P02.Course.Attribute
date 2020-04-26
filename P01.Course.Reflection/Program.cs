@@ -226,15 +226,22 @@ namespace P01.Course.Reflection
                     {
                         if (prop.Name == "Id")
                         { 
-                            prop.SetValue(oPeople,"111");
+                            prop.SetValue(oPeople,111);
                         }
                         else if (prop.Name.Equals("Name"))
                         {
                             prop.SetValue(oPeople,"Jack");
                         }
-                        Console.WriteLine($" {t.Name}.{prop.Name}={prop.GetValue(oPeople)}");
+                        Console.WriteLine($" {t.Name}.{prop.Name} = {prop.GetValue(oPeople)}");
                     }
-
+                    foreach (var field in t.GetFields())
+                    {
+                        if (field.Name == "Description")
+                        {
+                            field.SetValue(oPeople, "this is the description set by reflection");
+                        }
+                        Console.WriteLine($" {t.Name}.{field.Name} = {field.GetValue(oPeople)}");
+                    }
 
 
 
