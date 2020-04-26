@@ -216,9 +216,7 @@ namespace P01.Course.Reflection
                 //        object o3 = Activator.CreateInstance(t33);
                 //        m1new.Invoke(o3, new object[]{"tom", 777,DateTime.Now.AddDays(2)});
                 //    }
-
-
-                }
+                //}
             
 
 
