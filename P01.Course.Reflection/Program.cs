@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using P01.Course.DB.MySql;
 using P01.Course.DB.SqlServer;
+using P01.Course.Model;
 
 
 namespace P01.Course.Reflection
@@ -217,7 +218,27 @@ namespace P01.Course.Reflection
                 //        m1new.Invoke(o3, new object[]{"tom", 777,DateTime.Now.AddDays(2)});
                 //    }
                 //}
-            
+                {
+                    Console.WriteLine("**********reflection to set class's attribute*********************");
+                    Type t = typeof(People);
+                    object oPeople = Activator.CreateInstance(t);
+                    foreach (var prop in t.GetProperties())
+                    {
+                        if (prop.Name == "Id")
+                        { 
+                            prop.SetValue(oPeople,"111");
+                        }
+                        else if (prop.Name.Equals("Name"))
+                        {
+                            prop.SetValue(oPeople,"Jack");
+                        }
+                        Console.WriteLine($" {t.Name}.{prop.Name}={prop.GetValue(oPeople)}");
+                    }
+
+
+
+
+                }
 
 
 
