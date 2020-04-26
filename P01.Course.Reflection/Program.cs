@@ -115,110 +115,107 @@ namespace P01.Course.Reflection
                 //    // make generic type first, then you can create object.
                 //    object oGeneric = Activator.CreateInstance(typeMake);
                 //}
-                {
-                    Console.WriteLine(
-                        "--------reflection create method, just call method without convert----------");
-                    // dll name --> type name --> create instance --> method name --> then we can call method
+                //{
+                //    Console.WriteLine(
+                //        "--------reflection create method, just call method without convert----------");
+                //    // dll name --> type name --> create instance --> method name --> then we can call method
 
-                    /*eg1. MVC http://localhost:9090/home/index    router--> HomeController--> Index
-                         server will use reflection to know the type name and method name
-                         MVC will scan all dll and save all controller, it will use request's controller name, find dll and type,
-                         then create type and invoke method
+                //    /*eg1. MVC http://localhost:9090/home/index    router--> HomeController--> Index
+                //         server will use reflection to know the type name and method name
+                //         MVC will scan all dll and save all controller, it will use request's controller name, find dll and type,
+                //         then create type and invoke method
 
-                      drawback: overload of method. if index method have many overloads. 
-                      if Action have overload, MVC has to distinguish with HttpMethod + httpget/httppost method.
-                      so the Action can be overloaded, but the get/post attribute must be different 
-                    */
-                    /*
-                      eg2.
-                       AOP: easy to add some more logic if you call the method using reflection, 
-                            means do something before invoke or after invoke. 
-                     */
-                    Assembly a1 = Assembly.Load("P01.Course.DB.SqlServer");
-                    Type t = a1.GetType("P01.Course.DB.SqlServer.ReflectionTest");
-                    object oTest = Activator.CreateInstance(t);
+                //      drawback: overload of method. if index method have many overloads. 
+                //      if Action have overload, MVC has to distinguish with HttpMethod + httpget/httppost method.
+                //      so the Action can be overloaded, but the get/post attribute must be different 
+                //    */
+                //    /*
+                //      eg2.
+                //       AOP: easy to add some more logic if you call the method using reflection, 
+                //            means do something before invoke or after invoke. 
+                //     */
+                //    Assembly a1 = Assembly.Load("P01.Course.DB.SqlServer");
+                //    Type t = a1.GetType("P01.Course.DB.SqlServer.ReflectionTest");
+                //    object oTest = Activator.CreateInstance(t);
 
-                    // loop all method
-                    foreach (var typemethod in t.GetMethods())
-                    {
-                        Console.WriteLine(typemethod.Name);
-                        foreach (var param in typemethod.GetParameters())
-                        {
-                            Console.WriteLine($"          parameter:  {param.Name}, type is {param.ParameterType}");
-                        }
-                    }
-                    {  
-                        //call method
-                        MethodInfo method = t.GetMethod("Show1"); 
-                        method.Invoke(oTest,null);
+                //    // loop all method
+                //    foreach (var typemethod in t.GetMethods())
+                //    {
+                //        Console.WriteLine(typemethod.Name);
+                //        foreach (var param in typemethod.GetParameters())
+                //        {
+                //            Console.WriteLine($"          parameter:  {param.Name}, type is {param.ParameterType}");
+                //        }
+                //    }
+                //    {  
+                //        //call method
+                //        MethodInfo method = t.GetMethod("Show1"); 
+                //        method.Invoke(oTest,null);
 
-                        //call method with param
-                        MethodInfo m2 = t.GetMethod("Show2");
-                        m2.Invoke(oTest, new object[] {222});
+                //        //call method with param
+                //        MethodInfo m2 = t.GetMethod("Show2");
+                //        m2.Invoke(oTest, new object[] {222});
 
-                        //call method with overload, nominate the params
-                        MethodInfo m3 = t.GetMethod("Show3", new Type[] { typeof(int)});
-                        m3.Invoke(oTest, new object[] {333});
-                        MethodInfo m4 = t.GetMethod("Show3", new Type[] { typeof(string) });
-                        m4.Invoke(oTest, new object[]{"tom"});
-                        MethodInfo m5 = t.GetMethod("Show3", new Type[] {typeof(int), typeof(string) });
-                        m5.Invoke(oTest, new object[]{555,"jack"});
-                        MethodInfo m6 = t.GetMethod("Show3", new Type[] {typeof(string),typeof(int) });
-                        m6.Invoke(oTest, new object[] { "Lily",666});
+                //        //call method with overload, nominate the params
+                //        MethodInfo m3 = t.GetMethod("Show3", new Type[] { typeof(int)});
+                //        m3.Invoke(oTest, new object[] {333});
+                //        MethodInfo m4 = t.GetMethod("Show3", new Type[] { typeof(string) });
+                //        m4.Invoke(oTest, new object[]{"tom"});
+                //        MethodInfo m5 = t.GetMethod("Show3", new Type[] {typeof(int), typeof(string) });
+                //        m5.Invoke(oTest, new object[]{555,"jack"});
+                //        MethodInfo m6 = t.GetMethod("Show3", new Type[] {typeof(string),typeof(int) });
+                //        m6.Invoke(oTest, new object[] { "Lily",666});
 
-                        //call static method 
-                        MethodInfo m7 = t.GetMethod("Show5");
-                        m7.Invoke(oTest, new object[] { "staticName"});
-                        MethodInfo m8 = t.GetMethod("Show5");
-                        m8.Invoke(null, new object[] { "staticName2" });// instance is not necessary
+                //        //call static method 
+                //        MethodInfo m7 = t.GetMethod("Show5");
+                //        m7.Invoke(oTest, new object[] { "staticName"});
+                //        MethodInfo m8 = t.GetMethod("Show5");
+                //        m8.Invoke(null, new object[] { "staticName2" });// instance is not necessary
 
-                    }
-                    {
-                        ReflectionTest refl = new ReflectionTest();
-                        refl.Show1();
-                    }
-                    {
-                        Console.WriteLine("--------------reflection to call private method-------------------");
-                        // when test private method, don't need to change original method.
-                        object oTestforPrivate = Activator.CreateInstance(t);
-                        var method = t.GetMethod("Show4",BindingFlags.Instance|BindingFlags.NonPublic);
-                        method.Invoke(oTestforPrivate, new object[] {"name for private method"});
+                //    }
+                //    {
+                //        ReflectionTest refl = new ReflectionTest();
+                //        refl.Show1();
+                //    }
+                //    {
+                //        Console.WriteLine("--------------reflection to call private method-------------------");
+                //        // when test private method, don't need to change original method.
+                //        object oTestforPrivate = Activator.CreateInstance(t);
+                //        var method = t.GetMethod("Show4",BindingFlags.Instance|BindingFlags.NonPublic);
+                //        method.Invoke(oTestforPrivate, new object[] {"name for private method"});
 
-                    }
-                    {
-                        Console.WriteLine("--------------------reflection to call generic method---------");
-                        Assembly a2 = Assembly.Load("P01.Course.DB.SqlServer");
-                        Type t2 = a2.GetType("P01.Course.DB.SqlServer.GenericMethod");
+                //    }
+                //    {
+                //        Console.WriteLine("--------------------reflection to call generic method---------");
+                //        Assembly a2 = Assembly.Load("P01.Course.DB.SqlServer");
+                //        Type t2 = a2.GetType("P01.Course.DB.SqlServer.GenericMethod");
 
-                        object ogeric = Activator.CreateInstance(t2);
-                        foreach (var m in t2.GetMethods())
-                        {
-                            Console.WriteLine(m.Name);
-                        }
-
-
-                        MethodInfo method = t2.GetMethod("Show");
-                        MethodInfo methodnew = method.MakeGenericMethod(new Type[] { typeof(int), typeof(string), typeof(DateTime)});
-                        methodnew.Invoke(ogeric,new object[]{ 123,"kevin", DateTime.Now});
-                    }
-                    {
-                        Console.WriteLine("--------------------reflection to call generic class and method---------");
-                        Assembly a3 = Assembly.Load("P01.Course.DB.SqlServer");
-
-                        //remember to make generic type
-                        Type t3 = a1.GetType("P01.Course.DB.SqlServer.GenericDouble`1");
-                        Type t33 = t3.MakeGenericType(typeof(string));
-
-                        MethodInfo m1 = t33.GetMethod("Show");
-                        MethodInfo m1new = m1.MakeGenericMethod(typeof(int), typeof(DateTime));
-
-                        // remember m1 is metadata, you need to bind with object
-                        object o3 = Activator.CreateInstance(t33);
-                        m1new.Invoke(o3, new object[]{"tom", 777,DateTime.Now.AddDays(2)});
+                //        object ogeric = Activator.CreateInstance(t2);
+                //        foreach (var m in t2.GetMethods())
+                //        {
+                //            Console.WriteLine(m.Name);
+                //        }
 
 
+                //        MethodInfo method = t2.GetMethod("Show");
+                //        MethodInfo methodnew = method.MakeGenericMethod(new Type[] { typeof(int), typeof(string), typeof(DateTime)});
+                //        methodnew.Invoke(ogeric,new object[]{ 123,"kevin", DateTime.Now});
+                //    }
+                //    {
+                //        Console.WriteLine("--------------------reflection to call generic class and method---------");
+                //        Assembly a3 = Assembly.Load("P01.Course.DB.SqlServer");
 
-                    }
+                //        //remember to make generic type
+                //        Type t3 = a1.GetType("P01.Course.DB.SqlServer.GenericDouble`1");
+                //        Type t33 = t3.MakeGenericType(typeof(string));
+
+                //        MethodInfo m1 = t33.GetMethod("Show");
+                //        MethodInfo m1new = m1.MakeGenericMethod(typeof(int), typeof(DateTime));
+
+                //        // remember m1 is metadata, you need to bind with object
+                //        object o3 = Activator.CreateInstance(t33);
+                //        m1new.Invoke(o3, new object[]{"tom", 777,DateTime.Now.AddDays(2)});
+                //    }
 
 
                 }
