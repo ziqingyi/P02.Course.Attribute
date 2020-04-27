@@ -23,6 +23,7 @@ namespace P01.Course.Reflection
                 sw.Start();
                 for (int i = 0; i < 1000000; i++)
                 {
+                    // takes 48 millisecond to create 1 million object. 
                     IDBHelper iDbHelper = new SqlServerHelper();
                     // for simple, please remove the Console.WriteLine() in the constructor
                     iDbHelper.Query();
@@ -34,11 +35,15 @@ namespace P01.Course.Reflection
             {
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
+                //if load outside, 103ms to create 1 million object. 
+                Assembly assembly = Assembly.Load("P01.Course.DB.SqlServer");
+                Type t = assembly.GetType("P01.Course.DB.SqlServer.SqlServerHelper");
 
                 for (int i = 0; i < 1_000_000; i++)
                 {
-                    Assembly assembly = Assembly.Load("P01.Course.DB.SqlServer");
-                    Type t = assembly.GetType("P01.Course.DB.SqlServer.SqlServerHelper");
+                    // if load inside, 6512 ms. 
+                    //Assembly assembly = Assembly.Load("P01.Course.DB.SqlServer");
+                    //Type t = assembly.GetType("P01.Course.DB.SqlServer.SqlServerHelper");
                     object o = Activator.CreateInstance(t);
                     IDBHelper dbHelper = (IDBHelper) o;
                     dbHelper.Query();
