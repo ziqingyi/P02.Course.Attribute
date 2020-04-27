@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -59,6 +60,10 @@
     <ProjectReference Include="..\P01.Course.DB.Interface\P01.Course.DB.Interface.csproj">
       <Project>{09a405b0-5130-4e29-b048-d78034f979b3}</Project>
       <Name>P01.Course.DB.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P01.Course.Model\P01.Course.Model.csproj">
+      <Project>{7e9fac53-8eab-4404-99b7-606f3e3ae178}</Project>
+      <Name>P01.Course.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
