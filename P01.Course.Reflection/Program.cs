@@ -243,10 +243,17 @@ namespace P01.Course.Reflection
                         Console.WriteLine($" {t.Name}.{field.Name} = {field.GetValue(oPeople)}");
                     }
 
-
+                }
+                {
+                    Console.WriteLine("**********reflection with SqlServerHelper*********************");
+                    SqlServerHelper s = new SqlServerHelper();
+                    object o = s.Find(1);
 
                 }
-
+                {
+                    Console.WriteLine("*******************Monitor*******************");
+                    Monitor.Show();
+                }
 
 
 
