@@ -31,6 +31,7 @@ namespace P02.Course.ExpressionSty
 
             }
             {
+                Console.WriteLine("-------------a more complex cases, compiled by compiler--------------------");
                 ParameterExpression parameterExpression = Expression.Parameter(typeof(int), "m");
                 ParameterExpression parameterExpression2 = Expression.Parameter(typeof(int), "n");
 
@@ -55,8 +56,41 @@ namespace P02.Course.ExpressionSty
                 int iResult2 = expression2.Compile()(23, 34);
 
             }
+            {
+                Console.WriteLine("-------------a more complex cases, assemble by steps--------------------");
+                //      m * n + m + n       + 2
+                ParameterExpression m = Expression.Parameter(typeof(int),"m");
+                ParameterExpression n = Expression.Parameter(typeof(int),"n");
+                ConstantExpression constant = Expression.Constant(2);
+
+                //  m*n
+                BinaryExpression mul = Expression.Multiply(n, m);
+
+                //  (m*n) + m
+                BinaryExpression leftadd = Expression.Add(mul, m);
+
+                //  ( m * n + m ) + n 
+                BinaryExpression leftadd2 = Expression.Add(leftadd, n);
+                //  (m * n + m + n  )     + 2
+                BinaryExpression leftadd3 = Expression.Add(leftadd2, constant);
+
+                Expression<Func<int, int, int>> expression2 =
+                    Expression.Lambda<Func<int, int, int>>(
+                        leftadd3,
+                        new ParameterExpression[2]
+                        {
+                            n,
+                            m
+                        });
+                int iResult2 = expression2.Compile()(23, 34);
+
+            }
+            {
+                Expression<Func<People, bool>> lambdaExpression = x => x.Id.ToString().Equals("5");
 
 
+
+            }
 
         }
 
