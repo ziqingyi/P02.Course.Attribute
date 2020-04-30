@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace P02.Course.Expression
+namespace P02.Course.ExpressionSty
 {
     class Program
     {
@@ -15,9 +19,6 @@ namespace P02.Course.Expression
                 Console.WriteLine("-----------Mapping test---------------");
 
             }
-
-
-
 
         }
     }
