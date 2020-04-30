@@ -11,7 +11,14 @@ namespace P02.Course.Expression
         {
             Func<int, int, int> func = new Func<int, int, int>((m, n) => m * n + 2);//lambda
 
-            Expression<Func<int, int, int>> exp = (m, n) => m * n + 2;
+            Expression<Func<int, int, int>> exp = (m, n) => m * n + 2;//fast way
+
+            {
+                //assemble to Expression
+                Expression<Func<int>> expre = () => 123 + 234;
+                expre.Compile().Invoke();
+
+            }
 
 
 
