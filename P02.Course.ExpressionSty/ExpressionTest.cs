@@ -25,6 +25,7 @@ namespace P02.Course.ExpressionSty
             }
 
             {
+                Console.WriteLine("-------------a more complex cases--------------------");
                 Expression<Func<int, int, int>> expression2 = (m, n) => m * n + m + n + 2;
                 int iResult2 = expression2.Compile().Invoke(23, 34);
 
@@ -36,9 +37,17 @@ namespace P02.Course.ExpressionSty
                 parameterExpression2 = Expression.Parameter(typeof(int), "m");
                 parameterExpression = Expression.Parameter(typeof(int), "n");
 
-
-
-                Expression<Func<int, int, int>> expression2 = Expression.Lambda<Func<int, int, int>>(Expression.Add(Expression.Add(Expression.Add(Expression.Multiply(parameterExpression2, parameterExpression), parameterExpression2), parameterExpression), Expression.Constant(2, typeof(int))), new ParameterExpression[2]
+                Expression<Func<int, int, int>> expression2 = 
+                    Expression.Lambda<Func<int, int, int>>(
+                        Expression.Add(
+                            Expression.Add(
+                                Expression.Add(
+                                    Expression.Multiply(parameterExpression2, parameterExpression),
+                                    parameterExpression2), 
+                                parameterExpression), 
+                            Expression.Constant(2, typeof(int))
+                            ), 
+                        new ParameterExpression[2]
                 {
                     parameterExpression2,
                     parameterExpression
