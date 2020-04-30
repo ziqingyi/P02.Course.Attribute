@@ -13,7 +13,8 @@ namespace P02.Course.ExpressionSty
             Console.WriteLine("------------Expression---------------------");
             {
                 Console.WriteLine("-----------Basic Expression---------------");
-                ExpressionTest.Show();
+                //ExpressionTest.Show();
+                ExpressionTreeVisualizer.Show();
             }
             {
                 Console.WriteLine("-----------Mapping test---------------");
