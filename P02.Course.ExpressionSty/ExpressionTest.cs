@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Security.Principal;
 using System.Text;
 
 namespace P02.Course.ExpressionSty
@@ -182,6 +184,24 @@ namespace P02.Course.ExpressionSty
                     }
                 );
 
+            }
+            {
+                Console.WriteLine("-------------assemble sql with user input----------------------");
+                string sql = @"SELECT * FROM USER WHERE 1=1";
+                Console.WriteLine("please type in user name: ");
+                string name = Console.ReadLine();
+
+                if (!string.IsNullOrWhiteSpace(name))
+                {
+                    sql += $" and name like '%{name}%'";
+                }
+
+                Console.WriteLine("please fill in account : ");
+                string account = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(account))
+                {
+                    sql += $" and account like '%{account}%'";
+                }
             }
 
         }
