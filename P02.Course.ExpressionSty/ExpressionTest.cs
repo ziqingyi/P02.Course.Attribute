@@ -118,7 +118,7 @@ namespace P02.Course.ExpressionSty
                 Expression<Func<People, bool>> expression = Expression.Lambda<Func<People, bool>>(me2, xarray);
 
                 //test result 
-                bool bResult =  expression.Compile()(
+                bool bResult =  expression.Compile().Invoke(  //note: can remove invoke
                         new People()
                     {
                         Id = 5,
