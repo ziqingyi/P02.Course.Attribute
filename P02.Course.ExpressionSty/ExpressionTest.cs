@@ -186,7 +186,7 @@ namespace P02.Course.ExpressionSty
 
             }
             {
-                Console.WriteLine("-------------assemble sql with user input----------------------");
+                Console.WriteLine("-------------assemble sql with user input, common way----------------------");
                 string sql = @"SELECT * FROM USER WHERE 1=1";
                 Console.WriteLine("please type in user name: ");
                 string name = Console.ReadLine();
