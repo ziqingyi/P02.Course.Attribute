@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 
 namespace P02.Course.ExpressionSty
@@ -86,8 +87,62 @@ namespace P02.Course.ExpressionSty
 
             }
             {
-                Expression<Func<People, bool>> lambdaExpression = x => x.Id.ToString().Equals("5");
+                Console.WriteLine("-------------Expression with labmda--------------------");
+                //Expression<Func<People, bool>> lambdaExpression = x => x.Id.ToString().Equals("5");
+                // 1 part:  x
+                ParameterExpression x = Expression.Parameter(typeof(People), "x");
 
+                // 2 part: x.Id
+                FieldInfo field = typeof(People).GetField("Id");
+                //FieldInfo.GetFieldFromHandle((RuntimeFieldHandle))/*OpCode not supported: LdMemberToken*/
+                MemberExpression fieldExp = Expression.Field(x, field);
+
+                //3 part: int's method ToString
+                MethodInfo toString = typeof(int).GetMethod("ToString",new Type[]{ });/*OpCode not supported: LdMemberToken*/
+
+                //4 part: string's method: Equals()
+                //(MethodInfo)MethodBase.GetMethodFromHandle((RuntimeMethodHandle))/*OpCode not supported: LdMemberToken*/
+                MethodInfo equals = typeof(string).GetMethod("Equals",new Type[] {typeof(string)});
+
+                //5 part: constant number : 5
+                ConstantExpression c = Expression.Constant("5", typeof(string));
+
+                //6
+                MethodCallExpression me1 = Expression.Call(fieldExp, toString, new Expression[0]);//or Array.Empty<Expression>()
+
+                //7 
+                MethodCallExpression me2 = Expression.Call(me1, equals, c);
+
+                //8
+                ParameterExpression[] xarray = new ParameterExpression[1]{x};
+                Expression<Func<People, bool>> expression = Expression.Lambda<Func<People, bool>>(me2, xarray);
+
+                //test result 
+                bool bResult =  expression.Compile()(
+                        new People()
+                    {
+                        Id = 5,
+                        Name = "Mick",
+                        Age = 28
+                    }
+                        );
+
+                //compiler version
+                Expression<Func<People, bool>> lambdaExpression =
+                    Expression.Lambda<Func<People, bool>>(
+                        Expression.Call(
+                            me1,
+                            equals,
+                            c
+                            ),
+                        new ParameterExpression[1]
+                        {
+                            x
+                        });
+
+            }
+            {
+                Console.WriteLine("-------------Expression with Action--------------------");
 
 
             }

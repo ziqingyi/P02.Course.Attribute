@@ -42,7 +42,14 @@ namespace P02.Course.ExpressionSty
                 int iResult = expressionCombine.Compile().Invoke(12);
 
             }
-            
+            {
+                Console.WriteLine("--------------expression lambda-----------------------");
+                //compile and find the compiler version
+                Expression<Func<People, bool>> lambda = x => x.Id.ToString().Equals("5");
+                
+
+
+            }
 
         }
 
