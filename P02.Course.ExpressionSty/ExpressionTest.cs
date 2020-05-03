@@ -206,7 +206,7 @@ namespace P02.Course.ExpressionSty
                 }
             }
             {
-                Console.WriteLine("-------------2  assemble sql with linq , not reflect the correct combination----------");
+                Console.WriteLine("-------------2  assemble sql with linq , not reflect all the possible combination----------");
                 var dbSet = new List<People>().AsQueryable();
                 dbSet.Where(p => p.Id > 10 & p.Name.Contains("name1"));
                 Console.WriteLine("please type in user name: ");
