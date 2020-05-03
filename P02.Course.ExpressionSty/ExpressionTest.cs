@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Text;
@@ -186,7 +188,7 @@ namespace P02.Course.ExpressionSty
 
             }
             {
-                Console.WriteLine("-------------assemble sql with user input, common way----------------------");
+                Console.WriteLine("-------------1  assemble sql with user input, old way----------------------");
                 string sql = @"SELECT * FROM USER WHERE 1=1";
                 Console.WriteLine("please type in user name: ");
                 string name = Console.ReadLine();
@@ -203,7 +205,73 @@ namespace P02.Course.ExpressionSty
                     sql += $" and account like '%{account}%'";
                 }
             }
+            {
+                Console.WriteLine("-------------2  assemble sql with linq , not reflect the correct combination----------");
+                var dbSet = new List<People>().AsQueryable();
+                dbSet.Where(p => p.Id > 10 & p.Name.Contains("name1"));
+                Console.WriteLine("please type in user name: ");
+                string name = Console.ReadLine();
 
+                Expression<Func<People, bool>> exp;
+
+                if (!string.IsNullOrWhiteSpace(name))
+                {
+                     exp= p => p.Name.Contains(name);
+                }
+
+                Console.WriteLine("please fill in age : ");
+                string age = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(age) && int.TryParse(age,out int iAge))
+                {
+                    exp = p => p.Age > iAge;
+                }
+            }
+            {
+
+                Console.WriteLine("--------------expression lambda 2-----------------------");
+                //Expression<Func<People, bool>> lambda = p => p.Name.Contains("Tom") && p.Age > 5;
+
+
+                // 1 paramter p
+                ParameterExpression pe = Expression.Parameter(typeof(People), "p");
+
+                // 2 get property Name and assemble with p
+                //compiler:  MethodBase name2 = (MethodInfo) MethodBase.GetMethodFromHandle((RuntimeMethodHandle))  /*OpCode not supported: LdMemberToken*/
+                PropertyInfo name = typeof(People).GetProperty("Name");
+                  MemberExpression nameExp = Expression.Property(pe, name);
+
+                //3 Get the method name Contains, assemble with expression, add with parameter Tom.
+                     //compiler: (MethodInfo)MethodBase.GetMethodFromHandle((RuntimeMethodHandle)), /*OpCode not supported: LdMemberToken*/
+                MethodInfo contains = typeof(string).GetMethod("Contains", new Type[] { typeof(string)});
+                ConstantExpression tom = Expression.Constant("Tom", typeof(string));
+                MethodCallExpression containsExp = Expression.Call(nameExp, contains, tom);
+
+                //4  get property Age and ssemble with p
+                //(MethodInfo)MethodBase.GetMethodFromHandle((RuntimeMethodHandle))/*OpCode not supported: LdMemberToken*/
+                PropertyInfo age = typeof(People).GetProperty("Age");
+                MemberExpression ageExp = Expression.Property(pe, age);
+
+                //5 compare with constant 5 and get binary expression 
+                ConstantExpression constant5 = Expression.Constant(5, typeof(int));
+                BinaryExpression greaterThan = Expression.GreaterThan(ageExp, constant5);
+
+                //6 Binary
+                BinaryExpression body = Expression.AndAlso(containsExp, greaterThan);
+
+                // 7 assemble labmda
+                Expression<Func<People, bool>> lambda = Expression.Lambda<Func<People, bool>>(
+                    body, 
+                    new ParameterExpression[1] {pe}
+                    );
+
+                var test =lambda.Compile().Invoke(new People()
+                {
+                    Id=10,
+                    Age = 10,
+                    Name ="Tom123"
+                });
+
+            }
         }
 
 

@@ -46,11 +46,12 @@ namespace P02.Course.ExpressionSty
                 Console.WriteLine("--------------expression lambda-----------------------");
                 //compile and find the compiler version
                 Expression<Func<People, bool>> lambda = x => x.Id.ToString().Equals("5");
-                
-
-
             }
-
+            {
+                Console.WriteLine("--------------expression lambda 2-----------------------");
+                //compile and find the compiler version
+                Expression<Func<People, bool>> lambda = p => p.Name.Contains("Tom") && p.Age > 5;
+            }
         }
 
 
