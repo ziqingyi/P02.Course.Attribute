@@ -228,7 +228,7 @@ namespace P02.Course.ExpressionSty
             }
             {
 
-                Console.WriteLine("--------------expression lambda 2-----------------------");
+                Console.WriteLine("-------3 expression lambda 2,simplify the possible input combination from users-----------------------");
                 //Expression<Func<People, bool>> lambda = p => p.Name.Contains("Tom") && p.Age > 5;
 
 
