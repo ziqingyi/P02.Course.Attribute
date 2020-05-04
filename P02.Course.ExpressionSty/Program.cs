@@ -11,14 +11,14 @@ namespace P02.Course.ExpressionSty
         static void Main(string[] args)
         {
             Console.WriteLine("------------Expression---------------------");
-            {
-                Console.WriteLine("-----------Basic Expression---------------");
-                ExpressionTest.Show();
-                //ExpressionTreeVisualizer.Show();
-            }
+            //{
+            //    Console.WriteLine("-----------Basic Expression---------------");
+            //    ExpressionTest.Show();
+            //    //ExpressionTreeVisualizer.Show();
+            //}
             {
                 Console.WriteLine("-----------Mapping test---------------");
-
+                ExpressionTest.MapperTest();
             }
 
         }

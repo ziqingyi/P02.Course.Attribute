@@ -46,6 +46,7 @@
     <Compile Include="ExpressionTest.cs" />
     <Compile Include="ExpressionTreeVisualizer.cs" />
     <Compile Include="ExpressionVisitorTest.cs" />
+    <Compile Include="MappingExtend\ExpressionMapper.cs" />
     <Compile Include="People.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,6 +13,8 @@ namespace P02.Course.ExpressionSty
         public string Name { get; set; }
         public int Id;
     }
+
+    //PeopleDTO
     public class PeopleCopy
     {
 

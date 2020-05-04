@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Text;
+using P02.Course.ExpressionSty.MappingExtend;
 
 namespace P02.Course.ExpressionSty
 {
@@ -272,8 +273,33 @@ namespace P02.Course.ExpressionSty
                 });
 
             }
+
         }
 
+        public static void MapperTest()
+        {
+            {
+                Console.WriteLine("--------------------------------------");
+                People people = new People()
+                {
+                    Id = 11,
+                    Name = "jack",
+                    Age = 31
+                };
+                PeopleCopy peopleCopy = new PeopleCopy()
+                {
+                    Id = people.Id,
+                    Name = people.Name,
+                    Age = people.Age
+                };
+
+                ExpressionMapper.Trans<People, PeopleCopy>(people);
+
+
+            }
+
+
+        }
 
 
     }
