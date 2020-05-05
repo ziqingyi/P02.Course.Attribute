@@ -23,24 +23,12 @@ namespace P02.Course.ExpressionSty.MappingExtend
         /// <returns></returns>
         public static TOut Trans<TIn, TOut>(TIn tIn)
         {
-            //string key = string.Format("funcky_{0}_{1}", typeof(TIn).FullName, typeof(TOut).FullName);
-            //if (!_Dic.ContainsKey(key))
-            //{
-            //}
-            TOut tOut = Activator.CreateInstance<TOut>();
-            foreach (var itemOut in tOut.GetType().GetProperties())
-            {
-                PropertyInfo propIn = tIn.GetType().GetProperty(itemOut.Name);
-                itemOut.SetValue(tOut,propIn.GetValue(tIn));
-            }
+            string key = string.Format("funckey_{0}_{1}", typeof(TIn).FullName, typeof(TOut).FullName);
 
-            foreach (var itemOut in tOut.GetType().GetFields())
-            {
-                FieldInfo fieldIn = tIn.GetType().GetField(itemOut.Name);
-                itemOut.SetValue(tOut,fieldIn.GetValue(tIn));
-            }
 
-            return tOut;
+
+
+
 
         }
 

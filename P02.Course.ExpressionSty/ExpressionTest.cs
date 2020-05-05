@@ -295,10 +295,25 @@ namespace P02.Course.ExpressionSty
                 // copy 
 
                 //method 1  reflection
-                object o1 =  ExpressionMapper.Trans<People, PeopleCopy>(people);
+                object o1 =  ReflectionMapper.Trans<People, PeopleCopy>(people);
 
                 //method 2 serialize and deserialize, also use reflection, so not so fast as well.
                 object o2 = SerializeMapper.Trans<People, PeopleCopy>(people);
+
+                //method 3, for efficiency, use delegate. 
+                Func<People, PeopleCopy> func = p =>
+                {
+                    //Console.WriteLine(p.Name);
+                    return new PeopleCopy()
+                    {
+                        Id = p.Id,
+                        Name = p.Name,
+                        Age = p.Age
+                    };
+                };
+                
+                PeopleCopy p3 = func.Invoke(people);
+
 
 
 
