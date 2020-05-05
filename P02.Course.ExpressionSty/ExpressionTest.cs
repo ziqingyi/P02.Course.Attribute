@@ -292,8 +292,14 @@ namespace P02.Course.ExpressionSty
                     Name = people.Name,
                     Age = people.Age
                 };
+                // copy 
 
+                //method 1  reflection
                 ExpressionMapper.Trans<People, PeopleCopy>(people);
+
+                //method 2 serialize and deserialize
+                SerializeMapper.Trans<People, PeopleCopy>(people);
+
 
 
             }

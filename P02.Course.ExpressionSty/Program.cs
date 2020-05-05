@@ -18,6 +18,7 @@ namespace P02.Course.ExpressionSty
             //}
             {
                 Console.WriteLine("-----------Mapping test---------------");
+                
                 ExpressionTest.MapperTest();
             }
 
