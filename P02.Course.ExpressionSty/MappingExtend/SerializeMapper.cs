@@ -11,12 +11,11 @@ namespace P02.Course.ExpressionSty.MappingExtend
 {
     public class SerializeMapper
     {
+        // create new object with serialize and deserialize. 
         public static TOut Trans<TIn, TOut>(TIn tIn)
         {
-
             return JsonConvert.DeserializeObject<TOut>(
                 JsonConvert.SerializeObject(tIn));
-
         }
 
     }
