@@ -297,7 +297,7 @@ namespace P02.Course.ExpressionSty
                 //method 1  reflection
                 object o1 =  ExpressionMapper.Trans<People, PeopleCopy>(people);
 
-                //method 2 serialize and deserialize
+                //method 2 serialize and deserialize, also use reflection, so not so fast as well.
                 object o2 = SerializeMapper.Trans<People, PeopleCopy>(people);
 
 
