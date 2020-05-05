@@ -279,7 +279,7 @@ namespace P02.Course.ExpressionSty
         public static void MapperTest()
         {
             {
-                Console.WriteLine("--------------------------------------");
+                Console.WriteLine("--------------how to map different class------------------------");
                 People people = new People()
                 {
                     Id = 11,
@@ -314,6 +314,9 @@ namespace P02.Course.ExpressionSty
                 
                 PeopleCopy p3 = func.Invoke(people);
 
+                //method 4, using expression tree
+
+                PeopleCopy p4 = ExpressionMapper.Trans<People, PeopleCopy>(people);
 
 
 

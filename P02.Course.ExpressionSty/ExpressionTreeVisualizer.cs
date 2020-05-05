@@ -52,6 +52,20 @@ namespace P02.Course.ExpressionSty
                 //compile and find the compiler version
                 Expression<Func<People, bool>> lambda = p => p.Name.Contains("Tom") && p.Age > 5;
             }
+            {
+                Console.WriteLine("--------------expression lambda 3-----------------------");
+                //compile and find the compiler version
+                Func<People, PeopleCopy> lambda = p =>
+                {
+                    //Console.WriteLine(p.Name);
+                    return new PeopleCopy()
+                    {
+                        Id = p.Id,
+                        Name = p.Name,
+                        Age = p.Age
+                    };
+                };
+            }
         }
 
 
