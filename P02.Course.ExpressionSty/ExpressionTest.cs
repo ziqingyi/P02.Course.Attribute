@@ -316,12 +316,14 @@ namespace P02.Course.ExpressionSty
 
                 //method 4, using expression tree
 
-                PeopleCopy p4 = ExpressionMapper.Trans<People, PeopleCopy>(people);
+                PeopleCopy p4 = ExpressionMapper.Trans<People, PeopleCopy>(people); //1st time create lambda
+                PeopleCopy p5 = ExpressionMapper.Trans<People, PeopleCopy>(people);//will use cached lambda
+
 
 
 
             }
-
+            
 
         }
 
