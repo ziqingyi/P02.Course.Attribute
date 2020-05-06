@@ -315,15 +315,20 @@ namespace P02.Course.ExpressionSty
                 PeopleCopy p3 = func.Invoke(people);
 
                 //method 4, using expression tree
-
+                Console.WriteLine("--Map with dictionary------------------------");
                 PeopleCopy p4 = ExpressionMapper.Trans<People, PeopleCopy>(people); //1st time create lambda
                 PeopleCopy p5 = ExpressionMapper.Trans<People, PeopleCopy>(people);//will use cached lambda
 
-
-
+                Console.WriteLine("--Map with generic cache------------------------");
+                PeopleCopy p6 = ExpressionGenericMapper<People, PeopleCopy>.Trans(people);
+                PeopleCopy p7 = ExpressionGenericMapper<People, PeopleCopy>.Trans(people);
 
             }
             
+        }
+
+        public static void TestExpressionPerformance()
+        {
 
         }
 
