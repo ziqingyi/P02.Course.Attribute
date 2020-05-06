@@ -18,8 +18,11 @@ namespace P02.Course.ExpressionSty
             //}
             {
                 Console.WriteLine("-----------Mapping test---------------");
-                
                 ExpressionTest.MapperTest();
+            }
+            {
+                Console.WriteLine("-----------Mapping performance---------------");
+                ExpressionTest.TestExpressionPerformance();
             }
 
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -319,7 +320,7 @@ namespace P02.Course.ExpressionSty
                 PeopleCopy p4 = ExpressionMapper.Trans<People, PeopleCopy>(people); //1st time create lambda
                 PeopleCopy p5 = ExpressionMapper.Trans<People, PeopleCopy>(people);//will use cached lambda
 
-                Console.WriteLine("--Map with generic cache------------------------");
+                Console.WriteLine("--Map with generic cache, better than AutoMapper------------------------");
                 PeopleCopy p6 = ExpressionGenericMapper<People, PeopleCopy>.Trans(people);
                 PeopleCopy p7 = ExpressionGenericMapper<People, PeopleCopy>.Trans(people);
 
@@ -329,6 +330,71 @@ namespace P02.Course.ExpressionSty
 
         public static void TestExpressionPerformance()
         {
+            People people = new People()
+            {
+                Id = 11,
+                Name = "jack",
+                Age = 31
+            };
+            long common = 0;
+            long generic = 0;
+            long cache = 0;
+            long reflection = 0;
+            long serialize = 0;
+
+            {
+                Stopwatch watch = new Stopwatch();
+                watch.Start();
+                for (int i = 0; i < 1_000_000; i++)
+                {
+                    PeopleCopy peopleCopy = new PeopleCopy()
+                    {
+                        Id= people.Id,
+                        Name =  people.Name,
+                        Age =  people.Age
+                    };
+                }
+                watch.Stop();
+                common = watch.ElapsedMilliseconds;
+            }
+            {
+                Stopwatch watch = new Stopwatch();
+                watch.Start();
+                for (int i = 0; i < 1_000_000; i++)
+                {
+                    PeopleCopy peopleCopy = SerializeMapper.Trans<People, PeopleCopy>(people);
+                }
+                watch.Stop();
+                serialize = watch.ElapsedMilliseconds;
+            }
+            {
+                Stopwatch watch = new Stopwatch();
+                watch.Start();
+                for (int i = 0; i < 1_000_000; i++)
+                {
+                    PeopleCopy peopleCopy = ExpressionMapper.Trans<People, PeopleCopy>(people);
+                }
+
+                watch.Stop();
+                cache = watch.ElapsedMilliseconds;
+            }
+            {
+                Stopwatch watch = new Stopwatch();
+                watch.Start();
+                for (int i = 0; i < 1_000_000; i++)
+                {
+                    PeopleCopy peopleCopy = ExpressionGenericMapper<People,PeopleCopy>.Trans(people);
+                }
+                watch.Stop();
+
+                generic = watch.ElapsedMilliseconds;
+            }
+
+            Console.WriteLine($"common = { common} ms");
+            Console.WriteLine($"reflection = { reflection} ms");
+            Console.WriteLine($"serialize = { serialize} ms");
+            Console.WriteLine($"cache = { cache} ms");
+            Console.WriteLine($"generic = { generic} ms");//better than automapper
 
         }
 
