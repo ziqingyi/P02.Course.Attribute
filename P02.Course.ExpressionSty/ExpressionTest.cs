@@ -362,6 +362,16 @@ namespace P02.Course.ExpressionSty
                 watch.Start();
                 for (int i = 0; i < 1_000_000; i++)
                 {
+                    PeopleCopy peopleCopy = ReflectionMapper.Trans<People, PeopleCopy>(people);
+                }
+                watch.Stop();
+                reflection = watch.ElapsedMilliseconds;
+            }
+            {
+                Stopwatch watch = new Stopwatch();
+                watch.Start();
+                for (int i = 0; i < 1_000_000; i++)
+                {
                     PeopleCopy peopleCopy = SerializeMapper.Trans<People, PeopleCopy>(people);
                 }
                 watch.Stop();
@@ -395,7 +405,7 @@ namespace P02.Course.ExpressionSty
             Console.WriteLine($"serialize = { serialize} ms");
             Console.WriteLine($"cache = { cache} ms");
             Console.WriteLine($"generic = { generic} ms");//better than automapper
-
+            Console.ReadKey();
         }
 
 
