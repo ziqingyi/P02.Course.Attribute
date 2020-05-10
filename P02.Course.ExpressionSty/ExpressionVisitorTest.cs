@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using P02.Course.ExpressionSty.Visitor;
 
@@ -21,6 +23,11 @@ namespace P02.Course.ExpressionSty
                 Console.WriteLine(result);
             }
             {
+                Expression<Func<People, bool >> lambda = x => x.Age > 5 && x.Id > 5;
+                new List<People>().AsQueryable().Where(lambda);
+                // select * from people where age > 5 and id > 5
+
+                
 
 
 

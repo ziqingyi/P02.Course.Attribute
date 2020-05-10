@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBExtend\SqlOperator.cs" />
     <Compile Include="ExpressionTest.cs" />
     <Compile Include="ExpressionTreeVisualizer.cs" />
     <Compile Include="ExpressionVisitorTest.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="People.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Visitor\ConditionBuilderVisitor.cs" />
     <Compile Include="Visitor\OperationsVisitor.cs" />
   </ItemGroup>
   <ItemGroup>
