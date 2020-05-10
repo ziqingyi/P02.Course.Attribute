@@ -16,13 +16,19 @@ namespace P02.Course.ExpressionSty
             //    ExpressionTest.Show();
             //    //ExpressionTreeVisualizer.Show();
             //}
+            //{
+            //    Console.WriteLine("-----------Mapping test---------------");
+            //    ExpressionTest.MapperTest();
+            //}
+            //{
+            //    Console.WriteLine("-----------Mapping performance---------------");
+            //    ExpressionTest.TestExpressionPerformance();
+            //}
             {
-                //Console.WriteLine("-----------Mapping test---------------");
-                //ExpressionTest.MapperTest();
-            }
-            {
-                Console.WriteLine("-----------Mapping performance---------------");
-                ExpressionTest.TestExpressionPerformance();
+                Console.WriteLine("---------Expression Visitor  test ------------------");
+                ExpressionVisitorTest.Show();
+
+
             }
 
         }
