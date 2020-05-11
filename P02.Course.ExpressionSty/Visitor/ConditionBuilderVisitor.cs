@@ -19,6 +19,13 @@ namespace P02.Course.ExpressionSty.Visitor
             return condition;
         }
 
+        public override Expression Visit(Expression node)
+        {
+            Console.WriteLine($"visit {node.ToString()}");
+            Expression result =  base.Visit(node);
+            return result;
+        }
+
         protected override Expression VisitBinary(BinaryExpression node)
         {
             if (node == null)

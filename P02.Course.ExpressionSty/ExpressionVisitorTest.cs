@@ -12,24 +12,26 @@ namespace P02.Course.ExpressionSty
     {
         public static void Show()
         {
-            {
-                Console.WriteLine("---------modify expression tree---------------");
-                Expression<Func<int,int,int>> exp = (m,n) =>n* m * n * n + 2;
-                OperationsVisitor visitor = new OperationsVisitor();
+            //{
+            //    Console.WriteLine("---------modify expression tree---------------");
+            //    Expression<Func<int,int,int>> exp = (m,n) =>n* m * n * n + 2;
+            //    OperationsVisitor visitor = new OperationsVisitor();
 
-                Expression expNew = visitor.Modify(exp);
+            //    Expression expNew = visitor.Modify(exp);
 
-                double result = ((Expression<Func<int, int, int>>)expNew).Compile().Invoke(2,3);
-                Console.WriteLine(result);
-            }
+            //    double result = ((Expression<Func<int, int, int>>)expNew).Compile().Invoke(2,3);
+            //    Console.WriteLine(result);
+            //}
             {
+                Console.WriteLine("------------visitor----------------------------");
                 Expression<Func<People, bool >> lambda = x => x.Age > 5 && x.Id > 5;
-                new List<People>().AsQueryable().Where(lambda);
+                var test = new List<People>().AsQueryable().Where(lambda);
                 // select * from people where age > 5 and id > 5
 
-                
+                ConditionBuilderVisitor visitor = new ConditionBuilderVisitor();
+                visitor.Visit(lambda);
 
-
+                Console.WriteLine(visitor.Condition());
 
             }
 
