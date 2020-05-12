@@ -24,14 +24,35 @@ namespace P02.Course.ExpressionSty
             //}
             {
                 Console.WriteLine("------------visitor----------------------------");
-                Expression<Func<People, bool >> lambda = x => x.Age > 5 && x.Id > 5;
+                Expression<Func<People, bool >> lambda = x => x.Age > 5 && x.Id > 6;
                 var test = new List<People>().AsQueryable().Where(lambda);
-                // select * from people where age > 5 and id > 5
+                // select * from people where age > 5 and id > 6
 
                 ConditionBuilderVisitor visitor = new ConditionBuilderVisitor();
                 visitor.Visit(lambda);
 
                 Console.WriteLine(visitor.Condition());
+
+            }
+            {
+                Expression<Func<People, bool>> lambda = x => x.Age > 5 && x.Id > 5
+                                                                       && x.Name.StartsWith("1")
+                                                                       && x.Name.EndsWith("1")
+                                                                       && x.Name.Contains("1");
+                string sql = string.Format("Delete From [{0}] Where {1}"
+                    , typeof(People).Name
+                    , " [Age]>5 And [ID] > 5");
+
+                ConditionBuilderVisitor visitor = new ConditionBuilderVisitor();
+                visitor.Visit(lambda);
+
+                Console.WriteLine(visitor.Condition());
+
+            }
+
+            {
+                Console.WriteLine("-------------test visitor priority-------------------");
+
 
             }
 
