@@ -230,110 +230,110 @@ namespace P04.Course.Lambda
         {
             var studentlist = this.GetStudentList();
 
-            //{
-            //    //normal way
-            //    Console.WriteLine("************normal way***************");
-            //    var list = new List<Student>();
-            //    foreach (var item in studentlist)
-            //    {
-            //        if (item.Age < 30 
-            //            && item.Name.Length > 2)
-            //        {
-            //            list.Add(item);
-            //            Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, list.Count);
-            //        }
-            //    }
-            //}
+            {
+                //normal way
+                Console.WriteLine("************normal way***************");
+                var list = new List<Student>();
+                foreach (var item in studentlist)
+                {
+                    if (item.Age < 30
+                        && item.Name.Length > 2)
+                    {
+                        list.Add(item);
+                        Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, list.Count);
+                    }
+                }
+            }
 
             #region Linq to Object, the object is in memory
 
-            //{
-            //    Console.WriteLine("************lambda ***************");
-            //    var list = studentlist.Where<Student>(s => s.Age < 30 && s.Name.Length > 2);
-            //    int i = 1;
-            //    foreach (var item in list)
-            //    {
-            //        Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++ );
-            //    }
-            //}
-            //{
-            //    Console.WriteLine("***********Linq ****************");
-            //    int i = 1;
-            //    var list = from s in studentlist
-            //               where s.Age < 30 && s.Name.Length > 2
-            //               select s;
+            {
+                Console.WriteLine("************lambda ***************");
+                var list = studentlist.Where<Student>(s => s.Age < 30 && s.Name.Length > 2);
+                int i = 1;
+                foreach (var item in list)
+                {
+                    Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
+                }
+            }
+            {
+                Console.WriteLine("***********Linq ****************");
+                int i = 1;
+                var list = from s in studentlist
+                           where s.Age < 30 && s.Name.Length > 2
+                           select s;
 
-            //    foreach (var item in list)
-            //    {
-            //        Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
-            //    }
-            //}
+                foreach (var item in list)
+                {
+                    Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
+                }
+            }
 
-            //{
-            //    Console.WriteLine("***********lambda , for extend****************");
-            //    int i = 1;
-            //    var result = ExtendMethod.ExtendWhere(studentlist, new Func<Student, bool>(s => s.Name.Length > 2 && s.Age < 30));
-            //    foreach (var item in result)
-            //    {
-            //        Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
-            //    }
+            {
+                Console.WriteLine("***********lambda , for extend****************");
+                int i = 1;
+                var result = ExtendMethod.ExtendWhere(studentlist, new Func<Student, bool>(s => s.Name.Length > 2 && s.Age < 30));
+                foreach (var item in result)
+                {
+                    Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
+                }
 
-            //    // same to use this
-            //    Console.WriteLine("          extend simplify****************");
-            //    i = 1;
-            //    var result2 = studentlist.ExtendWhere(s => s.Name.Length > 2 && s.Age < 30);
-            //    foreach (var item in result2)
-            //    {
-            //        Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
-            //    }
-            //    //var result3 = studentlist.ExtendWhereT<Student>(s => s.Name.Length > 2 && s.Age < 30); // <T> is not necessary, s is based on para
+                // same to use this
+                Console.WriteLine("          extend simplify****************");
+                i = 1;
+                var result2 = studentlist.ExtendWhere(s => s.Name.Length > 2 && s.Age < 30);
+                foreach (var item in result2)
+                {
+                    Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
+                }
+                //var result3 = studentlist.ExtendWhereT<Student>(s => s.Name.Length > 2 && s.Age < 30); // <T> is not necessary, s is based on para
 
-            //    Console.WriteLine("        generic ****************");
-            //    i = 1;
-            //    var result4 = studentlist.ExtendWhereT(s => s.Name.Length > 2 && s.Age < 30);
-            //    foreach (var item in result4)
-            //    {
-            //        Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
-            //    }
+                Console.WriteLine("        generic ****************");
+                i = 1;
+                var result4 = studentlist.ExtendWhereT(s => s.Name.Length > 2 && s.Age < 30);
+                foreach (var item in result4)
+                {
+                    Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
+                }
 
-            //    Console.WriteLine("        iterator ****************");
-            //    i = 1;
-            //    var result5 = studentlist.ExtendWhereTIterator(s => s.Name.Length > 2 && s.Age < 30);
-            //    foreach (var item in result5)
-            //    {
-            //        Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
-            //    }
-            //}
-            //
+                Console.WriteLine("        iterator ****************");
+                i = 1;
+                var result5 = studentlist.ExtendWhereTIterator(s => s.Name.Length > 2 && s.Age < 30);
+                foreach (var item in result5)
+                {
+                    Console.WriteLine("number: {2} Name = {0}  Age = {1} ", item.Name, item.Age, i++);
+                }
+            }
+
             //                       ---where   filter
 
-            //{
-            //    Console.WriteLine("------where and select: Projects each element of a sequence into a new type---------");
-            //    var list = studentlist.Where<Student>(s=>s.Age < 30)//new anonymous class, so use var
-            //        .Select(s=>new
-            //        {
-            //            IdName = s.Id + s.Name,
-            //            ClassName = s.ClassId ==2? "advanced": "basic"
-            //        });
-            //    foreach (var item in list)
-            //    {
-            //        Console.WriteLine("Name = {0} Age = {1} ", item.ClassName, item.IdName);
-            //    }
-            //}
-            //{
-            //    Console.WriteLine("------linq from where--------------");//be compiled to the upper case
-            //    var list = from s in studentlist
-            //        where s.Age < 30
-            //        select new
-            //        {
-            //            IdName = s.Id + s.Name,
-            //            ClassName = s.ClassId == 2 ? "advanced" : "basic"
-            //        };
-            //    foreach (var item in list)
-            //    {
-            //        Console.WriteLine("Name = {0} Age = {1} ", item.ClassName, item.IdName);
-            //    }
-            //}
+            {
+                Console.WriteLine("------where and select: Projects each element of a sequence into a new type---------");
+            var list = studentlist.Where<Student>(s => s.Age < 30)//new anonymous class, so use var
+                .Select(s => new
+                {
+                    IdName = s.Id + s.Name,
+                    ClassName = s.ClassId == 2 ? "advanced" : "basic"
+                });
+            foreach (var item in list)
+            {
+                Console.WriteLine("Name = {0} Age = {1} ", item.ClassName, item.IdName);
+            }
+            }
+            {
+                Console.WriteLine("------linq from where--------------");//be compiled to the upper case
+                var list = from s in studentlist
+                    where s.Age < 30
+                    select new
+                    {
+                        IdName = s.Id + s.Name,
+                        ClassName = s.ClassId == 2 ? "advanced" : "basic"
+                    };
+                foreach (var item in list)
+                {
+                    Console.WriteLine("Name = {0} Age = {1} ", item.ClassName, item.IdName);
+                }
+            }
 
             {
                 Console.WriteLine("------labmda and linq   in search--------------");
@@ -350,42 +350,42 @@ namespace P04.Course.Lambda
                 }
             }
             {
-            //    Console.WriteLine("------linq order by skip and take --------------");
-            //    var list = studentlist.Where(s => s.Age < 30)
-            //        .Select(s => new
-            //        {
-            //            Id = s.Id,
-            //            ClassId = s.ClassId,
-            //            IdName = s.Id + s.Name,
-            //            ClassName = s.ClassId == 2 ? "advanced" : "basic"
-            //        })
-            //        .OrderBy(s => s.ClassId)
-            //        .ThenBy(s => s.Id)// orderby and thenby can work together
-            //        .OrderByDescending(s => s.ClassId) // OrderByDescending will work as it is the last one. 
-            //        .Skip(2)
-            //        .Take(3);
-            //    foreach (var item in list)
-            //    {
-            //        Console.WriteLine("Name = {0} Age = {1} ", item.ClassName, item.IdName);
-            //    }
-            //}
-            //{
-            //    Console.WriteLine("------ linq  group by --------------");
-            //    var list = from s in studentlist
-            //               where s.Age < 30
-            //               group s by s.ClassId 
-            //               into sg
-            //               select new//get the max age in each group. 
-            //               {
-            //                   key = sg.Key,
-            //                   maxAge = sg.Max(t => t.Age)
-            //               };
-            //    foreach (var item in list)
-            //    {
-            //        Console.WriteLine("group key = {0} max age = {1} ", item.key, item.maxAge);
-            //    }
+                Console.WriteLine("------linq order by skip and take --------------");
+                var list = studentlist.Where(s => s.Age < 30)
+                    .Select(s => new
+                    {
+                        Id = s.Id,
+                        ClassId = s.ClassId,
+                        IdName = s.Id + s.Name,
+                        ClassName = s.ClassId == 2 ? "advanced" : "basic"
+                    })
+                    .OrderBy(s => s.ClassId)
+                    .ThenBy(s => s.Id)// orderby and thenby can work together
+                    .OrderByDescending(s => s.ClassId) // OrderByDescending will work as it is the last one. 
+                    .Skip(2)
+                    .Take(3);
+                foreach (var item in list)
+                {
+                    Console.WriteLine("Name = {0} Age = {1} ", item.ClassName, item.IdName);
+                }
+            }
+            {
+                Console.WriteLine("------ linq  group by --------------");
+                var list = from s in studentlist
+                           where s.Age < 30
+                           group s by s.ClassId
+                           into sg
+                           select new//get the max age in each group. 
+                           {
+                               key = sg.Key,
+                               maxAge = sg.Max(t => t.Age)
+                           };
+                foreach (var item in list)
+                {
+                    Console.WriteLine("group key = {0} max age = {1} ", item.key, item.maxAge);
+                }
 
-            //    Console.WriteLine("------  check group property --------------");
+                Console.WriteLine("------  check group property --------------");
                 var list2 = from s in studentlist
                     where s.Age < 30
                     group s by s.ClassId
