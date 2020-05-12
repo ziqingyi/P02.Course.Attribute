@@ -13,7 +13,7 @@ namespace P04.Course.Lambda
     {
         private List<Student> GetStudentList()
         {
-            #region 初始化数据
+            #region data init
             List<Student> studentList = new List<Student>()
             {
                 new Student()
