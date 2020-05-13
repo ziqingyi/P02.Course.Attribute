@@ -29,13 +29,14 @@ namespace P02.Course.ExpressionSty
                 // select * from people where age > 5 and id > 6
 
                 ConditionBuilderVisitor visitor = new ConditionBuilderVisitor();
-                visitor.Visit(lambda);
+                //visitor.Visit(lambda);
 
                 Console.WriteLine(visitor.Condition());
 
             }
             {
-                Expression<Func<People, bool>> lambda = x => x.Age > 5 && x.Id > 5
+                Expression<Func<People, bool>> lambda = x => x.Age > 5 && x.Id < 5
+                                                                       && x.Id == 3
                                                                        && x.Name.StartsWith("1")
                                                                        && x.Name.EndsWith("1")
                                                                        && x.Name.Contains("1");

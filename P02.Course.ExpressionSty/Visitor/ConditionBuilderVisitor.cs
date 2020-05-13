@@ -76,6 +76,9 @@ namespace P02.Course.ExpressionSty.Visitor
                 case "Contains":
                     format = "({0} LIKE {1}+'%')";
                     break;
+                case "EndsWith":
+                    format = "({0} LIKE '%'+{1})";
+                    break;
                 default:
                     throw new NotSupportedException(m.NodeType + " is not supported!");
             }
