@@ -23,7 +23,7 @@ namespace P02.Course.ExpressionSty
             //    Console.WriteLine(result);
             //}
             {
-                Console.WriteLine("------------visitor----------------------------");
+                Console.WriteLine("------------visitor to visit labmda, and transfer to sql----------------------------");
                 Expression<Func<People, bool >> lambda = x => x.Age > 5 && x.Id > 6;
                 var test = new List<People>().AsQueryable().Where(lambda);
                 // select * from people where age > 5 and id > 6
