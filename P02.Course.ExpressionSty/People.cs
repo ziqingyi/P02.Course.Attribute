@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P02.Course.ExpressionSty
+namespace P05.Course.ExpressionSty
 {
 
     public class People

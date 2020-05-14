@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P02.Course.ExpressionSty.Visitor
+namespace P05.Course.ExpressionSty.Visitor
 {
     public class OperationsVisitor : ExpressionVisitor
     {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using P02.Course.ExpressionSty.Visitor;
+using P05.Course.ExpressionSty.Visitor;
 
-namespace P02.Course.ExpressionSty
+namespace P05.Course.ExpressionSty
 {
     public class ExpressionVisitorTest
     {
@@ -53,10 +53,31 @@ namespace P02.Course.ExpressionSty
 
             {
                 Console.WriteLine("-------------test visitor priority-------------------");
+                Expression<Func<People, bool>> lambda1 = x => x.Age > 5 && x.Name == "A" || x.Id > 5;
+                ConditionBuilderVisitor visitor1 = new ConditionBuilderVisitor();
+                visitor1.Visit(lambda1);
+                Console.WriteLine(visitor1.Condition());
+
+                Expression<Func<People, bool>> lambda2 = x => x.Age > 5 && x.Name == "A" || x.Id > 5;
+                ConditionBuilderVisitor visitor2 = new ConditionBuilderVisitor();
+                visitor2.Visit(lambda2);
+                Console.WriteLine(visitor2.Condition());
+
+                Expression<Func<People, bool>> lambda3 = x => x.Age > 5 && x.Name == "A" || x.Id > 5;
+                ConditionBuilderVisitor visitor3 = new ConditionBuilderVisitor();
+                visitor3.Visit(lambda3);
+                Console.WriteLine(visitor3.Condition());
+            }
+            {
+                Console.WriteLine("--------------combine expression ---------------------------");
+                Expression<Func<People, bool>> lambda1 = x => x.Age > 5;
+                Expression<Func<People, bool>> lambda2 = x => x.Id > 5;
+                Expression<Func<People, bool>> lambda3 = lambda1.And(lambda2);
+                Expression<Func<People, bool>> lambda4 = lambda1.Or(lambda2);
+
 
 
             }
-
 
         }
 

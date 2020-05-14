@@ -4,9 +4,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using P02.Course.ExpressionSty.DBExtend;
+using P05.Course.ExpressionSty.DBExtend;
 
-namespace P02.Course.ExpressionSty.Visitor
+namespace P05.Course.ExpressionSty.Visitor
 {
     public class ConditionBuilderVisitor: ExpressionVisitor
     {

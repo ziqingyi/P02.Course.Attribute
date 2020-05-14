@@ -8,9 +8,9 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Text;
-using P02.Course.ExpressionSty.MappingExtend;
+using P05.Course.ExpressionSty.MappingExtend;
 
-namespace P02.Course.ExpressionSty
+namespace P05.Course.ExpressionSty
 {
     class ExpressionTest
     {

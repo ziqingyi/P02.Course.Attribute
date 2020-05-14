@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P02.Course.ExpressionSty.MappingExtend
+namespace P05.Course.ExpressionSty.MappingExtend
 {
     public class ExpressionGenericMapper<TIn, TOut>
     {

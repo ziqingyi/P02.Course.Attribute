@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P02.Course.ExpressionSty.DBExtend
+namespace P05.Course.ExpressionSty.DBExtend
 {
     internal static class SqlOperator
     {
