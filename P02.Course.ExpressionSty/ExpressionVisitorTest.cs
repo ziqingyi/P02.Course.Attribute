@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using P05.Course.ExpressionSty.Extend;
 using P05.Course.ExpressionSty.Visitor;
 
 namespace P05.Course.ExpressionSty
@@ -75,10 +77,37 @@ namespace P05.Course.ExpressionSty
                 Expression<Func<People, bool>> lambda3 = lambda1.And(lambda2);
                 Expression<Func<People, bool>> lambda4 = lambda1.Or(lambda2);
 
-
-
             }
 
+        }
+
+        private static void Do1(Func<People, bool> func)
+        {
+            List<People> people = new List<People>();
+            people.Where(func);
+        }
+
+        private static void Do1(Expression<Func<People, bool>> func)
+        {
+            List<People> people = new List<People>()
+            {
+                new People(){Id = 4, Name = "123",Age = 4},
+                new People(){Id = 5,Name = "123", Age = 5},
+                new People(){Id = 5, Name = "345", Age = 6}
+            };
+
+            List<People> peopleList = people.Where(func.Compile()).ToList();
+        }
+
+        private static IQueryable<People> GetQueryable(Expression<Func<People, bool>> func)
+        {
+            List<People> people = new List<People>()
+            {
+                new People(){Id = 4, Name = "123", Age = 4},
+                new People(){Id = 5, Name = "234", Age = 5},
+                new People(){Id = 6, Name = "345", Age = 6}
+            };
+            return people.AsQueryable<People>().Where(func);
         }
 
     }
