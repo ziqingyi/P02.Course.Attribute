@@ -30,6 +30,8 @@ namespace P05.Course.ExpressionSty.DBExtend
                 case ExpressionType.LessThan:
                     return "<";
                 case ExpressionType.LessThanOrEqual:
+                    return "<=";
+                case ExpressionType.Equal:
                     return "=";
                 default:
                     throw new Exception("not in the sql operator list...");
