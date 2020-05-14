@@ -31,7 +31,7 @@ namespace P05.Course.ExpressionSty
                 // select * from people where age > 5 and id > 6
 
                 ConditionBuilderVisitor visitor = new ConditionBuilderVisitor();
-                //visitor.Visit(lambda);
+                visitor.Visit(lambda);
 
                 Console.WriteLine(visitor.Condition());
 

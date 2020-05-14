@@ -21,13 +21,14 @@ namespace P05.Course.ExpressionSty.Visitor
 
         public override Expression Visit(Expression node)
         {
-            Console.WriteLine($"visit {node.ToString()}");
+            Console.WriteLine($"now we start visit Expression: {node.ToString()}"+ Environment.NewLine);
             Expression result =  base.Visit(node);
             return result;
         }
 
         protected override Expression VisitBinary(BinaryExpression node)
         {
+            Console.WriteLine($"now we start visit Binary Expression: {node.ToString()}" + Environment.NewLine);
             if (node == null)
             {
                 throw new ArgumentNullException("BinaryExpression");
@@ -42,6 +43,7 @@ namespace P05.Course.ExpressionSty.Visitor
 
         protected override Expression VisitMember(MemberExpression node)
         {
+            Console.WriteLine($"now we start visit Member Expression: {node.ToString()}" + Environment.NewLine);
             if (node == null)
             {
                 throw new ArgumentNullException("MemberExpression");
@@ -52,6 +54,7 @@ namespace P05.Course.ExpressionSty.Visitor
 
         protected override Expression VisitConstant(ConstantExpression node)
         {
+            Console.WriteLine($"now we start visit Constant: {node.ToString()}" + Environment.NewLine);
             if (node == null)
             {
                 throw new ArgumentNullException("ConstantExpression");
@@ -62,6 +65,7 @@ namespace P05.Course.ExpressionSty.Visitor
 
         protected override Expression VisitMethodCall(MethodCallExpression m)
         {
+            Console.WriteLine($"now we start visit method: {m}" + Environment.NewLine);
             if (m == null)
             {
                 throw new ArgumentNullException("MethodCallExpression");
