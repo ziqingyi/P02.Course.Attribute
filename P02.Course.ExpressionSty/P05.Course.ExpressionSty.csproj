@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBExtend\ExpressionExtension.cs" />
     <Compile Include="DBExtend\SqlOperator.cs" />
     <Compile Include="ExpressionTest.cs" />
     <Compile Include="ExpressionTreeVisualizer.cs" />
