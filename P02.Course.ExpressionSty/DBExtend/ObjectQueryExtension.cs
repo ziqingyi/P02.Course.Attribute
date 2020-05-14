@@ -14,6 +14,7 @@ namespace P05.Course.ExpressionSty.DBExtend
     public static class ObjectQueryExtension
     {
         //batch delete with ado.net
+        //use linq to sql and then assemble the sql to create new sql. 
         public static int Delete<TEntity>(this ObjectQuery<TEntity> source, Expression<Func<TEntity, bool>> predicate)
             where TEntity : System.Data.Objects.DataClasses.EntityObject
         {
