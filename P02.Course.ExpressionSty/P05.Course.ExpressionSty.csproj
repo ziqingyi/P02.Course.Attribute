@@ -65,6 +65,8 @@
     <Compile Include="ExpressionTest.cs" />
     <Compile Include="ExpressionTreeVisualizer.cs" />
     <Compile Include="ExpressionVisitorTest.cs" />
+    <Compile Include="Extend\ExpressionExtend.cs" />
+    <Compile Include="Extend\NewExpressionVisitor.cs" />
     <Compile Include="MappingExtend\ExpressionGenericMapper.cs" />
     <Compile Include="MappingExtend\ExpressionMapper.cs" />
     <Compile Include="MappingExtend\ReflectionMapper.cs" />
@@ -91,9 +93,7 @@
   <ItemGroup>
     <None Include="ExpressionTreeVisualizer.2019 1.6.80\ExpressionTreeVisualizer.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extend\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
