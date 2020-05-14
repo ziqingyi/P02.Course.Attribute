@@ -24,19 +24,20 @@ namespace P05.Course.ExpressionSty
             //    double result = ((Expression<Func<int, int, int>>)expNew).Compile().Invoke(2,3);
             //    Console.WriteLine(result);
             //}
+            //{
+            //    Console.WriteLine("------------visitor to visit labmda, and transfer to sql-----");
+            //    Expression<Func<People, bool >> lambda = x => x.Age > 5 && x.Id > 6;
+            //    var test = new List<People>().AsQueryable().Where(lambda);
+            //    // select * from people where age > 5 and id > 6
+
+            //    ConditionBuilderVisitor visitor = new ConditionBuilderVisitor();
+            //    visitor.Visit(lambda);
+
+            //    Console.WriteLine(visitor.Condition());
+
+            //}
             {
-                Console.WriteLine("------------visitor to visit labmda, and transfer to sql----------------------------");
-                Expression<Func<People, bool >> lambda = x => x.Age > 5 && x.Id > 6;
-                var test = new List<People>().AsQueryable().Where(lambda);
-                // select * from people where age > 5 and id > 6
-
-                ConditionBuilderVisitor visitor = new ConditionBuilderVisitor();
-                visitor.Visit(lambda);
-
-                Console.WriteLine(visitor.Condition());
-
-            }
-            {
+                Console.WriteLine("------------visitor to visit labmda, and transfer to sql, a complex case-----");
                 Expression<Func<People, bool>> lambda = x => x.Age > 5 && x.Id < 5
                                                                        && x.Id == 3
                                                                        && x.Name.StartsWith("1")

@@ -34,10 +34,13 @@ namespace P05.Course.ExpressionSty.Visitor
                 throw new ArgumentNullException("BinaryExpression");
             }
             this._StringStack.Push(")");
+            Console.WriteLine("                         show stack: "+  string.Concat(this._StringStack.ToArray()) + Environment.NewLine);
             base.Visit(node.Right);
             this._StringStack.Push( " " + node.NodeType.ToSqlOperator() + " ");
+            Console.WriteLine("                         show stack: " + string.Concat(this._StringStack.ToArray()) + Environment.NewLine);
             base.Visit(node.Left);
             this._StringStack.Push("(");
+            Console.WriteLine("                         show stack: " + string.Concat(this._StringStack.ToArray()) + Environment.NewLine);
             return node;
         }
 
@@ -49,6 +52,7 @@ namespace P05.Course.ExpressionSty.Visitor
                 throw new ArgumentNullException("MemberExpression");
             }
             this._StringStack.Push(" [" + node.Member.Name + "] ");
+            Console.WriteLine("                         show stack: " + string.Concat(this._StringStack.ToArray()) + Environment.NewLine);
             return node;
         }
 
@@ -60,6 +64,7 @@ namespace P05.Course.ExpressionSty.Visitor
                 throw new ArgumentNullException("ConstantExpression");
             }
             this._StringStack.Push(" '"+node.Value+"' ");
+            Console.WriteLine("                         show stack: " + string.Concat(this._StringStack.ToArray()) + Environment.NewLine);
             return node;
         }
 
@@ -92,7 +97,7 @@ namespace P05.Course.ExpressionSty.Visitor
             string right = this._StringStack.Pop();
             string left = this._StringStack.Pop();
             this._StringStack.Push(string.Format(format,left,right));
-
+            Console.WriteLine("                         show stack: " + string.Concat(this._StringStack.ToArray()) + Environment.NewLine);
             return m;
         }
     }
