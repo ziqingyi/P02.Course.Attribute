@@ -17,7 +17,7 @@ namespace P05.Course.ExpressionSty.Extend
             this._NewParameter = param;
         }
 
-        public Expression Relace(Expression exp)
+        public Expression Replace(Expression exp)
         {
             return this.Visit(exp);
         }
