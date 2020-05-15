@@ -19,7 +19,7 @@ namespace P05.Course.ExpressionSty.Extend
 
             var left = visitor.Replace(expr1.Body);
             var right = visitor.Replace(expr2.Body);
-            var body = Expression.Add(left, right);
+            var body = Expression.And(left, right);
             return Expression.Lambda<Func<T, bool>>(body, newParameter);
         }
 
