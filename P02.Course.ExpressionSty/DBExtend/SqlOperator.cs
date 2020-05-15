@@ -36,15 +36,7 @@ namespace P05.Course.ExpressionSty.DBExtend
                 default:
                     throw new Exception("not in the sql operator list...");
             }
-
-
-
-
-
-
         }
-
-
 
     }
 }
