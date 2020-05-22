@@ -36,12 +36,12 @@ namespace P03.Course.Delegate
             {
                 WithReturnWIthPara method2 = new WithReturnWIthPara(this.PraReturn);
                 int i = 1;
-                
-                method2.Invoke(out int a, ref i);
+                int a;//declaring the variable without assigning value. 
+                method2.Invoke(out a, ref i);
 
 
                 WithReturnNoPara w = new WithReturnNoPara(Get);
-                w.Invoke(); // same to this.Get();
+                int ss  = w.Invoke(); // same to this.Get();
 
             }
 
