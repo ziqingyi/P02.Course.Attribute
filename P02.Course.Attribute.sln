@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P01.Course.Model", "P01.Cou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P05.Course.ExpressionSty", "P02.Course.ExpressionSty\P05.Course.ExpressionSty.csproj", "{53D46F94-F96A-4D4C-A585-88A5222D58B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P06.Course.IOSerialize", "P06.Course.IOSerialize\P06.Course.IOSerialize.csproj", "{2D88DBB5-970E-425E-8460-F9959CEEDB3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{53D46F94-F96A-4D4C-A585-88A5222D58B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53D46F94-F96A-4D4C-A585-88A5222D58B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53D46F94-F96A-4D4C-A585-88A5222D58B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D88DBB5-970E-425E-8460-F9959CEEDB3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D88DBB5-970E-425E-8460-F9959CEEDB3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D88DBB5-970E-425E-8460-F9959CEEDB3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D88DBB5-970E-425E-8460-F9959CEEDB3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
