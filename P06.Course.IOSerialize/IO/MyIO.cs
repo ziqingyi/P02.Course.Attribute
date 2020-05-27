@@ -26,7 +26,7 @@ namespace P06.Course.IOSerialize.IO
 
                 if (Directory.Exists(LogPath))
                 {
-
+                    Console.WriteLine("log path exist");
                 }
                 //note: this object will not report error if not exists.
                 DirectoryInfo notReportError = new DirectoryInfo(NotExistPath);
@@ -48,8 +48,31 @@ namespace P06.Course.IOSerialize.IO
                 }
             }
             {
-                Console.WriteLine("-----------------directory and move file --------------------");
+                Console.WriteLine("-----------------directory operation --------------------");
+                // iiii.txt will be folder name if using Directory
+                string newLogPath = Path.Combine(LogPath, "newLogPath/iiii.txt");
 
+                if (!Directory.Exists(newLogPath))
+                {
+                    //only help to create directory
+                    DirectoryInfo di = Directory.CreateDirectory(newLogPath );
+                }
+                
+                if (Directory.Exists(LogMovePath))
+                {
+                    //Deletes an empty directory 
+                    Directory.Delete(LogMovePath);
+                }
+                //move all files in the folder to new folder. must check and delete if exist. 
+                Directory.Move(newLogPath,LogMovePath);
+
+                Console.WriteLine("-----------------file operation --------------------");
+
+                using (FileStream fileStream = File.Create(LogPath))
+                {
+
+
+                }
 
 
 
