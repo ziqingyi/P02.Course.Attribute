@@ -19,7 +19,7 @@ namespace P06.Course.IOSerialize.IO
         private static string LogPath2 = AppDomain.CurrentDomain.BaseDirectory;
 
 
-        public static void Show()
+        public static void ShowDirectory()
         {
             {
                 Console.WriteLine("-----------directory and directoryinfo-----------------");
@@ -55,59 +55,87 @@ namespace P06.Course.IOSerialize.IO
                 if (!Directory.Exists(newLogPath))
                 {
                     //only help to create directory
-                    DirectoryInfo di = Directory.CreateDirectory(newLogPath );
+                    DirectoryInfo di = Directory.CreateDirectory(newLogPath);
                 }
-                
+
                 if (Directory.Exists(LogMovePath))
                 {
                     //Deletes an empty directory, can not have files inside 
                     Directory.Delete(LogMovePath);
                 }
+
                 //move all files in the folder to new folder, can have files inside.
                 //new folder must check and delete if already exist. 
-                Directory.Move(newLogPath,LogMovePath);
-
-                Console.WriteLine("-----------------file operation --------------------");
-                String fileName = Path.Combine(LogPath,"log.txt");
-                string fileNameCopy = Path.Combine(LogPath, "logCopy.txt");
-                string fileNameMove = Path.Combine(LogPath, "logMove.txt");
-                bool isExists = File.Exists(fileNameMove);
-                if (!isExists)
+                Directory.Move(newLogPath, LogMovePath);
+            }
+            
+        }
+        public static void ShowFile() 
+        {
+            Console.WriteLine("-----------------file operation --------------------");
+            String fileName = Path.Combine(LogPath, "log.txt");
+            string fileNameCopy = Path.Combine(LogPath, "logCopy.txt");
+            string fileNameMove = Path.Combine(LogPath, "logMove.txt");
+            bool isExists = File.Exists(fileNameMove);
+            if (!isExists)
+            {
+                Directory.CreateDirectory(LogPath);
+                using (FileStream fileStream = File.Create(fileName))
                 {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    string name = "asldkfjasfjasf";
+                    byte[] bytes = Encoding.Default.GetBytes(name);
+                    fileStream.Write(bytes, 0, bytes.Length);
+                    fileStream.Flush();
                 }
 
+                using (FileStream fileStream = File.Create(fileName))
+                {
+                    StreamWriter sw = new StreamWriter(fileStream);
+                    sw.WriteLine("123123");
+                    sw.Flush();
+                }
+
+                using (StreamWriter sw = File.AppendText(fileName))
+                {
+                    string msg = "new message from stream writer ";
+                    sw.WriteLine(msg);
+                    sw.Flush();
+                }
+
+                using (StreamWriter sw = File.AppendText(fileName))
+                {
+                    string name = "message from file append";
+                    byte[] bytes = Encoding.Default.GetBytes(name);
+                    sw.BaseStream.Write(bytes, 0, bytes.Length);
+                    sw.Flush();
+                }
+                // read all lines from file
+                foreach (string result in File.ReadAllLines(fileName))
+                {
+                    Console.WriteLine(result);
+                }
+                // test real all text and read all bytes
+                string sResult = File.ReadAllText(fileName);
+                Byte[] byteContent = File.ReadAllBytes(fileName);
+                string sResultByte = System.Text.Encoding.UTF8.GetString(byteContent);
+
+                //read in batch
 
 
 
 
             }
+
+
+
         }
+
+
+
+
+
+
+
 
 
 
