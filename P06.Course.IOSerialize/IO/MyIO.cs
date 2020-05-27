@@ -60,10 +60,11 @@ namespace P06.Course.IOSerialize.IO
                 
                 if (Directory.Exists(LogMovePath))
                 {
-                    //Deletes an empty directory 
+                    //Deletes an empty directory, can not have files inside 
                     Directory.Delete(LogMovePath);
                 }
-                //move all files in the folder to new folder. must check and delete if exist. 
+                //move all files in the folder to new folder, can have files inside.
+                //new folder must check and delete if already exist. 
                 Directory.Move(newLogPath,LogMovePath);
 
                 Console.WriteLine("-----------------file operation --------------------");
