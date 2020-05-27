@@ -68,12 +68,41 @@ namespace P06.Course.IOSerialize.IO
                 Directory.Move(newLogPath,LogMovePath);
 
                 Console.WriteLine("-----------------file operation --------------------");
-
-                using (FileStream fileStream = File.Create(LogPath))
+                String fileName = Path.Combine(LogPath,"log.txt");
+                string fileNameCopy = Path.Combine(LogPath, "logCopy.txt");
+                string fileNameMove = Path.Combine(LogPath, "logMove.txt");
+                bool isExists = File.Exists(fileNameMove);
+                if (!isExists)
                 {
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 }
+
+
 
 
 
