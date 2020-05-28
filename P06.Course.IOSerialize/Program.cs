@@ -12,8 +12,8 @@ namespace P06.Course.IOSerialize
         static void Main(string[] args)
         {
             //MyIO.ShowDirectory();
-            MyIO.ShowFile();
-
+            //MyIO.ShowFile();
+            MyIO.showDrive();
 
         }
     }

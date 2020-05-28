@@ -140,10 +140,25 @@ namespace P06.Course.IOSerialize.IO
                 File.Delete(fileNameCopy);
             }
 
+        }
+
+        public static void showDrive()
+        {
+            DriveInfo[] drivers = DriveInfo.GetDrives();
+            foreach (DriveInfo drive in drivers)
+            {
+                if(drive.IsReady)
+                    Console.WriteLine("Type : {0} , Volume Label: {1}, Name: {2}, Total Size: {3}, Free Space: {4}"
+                        ,drive.DriveType, drive.VolumeLabel,drive.Name,drive.TotalSize,drive.TotalFreeSpace);
+                else
+                {
+                    Console.WriteLine("Type : {0} is not ready.", drive.DriveType);
+                }
+
+            }
 
 
         }
-
 
 
 
