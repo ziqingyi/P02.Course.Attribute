@@ -120,10 +120,24 @@ namespace P06.Course.IOSerialize.IO
                 string sResultByte = System.Text.Encoding.UTF8.GetString(byteContent);
 
                 //read in batch
+                using (FileStream stream = File.OpenRead(fileName))
+                {
+                    int length = 5;
+                    int result = 0;
+                    do
+                    {
+                        byte[] bytes = new byte[length];
+                        result = stream.Read(bytes, 0, length);
+                        for (int i = 0; i < result; i++)
+                        {
+                            Console.WriteLine(bytes[i].ToString() +"   "+System.Text.Encoding.ASCII.GetString(new[]{bytes[i] } ));
+                        }
 
-
-
-
+                    } while (length == result);
+                }
+                File.Copy(fileName,fileNameCopy);
+                File.Move(fileName, fileNameMove);
+                File.Delete(fileNameCopy);
             }
 
 
