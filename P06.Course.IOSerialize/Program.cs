@@ -13,8 +13,8 @@ namespace P06.Course.IOSerialize
         {
             //MyIO.ShowDirectory();
             //MyIO.ShowFile();
-            MyIO.showDrive();
-
+            //MyIO.showDrive();
+            MyIO.showPath();
         }
     }
 }

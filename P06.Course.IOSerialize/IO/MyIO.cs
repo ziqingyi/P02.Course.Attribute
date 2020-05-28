@@ -139,9 +139,7 @@ namespace P06.Course.IOSerialize.IO
                 File.Move(fileName, fileNameMove);
                 File.Delete(fileNameCopy);
             }
-
         }
-
         public static void showDrive()
         {
             DriveInfo[] drivers = DriveInfo.GetDrives();
@@ -154,12 +152,19 @@ namespace P06.Course.IOSerialize.IO
                 {
                     Console.WriteLine("Type : {0} is not ready.", drive.DriveType);
                 }
-
             }
-
-
         }
-
+        public static void showPath()
+        {
+            Console.WriteLine(Path.GetDirectoryName(LogPath));
+            Console.WriteLine(Path.GetDirectoryName(@"d:\\abc"));
+            Console.WriteLine(Path.GetDirectoryName(@"d:\\abc\"));
+            Console.WriteLine(Path.GetRandomFileName());
+            Console.WriteLine(Path.GetFileNameWithoutExtension(@"d:\\eeeee.txt"));
+            Console.WriteLine(Path.GetInvalidPathChars());
+            Console.WriteLine(Path.GetInvalidFileNameChars());
+            Console.WriteLine(Path.Combine(LogPath,@"log.txt"));
+        }
 
 
 
