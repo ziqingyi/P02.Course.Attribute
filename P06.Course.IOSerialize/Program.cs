@@ -14,7 +14,8 @@ namespace P06.Course.IOSerialize
             //MyIO.ShowDirectory();
             //MyIO.ShowFile();
             //MyIO.showDrive();
-            MyIO.showPath();
+            //MyIO.showPath();
+            MyIO.Log("log ....s.s.s.s..s.s.s");
         }
     }
 }

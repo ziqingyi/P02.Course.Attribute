@@ -166,7 +166,41 @@ namespace P06.Course.IOSerialize.IO
             Console.WriteLine(Path.Combine(LogPath,@"log.txt"));
         }
 
+        public static void Log(string msg)
+        {
+            StreamWriter sw = null;
+            try
+            {
+                string fileName = "logfile.txt";
+                string totalPath = Path.Combine(LogPath, fileName);
+                if (!Directory.Exists(LogPath))
+                {
+                    Directory.CreateDirectory(LogPath);
+                }
 
+                sw = File.AppendText(totalPath);
+                sw.WriteLine(string.Format("{0}:{1}", DateTime.Now, msg));
+                sw.WriteLine("********************************************");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            finally
+            {
+                if (sw != null)
+                {
+                    sw.Flush();
+                    sw.Close();
+                    sw.Dispose();
+                }
+            }
+
+
+
+        }
 
 
 
