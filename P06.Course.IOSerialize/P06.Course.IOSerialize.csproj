@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Constant.cs" />
     <Compile Include="IO\MyIO.cs" />
+    <Compile Include="IO\Recursion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
