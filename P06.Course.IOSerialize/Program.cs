@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using P06.Course.IOSerialize.IO;
+using P06.Course.IOSerialize.Serialize;
 
 namespace P06.Course.IOSerialize
 {
@@ -21,9 +22,10 @@ namespace P06.Course.IOSerialize
                 //var directoryInfo = Recursion.GetAllDirectory(@"C:\IOSerialize");
             }
             {
-
-
-
+                Console.WriteLine("****************Serialize, Soap, Xml, Json***********");
+                //SerializeHelper.BinarySerialize();
+                SerializeHelper.XmlSerialize();
+                SerializeHelper.Json();
 
             }
 
