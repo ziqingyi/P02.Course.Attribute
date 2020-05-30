@@ -20,7 +20,12 @@ namespace P06.Course.IOSerialize
                 //MyIO.Log("log ....s.s.s.s..s.s.s");
                 //var directoryInfo = Recursion.GetAllDirectory(@"C:\IOSerialize");
             }
+            {
 
+
+
+
+            }
 
         }
     }
