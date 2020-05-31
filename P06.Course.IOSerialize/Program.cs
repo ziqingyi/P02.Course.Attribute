@@ -22,13 +22,20 @@ namespace P06.Course.IOSerialize
                 //var directoryInfo = Recursion.GetAllDirectory(@"C:\IOSerialize");
             }
             {
-                Console.WriteLine("****************Serialize, Soap, Xml, Json***********");
-                SerializeHelper.BinarySerialize();
-                SerializeHelper.SoapSerialize();
-                SerializeHelper.XmlSerialize();
-                SerializeHelper.Json();
+                //Console.WriteLine("****************Serialize, Soap, Xml, Json***********");
+                //SerializeHelper.BinarySerialize();
+                //SerializeHelper.SoapSerialize();
+                //SerializeHelper.XmlSerialize();
+                //SerializeHelper.Json();
+            }
+
+
+            {
+                Console.WriteLine("******************draw picture*******************************");
+                ImageHelper.Drawing();
 
             }
+
 
         }
     }

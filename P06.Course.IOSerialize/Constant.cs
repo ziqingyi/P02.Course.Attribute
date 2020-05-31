@@ -16,5 +16,9 @@ namespace P06.Course.IOSerialize
         //get serialized data path
         public static string SerializeDataPath = ConfigurationManager.AppSettings["SerializeDataPath"];
 
+        //get image path
+        public static string ImagePath = ConfigurationManager.AppSettings["ImagePath"];
+        public static string VerifyPath = ConfigurationManager.AppSettings["ImagePath"];
+
     }
 }
