@@ -23,7 +23,8 @@ namespace P06.Course.IOSerialize
             }
             {
                 Console.WriteLine("****************Serialize, Soap, Xml, Json***********");
-                //SerializeHelper.BinarySerialize();
+                SerializeHelper.BinarySerialize();
+                SerializeHelper.SoapSerialize();
                 SerializeHelper.XmlSerialize();
                 SerializeHelper.Json();
 
