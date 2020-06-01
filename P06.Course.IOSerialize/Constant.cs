@@ -18,7 +18,8 @@ namespace P06.Course.IOSerialize
 
         //get image path
         public static string ImagePath = ConfigurationManager.AppSettings["ImagePath"];
-        public static string VerifyPath = ConfigurationManager.AppSettings["ImagePath"];
+        public static string ImagePathNew = ConfigurationManager.AppSettings["ImagePathNew"];
+        public static string VerifyPath = ConfigurationManager.AppSettings["VerifyPath"];
 
     }
 }

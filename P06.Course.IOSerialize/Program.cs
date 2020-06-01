@@ -33,7 +33,10 @@ namespace P06.Course.IOSerialize
             {
                 Console.WriteLine("******************draw picture*******************************");
                 ImageHelper.Drawing();
-
+                ImageHelper.CreateCaptcha();
+                ImageHelper.ImageChangeBySize(
+                    Constant.ImagePath, Constant.ImagePathNew, 100,200);
+                ImageHelper.CompressPercent(Constant.ImagePath,Constant.ImagePathNew,200,300);
             }
 
 
