@@ -15,6 +15,15 @@ namespace P06.Course.IOSerialize.IO
         private static string VerifyPath = Constant.VerifyPath;
         //Bitmap is like a canvas, Graphics is like a hand, using Pen or Brush painting on the Bitmap
 
+        static ImageHelper()
+        {
+            if (!Directory.Exists(ImagePath))
+                Directory.CreateDirectory(ImagePath);
+            if (!Directory.Exists(VerifyPath))
+                Directory.CreateDirectory(VerifyPath);
+        }
+
+
         public static void Drawing()
         {
             Bitmap bitmapobj = new Bitmap(200,350);
