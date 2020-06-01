@@ -44,6 +44,59 @@ namespace P06.Course.IOSerialize.IO
             g.Dispose();
 
         }
+        //compress picture
+        public static void CompressPercent(string oldPath, string newPath, int maxWidth, int maxHeight)
+        {
+            Image _sourceImg = Image.FromFile(oldPath);
+            double _newW = (double) maxWidth;
+            double _newH = (double) maxHeight;
+            double percentWidth = (double) _sourceImg.Width > maxWidth ? (double) maxWidth : (double) _sourceImg.Width;
+            if ((double) _sourceImg.Height * (double) percentWidth / (double) _sourceImg.Width > (double) maxHeight)
+            {
+                _newH = (double) maxHeight;
+                _newW = (double) maxHeight / (double) _sourceImg.Height * (double) _sourceImg.Width;
+            }
+            else
+            {
+                _newW = percentWidth;
+                _newH = (percentWidth / (double) _sourceImg.Width) * (double) _sourceImg.Height;
+            }
+
+            Image bitMap = new Bitmap((int)_newW, (int)_newH);
+            Graphics g = Graphics.FromImage(bitMap);
+            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            g.Clear(Color.Transparent);
+            g.DrawImage(_sourceImg, 
+                new Rectangle(0,0,(int)_newW, (int)_newH), 
+                new Rectangle(0,0,_sourceImg.Width, _sourceImg.Height),
+                GraphicsUnit.Pixel  
+                );
+            _sourceImg.Dispose();
+            bitMap.Save(newPath,System.Drawing.Imaging.ImageFormat.Jpeg);
+            bitMap.Dispose();
+        }
+
+        public static void ImageChangeBySize(string oldPath, string newPath, int newWidth, int newHeight)
+        {
+            Image sourceImg = Image.FromFile(oldPath);
+            System.Drawing.Image bitmap = new System.Drawing.Bitmap(newWidth,newHeight);
+            Graphics g = Graphics.FromImage(bitmap);
+            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            g.Clear(Color.Transparent);
+            g.DrawImage(sourceImg, 
+                new Rectangle(0,0,newWidth,newHeight),
+                new Rectangle(0,0,sourceImg.Width,sourceImg.Height),
+                GraphicsUnit.Pixel);
+
+            sourceImg.Dispose();
+            g.Dispose();
+            bitmap.Save(newPath,System.Drawing.Imaging.ImageFormat.Jpeg);
+            bitmap.Dispose();
+        }
+
+
 
 
 
