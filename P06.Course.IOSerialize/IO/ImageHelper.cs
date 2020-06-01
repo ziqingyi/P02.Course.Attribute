@@ -42,8 +42,33 @@ namespace P06.Course.IOSerialize.IO
             //free up all obj
             bitmapobj.Dispose();
             g.Dispose();
+        }
+        public static void CreateCaptcha()
+        {
+            Bitmap bitmapobj = new Bitmap(300, 300);
+            Graphics g = Graphics.FromImage(bitmapobj);
+            g.DrawRectangle(Pens.Black, new Rectangle(0, 0, 150, 50));
+            g.FillRectangle(Brushes.White, new Rectangle(1, 1, 139, 49));
+            g.DrawArc(Pens.Blue,
+                new Rectangle(10, 10, 140, 10),
+                150, 90);//random curve lines.
+            string[] arrStr = new string[] { "A", "C", "E", "F", "X", "Z", "K", "H", "G", "O" };
+            Random r = new Random();
+            int i;
+            for (int j = 0; j < 4; j++)
+            {
+                i = r.Next(10);
+                g.DrawString(
+                    arrStr[i],
+                    new Font("", 15),
+                    Brushes.Red, new PointF(j * 30, 10));
+            }
+            bitmapobj.Save(Path.Combine(VerifyPath, "verif.jpg"), ImageFormat.Jpeg);
+            bitmapobj.Dispose();
+            g.Dispose();
 
         }
+
         //compress picture
         public static void CompressPercent(string oldPath, string newPath, int maxWidth, int maxHeight)
         {
