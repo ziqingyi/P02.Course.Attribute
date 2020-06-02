@@ -31,12 +31,18 @@ namespace P06.Course.IOSerialize
 
 
             {
-                Console.WriteLine("******************draw picture*******************************");
-                ImageHelper.Drawing();
-                ImageHelper.CreateCaptcha();
-                ImageHelper.ImageChangeBySize(
-                    Constant.ImagePath, Constant.ImagePathNew, 100,200);
-                ImageHelper.CompressPercent(Constant.ImagePath,Constant.ImagePathNew,200,300);
+                //Console.WriteLine("******************draw picture*******************************");
+                //ImageHelper.Drawing();
+                //ImageHelper.CreateCaptcha();
+                //ImageHelper.ImageChangeBySize(
+                //    Constant.ImagePath+ "pic1.jpg", 
+                //    Constant.ImagePathNew + "pic2.jpg", 
+                //    100,
+                //    200);
+                //ImageHelper.CompressPercent(Constant.ImagePath + "pic1.jpg", 
+                //    Constant.ImagePathNew + "pic3.jpg", 
+                //    200,
+                //    300);
             }
 
 

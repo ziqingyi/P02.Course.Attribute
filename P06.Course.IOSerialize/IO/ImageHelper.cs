@@ -26,7 +26,7 @@ namespace P06.Course.IOSerialize.IO
 
         public static void Drawing()
         {
-            Bitmap bitmapobj = new Bitmap(200,350);
+            Bitmap bitmapobj = new Bitmap(1000,1500);
             //create a new Graphics based on Bitmap object
             Graphics g = Graphics.FromImage(bitmapobj); 
             g.Clear(Color.White);
@@ -36,15 +36,12 @@ namespace P06.Course.IOSerialize.IO
             //paint graph
             g.DrawLine(redPen,50,20,500,20);
             g.DrawEllipse(Pens.Black,new Rectangle(0,0,200,100));
-            g.DrawArc(Pens.Aqua,new Rectangle(0,0,100,100),60,180 );
-            g.DrawLine(Pens.Blue,0,0,100,100 );
-            g.DrawRectangle(Pens.Chartreuse,new Rectangle(0,0,100,100));
+            g.DrawArc(Pens.Aqua,new Rectangle(0,0,900,500),60,180 );
+            g.DrawLine(Pens.Blue,0,0,600,100 );
+            g.DrawRectangle(Pens.Chartreuse,new Rectangle(0,0,800,500));
             g.DrawString("this is my picture",
-                new Font("Magic R", 12),
+                new Font("Magic R", 200),
                 new SolidBrush(Color.Green), new PointF(10,10) );
-
-            if (!Directory.Exists(ImagePath))
-                Directory.CreateDirectory(ImagePath);
 
             bitmapobj.Save(ImagePath + "pic1.jpg", ImageFormat.Jpeg);
 
@@ -54,9 +51,9 @@ namespace P06.Course.IOSerialize.IO
         }
         public static void CreateCaptcha()
         {
-            Bitmap bitmapobj = new Bitmap(300, 300);
+            Bitmap bitmapobj = new Bitmap(200, 300);
             Graphics g = Graphics.FromImage(bitmapobj);
-            g.DrawRectangle(Pens.Black, new Rectangle(0, 0, 150, 50));
+            g.DrawRectangle(Pens.Blue, new Rectangle(0, 0, 150, 50));
             g.FillRectangle(Brushes.White, new Rectangle(1, 1, 139, 49));
             g.DrawArc(Pens.Blue,
                 new Rectangle(10, 10, 140, 10),
