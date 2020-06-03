@@ -33,6 +33,7 @@ namespace P06.Course.IOSerialize.Serialize
                 //save this structure
                 myXDoc.Save(xmlPath);
                 string test = myXDoc.ToString();
+                XElement rootNode2 = XElement.Parse(test);
 
             }
             catch (Exception ex)
@@ -48,15 +49,15 @@ namespace P06.Course.IOSerialize.Serialize
             {
                 //load root node
                 XElement rootNode = XElement.Load(xmlPath);
-                XElement rootNode2 = XElement.Parse(xmlPath);
+                //XElement rootNode2 = XElement.Parse(xmlPath);
 
 
                 //search the child nodes
-                IEnumerable<XElement> targetNodes = from target in rootNode.Descendants("name")
+                IEnumerable<XElement> targetNodes = from target in rootNode.Descendants("Name")
                     select target;
                 foreach (XElement node in targetNodes)
                 {
-                    Console.WriteLine("name ={0}", node.Value);
+                    Console.WriteLine("name = {0} ", node.Value);
                 }
 
                 //search user by id
