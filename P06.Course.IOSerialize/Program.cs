@@ -44,6 +44,11 @@ namespace P06.Course.IOSerialize
                 //    200,
                 //    300);
             }
+            {
+                Console.WriteLine("******************Xml Helper*******************************");
+                LinqToXml.CreateXmlFile(Constant.SerializeDataPath+@"\users.xml");
+
+            }
 
 
         }
