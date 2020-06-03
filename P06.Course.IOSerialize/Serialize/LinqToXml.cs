@@ -53,13 +53,14 @@ namespace P06.Course.IOSerialize.Serialize
 
 
                 //search the child nodes
+                Console.WriteLine("****************show Names of all descendants*****************************");
                 IEnumerable<XElement> targetNodes = from target in rootNode.Descendants("Name")
                     select target;
                 foreach (XElement node in targetNodes)
                 {
                     Console.WriteLine("name = {0} ", node.Value);
                 }
-
+                Console.WriteLine("****************show info of all descendants with id = 1******************");
                 //search user by id
                 IEnumerable<XElement> myTargetNodes = from myTarget in rootNode.Descendants("User")
                     where myTarget.Attribute("ID").Value.Equals("1")
@@ -68,8 +69,8 @@ namespace P06.Course.IOSerialize.Serialize
                 foreach (XElement node in myTargetNodes)
                 {
                     Console.WriteLine("name = {0} ", node.Element("Name").Value);
-                    Console.WriteLine("password = {0} ", node.Element("Password").Value);
-                    Console.WriteLine("password = {0}", node.Element("Description").Value);
+                    Console.WriteLine("Password = {0} ", node.Element("Password").Value);
+                    Console.WriteLine("Description = {0}", node.Element("Description").Value);
                 }
 
             }
