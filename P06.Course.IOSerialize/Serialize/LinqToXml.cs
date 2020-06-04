@@ -19,14 +19,23 @@ namespace P06.Course.IOSerialize.Serialize
                     new XAttribute("ID","1"),
                     new XElement("Name","Eric"),
                     new XElement("Password","123123"),
-                    new XElement("Description"," This is user Eric"));
+                    new XElement("Description","This is user Eric"), 
+                    new XElement("Course", "Law")
+                    );
                 XElement user2 = new XElement("User",
                     new XAttribute("ID", "2"),
                     new XElement("Name", "Ray"),
                     new XElement("Password", "2342342"),
-                    new XElement("Description", " This is user Ray"));
+                    new XElement("Description", "This is user Ray"),
+                    new XElement("Course", "IT"));
+                XElement user3 = new XElement("User",
+                    new XAttribute("ID", "3"),
+                    new XElement("Name", "Joy"),
+                    new XElement("Password", "asfdafa"),
+                    new XElement("Description", "This is user Joy"),
+                    new XElement("Course", "Physics"));
 
-                XElement userArray = new XElement("users", user1,user2);
+                XElement userArray = new XElement("users", user1,user2,user3);
 
                 XDocument myXDoc = new XDocument(userArray);
 
@@ -50,7 +59,6 @@ namespace P06.Course.IOSerialize.Serialize
                 //load root node
                 XElement rootNode = XElement.Load(xmlPath);
                 //XElement rootNode2 = XElement.Parse(xmlPath);
-
 
                 //search the child nodes
                 Console.WriteLine("****************show Names of all descendants*****************************");
@@ -79,10 +87,32 @@ namespace P06.Course.IOSerialize.Serialize
                 Console.WriteLine(e.ToString());
                 throw;
             }
-
-
         }
 
+        public static void ModifyXmlNodeInformation(string xmlPath)
+        {
+            try
+            {
+                //load root node
+                XElement rootNode = XElement.Load(xmlPath);
+                // search user by id
+                IEnumerable<XElement> targetNodes = from target in rootNode.Descendants("user")
+                                                    where target.Attribute("ID").Value =="2"
+                                                          || target.Attribute("ID").Value.Equals("3") 
+                                                    select target;
+                //iterate all targets
+                foreach (XElement node in targetNodes)
+                {
+                    node.Element("Course").SetValue("History");
+                }
+                rootNode.Save(xmlPath);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                throw;
+            }
+        }
 
 
 
