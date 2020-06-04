@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -138,13 +139,29 @@ namespace P06.Course.IOSerialize.Serialize
                 throw;
             }
 
-
         }
 
+        public static void DeleteXmlNodeInformation(string xmlPath)
+        {
+            try
+            {
+                //load root node from file
+                XElement rootNode = XElement.Load(xmlPath);
+                //search user
+                IEnumerable<XElement> targetUser = from target in rootNode.Descendants("User")
+                    where target.Attribute("ID").Value.Equals("4")
+                    select target;
 
+                targetUser.Remove();
+                rootNode.Save(xmlPath);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                throw;
+            }
 
-
-
+        }
 
     }
 }
