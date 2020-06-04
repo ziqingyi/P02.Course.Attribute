@@ -21,6 +21,37 @@ namespace P06.Course.IOSerialize.Serialize
             string text = reader.ReadToEnd();
             return text;
         }
+        // string to xml
+        public static T ToObject<T>(string content) where T : new()
+        {
+            using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(content)))
+            {
+                XmlSerializer xmlFormat = new XmlSerializer(typeof(T));
+                return (T)xmlFormat.Deserialize(stream);
+            }
+        }
+
+        //file being deserialized to object
+        public static T FileToObject<T>(string fileName) where T : new()
+        {
+            string CurrentXMLPath = Constant.SerializeDataPath;
+            fileName = Path.Combine(CurrentXMLPath, @"users.xml");
+            using (Stream fStream = new FileStream(fileName,FileMode.Open,FileAccess.ReadWrite))
+            {
+                XmlSerializer xmlFormat = new XmlSerializer(typeof(T));
+                return (T) xmlFormat.Deserialize(fStream);
+            }
+
+
+
+        }
+
+
+
+
+
+
+
 
 
 
