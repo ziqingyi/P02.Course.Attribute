@@ -114,6 +114,32 @@ namespace P06.Course.IOSerialize.Serialize
             }
         }
 
+        public static void AddXmlNodeInformation(string xmlPath)
+        {
+            try
+            {
+                //load xml root node from xml file
+                XElement rootNode = XElement.Load(xmlPath);
+                //create a new node 
+                XElement newNode = new XElement("User", new XAttribute("ID","4"),
+                    new XElement("Name", "Tom"),
+                    new XElement("Password", "3weafa"),
+                    new XElement("Description", "This is user Tom"),
+                    new XElement("Course", "IT"));
+
+                // add to root node
+                rootNode.Add(newNode);
+                rootNode.Save(xmlPath);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                throw;
+            }
+
+
+        }
 
 
 
