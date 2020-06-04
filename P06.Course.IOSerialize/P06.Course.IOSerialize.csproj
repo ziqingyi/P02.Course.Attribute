@@ -60,6 +60,7 @@
     <Compile Include="Serialize\JsonHelper.cs" />
     <Compile Include="Serialize\LinqToXml.cs" />
     <Compile Include="Serialize\SerializeHelper.cs" />
+    <Compile Include="Serialize\XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
