@@ -47,8 +47,12 @@ namespace P06.Course.IOSerialize
             }
             {
                 Console.WriteLine("******************Xml Helper*******************************");
-                LinqToXml.CreateXmlFile(Constant.SerializeDataPath+@"\users.xml");
-                LinqToXml.GetXmlNodeInformation(Constant.SerializeDataPath + @"\users.xml");
+                string xmlAddressWithName = Constant.SerializeDataPath + @"\users.xml";
+                LinqToXml.CreateXmlFile(xmlAddressWithName);
+                LinqToXml.GetXmlNodeInformation(xmlAddressWithName);
+                LinqToXml.ModifyXmlNodeInformation(xmlAddressWithName);
+                LinqToXml.AddXmlNodeInformation(xmlAddressWithName);
+                LinqToXml.DeleteXmlNodeInformation(xmlAddressWithName);
             }
 
 
