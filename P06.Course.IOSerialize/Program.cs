@@ -46,14 +46,23 @@ namespace P06.Course.IOSerialize
                 //    300);
             }
             {
+                //Console.WriteLine("******************Linq to Xml*******************************");
+                //string xmlAddressWithName = Constant.SerializeDataPath + @"\users.xml";
+                //LinqToXml.CreateXmlFile(xmlAddressWithName);
+                //LinqToXml.GetXmlNodeInformation(xmlAddressWithName);
+                //LinqToXml.ModifyXmlNodeInformation(xmlAddressWithName);
+                //LinqToXml.AddXmlNodeInformation(xmlAddressWithName);
+                //LinqToXml.DeleteXmlNodeInformation(xmlAddressWithName);
+            }
+
+            {
                 Console.WriteLine("******************Xml Helper*******************************");
                 string xmlAddressWithName = Constant.SerializeDataPath + @"\users.xml";
-                LinqToXml.CreateXmlFile(xmlAddressWithName);
-                LinqToXml.GetXmlNodeInformation(xmlAddressWithName);
-                LinqToXml.ModifyXmlNodeInformation(xmlAddressWithName);
-                LinqToXml.AddXmlNodeInformation(xmlAddressWithName);
-                LinqToXml.DeleteXmlNodeInformation(xmlAddressWithName);
+                XmlHelper.ToXml<User>(new User());
+                var result = XmlHelper.FileToObject<User>(xmlAddressWithName);
             }
+
+
 
 
         }

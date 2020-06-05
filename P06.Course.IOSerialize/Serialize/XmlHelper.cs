@@ -21,6 +21,10 @@ namespace P06.Course.IOSerialize.Serialize
             string text = reader.ReadToEnd();
             return text;
         }
+        /*
+         * <?xml version="1.0"?>
+           <User xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+         */
         // string to xml
         public static T ToObject<T>(string content) where T : new()
         {
@@ -38,7 +42,10 @@ namespace P06.Course.IOSerialize.Serialize
             fileName = Path.Combine(CurrentXMLPath, @"users.xml");
             using (Stream fStream = new FileStream(fileName,FileMode.Open,FileAccess.ReadWrite))
             {
-                XmlSerializer xmlFormat = new XmlSerializer(typeof(T));
+                XmlRootAttribute xRoot = new XmlRootAttribute();
+                xRoot.ElementName = "User";
+                xRoot.IsNullable = true;
+                XmlSerializer xmlFormat = new XmlSerializer(typeof(T),xRoot);
                 return (T) xmlFormat.Deserialize(fStream);
             }
 

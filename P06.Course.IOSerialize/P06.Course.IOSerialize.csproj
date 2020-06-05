@@ -59,7 +59,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialize\JsonHelper.cs" />
     <Compile Include="Serialize\LinqToXml.cs" />
+    <Compile Include="Serialize\People.cs" />
     <Compile Include="Serialize\SerializeHelper.cs" />
+    <Compile Include="Serialize\User.cs" />
     <Compile Include="Serialize\XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
