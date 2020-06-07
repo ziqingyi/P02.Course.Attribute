@@ -58,13 +58,16 @@ namespace P06.Course.IOSerialize
             {
                 Console.WriteLine("******************Xml Helper*******************************");
                 string xml = XmlHelper.ClassToXml<User>(new User());
-                
+
+                //create one obj from the xml file,create first.
                 string xmlForOneObj = Constant.SerializeDataPath + @"\user.xml";
+                LinqToXml.CreateXmlFileOfOneObj(xmlForOneObj);
                 var result = XmlHelper.FileToOneObject<User>(xmlForOneObj);
 
+                //create an array of objects from the xml file.
                 string xmlForObjs = Constant.SerializeDataPath + @"\users.xml";
+                LinqToXml.CreateXmlFile(xmlForObjs);
                 var resultArray = XmlHelper.FileToObjects<User>(xmlForObjs);
-
 
             }
 

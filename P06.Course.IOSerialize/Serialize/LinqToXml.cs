@@ -52,6 +52,34 @@ namespace P06.Course.IOSerialize.Serialize
                 //throw;
             }
         }
+        public static void CreateXmlFileOfOneObj(string xmlPath)
+        {
+            try
+            {
+                //define a XDocument structure
+                XElement user1 = new XElement("User",
+                    new XAttribute("ID", "1"),
+                    new XElement("Name", "Eric"),
+                    new XElement("Password", "123123"),
+                    new XElement("Description", "This is user Eric"),
+                    new XElement("Course", "Law")
+                );
+                
+                XDocument myXDoc = new XDocument(user1);
+
+                //save this structure
+                myXDoc.Save(xmlPath);
+                string test = myXDoc.ToString();
+                XElement rootNode2 = XElement.Parse(test);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                //throw;
+            }
+        }
+
 
         public static void GetXmlNodeInformation(string xmlPath)
         {
