@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -10,8 +12,8 @@ namespace P06.Course.IOSerialize.Serialize
 {
     public class XmlHelper
     {
-        //xmlserializer: from class type to string
-        public static string ClassToXml<T>(T t) where T : new()
+        //xmlserializer: from obj to string, put in file
+        public static string ObjToXml<T>(T t) where T : new()
         {
             XmlSerializer xmlSerializer = new XmlSerializer(t.GetType());
             Stream stream = new MemoryStream();
@@ -37,13 +39,34 @@ namespace P06.Course.IOSerialize.Serialize
             return OutputText;
         }
 
+        //xmlserializer: from obj to string,
+        //if using BinaryFormatter and SoapFormatter,
+        //t and derived class must have [Serializable] attribute
+        //this method serialize to file and string both for your test
+        public static void ObjToXmlUsingBinaryFormatter<T>(T t) where T : new()
+        {
+            string outputFile = Path.Combine(Constant.SerializeDataPath + "ojbToXml.txt");
+
+            using (FileStream file = new FileStream(outputFile,FileMode.Create, FileAccess.ReadWrite))
+            { 
+                IFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(file, t);
+            }
+
+            {
+                IFormatter formatter2 = new BinaryFormatter();
+                Stream stream = new MemoryStream();
+                formatter2.Serialize(stream, t);
+                stream.Position = 0;
+                StreamReader reader = new StreamReader(stream);
+                string OutputText = reader.ReadToEnd();
+            }
 
 
-        /*
-         * <?xml version="1.0"?>
-           <User xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
-         */
-        // string to xml
+
+        }
+        //**************************Deserialize**************************************************
+        // string being deserialized to Object
         public static T ToObject<T>(string content) where T : new()
         {
             using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(content)))

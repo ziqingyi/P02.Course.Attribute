@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace P06.Course.IOSerialize.Serialize
 {
-    public abstract class People
+    [Serializable]
+    public abstract class People: Object
     {
         public string ID { get; set; }
-        private string color { get; set; }
+        private string age { get; set; }
         public abstract string voice();
 
     }

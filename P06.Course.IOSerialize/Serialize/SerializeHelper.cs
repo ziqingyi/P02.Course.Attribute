@@ -51,6 +51,19 @@ namespace P06.Course.IOSerialize.Serialize
                 List <Programmer> pList = temp2.ToList();
             }
         }
+        /*some classes use the [Serializable] attribute, note below:
+         *
+         * Serialization is the process of converting an object into a stream of bytes
+         * in order to store the object or transmit it to memory, a database, or a file.
+         *
+         *It has NOTHING to do with XML or JSON serialization.
+         *Used with the SerializableAttribute are the ISerializable Interface and SerializationInfo Class.
+         * These are also only used with the BinaryFormatter or SoapFormatter.
+         * Unless you intend to serialize your class using Binary or Soap,
+         * do not bother marking your class as [Serializable].
+         * XML and JSON serializers are not even aware of its existence.
+         *
+         */
 
         public static void XmlSerialize()
         {

@@ -56,8 +56,22 @@ namespace P06.Course.IOSerialize
             }
 
             {
-                Console.WriteLine("******************Xml Helper*******************************");
-                string xml = XmlHelper.ClassToXml<User>(new User());
+                Console.WriteLine("******************Xml Helper, using XmlSerializer*****************");
+                User u1 = new User()
+                {
+                    ID = "5",
+                    Name = "Jack",
+                    Description = "this is jack",
+                    Course = "Finance",
+                    Password = "safd234"
+                };
+                
+                string xml = XmlHelper.ObjToXml<User>(u1);
+                User userFromString = XmlHelper.ToObject<User>(xml);
+
+                //compare with BinaryFormatter
+                XmlHelper.ObjToXmlUsingBinaryFormatter(u1);
+
 
                 //create one obj from the xml file,create first.
                 string xmlForOneObj = Constant.SerializeDataPath + @"\user.xml";
