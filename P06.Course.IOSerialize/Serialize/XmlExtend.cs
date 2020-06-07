@@ -93,21 +93,10 @@ namespace P06.Course.IOSerialize.Serialize
                     {
                         propinfo.SetValue(entity, Convert.ChangeType(v,propinfo.PropertyType),null);
                     }
-                    list.Add(entity);
                 }
-
-                return list;
-
+                list.Add(entity);
             }
-
-
-
+            return list;
         }
-
-
-
-
-
-
     }
 }
