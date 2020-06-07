@@ -62,6 +62,7 @@
     <Compile Include="Serialize\People.cs" />
     <Compile Include="Serialize\SerializeHelper.cs" />
     <Compile Include="Serialize\User.cs" />
+    <Compile Include="Serialize\Users.cs" />
     <Compile Include="Serialize\XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>

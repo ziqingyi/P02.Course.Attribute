@@ -57,9 +57,15 @@ namespace P06.Course.IOSerialize
 
             {
                 Console.WriteLine("******************Xml Helper*******************************");
-                string xmlAddressWithName = Constant.SerializeDataPath + @"\users.xml";
-                XmlHelper.ToXml<User>(new User());
-                var result = XmlHelper.FileToObject<User>(xmlAddressWithName);
+                string xml = XmlHelper.ClassToXml<User>(new User());
+                
+                string xmlForOneObj = Constant.SerializeDataPath + @"\user.xml";
+                var result = XmlHelper.FileToOneObject<User>(xmlForOneObj);
+
+                string xmlForObjs = Constant.SerializeDataPath + @"\users.xml";
+                var resultArray = XmlHelper.FileToObjects<User>(xmlForObjs);
+
+
             }
 
 

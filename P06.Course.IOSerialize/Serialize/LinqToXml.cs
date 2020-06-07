@@ -36,7 +36,7 @@ namespace P06.Course.IOSerialize.Serialize
                     new XElement("Description", "This is user Joy"),
                     new XElement("Course", "Physics"));
 
-                XElement userArray = new XElement("users", user1,user2,user3);
+                XElement userArray = new XElement("Users", user1,user2,user3);
 
                 XDocument myXDoc = new XDocument(userArray);
 
@@ -97,7 +97,7 @@ namespace P06.Course.IOSerialize.Serialize
                 //load root node
                 XElement rootNode = XElement.Load(xmlPath);
                 // search user by id
-                IEnumerable<XElement> targetNodes = from target in rootNode.Descendants("user")
+                IEnumerable<XElement> targetNodes = from target in rootNode.Descendants("User")
                                                     where target.Attribute("ID").Value =="2"
                                                           || target.Attribute("ID").Value.Equals("3") 
                                                     select target;

@@ -11,16 +11,34 @@ namespace P06.Course.IOSerialize.Serialize
     public class XmlHelper
     {
         //xmlserializer: from class type to string
-        public static string ToXml<T>(T t) where T : new()
+        public static string ClassToXml<T>(T t) where T : new()
         {
             XmlSerializer xmlSerializer = new XmlSerializer(t.GetType());
             Stream stream = new MemoryStream();
             xmlSerializer.Serialize(stream, t);
             stream.Position = 0;
             StreamReader reader = new StreamReader(stream);
-            string text = reader.ReadToEnd();
-            return text;
+            string OutputText = reader.ReadToEnd();
+
+            if (!Directory.Exists(Constant.SerializeDataPath))
+            {
+                Directory.CreateDirectory(Constant.SerializeDataPath);
+            }
+
+            //output result to file
+            string outputFile = Path.Combine(Constant.SerializeDataPath + "ClassToXml.xml");
+            using (FileStream file = File.Create(outputFile))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(OutputText);
+                file.Write(bytes, 0,bytes.Length);
+                file.Flush();
+            }
+
+            return OutputText;
         }
+
+
+
         /*
          * <?xml version="1.0"?>
            <User xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
@@ -36,10 +54,10 @@ namespace P06.Course.IOSerialize.Serialize
         }
 
         //file being deserialized to object
-        public static T FileToObject<T>(string fileName) where T : new()
+        public static T FileToOneObject<T>(string fileName) where T : new()
         {
-            string CurrentXMLPath = Constant.SerializeDataPath;
-            fileName = Path.Combine(CurrentXMLPath, @"users.xml");
+            //string CurrentXMLPath = Constant.SerializeDataPath;
+            //fileName = Path.Combine(CurrentXMLPath, @"users.xml");
             using (Stream fStream = new FileStream(fileName,FileMode.Open,FileAccess.ReadWrite))
             {
                 XmlRootAttribute xRoot = new XmlRootAttribute();
@@ -48,12 +66,22 @@ namespace P06.Course.IOSerialize.Serialize
                 XmlSerializer xmlFormat = new XmlSerializer(typeof(T),xRoot);
                 return (T) xmlFormat.Deserialize(fStream);
             }
-
-
-
         }
 
-
+        //file being deserialized to an array of object
+        public static T[] FileToObjects<T>(string fileName) where T : new()
+        {
+            //string CurrentXMLPath = Constant.SerializeDataPath;
+            //fileName = Path.Combine(CurrentXMLPath, @"users.xml");
+            using (Stream fStream = new FileStream(fileName, FileMode.Open, FileAccess.ReadWrite))
+            {
+                XmlRootAttribute xRoot = new XmlRootAttribute();
+                xRoot.ElementName = "Users";
+                xRoot.IsNullable = true;
+                XmlSerializer xmlFormat = new XmlSerializer(typeof(T[]),xRoot);
+                return (T[])xmlFormat.Deserialize(fStream);
+            }
+        }
 
 
 
