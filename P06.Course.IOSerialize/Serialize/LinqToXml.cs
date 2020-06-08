@@ -11,7 +11,7 @@ namespace P06.Course.IOSerialize.Serialize
 {
     public class LinqToXml
     {
-        public static void CreateXmlFile(string xmlPath)
+        public static string CreateXmlFile(string xmlPath)
         {
             try
             {
@@ -43,13 +43,14 @@ namespace P06.Course.IOSerialize.Serialize
                 //save this structure
                 myXDoc.Save(xmlPath);
                 string test = myXDoc.ToString();
-                XElement rootNode2 = XElement.Parse(test);
+                //XElement rootNode2 = XElement.Parse(test);//some test code
 
+                return test;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                //throw;
+                throw;
             }
         }
         public static void CreateXmlFileOfOneObj(string xmlPath)

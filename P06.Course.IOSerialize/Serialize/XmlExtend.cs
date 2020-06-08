@@ -15,21 +15,23 @@ namespace P06.Course.IOSerialize.Serialize
         public static string ParseToXml<T>(this T model, string fatherNodeName)
         {
             XmlDocument xmldoc = new XmlDocument();
-            XmlElement modelNode = xmldoc.CreateElement(fatherNodeName);
-            xmldoc.AppendChild(modelNode);
+            XmlElement modelRootNode = xmldoc.CreateElement(fatherNodeName);
+            xmldoc.AppendChild(modelRootNode);
             if (model != null)
             {
                 foreach (PropertyInfo property in model.GetType().GetProperties())
                 {
-                    XmlElement attribute = xmldoc.CreateElement(property.Name);
+                    XmlElement attributeElement = xmldoc.CreateElement(property.Name);
                     if (property.GetValue(model, null) != null)
                     {
-                        attribute.InnerText = property.GetValue(model, null).ToString();
+                        attributeElement.InnerText = property.GetValue(model, null).ToString();
                     }
                     else
                     {
-                        attribute.InnerText = "[Null]";
+                        attributeElement.InnerText = "[Null]";
                     }
+
+                    modelRootNode.AppendChild(attributeElement);
                 }
             }
             return xmldoc.OuterXml;
@@ -85,10 +87,10 @@ namespace P06.Course.IOSerialize.Serialize
                 foreach (PropertyInfo propinfo in propinfos)
                 {
                     //turn the first letter in to small case
-                    string name = propinfo.Name.Substring(0, 1).ToLower()
+                    string name = propinfo.Name.Substring(0, 1).ToUpper()
                                   + propinfo.Name.Substring(1, propinfo.Name.Length - 1);
-                    XmlNode cnode = node.SelectSingleNode(name);
-                    string v = cnode.InnerText;
+                    XmlNode cnode = node.SelectSingleNode(name);//name must be same to xml attribute name
+                    string v = cnode?.InnerText;//if null, return null, else return InnerText
                     if (v != null)
                     {
                         propinfo.SetValue(entity, Convert.ChangeType(v,propinfo.PropertyType),null);

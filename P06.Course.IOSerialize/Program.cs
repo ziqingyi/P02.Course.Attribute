@@ -56,7 +56,37 @@ namespace P06.Course.IOSerialize
             }
 
             {
-                Console.WriteLine("******************Xml Helper, using XmlSerializer*****************");
+                //Console.WriteLine("******************Xml Helper, using XmlSerializer*****************");
+                //User u1 = new User()
+                //{
+                //    ID = "5",
+                //    Name = "Jack",
+                //    Description = "this is jack",
+                //    Course = "Finance",
+                //    Password = "safd234"
+                //};
+                
+                //string xml = XmlHelper.ObjToXml<User>(u1);
+                //User userFromString = XmlHelper.ToObject<User>(xml);
+
+                ////compare with BinaryFormatter
+                //XmlHelper.ObjToXmlUsingBinaryFormatter(u1);
+
+
+                ////create one obj from the xml file,create first.
+                //string xmlForOneObj = Constant.SerializeDataPath + @"\user.xml";
+                //LinqToXml.CreateXmlFileOfOneObj(xmlForOneObj);
+                //var result = XmlHelper.FileToOneObject<User>(xmlForOneObj);
+
+                ////create an array of objects from the xml file.
+                //string xmlFileForObjs = Constant.SerializeDataPath + @"\users.xml";
+                //LinqToXml.CreateXmlFile(xmlFileForObjs);
+                //var resultArray = XmlHelper.FileToObjects<User>(xmlFileForObjs);
+
+            }
+            {
+                Console.WriteLine("******************Xml Extend method*****************");
+                //test one user, obj to xml and then from xml string to obj
                 User u1 = new User()
                 {
                     ID = "5",
@@ -65,26 +95,19 @@ namespace P06.Course.IOSerialize
                     Course = "Finance",
                     Password = "safd234"
                 };
-                
-                string xml = XmlHelper.ObjToXml<User>(u1);
-                User userFromString = XmlHelper.ToObject<User>(xml);
+                Type type = typeof(User);
+                String xmlContent = u1.ParseToXml(type.Name);
 
-                //compare with BinaryFormatter
-                XmlHelper.ObjToXmlUsingBinaryFormatter(u1);
+                var ObjFromXmlContent = xmlContent.ParseToModel<User>(type.Name);
+
+                //test a list of users. from string to a list of obj.
+                string xmlFileForObjs = Constant.SerializeDataPath + @"\users.xml";
+                String xmlForListOfObj = LinqToXml.CreateXmlFile(xmlFileForObjs);
+                var resultArray = xmlForListOfObj.XmlToObjList<User>("//Users/"+type.Name);
 
 
-                //create one obj from the xml file,create first.
-                string xmlForOneObj = Constant.SerializeDataPath + @"\user.xml";
-                LinqToXml.CreateXmlFileOfOneObj(xmlForOneObj);
-                var result = XmlHelper.FileToOneObject<User>(xmlForOneObj);
-
-                //create an array of objects from the xml file.
-                string xmlForObjs = Constant.SerializeDataPath + @"\users.xml";
-                LinqToXml.CreateXmlFile(xmlForObjs);
-                var resultArray = XmlHelper.FileToObjects<User>(xmlForObjs);
 
             }
-
 
 
 
