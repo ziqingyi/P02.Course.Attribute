@@ -47,6 +47,7 @@ namespace P06.Course.IOSerialize.Serialize
             XmlDocument xmldoc = new XmlDocument();
             xmldoc.LoadXml(xml);
             T model = new T();
+            //just for ChildNodes of one Node.
             XmlNodeList attributes = xmldoc.SelectSingleNode(fatherNodeName).ChildNodes;
             foreach (XmlNode node in attributes)
             {
