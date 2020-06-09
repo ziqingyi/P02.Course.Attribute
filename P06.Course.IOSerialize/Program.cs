@@ -84,7 +84,7 @@ namespace P06.Course.IOSerialize
                 //var resultArray = XmlHelper.FileToObjects<User>(xmlFileForObjs);
 
             }
-            {
+            { //test
                 Console.WriteLine("******************Xml Extend method*****************");
                 //test one user, obj to xml and then from xml string to obj
                 User u1 = new User()
