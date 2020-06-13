@@ -10,7 +10,7 @@ namespace P07.Course.Encrypt
 {
     public class MD5Encrypt
     {
-        public static string Encrypt(string source, int length)
+        public static string Encrypt(string source, int length = 32)
         {
             if (string.IsNullOrEmpty(source))
                 return string.Empty;

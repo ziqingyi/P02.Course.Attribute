@@ -65,7 +65,7 @@ namespace P06.Course.IOSerialize
                 //    Course = "Finance",
                 //    Password = "safd234"
                 //};
-                
+
                 //string xml = XmlHelper.ObjToXml<User>(u1);
                 //User userFromString = XmlHelper.ToObject<User>(xml);
 
@@ -79,9 +79,9 @@ namespace P06.Course.IOSerialize
                 //var result = XmlHelper.FileToOneObject<User>(xmlForOneObj);
 
                 ////create an array of objects from the xml file.
-                //string xmlFileForObjs = Constant.SerializeDataPath + @"\users.xml";
-                //LinqToXml.CreateXmlFile(xmlFileForObjs);
-                //var resultArray = XmlHelper.FileToObjects<User>(xmlFileForObjs);
+                string xmlFileForObjs = Constant.SerializeDataPath + @"\users.xml";
+                LinqToXml.CreateXmlFile(xmlFileForObjs);
+                var resultArray = XmlHelper.FileToObjects<User>(xmlFileForObjs);
 
             }
             { //test
