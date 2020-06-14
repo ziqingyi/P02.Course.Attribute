@@ -33,16 +33,30 @@ namespace P07.Course.Encrypt
             #endregion
 
             #region DES, symmetric, the key of encrypt and decrypt is same. faster than asymmetric way. 
-
             {
-                string desEn = DesEncrypt.Encrypt("1");
-                string desDe = DesEncrypt.Decrypt(desEn);
+                //string desEn = DesEncrypt.Encrypt("1");
+                //string desDe = DesEncrypt.Decrypt(desEn);
 
-                string desEn2 = DesEncrypt.Encrypt("2");
-                string desDe2 = DesEncrypt.Decrypt(desEn2);
+                //string desEn2 = DesEncrypt.Encrypt("2");
+                //string desDe2 = DesEncrypt.Decrypt(desEn2);
             }
             #endregion
 
+            #region RSA, asymmetric,has encrypt and decrypt keys, easy to manage the keys, but slower. 
+            {
+                //public and private key cannot deduce each other.
+                //public key --> one key can be public ---> keep the safety of data
+                //private key -->the key being kept secret--> keep non-repudiation
+                //this case using c# integrated one, there are also third-party one DLL-BouncyCastle
+                //installed in this program
+                KeyValuePair<string, string> encryptDecrypt = RsaEncrypt.GetKeyPair();
+                string rsaEn1 = RsaEncrypt.Encrypt("net", encryptDecrypt.Key);
+                string rsaDe1 = RsaEncrypt.Decrypt(rsaEn1, encryptDecrypt.Value);
+
+
+
+            }
+            #endregion
 
         }
     }
