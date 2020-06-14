@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P06.Course.IOSerialize", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P07.Course.Encrypt", "P07.Course.Encrypt\P07.Course.Encrypt.csproj", "{83FC2EAB-A665-4450-BC65-3320EE2574A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P08.Course.DesignPattern.Singleton", "P08.Course.DesignPattern.Singleton\P08.Course.DesignPattern.Singleton.csproj", "{1686797F-E8D8-4986-A4C8-E9D3CD21BBAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{83FC2EAB-A665-4450-BC65-3320EE2574A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83FC2EAB-A665-4450-BC65-3320EE2574A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83FC2EAB-A665-4450-BC65-3320EE2574A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1686797F-E8D8-4986-A4C8-E9D3CD21BBAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1686797F-E8D8-4986-A4C8-E9D3CD21BBAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1686797F-E8D8-4986-A4C8-E9D3CD21BBAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1686797F-E8D8-4986-A4C8-E9D3CD21BBAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
