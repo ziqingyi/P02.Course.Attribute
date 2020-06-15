@@ -10,6 +10,17 @@ namespace P08.Course.DesignPattern.Singleton
     {
         static void Main(string[] args)
         {
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 }
