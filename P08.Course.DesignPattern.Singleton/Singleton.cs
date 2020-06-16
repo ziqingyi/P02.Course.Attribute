@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace P08.Course.DesignPattern.Singleton
@@ -21,12 +23,18 @@ namespace P08.Course.DesignPattern.Singleton
         //
         //3 private static means no other obj or class can access. keep it being shared.
 
-        private static volatile Singleton _singleton;
+        private static volatile Singleton _singleton = null;
         private static readonly object Singleton_Lock = new object();
 
         private Singleton()
         {
-            Console.WriteLine("private constructor is being called");
+            long iResult = 0;
+            for (int i = 0; i < 1000000; i++)
+            {
+                iResult += 1;
+            }
+            Thread.Sleep(2000);
+            Console.WriteLine("private constructor is being called for {0}", this.GetType().Name);
         }
 
         public Singleton CreateInstance()
@@ -35,7 +43,7 @@ namespace P08.Course.DesignPattern.Singleton
             {
                 lock (Singleton_Lock)// force threads into queue. 
                 {
-                    if (_singleton == null)
+                    if (_singleton == null)//only initialise once. 
                     {
                         _singleton = new Singleton();
                     }
@@ -44,6 +52,27 @@ namespace P08.Course.DesignPattern.Singleton
             }
             return _singleton;
         }
+
+        #region test thread safety
+
+        public int iTotal = 0;
+
+        public void Show()
+        {
+            //lock (Singleton_Lock)
+            {
+                this.iTotal++;
+            }
+        }
+
+        public static void Test()
+        {
+            Console.WriteLine("Test1: " + _singleton.iTotal);
+        }
+
+        #endregion
+
+
 
 
     }
