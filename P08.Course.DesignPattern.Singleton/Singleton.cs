@@ -67,7 +67,7 @@ namespace P08.Course.DesignPattern.Singleton
 
         public static void Test()
         {
-            Console.WriteLine("Test1: " + _singleton.iTotal);
+            Console.WriteLine("Test iTotal is : " + _singleton.iTotal);
         }
 
         #endregion

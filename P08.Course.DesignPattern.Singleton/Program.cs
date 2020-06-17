@@ -38,7 +38,8 @@ namespace P08.Course.DesignPattern.Singleton
                     });
                 }
 
-
+                // show result: 
+                Singleton.Test();
             }
 
 
