@@ -13,9 +13,11 @@ namespace P08.Course.DesignPattern.Singleton
         //1 Lock( Singleton_Lock ) should be used with volatile, Singleton_Lock must be unique.
 
         //2 volatile means the field will not be put into cache, only in memory and must read
-        //    from memory address, then every access will be the latest one.
+        //    from memory address, then every access will be the latest one.(may not efficient)
         //
         //    volatile will not allow threads to keep it's own cache. 
+        //     not optimize by compiler.
+        // (i think if every thread has copy,after computation, it will release lock before copying back to memory )
         //
         //     but still not safe, because different threads can access and change it. 
         //   if there is no volatile, program can put the value in cache and read from cache,
@@ -24,17 +26,18 @@ namespace P08.Course.DesignPattern.Singleton
         //3 private static means no other obj or class can access. keep it being shared.
 
         private static volatile Singleton _singleton = null;
-        private static readonly object Singleton_Lock = new object();
+        private static readonly object Singleton_Lock = new object();//private: no other can modify
 
         private Singleton()
         {
             long iResult = 0;
-            for (int i = 0; i < 1000000; i++)
+            for (int i = 0; i < 1_000_000; i++)
             {
                 iResult += 1;
             }
             Thread.Sleep(2000);
-            Console.WriteLine("private constructor is being called for {0}", this.GetType().Name);
+            Console.WriteLine("private constructor is being called for {0}, iResult is: {1}",
+                this.GetType().Name,iResult );
         }
 
         public static Singleton CreateInstance()
@@ -55,11 +58,11 @@ namespace P08.Course.DesignPattern.Singleton
 
         #region test thread safety
 
-        public int iTotal = 0;
+        public volatile int iTotal = 0;
 
         public void Show()
         {
-            //lock (Singleton_Lock)
+            lock (Singleton_Lock)
             {
                 this.iTotal++;
             }
