@@ -37,7 +37,7 @@ namespace P08.Course.DesignPattern.Singleton
             Console.WriteLine("private constructor is being called for {0}", this.GetType().Name);
         }
 
-        public Singleton CreateInstance()
+        public static Singleton CreateInstance()
         {
             if (_singleton == null)
             {

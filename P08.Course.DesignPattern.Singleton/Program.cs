@@ -10,6 +10,12 @@ namespace P08.Course.DesignPattern.Singleton
     {
         static void Main(string[] args)
         {
+            { // test singleton
+                Singleton s1 = Singleton.CreateInstance();
+                Singleton s2 = Singleton.CreateInstance();
+                bool same = object.ReferenceEquals(s1, s2);
+            }
+
 
 
 
