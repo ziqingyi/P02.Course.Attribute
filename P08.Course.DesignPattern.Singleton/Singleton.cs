@@ -44,7 +44,7 @@ namespace P08.Course.DesignPattern.Singleton
         {
             if (_singleton == null)
             {
-                lock (Singleton_Lock)// force threads into queue. 
+                lock (Singleton_Lock)// force threads into queue. So don't lock to much code. 
                 {
                     if (_singleton == null)//only initialise once. 
                     {
