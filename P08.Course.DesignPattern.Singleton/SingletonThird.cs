@@ -7,17 +7,11 @@ using System.Threading.Tasks;
 
 namespace P08.Course.DesignPattern.Singleton
 {
-    public class SingletonSecond
+    public class SingletonThird
     {
-        private static SingletonSecond _singletonSecond = null;
-
-        static SingletonSecond()
-        {
-            _singletonSecond = new SingletonSecond();
-            Console.WriteLine("static constructor create instance...");
-        }
-
-        private SingletonSecond()
+        // using static field, instance is being created earlier than static constructor. 
+        private static SingletonThird _singletonThird = new SingletonThird();
+        private SingletonThird()
         {
             long _lResult = 0;
             for (int i = 0; i < 1_000_000; i++)
@@ -28,10 +22,14 @@ namespace P08.Course.DesignPattern.Singleton
             Console.WriteLine("{0} is being created, _lResult is {1} ", this.GetType().Name, _lResult);
         }
 
-        public SingletonSecond CreateInstancePrototype()
+        public static SingletonThird CreateInstance()
         {
-            SingletonSecond second = (SingletonSecond)_singletonSecond.MemberwiseClone();
-            return second;
+            return _singletonThird;
+        }
+
+        public void Show()
+        {
+            Console.WriteLine("this is show for type: {0}",this.GetType().Name);
         }
 
 
