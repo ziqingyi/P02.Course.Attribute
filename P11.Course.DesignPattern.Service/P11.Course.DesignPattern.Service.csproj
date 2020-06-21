@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Five.cs" />
     <Compile Include="Human.cs" />
     <Compile Include="NE.cs" />
     <Compile Include="ORC.cs" />

@@ -7,7 +7,7 @@ using P10.Course.DesignPattern.Interface;
 
 namespace P11.Course.DesignPattern.Service
 {
-    public class Human
+    public class Human : IRace
     {
         public Human(int id, DateTime dateTime, string remark)
         {
