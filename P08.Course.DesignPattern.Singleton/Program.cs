@@ -12,12 +12,16 @@ namespace P08.Course.DesignPattern.Singleton
     {
         static void Main(string[] args)
         {
-            { // test singleton
+            #region test singletone 1 
+
+            {
+                // test singleton
                 Singleton s1 = Singleton.CreateInstance();
                 Singleton s2 = Singleton.CreateInstance();
                 bool same = object.ReferenceEquals(s1, s2);
             }
             {
+                // test singleton with multi-thread, number of result should same to thread number
                 int numOfThread = 5;
                 Console.WriteLine("Start {0} thread to create instance", numOfThread);
                 for (int i = 0; i < numOfThread; i++)
@@ -50,13 +54,11 @@ namespace P08.Course.DesignPattern.Singleton
 
                     taskList.Add(t);
                 }
-
                 Task.WaitAll(taskList.ToArray());
-
                 // show result: 
                 Singleton.Test();
-
             }
+            #endregion
 
 
 

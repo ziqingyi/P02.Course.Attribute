@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,15 +31,30 @@ namespace P08.Course.DesignPattern.Singleton
         // unique static instance
         private static volatile Prototype _prototype = new Prototype();
 
-        //public method to provide new obj based on one obj
+        //public method to provide new obj based on one obj, shallow clone.
+        //only copy reference of reference type, copy value of value type 
         public static Prototype CreateInstance()
         {
-            Prototype prototype = (Prototype)_prototype.MemberwiseClone();
+            Prototype prototype = (Prototype)(ShallowClone());
             return prototype;
         }
 
+        private static object ShallowClone()
+        {
+            return _prototype.MemberwiseClone();
+        }
 
-
+        //deep clone 
+        public Prototype DeepClone()
+        {
+            using (Stream os = new MemoryStream())
+            {
+                IFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(os,_prototype);
+                os.Seek(0, SeekOrigin.Begin);
+                return formatter.Deserialize(os) as Prototype;
+            }
+        }
 
 
     }
