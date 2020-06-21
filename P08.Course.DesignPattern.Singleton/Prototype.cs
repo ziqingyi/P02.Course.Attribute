@@ -40,7 +40,7 @@ namespace P08.Course.DesignPattern.Singleton
             return prototype;
         }
 
-        private static object ShallowClone()
+        public static object ShallowClone()
         {
             return _prototype.MemberwiseClone();
         }
