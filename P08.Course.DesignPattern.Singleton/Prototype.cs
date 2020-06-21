@@ -76,7 +76,7 @@ namespace P08.Course.DesignPattern.Singleton
             for (int i = 0; i < fi.Length; i++)
             {
                 FieldInfo f = fi[i];
-                f.SetValue(o, f.GetValue(_prototype));
+                f.SetValue(o, f.GetValue(_prototype));//note: get value from instance, not type
             }
 
             return (Prototype)o;
