@@ -14,50 +14,50 @@ namespace P08.Course.DesignPattern.Singleton
         {
             #region test singletone 1 
 
-            {
-                // test singleton
-                Singleton s1 = Singleton.CreateInstance();
-                Singleton s2 = Singleton.CreateInstance();
-                bool same = object.ReferenceEquals(s1, s2);
-            }
-            {
-                // test singleton with multi-thread, number of result should same to thread number
-                int numOfThread = 5;
-                Console.WriteLine("Start {0} thread to create instance", numOfThread);
-                for (int i = 0; i < numOfThread; i++)
-                {
-                    Task.Run(() =>
-                    {
-                        Singleton s1 = Singleton.CreateInstance();
-                        s1.Show();// add 1 to the obj value
-                    }).Wait();
-                    //Wait()  the calling thread to wait until the current task has completed.
-                    //otherwise  the main thread would continue before the task complete 
-                    // or you use WaitAll();
-                }
+            //{
+            //    // test singleton
+            //    Singleton s1 = Singleton.CreateInstance();
+            //    Singleton s2 = Singleton.CreateInstance();
+            //    bool same = object.ReferenceEquals(s1, s2);
+            //}
+            //{
+            //    // test singleton with multi-thread, number of result should same to thread number
+            //    int numOfThread = 5;
+            //    Console.WriteLine("Start {0} thread to create instance", numOfThread);
+            //    for (int i = 0; i < numOfThread; i++)
+            //    {
+            //        Task.Run(() =>
+            //        {
+            //            Singleton s1 = Singleton.CreateInstance();
+            //            s1.Show();// add 1 to the obj value
+            //        }).Wait();
+            //        //Wait()  the calling thread to wait until the current task has completed.
+            //        //otherwise  the main thread would continue before the task complete 
+            //        // or you use WaitAll();
+            //    }
 
-                // show result: 
-                Singleton.Test();
+            //    // show result: 
+            //    Singleton.Test();
 
-                int numOfThread2 = 30;
-                Thread.Sleep(5000);
-                Console.WriteLine("Start another {0} thread to create instance",numOfThread2); 
+            //    int numOfThread2 = 30;
+            //    Thread.Sleep(5000);
+            //    Console.WriteLine("Start another {0} thread to create instance",numOfThread2); 
                 
-                List<Task> taskList = new List<Task>();
-                for (int i = 0; i < numOfThread2; i++)
-                {
-                    Task t = Task.Run(()=>
-                    {
-                        Singleton s1 = Singleton.CreateInstance();
-                        s1.Show();
-                    });
+            //    List<Task> taskList = new List<Task>();
+            //    for (int i = 0; i < numOfThread2; i++)
+            //    {
+            //        Task t = Task.Run(()=>
+            //        {
+            //            Singleton s1 = Singleton.CreateInstance();
+            //            s1.Show();
+            //        });
 
-                    taskList.Add(t);
-                }
-                Task.WaitAll(taskList.ToArray());
-                // show result: 
-                Singleton.Test();
-            }
+            //        taskList.Add(t);
+            //    }
+            //    Task.WaitAll(taskList.ToArray());
+            //    // show result: 
+            //    Singleton.Test();
+            //}
             #endregion
 
 
