@@ -44,7 +44,7 @@ namespace P09.Course.DesignPattern.SimpleFactory
             }
             return iRace;
         }
-
+        //create:  Undead
         private static string IRacTypeConfig = ConfigurationManager.AppSettings["IRacTypeConfig"];
 
         public static IRace CreateRaceByConfig()
@@ -54,6 +54,9 @@ namespace P09.Course.DesignPattern.SimpleFactory
         }
 
         //IOC   : Extensibility and Configurability 
+        //read type name, then get the type from the DLL's types, gettype()  (getalltypes() will get all types)
+        //then create instance based on the type, using assembly.
+
         //      param:   FactoryPattern.War3.Service.NE,  FactoryPattern.War3.Service
         private static string IRacTypeConfigReflection = ConfigurationManager.AppSettings["IRacTypeConfigReflection"];
         private static string DllName = IRacTypeConfigReflection.Split(',')[1];
