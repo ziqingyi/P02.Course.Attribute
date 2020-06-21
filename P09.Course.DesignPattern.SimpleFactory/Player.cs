@@ -34,10 +34,6 @@ namespace P09.Course.DesignPattern.SimpleFactory
             undead.ShowKing();
         }
 
-        /// <summary>
-        /// 面向抽象
-        /// </summary>
-        /// <param name="race"></param>
         public void PlayWar3(IRace race)
         {
             Console.WriteLine("******************************");
