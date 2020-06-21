@@ -12,9 +12,12 @@ using System.Threading.Tasks;
 
 namespace P08.Course.DesignPattern.Singleton
 {
+    [Serializable]
     public class Prototype
     {
         //copy object from memory and then return new object, but not created from new()
+
+        public Person p = new Person();
 
         //private constructor, consume resource when creating
         private Prototype()
@@ -42,11 +45,11 @@ namespace P08.Course.DesignPattern.Singleton
 
         public static object ShallowClone()
         {
-            return _prototype.MemberwiseClone();
+            return _prototype.MemberwiseClone();//different obj of _prototype
         }
 
         //deep clone with serialize. 
-        public Prototype DeepCloneWithSerialize()
+        public static Prototype DeepCloneWithSerialize()
         {
             using (Stream os = new MemoryStream())
             {
@@ -58,16 +61,24 @@ namespace P08.Course.DesignPattern.Singleton
         }
 
         //deep clone with generic and reflection
-        public Prototype DeepCloneWithT()
+        public static Prototype DeepCloneWithT()
         {
             Type t = _prototype.GetType();
-            object o = Activator.CreateInstance(t);
+            object o = Activator.CreateInstance(t,true);
             PropertyInfo[] pi = t.GetProperties();
             for (int i = 0; i < pi.Length; i++)
             {
                 PropertyInfo p = pi[i];
                 p.SetValue(o,p.GetValue(t));
             }
+
+            FieldInfo[] fi = t.GetFields();
+            for (int i = 0; i < fi.Length; i++)
+            {
+                FieldInfo f = fi[i];
+                f.SetValue(o, f.GetValue(_prototype));
+            }
+
             return (Prototype)o;
         }
 

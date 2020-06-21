@@ -42,7 +42,7 @@ namespace P08.Course.DesignPattern.Singleton
             //    int numOfThread2 = 30;
             //    Thread.Sleep(5000);
             //    Console.WriteLine("Start another {0} thread to create instance",numOfThread2); 
-                
+
             //    List<Task> taskList = new List<Task>();
             //    for (int i = 0; i < numOfThread2; i++)
             //    {
@@ -60,6 +60,25 @@ namespace P08.Course.DesignPattern.Singleton
             //}
             #endregion
 
+            #region test with prototype, shallow copy and deep copy
+            {
+                Prototype t1 = (Prototype)Prototype.ShallowClone();
+
+                Prototype t2 = Prototype.DeepCloneWithT();
+                t2.p._age = 20;
+
+                Prototype t3 = Prototype.DeepCloneWithSerialize();
+                t3.p._age = 10;
+
+                bool compare1 = object.ReferenceEquals(t1, t2);
+                bool compare2 = object.ReferenceEquals(t2, t3);
+                bool compare3 = object.ReferenceEquals(t1, t3);
+
+                Console.WriteLine("p1 age is : {0}",t1.p._age);//t1 is only shallow clone, so Person's age is changed by ts
+                Console.WriteLine("p2 age is : {0}", t2.p._age);
+                Console.WriteLine("p3 age is : {0}", t3.p._age);//deep clone, so only change it's own person's age
+            }
+            #endregion
 
 
 
