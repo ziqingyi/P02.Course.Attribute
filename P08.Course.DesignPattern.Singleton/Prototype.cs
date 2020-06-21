@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -44,8 +45,8 @@ namespace P08.Course.DesignPattern.Singleton
             return _prototype.MemberwiseClone();
         }
 
-        //deep clone 
-        public Prototype DeepClone()
+        //deep clone with serialize. 
+        public Prototype DeepCloneWithSerialize()
         {
             using (Stream os = new MemoryStream())
             {
@@ -55,6 +56,22 @@ namespace P08.Course.DesignPattern.Singleton
                 return formatter.Deserialize(os) as Prototype;
             }
         }
+
+        //deep clone with generic and reflection
+        public Prototype DeepCloneWithT()
+        {
+            Type t = _prototype.GetType();
+            object o = Activator.CreateInstance(t);
+            PropertyInfo[] pi = t.GetProperties();
+            for (int i = 0; i < pi.Length; i++)
+            {
+                PropertyInfo p = pi[i];
+                p.SetValue(o,p.GetValue(t));
+            }
+            return (Prototype)o;
+        }
+
+
 
 
     }
