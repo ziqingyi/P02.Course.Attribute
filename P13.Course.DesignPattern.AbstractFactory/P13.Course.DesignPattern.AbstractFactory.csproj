@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Factory\FactoryAbstract.cs" />
     <Compile Include="Factory\HumanFactory.cs" />
+    <Compile Include="Factory\ORCFactory.cs" />
+    <Compile Include="Factory\UndeadFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
