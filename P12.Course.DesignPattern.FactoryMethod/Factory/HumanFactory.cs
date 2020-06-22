@@ -12,6 +12,7 @@ namespace P12.Course.DesignPattern.FactoryMethod.Factory
     {
         public virtual IRace CreateRace()
         {
+            Console.WriteLine("human factory");
             return new Human();
         }
     }

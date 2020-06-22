@@ -15,6 +15,7 @@ namespace P11.Course.DesignPattern.Service
 
         public Human()
         {
+            Console.WriteLine("Human constructor, non-parameter ");
         }
         public void ShowKing()
         {
