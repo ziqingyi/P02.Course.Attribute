@@ -51,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedisHelper.cs" />
     <Compile Include="RedisHelperInherit.cs" />
+    <Compile Include="RedisHelperObject.cs" />
     <Compile Include="SqlServerHelper.cs" />
   </ItemGroup>
   <ItemGroup>
