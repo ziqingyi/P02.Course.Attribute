@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P13.Course.DesignPattern.Ab
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P14.Course.DesignPattern.Adapter", "P14.Course.DesignPattern.Adapter\P14.Course.DesignPattern.Adapter.csproj", "{1330326B-90D7-4DDA-A927-361607420923}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P15.Course.DesignPattern.Decorator", "P15.Course.DesignPattern.Decorator\P15.Course.DesignPattern.Decorator.csproj", "{E9EDC0B2-2057-49BF-9FEC-1246C8B83096}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{1330326B-90D7-4DDA-A927-361607420923}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1330326B-90D7-4DDA-A927-361607420923}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1330326B-90D7-4DDA-A927-361607420923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9EDC0B2-2057-49BF-9FEC-1246C8B83096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9EDC0B2-2057-49BF-9FEC-1246C8B83096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9EDC0B2-2057-49BF-9FEC-1246C8B83096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9EDC0B2-2057-49BF-9FEC-1246C8B83096}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
