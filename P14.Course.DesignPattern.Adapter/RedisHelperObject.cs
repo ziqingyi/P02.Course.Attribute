@@ -20,7 +20,11 @@ namespace P14.Course.DesignPattern.Adapter
         {
             this._redisHelper = redisHelper;
         }
-
+        //method 3: inject through method, may not be executed. 
+        public void SetObject(RedisHelper redisHelper)
+        {
+            this._redisHelper = redisHelper;
+        }
 
 
         public void Add<T>()
