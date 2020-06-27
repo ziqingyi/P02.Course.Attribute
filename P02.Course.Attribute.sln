@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P14.Course.DesignPattern.Ad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P15.Course.DesignPattern.Decorator", "P15.Course.DesignPattern.Decorator\P15.Course.DesignPattern.Decorator.csproj", "{E9EDC0B2-2057-49BF-9FEC-1246C8B83096}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P16.Course.DesignPattern.Proxy", "P16.Course.DesignPattern.Proxy\P16.Course.DesignPattern.Proxy.csproj", "{4CB57E92-5D28-4600-85C8-A866CAD41C7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +143,10 @@ Global
 		{E9EDC0B2-2057-49BF-9FEC-1246C8B83096}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9EDC0B2-2057-49BF-9FEC-1246C8B83096}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9EDC0B2-2057-49BF-9FEC-1246C8B83096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CB57E92-5D28-4600-85C8-A866CAD41C7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CB57E92-5D28-4600-85C8-A866CAD41C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CB57E92-5D28-4600-85C8-A866CAD41C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CB57E92-5D28-4600-85C8-A866CAD41C7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
