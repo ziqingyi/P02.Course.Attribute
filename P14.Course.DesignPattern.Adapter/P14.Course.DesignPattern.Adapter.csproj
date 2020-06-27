@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="CacheHelper.cs" />
     <Compile Include="IHelper.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="MySqlHelper.cs" />
     <Compile Include="OracleHelper.cs" />
     <Compile Include="Program.cs" />
