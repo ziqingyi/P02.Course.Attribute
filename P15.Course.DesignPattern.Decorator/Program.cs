@@ -10,6 +10,17 @@ namespace P15.Course.DesignPattern.Decorator
     {
         static void Main(string[] args)
         {
+            AbstractStudent student = new StudentVip("s1", 1);
+            student.Study();
+            {
+
+
+
+            }
+
+
+
+
         }
     }
 }
