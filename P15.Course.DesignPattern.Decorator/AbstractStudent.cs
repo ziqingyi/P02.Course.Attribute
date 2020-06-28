@@ -13,5 +13,9 @@ namespace P15.Course.DesignPattern.Decorator
 
         public abstract void Study();
 
+        public void absOwn()
+        {
+            Console.WriteLine("abstract own method");
+        }
     }
 }

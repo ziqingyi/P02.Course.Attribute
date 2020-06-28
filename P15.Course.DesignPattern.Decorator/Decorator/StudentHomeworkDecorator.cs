@@ -10,7 +10,7 @@ namespace P15.Course.DesignPattern.Decorator.Decorator
     {
         public StudentHomeworkDecorator(AbstractStudent student):base(student)
         {
-            Console.WriteLine("Student Homework Decorator Constructor....");
+            Console.WriteLine("Student Homework Decorator Constructor");
         }
 
         public override void Study()

@@ -10,7 +10,7 @@ namespace P15.Course.DesignPattern.Decorator.Decorator
     {
         public StudentVideoDecorator(AbstractStudent student) : base(student)
         {
-            Console.WriteLine();
+            Console.WriteLine("Student Video Decorator Constructor");
         }
         public override void Study()
         {

@@ -19,5 +19,10 @@ namespace P15.Course.DesignPattern.Decorator.Decorator
         {
             this._Student.Study();
         }
+
+        public new void absOwn()
+        {
+            Console.WriteLine("base student decorator new void absOwn");
+        }
     }
 }
