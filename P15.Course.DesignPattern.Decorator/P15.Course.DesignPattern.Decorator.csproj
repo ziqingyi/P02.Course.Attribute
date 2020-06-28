@@ -44,6 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractStudent.cs" />
+    <Compile Include="Decorator\BaseStudentDecorator.cs" />
+    <Compile Include="Decorator\StudentCommentDecorator.cs" />
+    <Compile Include="Decorator\StudentHomeworkDecorator.cs" />
+    <Compile Include="Decorator\StudentPayDecorator.cs" />
+    <Compile Include="Decorator\StudentPreviewDecorator.cs" />
+    <Compile Include="Decorator\StudentRegDecorator.cs" />
+    <Compile Include="Decorator\StudentUpdateDecorator.cs" />
+    <Compile Include="Decorator\StudentVideoDecorator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentFree.cs" />
@@ -52,5 +60,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
