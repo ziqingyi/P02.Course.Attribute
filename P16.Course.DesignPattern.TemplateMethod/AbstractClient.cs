@@ -20,6 +20,8 @@ namespace P16.Course.DesignPattern.TemplateMethod
             {
                  balance = this.QueryBalance(id);
                  interest = this.CalculateInterest(balance);
+                 this.Show();
+                 this.Normal();//always call this class's method
             }
             else
             {
