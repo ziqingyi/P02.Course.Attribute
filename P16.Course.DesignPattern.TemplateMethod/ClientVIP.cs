@@ -14,12 +14,15 @@ namespace P16.Course.DesignPattern.TemplateMethod
             return balance * 0.005;
         }
         // Override virtual method 
-        public override void Show(string name, double balance, double interest)
+        public override void Show()
         {
             Console.WriteLine("VIP:  {0}  ，balance is ：{1}，interest is : {2}",
-                name, balance, interest);
+                this.name, this.balance, this.interest);
         }
 
-
+        public new void Normal()
+        {
+            Console.WriteLine("VIP normal");
+        }
     }
 }

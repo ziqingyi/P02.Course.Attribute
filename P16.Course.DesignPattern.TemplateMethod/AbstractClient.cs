@@ -9,12 +9,17 @@ namespace P16.Course.DesignPattern.TemplateMethod
 {
     public abstract class AbstractClient
     {
-        public void Query(int id, string name, string password)
+        public string name = "";
+        public double balance = 0;
+        public double interest = 0;
+
+        public void Query(int id, string nameIn, string password)
         {
+            this.name = nameIn;
             if (this.CheckUser(id, password))
             {
-                double balance = this.QueryBalance(id);
-                double interest = this.CalculateInterest(balance);
+                 balance = this.QueryBalance(id);
+                 interest = this.CalculateInterest(balance);
             }
             else
             {
@@ -36,11 +41,15 @@ namespace P16.Course.DesignPattern.TemplateMethod
         public abstract double CalculateInterest(double balance);
 
         //default implementation, so use virtual method, derived class can have different implementation. 
-        public virtual void Show(string name, double balance, double interest)
+        public virtual void Show()
         {
-            Console.WriteLine("Hi {0}, your balance is {1}, interest is {2} ", name,balance,interest);
+            Console.WriteLine("Hi {0}, your balance is {1}, interest is {2} ", this.name,this.balance,this.interest);
         }
 
+        public void Normal()
+        {
+            Console.WriteLine("abstract normal");
+        }
 
     }
 }
