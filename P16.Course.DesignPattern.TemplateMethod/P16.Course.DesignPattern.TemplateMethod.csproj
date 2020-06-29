@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractClient.cs" />
+    <Compile Include="ClientCurrent.cs" />
+    <Compile Include="ClientRegular.cs" />
+    <Compile Include="ClientVIP.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
