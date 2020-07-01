@@ -54,14 +54,14 @@ namespace P17.Course.DesignPattern.Observer.Subject
         }
 
         //method 3: build event handler and execute  
-        private event Action Screamhandler;
+        public event Action ScreamEventHandler;
 
         public void ScreamEvent()
         {
             Console.WriteLine("{0} Scream event..", this.GetType().Name);
-            if (this.Screamhandler != null)
+            if (this.ScreamEventHandler != null)
             {
-                foreach (Action item in this.Screamhandler.GetInvocationList())
+                foreach (Action item in this.ScreamEventHandler.GetInvocationList())
                 {
                     item.Invoke();
                 }
