@@ -6,24 +6,20 @@ using System.Threading.Tasks;
 
 namespace P17.Course.DesignPattern.ResponsibilityChain
 {
-    public class PM : AbstractAuditor
+    public class CEO : AbstractAuditor
     {
-
-
         public override void Audit(ApplyContext context)
         {
             Console.WriteLine($"This is {this.GetType().Name} {this.Name} Audit");
-            if (context.Hour <= 8)
+            if (context.Hour <= 96)
             {
                 context.AuditResult = true;
-                context.AuditRemark = "approve";
+                context.AuditRemark = "Approve";
             }
             else
             {
-
+                
             }
         }
-
-
     }
 }

@@ -45,6 +45,11 @@
   <ItemGroup>
     <Compile Include="AbstractAuditor.cs" />
     <Compile Include="ApplyContext.cs" />
+    <Compile Include="CEO.cs" />
+    <Compile Include="ChairMan.cs" />
+    <Compile Include="Charge.cs" />
+    <Compile Include="Chief.cs" />
+    <Compile Include="Manager.cs" />
     <Compile Include="PM.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
