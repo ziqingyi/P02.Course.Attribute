@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P17.Course.DesignPattern.ResponsibilityChain
 {
-    public class Chief : AbstractAuditor
+    public class Director : AbstractAuditor
     {
         public override void Audit(ApplyContext context)
         {

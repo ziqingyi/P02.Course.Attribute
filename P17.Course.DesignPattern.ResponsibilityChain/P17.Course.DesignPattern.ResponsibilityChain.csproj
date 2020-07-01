@@ -48,7 +48,7 @@
     <Compile Include="CEO.cs" />
     <Compile Include="ChairMan.cs" />
     <Compile Include="Charge.cs" />
-    <Compile Include="Chief.cs" />
+    <Compile Include="Director.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="PM.cs" />
     <Compile Include="Program.cs" />
