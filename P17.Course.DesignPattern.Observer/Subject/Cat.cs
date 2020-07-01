@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using P17.Course.DesignPattern.Observer.Observer;
@@ -32,13 +33,40 @@ namespace P17.Course.DesignPattern.Observer.Subject
             }
 
         }
+        //method 2: build observer list and call their method.
+        private List<IObserver> _observers = new List<IObserver>();
 
+        public void AddObserver(IObserver observer)
+        {
+            this._observers.Add(observer);
+        }
 
+        public void ScreamObserver()
+        {
+            Console.WriteLine("{0} Scream observer....", this.GetType().Name);
+            if (this._observers != null && this._observers.Count > 0)
+            {
+                foreach (IObserver itemObserver in _observers)
+                {
+                    itemObserver.DoAction();
+                }
+            }
+        }
 
+        //method 3: build event handler and execute  
+        private event Action Screamhandler;
 
-
-
-
+        public void ScreamEvent()
+        {
+            Console.WriteLine("{0} Scream event..", this.GetType().Name);
+            if (this.Screamhandler != null)
+            {
+                foreach (Action item in this.Screamhandler.GetInvocationList())
+                {
+                    item.Invoke();
+                }
+            }
+        }
 
 
     }
