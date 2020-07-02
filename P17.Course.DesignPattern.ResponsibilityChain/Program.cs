@@ -25,7 +25,7 @@ namespace P17.Course.DesignPattern.ResponsibilityChain
 
             auditor.Audit(context);
 
-            Console.WriteLine(context.AuditResult+ "  " context.AuditRemark);
+            Console.WriteLine(context.AuditResult+ "  " +context.AuditRemark);
 
         }
     }
