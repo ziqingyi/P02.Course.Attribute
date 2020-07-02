@@ -16,6 +16,10 @@ namespace P17.Course.DesignPattern.ResponsibilityChain
                 context.AuditResult = true;
                 context.AuditRemark = "Approve !";
             }
+            else
+            {
+                base.AuditNext(context);
+            }
         }
 
 

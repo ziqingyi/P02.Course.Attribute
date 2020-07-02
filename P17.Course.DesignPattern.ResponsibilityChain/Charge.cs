@@ -18,7 +18,7 @@ namespace P17.Course.DesignPattern.ResponsibilityChain
             }
             else
             {
-              
+                base.AuditNext(context);
             }
         }
     }
