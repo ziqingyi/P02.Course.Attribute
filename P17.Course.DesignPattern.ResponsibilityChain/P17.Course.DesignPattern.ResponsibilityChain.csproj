@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AbstractAuditor.cs" />
     <Compile Include="ApplyContext.cs" />
+    <Compile Include="AuditorBuilder.cs" />
     <Compile Include="CEO.cs" />
     <Compile Include="ChairMan.cs" />
     <Compile Include="Charge.cs" />
