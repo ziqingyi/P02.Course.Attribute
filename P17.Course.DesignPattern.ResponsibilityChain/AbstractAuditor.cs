@@ -17,7 +17,7 @@ namespace P17.Course.DesignPattern.ResponsibilityChain
             this._nextAuditor = auditor;
         }
 
-        protected void AuditNext(ApplyContext context)
+        protected void AuditNext(ApplyContext context)// only used in subclass
         {
             if (this._nextAuditor != null)
             {
