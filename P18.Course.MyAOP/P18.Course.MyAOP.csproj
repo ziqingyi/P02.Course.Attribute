@@ -43,18 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DecoratorAOP.cs" />
+    <Compile Include="DecoratorAOPFolder\DecoratorAOP.cs" />
     <Compile Include="IUserProcessor.cs" />
     <Compile Include="Model.cs" />
+    <Compile Include="RealProxyAOPFolder\MyRealProxy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProxyAOP.cs" />
-    <Compile Include="ProxyUserProcessor.cs" />
+    <Compile Include="ProxyAOPFolder\ProxyAOP.cs" />
+    <Compile Include="ProxyAOPFolder\ProxyUserProcessor.cs" />
+    <Compile Include="RealProxyAOPFolder\RealProxyAOP.cs" />
+    <Compile Include="RealProxyAOPFolder\RealProxyUserProcessor.cs" />
+    <Compile Include="RealProxyAOPFolder\TransparentProxy.cs" />
     <Compile Include="UserProcessor.cs" />
-    <Compile Include="UserProcessorDecorator.cs" />
+    <Compile Include="DecoratorAOPFolder\UserProcessorDecorator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using P18.Course.MyAOP.DecoratorAOPFolder;
+using P18.Course.MyAOP.ProxyAOPFolder;
+using P18.Course.MyAOP.RealProxyAOPFolder;
+
 
 namespace P18.Course.MyAOP
 {
@@ -10,11 +14,21 @@ namespace P18.Course.MyAOP
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("****************Decorator Show********************");
-            DecoratorAOP.Show();
+            #region AOP show
 
-            Console.WriteLine("************ProxyAOP Show*******************");
-            ProxyAOP.Show();
+            //Console.WriteLine("****************Decorator Show********************");
+            //DecoratorAOP.Show();
+
+            //Console.WriteLine("************Proxy AOP Show*******************");
+            //ProxyAOP.Show();
+
+            Console.WriteLine("************Real Proxy AOP Show*******************");
+            RealProxyAOP.Show();
+
+
+
+
+            #endregion
 
 
 
