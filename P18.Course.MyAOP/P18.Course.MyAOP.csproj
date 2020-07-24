@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CastleProxyAOPFolder\CastleProxyAOP.cs" />
     <Compile Include="DecoratorAOPFolder\DecoratorAOP.cs" />
     <Compile Include="IUserProcessor.cs" />
     <Compile Include="Model.cs" />
