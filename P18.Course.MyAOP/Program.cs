@@ -25,6 +25,8 @@ namespace P18.Course.MyAOP
             Console.WriteLine("************Real Proxy AOP Show*******************");
             RealProxyAOP.Show();
 
+            Console.WriteLine("***************Castle Proxy AOP show*******************************");
+
 
 
 

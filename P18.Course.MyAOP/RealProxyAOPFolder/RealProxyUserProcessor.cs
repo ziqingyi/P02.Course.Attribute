@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace P18.Course.MyAOP.RealProxyAOPFolder
 {
+    //
     class RealProxyUserProcessor:MarshalByRefObject, IUserProcessor
     {
         public void RegUser(User user)

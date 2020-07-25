@@ -21,7 +21,7 @@ namespace P18.Course.MyAOP.RealProxyAOPFolder
             processor.RegUser(user);
 
             Console.WriteLine("-------------Real Proxy AOP--------------------");
-            RealProxyUserProcessor realProxyUserProcessor = TransparentProxy.Create<RealProxyUserProcessor>();
+            IUserProcessor realProxyUserProcessor = TransparentProxy.Create<RealProxyUserProcessor>();
             realProxyUserProcessor.RegUser(user);
 
         }
