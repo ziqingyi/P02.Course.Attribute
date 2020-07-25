@@ -22,6 +22,8 @@ namespace P18.Course.MyAOP.RealProxyAOPFolder
             BeforeProceeds(msg);
 
             IMethodCallMessage callMessage = (IMethodCallMessage) msg;
+            //Args: arguments of the method, eg.User
+            //callMessage's MethodName: RegUser
             object returnValue = callMessage.MethodBase.Invoke(this.tTarget, callMessage.Args);
 
             AfterProceeds(msg);

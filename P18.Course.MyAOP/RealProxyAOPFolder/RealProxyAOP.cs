@@ -23,7 +23,9 @@ namespace P18.Course.MyAOP.RealProxyAOPFolder
             Console.WriteLine("-------------Real Proxy AOP--------------------");
             IUserProcessor realProxyUserProcessor = TransparentProxy.Create<RealProxyUserProcessor>();
             realProxyUserProcessor.RegUser(user);
-
+            // all the method being called with be transfer to RealProxy's Invoke method, adding extra logic.
+            RealProxyUserProcessor testOtherMethod = (RealProxyUserProcessor) realProxyUserProcessor;
+            testOtherMethod.ShowInfo();
         }
 
 
