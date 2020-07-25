@@ -42,6 +42,10 @@ namespace P18.Course.MyAOP.RealProxyAOPFolder
             Console.WriteLine("execute after proceed logic....");
         }
 
-
+        public override object GetTransparentProxy()
+        {
+            Console.WriteLine("Real Proxy's GetTransparentProxy method");
+            return base.GetTransparentProxy();
+        }
     }
 }
