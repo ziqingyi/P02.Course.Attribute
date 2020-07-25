@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace P18.Course.MyAOP.RealProxyAOPFolder
 {
-    //
-    class RealProxyUserProcessor:MarshalByRefObject, IUserProcessor
+    //must inherit from MarshalByRefObject, it
+    //Enables access to objects across application domain boundaries in applications that support remoting.
+    //means: RealProxyUserProcessor now Can be serialized to string and pass to remote applications. 
+    //       then deserialized to RealProxyUserProcessor. 
+    class RealProxyUserProcessor :MarshalByRefObject, IUserProcessor
     {
         public void RegUser(User user)
         {
