@@ -11,8 +11,18 @@ namespace P18.Course.MyAOP.CastleProxyAOPFolder
     {
         public void Intercept(IInvocation invocation)
         {
-
+            PreProceed(invocation);
+            invocation.Proceed();
+            AfterProceed(invocation);
         }
 
+        public void PreProceed(IInvocation invocation)
+        {
+            Console.WriteLine("before proceed method {0}", invocation);
+        }
+        public void AfterProceed(IInvocation invocation)
+        {
+            Console.WriteLine("After proceed method {0}", invocation);
+        }
     }
 }

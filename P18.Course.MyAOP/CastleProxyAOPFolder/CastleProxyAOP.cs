@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Castle.DynamicProxy;
 
 namespace P18.Course.MyAOP.CastleProxyAOPFolder
 {
@@ -17,7 +18,11 @@ namespace P18.Course.MyAOP.CastleProxyAOPFolder
                 Password = "24314kh2l1hl"
             };
 
-
+            ProxyGenerator generator = new ProxyGenerator();
+            MyInterceptor interceptor = new MyInterceptor();
+            CastleProxyUserProcessor userProcessor = generator.CreateClassProxy<CastleProxyUserProcessor>(interceptor);
+            userProcessor.RegUser(user);
+            userProcessor.intro();
 
         }
 

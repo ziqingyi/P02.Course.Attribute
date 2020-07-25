@@ -15,6 +15,9 @@ namespace P18.Course.MyAOP.CastleProxyAOPFolder
                 user.Id, user.Name, user.Password);
         }
 
-
+        public virtual void intro()
+        {
+            Console.WriteLine("this is : {0} ", typeof(CastleProxyUserProcessor));
+        }
     }
 }
