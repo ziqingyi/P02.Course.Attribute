@@ -23,7 +23,7 @@ namespace P18.Course.MyAOP
             //     program is modified during the build process on the development machine, before deployment.
             //     the program is modified during its execution, after deployment
 
-            //4 Independent injection with aop extension: Unity and 
+            //4 Independent injection with aop extension: Unity and AutoFac
 
 
 
@@ -36,8 +36,11 @@ namespace P18.Course.MyAOP
             //Console.WriteLine("************Real Proxy AOP Show*******************");
             //RealProxyAOP.Show();
 
-            Console.WriteLine("***************Castle Proxy AOP show*******************************");
-            CastleProxyAOP.Show();
+            //Console.WriteLine("***************Castle Proxy AOP show**************");
+            //CastleProxyAOP.Show();
+
+            Console.WriteLine("***************Unity AOP show**************");
+
 
 
 
