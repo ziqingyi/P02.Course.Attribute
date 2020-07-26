@@ -24,9 +24,9 @@ namespace P18.Course.MyAOP
             //     program is modified during the build process on the development machine, before deployment.
             //     the program is modified during its execution, after deployment
 
-            //4 Independent injection with aop extension: Unity and AutoFac
+            //4 Independent injection with aop extension: Unity and AutoFac, commonly use other than MVC.
 
-
+            //5 MVC AOP: invoker center, use attribute and reflection to decide the execution of some other logic. 
 
             //Console.WriteLine("****************Decorator Show********************");
             //DecoratorAOP.Show();
