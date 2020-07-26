@@ -8,7 +8,7 @@ namespace P18.Course.MyAOP.UnityAOPFolder
 {
     interface IUnityUserProcessor
     {
-        [Obsolete]
+        [MethodFilterAttr("Method need to caching....")]
         void RegUser(User user);
         User GetUser(User user);
     }
