@@ -87,6 +87,7 @@
     <Compile Include="UnityAOPFolder\LogBeforeBehavior.cs" />
     <Compile Include="UnityAOPFolder\MonitorBehavior.cs" />
     <Compile Include="UnityAOPFolder\ParameterCheckBehavior.cs" />
+    <Compile Include="UnityAOPFolder\UnityAOP.cs" />
     <Compile Include="UnityAOPFolder\UnityConfigAOP.cs" />
     <Compile Include="UnityAOPFolder\UnityUserProcessor.cs" />
     <Compile Include="UserProcessor.cs" />
