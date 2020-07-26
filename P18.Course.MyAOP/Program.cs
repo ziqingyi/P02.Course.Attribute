@@ -7,6 +7,7 @@ using P18.Course.MyAOP.CastleProxyAOPFolder;
 using P18.Course.MyAOP.DecoratorAOPFolder;
 using P18.Course.MyAOP.ProxyAOPFolder;
 using P18.Course.MyAOP.RealProxyAOPFolder;
+using P18.Course.MyAOP.UnityAOPFolder;
 
 
 namespace P18.Course.MyAOP
@@ -40,7 +41,7 @@ namespace P18.Course.MyAOP
             //CastleProxyAOP.Show();
 
             Console.WriteLine("***************Unity AOP show**************");
-
+            UnityConfigAOP.Show();
 
 
 
