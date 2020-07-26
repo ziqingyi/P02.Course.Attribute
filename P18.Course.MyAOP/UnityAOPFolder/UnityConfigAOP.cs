@@ -27,7 +27,8 @@ namespace P18.Course.MyAOP.UnityAOPFolder
 
             UnityConfigurationSection configSection =
                 (UnityConfigurationSection) configuration.GetSection(UnityConfigurationSection.SectionName);
-            configSection.Configure(container, "aopContainer");//config the container with the aopContainer in file
+            configSection.Configure(container, "aopContainer");
+            //config the container with the aopContainer in file
             //interface map to the type, then container can resolve and provide a instance.
 
             IUnityUserProcessor uprocessor = container.Resolve<IUnityUserProcessor>();
