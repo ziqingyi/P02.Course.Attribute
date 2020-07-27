@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P18.Course.MyAOP.UnityAOPFolder
 {
-    public class UnityUserProcessor
+    public class UnityUserProcessor: IUnityUserProcessor
     {
         public void RegUser(User user)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P18.Course.MyAOP.UnityAOPFolder
 {
-    interface IUnityUserProcessor
+    public interface IUnityUserProcessor
     {
         [MethodFilterAttr("Method need to caching....")]
         void RegUser(User user);
