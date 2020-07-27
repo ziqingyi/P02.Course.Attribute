@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P18.Course.MyAOP.UnityAOPFolder
+namespace P18.Course.MyAOP.UnityAOPFolder2
 {
     public class UnityAOP
     {
@@ -17,7 +17,7 @@ namespace P18.Course.MyAOP.UnityAOPFolder
                 Password = "afdr34354yt"
             };
 
-
+            
 
 
 

@@ -83,6 +83,8 @@
     <Compile Include="RealProxyAOPFolder\RealProxyAOP.cs" />
     <Compile Include="RealProxyAOPFolder\RealProxyUserProcessor.cs" />
     <Compile Include="RealProxyAOPFolder\TransparentProxy.cs" />
+    <Compile Include="UnityAOPFolder2\IUnityUserProcessor2.cs" />
+    <Compile Include="UnityAOPFolder2\UnityUserProcessor2.cs" />
     <Compile Include="UnityAOPFolder\CachingBehavior.cs" />
     <Compile Include="UnityAOPFolder\ExceptionLoggingBehavior.cs" />
     <Compile Include="UnityAOPFolder\IUnityUserProcessor.cs" />
@@ -91,7 +93,7 @@
     <Compile Include="UnityAOPFolder\MethodFilterAttr.cs" />
     <Compile Include="UnityAOPFolder\MonitorBehavior.cs" />
     <Compile Include="UnityAOPFolder\ParameterCheckBehavior.cs" />
-    <Compile Include="UnityAOPFolder\UnityAOP.cs" />
+    <Compile Include="UnityAOPFolder2\UnityAOP.cs" />
     <Compile Include="UnityAOPFolder\UnityConfigAOP.cs" />
     <Compile Include="UnityAOPFolder\UnityUserProcessor.cs" />
     <Compile Include="UserProcessor.cs" />
