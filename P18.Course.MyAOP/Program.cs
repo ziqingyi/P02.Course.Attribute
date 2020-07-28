@@ -42,7 +42,7 @@ namespace P18.Course.MyAOP
             //CastleProxyAOP.Show();
 
             Console.WriteLine("***************Unity AOP show**************");
-            UnityConfigAOP.Show();
+            //UnityConfigAOP.Show();
 
             UnityAOP.Show();
 

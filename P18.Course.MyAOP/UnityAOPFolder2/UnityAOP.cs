@@ -33,8 +33,9 @@ namespace P18.Course.MyAOP.UnityAOPFolder2
             IUnityUserProcessor2 userProcessor2 = new UnityUserProcessor2();
             IUnityUserProcessor2 userProcessor22 = container.Resolve<IUnityUserProcessor2>();
             userProcessor2.RegUser(user);
-            userProcessor2.GetUser(user);
+            User u = userProcessor2.GetUser(user);
 
+            Console.WriteLine(u.Name);
         }
 
 
