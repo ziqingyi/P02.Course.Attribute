@@ -87,6 +87,7 @@
     <Compile Include="UnityAOPFolder2\ExceptionHandler.cs" />
     <Compile Include="UnityAOPFolder2\IUnityUserProcessor2.cs" />
     <Compile Include="UnityAOPFolder2\LogHandler.cs" />
+    <Compile Include="UnityAOPFolder2\LogHandlerAttribute.cs" />
     <Compile Include="UnityAOPFolder2\UnityUserProcessor2.cs" />
     <Compile Include="UnityAOPFolder2\UserHandler.cs" />
     <Compile Include="UnityAOPFolder2\UserHandlerAttribute.cs" />
