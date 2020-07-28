@@ -85,6 +85,7 @@
     <Compile Include="RealProxyAOPFolder\TransparentProxy.cs" />
     <Compile Include="UnityAOPFolder2\AfterLogHandler.cs" />
     <Compile Include="UnityAOPFolder2\ExceptionHandler.cs" />
+    <Compile Include="UnityAOPFolder2\ExceptionHandlerAttribute.cs" />
     <Compile Include="UnityAOPFolder2\IUnityUserProcessor2.cs" />
     <Compile Include="UnityAOPFolder2\LogHandler.cs" />
     <Compile Include="UnityAOPFolder2\LogHandlerAttribute.cs" />
