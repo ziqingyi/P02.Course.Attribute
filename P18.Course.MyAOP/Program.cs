@@ -8,6 +8,7 @@ using P18.Course.MyAOP.DecoratorAOPFolder;
 using P18.Course.MyAOP.ProxyAOPFolder;
 using P18.Course.MyAOP.RealProxyAOPFolder;
 using P18.Course.MyAOP.UnityAOPFolder;
+using P18.Course.MyAOP.UnityAOPFolder2;
 
 
 namespace P18.Course.MyAOP
@@ -43,7 +44,7 @@ namespace P18.Course.MyAOP
             Console.WriteLine("***************Unity AOP show**************");
             UnityConfigAOP.Show();
 
-
+            UnityAOP.Show();
 
             #endregion
 
