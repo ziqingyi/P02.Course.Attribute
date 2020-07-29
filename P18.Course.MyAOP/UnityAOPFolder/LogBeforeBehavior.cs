@@ -18,9 +18,10 @@ namespace P18.Course.MyAOP.UnityAOPFolder
         public IMethodReturn Invoke(IMethodInvocation input, GetNextInterceptionBehaviorDelegate getNext)
         {
             Console.WriteLine("LogBeforeBehavior");
-            foreach (var item in input.Inputs)
+            foreach (var item in input.Inputs)// out put all parameters
             {
-                Console.WriteLine(item.ToString());
+                Console.WriteLine("Logging inputs: {0} , method name: {1}",
+                    item.ToString(), input.MethodBase.Name);//reflection? Json serialization ? 
             }
 
             return getNext().Invoke(input, getNext);
