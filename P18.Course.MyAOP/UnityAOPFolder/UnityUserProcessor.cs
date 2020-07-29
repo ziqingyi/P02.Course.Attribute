@@ -15,6 +15,7 @@ namespace P18.Course.MyAOP.UnityAOPFolder
 
         public User GetUser(User user)
         {
+            Console.WriteLine("return a user instance: {0}........", user.Name);
             return user;
         }
 

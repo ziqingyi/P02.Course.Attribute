@@ -19,19 +19,32 @@ namespace P18.Course.MyAOP.UnityAOPFolder
         public IMethodReturn Invoke(IMethodInvocation input, GetNextInterceptionBehaviorDelegate getNext)
         {
             Console.WriteLine("Caching Behavior...");
-
+            IMethodReturn returnMethod = null;
             // one way of check is to test method name. 
             if (input.MethodBase.Name.Equals("GetUser"))
             {
-                return input.CreateMethodReturn(new User() { Id = 8, Name="user8", Password = "fdasde56536"});
+                Console.WriteLine("we have cache for GetUser method.....");
+                //only create return value for this method
+                returnMethod = input.CreateMethodReturn(new User() { Id = 8, Name="user8_cached_by_method", Password = "fdasde56536"});
+                
             }
             //another way of checking whether caching is necessary for this method is to use attribute
-            if (input.Target.GetType().GetCustomAttributes(typeof(MethodFilterAttr), true).Length > 0)
+            var methodAttributesttributelist = input.MethodBase.GetCustomAttributes(typeof(MethodFilterAttr), true);
+            if (methodAttributesttributelist.Length > 0)
             {
-                return input.CreateMethodReturn(new User() { Id = 8, Name = "user8", Password = "fdasde56536" });
+                returnMethod = input.CreateMethodReturn(new User() { Id = 8, Name = "user8_cached_by_attr", Password = "llllllllkjjj" });
             }
 
-            return getNext().Invoke(input, getNext);
+            if (returnMethod != null)
+            {
+                Console.WriteLine("User {0} has registered successfully...", ((User)returnMethod.ReturnValue).Name);
+                return returnMethod;
+            }
+            else
+            {
+                return getNext().Invoke(input, getNext);
+            }
+            
         }
 
         public bool WillExecute

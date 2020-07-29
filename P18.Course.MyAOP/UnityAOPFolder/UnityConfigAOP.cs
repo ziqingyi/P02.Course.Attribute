@@ -19,21 +19,35 @@ namespace P18.Course.MyAOP.UnityAOPFolder
                 Name = "user7",
                 Password = "afdr34354yt"
             };
-            IUnityContainer container = new UnityContainer();
-            ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap();
-            fileMap.ExeConfigFilename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "CfgFiles\\Unity.Config");
-            Configuration configuration =
-                ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+            {
+                Console.WriteLine("******************Normal Container*******************");
+                IUnityContainer container = new UnityContainer();
+                container.RegisterType<IUnityUserProcessor, UnityUserProcessor>();
+                //resolve and return a instance of UnityUserProcessor
+                IUnityUserProcessor processor = container.Resolve<IUnityUserProcessor>();
+                processor.RegUser(user);
+                processor.GetUser(user);
+                
+            }
 
-            UnityConfigurationSection configSection =
-                (UnityConfigurationSection) configuration.GetSection(UnityConfigurationSection.SectionName);
-            configSection.Configure(container, "aopContainer");
-            //config the container with the aopContainer in file
-            //interface map to the type, then container can resolve and provide a instance.
+            {
+                Console.WriteLine("***************Container with AOP*********************");
+                IUnityContainer container = new UnityContainer();
+                ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap();
+                fileMap.ExeConfigFilename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "CfgFiles\\Unity.Config");
+                Configuration configuration =
+                    ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
 
-            IUnityUserProcessor uprocessor = container.Resolve<IUnityUserProcessor>();
-            uprocessor.RegUser(user);
-            uprocessor.GetUser(user);
+                UnityConfigurationSection configSection =
+                    (UnityConfigurationSection)configuration.GetSection(UnityConfigurationSection.SectionName);
+                configSection.Configure(container, "aopContainer");
+                //config the container with the aopContainer in file
+                //interface map to the type, then container can resolve and provide a instance.
+                //not a instance of IUnityUserProcessor, type is:DynamicModule.ns.Wrapped_IUnityUserProcessor_413....
+                IUnityUserProcessor uprocessor = container.Resolve<IUnityUserProcessor>();
+                uprocessor.RegUser(user);
+                uprocessor.GetUser(user);
+            }
 
         }
 
