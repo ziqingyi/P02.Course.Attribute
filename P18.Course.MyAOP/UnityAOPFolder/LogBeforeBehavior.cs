@@ -21,10 +21,14 @@ namespace P18.Course.MyAOP.UnityAOPFolder
             foreach (var item in input.Inputs)// out put all parameters
             {
                 Console.WriteLine("Logging inputs: {0} , method name: {1}",
-                    item.ToString(), input.MethodBase.Name);//reflection? Json serialization ? 
+                    item.ToString(), input.MethodBase.Name);//reflection? 
+
+                var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(item);
+
+                Console.WriteLine("Json serialize: {0}", jsonString);
             }
 
-            return getNext().Invoke(input, getNext);
+            return getNext().Invoke(input, getNext);// getNext() return a delegate, then invoke()
 
         }
 

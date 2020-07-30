@@ -17,13 +17,14 @@ namespace P18.Course.MyAOP.UnityAOPFolder
 
         public IMethodReturn Invoke(IMethodInvocation input, GetNextInterceptionBehaviorDelegate getNext)
         {
+
+            IMethodReturn methodReturn = getNext()(input, getNext);
+
             Console.WriteLine("Log After Behavior");
             foreach (var item in input.Inputs)
             {
                 Console.WriteLine(item.ToString());
             }
-
-            IMethodReturn methodReturn = getNext()(input, getNext);
 
             Console.WriteLine("Log After Behavior "+ methodReturn.ReturnValue);
 
