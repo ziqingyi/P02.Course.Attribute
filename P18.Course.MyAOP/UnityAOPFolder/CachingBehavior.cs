@@ -29,7 +29,7 @@ namespace P18.Course.MyAOP.UnityAOPFolder
                 
             }
             //another way of checking whether caching is necessary for this method is to use attribute
-            var methodAttributesttributelist = input.MethodBase.GetCustomAttributes(typeof(MethodFilterAttr), true);
+            var methodAttributesttributelist = input.MethodBase.GetCustomAttributes(typeof(MethodFilterAttribute), true);
             if (methodAttributesttributelist.Length > 0)
             {
                 returnMethod = input.CreateMethodReturn(new User() { Id = 8, Name = "user8_cached_by_attr", Password = "llllllllkjjj" });

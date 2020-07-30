@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace P18.Course.MyAOP.UnityAOPFolder
 {
-    public interface IUnityUserProcessor
+    public abstract class AbstractValidateAttribute : Attribute
     {
-        [MethodFilter("Method need to caching....")]
-        void RegUser(User user);
-        User GetUser(User user);
+        public abstract bool Validate(Object obj);
     }
 }

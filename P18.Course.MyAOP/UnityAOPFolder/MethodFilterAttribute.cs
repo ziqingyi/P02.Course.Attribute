@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace P18.Course.MyAOP.UnityAOPFolder
 {
     [AttributeUsage(AttributeTargets.All)]
-    public class MethodFilterAttr:Attribute
+    public class MethodFilterAttribute : Attribute
     {
-        public MethodFilterAttr(string msg)
+        public MethodFilterAttribute(string msg)
         {
             Console.WriteLine(msg);
         }
