@@ -20,7 +20,7 @@ namespace P18.Course.MyAOP.UnityAOPFolder
         {
             Console.WriteLine("Parameter Check Behavior");
             User user = input.Inputs[0] as User;
-            if (user.Password.Length < 10)
+            if (!AttributeExtend.Validate(user))//using extend method to check class's attribute
             {
                 return input.CreateExceptionMethodReturn(new Exception("Password should be more than 10 characters..."));
             }

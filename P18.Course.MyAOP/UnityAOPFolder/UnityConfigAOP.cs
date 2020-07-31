@@ -17,7 +17,7 @@ namespace P18.Course.MyAOP.UnityAOPFolder
             User user = new User(){
                 Id=7,
                 Name = "user7",
-                Password = "afdr34354yt"
+                Password = "afdr34354y"
             };
             {
                 Console.WriteLine("******************Normal Container*******************");
