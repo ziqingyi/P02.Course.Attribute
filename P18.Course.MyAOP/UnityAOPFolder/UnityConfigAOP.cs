@@ -45,8 +45,16 @@ namespace P18.Course.MyAOP.UnityAOPFolder
                 //interface map to the type, then container can resolve and provide a instance.
                 //not a instance of IUnityUserProcessor, type is:DynamicModule.ns.Wrapped_IUnityUserProcessor_413....
                 IUnityUserProcessor uprocessor = container.Resolve<IUnityUserProcessor>();
+
+                //test cache with method name
                 uprocessor.RegUser(user);
+                //test cache with method name and parameter.
                 uprocessor.GetUser(user);
+                uprocessor.GetUser(user);
+                //test cache with attribute
+                uprocessor.GetUserPass(user);
+
+
             }
 
         }

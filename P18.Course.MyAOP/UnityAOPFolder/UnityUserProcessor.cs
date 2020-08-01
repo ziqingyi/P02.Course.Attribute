@@ -19,5 +19,11 @@ namespace P18.Course.MyAOP.UnityAOPFolder
             return user;
         }
 
+        public string GetUserPass(User user)
+        {
+            Console.WriteLine("User {0}'s password is {1} ...", user.Name, user.Password);
+            return user.Password;
+        }
+
     }
 }

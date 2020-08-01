@@ -17,7 +17,7 @@ namespace P18.Course.MyAOP.UnityAOPFolder
 
         public IMethodReturn Invoke(IMethodInvocation input, GetNextInterceptionBehaviorDelegate getNext)
         {
-            Console.WriteLine("LogBeforeBehavior");
+            Console.WriteLine("Log Before Behavior");
             foreach (var item in input.Inputs)// out put all parameters
             {
                 Console.WriteLine("Logging inputs: {0} , method name: {1}",
@@ -25,7 +25,7 @@ namespace P18.Course.MyAOP.UnityAOPFolder
 
                 var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(item);
 
-                Console.WriteLine("Json serialize: {0}", jsonString);
+                Console.WriteLine("Log with Json serialize: {0}", jsonString);
             }
 
             return getNext().Invoke(input, getNext);// getNext() return a delegate, then invoke()

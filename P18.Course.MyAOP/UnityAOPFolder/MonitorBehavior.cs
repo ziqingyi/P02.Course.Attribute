@@ -19,7 +19,7 @@ namespace P18.Course.MyAOP.UnityAOPFolder
 
         public IMethodReturn Invoke(IMethodInvocation input, GetNextInterceptionBehaviorDelegate getNext)
         {
-            Console.WriteLine(this.GetType().Name);
+            Console.WriteLine("Monitor behavior is monitoring: "+this.GetType().Name);
             string methodName = input.MethodBase.Name;
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();

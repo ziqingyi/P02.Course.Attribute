@@ -16,36 +16,70 @@ namespace P18.Course.MyAOP.UnityAOPFolder
             return Type.EmptyTypes;
         }
 
+        private static Dictionary<string, object> CachingBehaviorDictionary = new Dictionary<string, object>();
+
         public IMethodReturn Invoke(IMethodInvocation input, GetNextInterceptionBehaviorDelegate getNext)
         {
             Console.WriteLine("Caching Behavior...");
+
             IMethodReturn returnMethod = null;
-            // one way of check is to test method name. 
-            if (input.MethodBase.Name.Equals("GetUser"))
+            // 1 one way of check is to test method name.  this example is fake cache.
+            if (input.MethodBase.Name.Equals("RegUser"))
             {
                 Console.WriteLine("we have cache for GetUser method.....");
                 //only create return value for this method
                 returnMethod = input.CreateMethodReturn(new User() { Id = 8, Name="user8_cached_by_method", Password = "fdasde56536"});
-                
             }
-            //another way of checking whether caching is necessary for this method is to use attribute
+
+            // 2 a better way is to check both method name and parameters passed in to the method
+                   //key is the method name and parameters.  if all same, we believe the result is same. 
+            string key = $"{input.MethodBase.Name}_{Newtonsoft.Json.JsonConvert.SerializeObject(input.Inputs)}";
+            if (CachingBehaviorDictionary.ContainsKey(key))
+            {
+                returnMethod = input.CreateMethodReturn(CachingBehaviorDictionary[key]);
+
+                //return directly, will not execute following steps. like logging, param check
+                return returnMethod;
+
+            }
+ 
+            
+            //3 checking method 3: whether caching is necessary for this method is to use attribute, this example is fake cache.
             var methodAttributesttributelist = input.MethodBase.GetCustomAttributes(typeof(MethodFilterAttribute), true);
-            if (methodAttributesttributelist.Length > 0)
+            if (methodAttributesttributelist.Length > 0)//if has cache.
             {
                 returnMethod = input.CreateMethodReturn(new User() { Id = 8, Name = "user8_cached_by_attr", Password = "llllllllkjjj" });
             }
 
-            if (returnMethod != null)
+            //**************************************************************************************
+                          //test method 1 and 3 , because ReturnValue is User object.
+            if (returnMethod != null && input.MethodBase.Name.Equals("RegUser")  )
             {
                 Console.WriteLine("User {0} has registered successfully...", ((User)returnMethod.ReturnValue).Name);
                 return returnMethod;
             }
-            else
+
+            if (returnMethod != null && methodAttributesttributelist.Length > 0)
             {
-                return getNext().Invoke(input, getNext);
+                Console.WriteLine("User has password {0}...", ((string)returnMethod.ReturnValue));
+                return returnMethod;
             }
-            
+                
+                 // used for testing caching name and parameters. method 2, invoke and get result and cache result. 
+                 //if it is first time running , it will do below. other method will return before.
+
+            {
+                IMethodReturn result = getNext().Invoke(input, getNext);
+                if (result.ReturnValue != null)
+                {
+                    CachingBehaviorDictionary.Add(key, result);
+                }
+                return result;
+            }
+
+
         }
+
 
         public bool WillExecute
         {

@@ -21,8 +21,8 @@ namespace P18.Course.MyAOP.UnityAOPFolder
          {
 
              return oValue != null
-                    && oValue.ToString().Length > this._min
-                    && oValue.ToString().Length < this._max;
+                    && oValue.ToString().Length >= this._min
+                    && oValue.ToString().Length <= this._max;
          }
 
     }

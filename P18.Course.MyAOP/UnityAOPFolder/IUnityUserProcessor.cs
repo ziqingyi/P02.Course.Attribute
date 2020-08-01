@@ -8,8 +8,12 @@ namespace P18.Course.MyAOP.UnityAOPFolder
 {
     public interface IUnityUserProcessor
     {
-        [MethodFilter("Method need to caching....")]
+        
         void RegUser(User user);
         User GetUser(User user);
+
+        [MethodFilter("Method need to caching....")]
+        string GetUserPass(User user);
+
     }
 }
