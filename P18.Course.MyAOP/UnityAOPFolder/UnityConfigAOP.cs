@@ -49,8 +49,8 @@ namespace P18.Course.MyAOP.UnityAOPFolder
                 //test cache with method name
                 uprocessor.RegUser(user);
                 //test cache with method name and parameter.
-                uprocessor.GetUser(user);
-                uprocessor.GetUser(user);
+                User u1 = uprocessor.GetUser(user);
+                User u2 = uprocessor.GetUser(user);
                 //test cache with attribute
                 uprocessor.GetUserPass(user);
 

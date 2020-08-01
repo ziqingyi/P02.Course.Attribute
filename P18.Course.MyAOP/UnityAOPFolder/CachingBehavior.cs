@@ -48,7 +48,9 @@ namespace P18.Course.MyAOP.UnityAOPFolder
             var methodAttributesttributelist = input.MethodBase.GetCustomAttributes(typeof(MethodFilterAttribute), true);
             if (methodAttributesttributelist.Length > 0)//if has cache.
             {
-                returnMethod = input.CreateMethodReturn(new User() { Id = 8, Name = "user8_cached_by_attr", Password = "llllllllkjjj" });
+                string returnValue = new User() {Id = 8, Name = "user8_cached_by_attr", Password = "llllllllkjjj"}
+                    .Password;//note: this is to pass return value
+                returnMethod = input.CreateMethodReturn(returnValue);
             }
 
             //**************************************************************************************
@@ -61,7 +63,7 @@ namespace P18.Course.MyAOP.UnityAOPFolder
 
             if (returnMethod != null && methodAttributesttributelist.Length > 0)
             {
-                Console.WriteLine("User has password {0}...", ((string)returnMethod.ReturnValue));
+                Console.WriteLine("User has password {0}...", returnMethod.ReturnValue);//fake cache return User obj
                 return returnMethod;
             }
                 
@@ -72,7 +74,7 @@ namespace P18.Course.MyAOP.UnityAOPFolder
                 IMethodReturn result = getNext().Invoke(input, getNext);
                 if (result.ReturnValue != null)
                 {
-                    CachingBehaviorDictionary.Add(key, result);
+                    CachingBehaviorDictionary.Add(key, result.ReturnValue);//note: add result's ReturnValue
                 }
                 return result;
             }
