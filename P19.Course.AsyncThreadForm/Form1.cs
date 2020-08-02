@@ -20,7 +20,7 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnSync_Click(object sender, EventArgs e)
         {
-            Console.WriteLine($"*************button Sync Click Start" +
+            Console.WriteLine($"*************button Sync Click Start, Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss. fff")}" +
                               $"*********************");
@@ -33,7 +33,7 @@ namespace P19.Course.AsyncThreadForm
                 string name = string.Format($"btnSync_Click_{i}");
                 this.DoSomethingLong(name);
             }
-            Console.WriteLine($"****************btnSync_Click End " +
+            Console.WriteLine($"*************btnSync_Click End , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
@@ -44,7 +44,7 @@ namespace P19.Course.AsyncThreadForm
         // a time consuming task
         private void DoSomethingLong(string name)
         {
-            Console.WriteLine($"****************DoSomethingLong Start  {name}  " +
+            Console.WriteLine($"**************DoSomethingLong Start  {name}  , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
@@ -56,7 +56,7 @@ namespace P19.Course.AsyncThreadForm
             //Thread.Sleep(2000);
 
             Console.WriteLine($"****************DoSomethingLong   End  " +
-                              $"{name}  " +
+                              $"{name}  , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
                               $"{lResult}***************");
@@ -65,7 +65,28 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnAsync_Click(object sender, EventArgs e)
         {
+            Console.WriteLine($"****************btnAsync_Click Start, Thread Id is: " +
+                              $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                              $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                              $"***************");
+            Action<string> action = this.DoSomethingLong;
 
+            action.Invoke("btnAsync_Click");
+            action("btnAsync_Click");
+
+            action.BeginInvoke("btnAsync_Click",null,null);
+
+            for (int i = 0; i < 5; i++)
+            {
+                string name = string.Format($"btnAsync_Click_{i}");
+                action.BeginInvoke(name, null, null);
+            }
+
+
+            Console.WriteLine($"****************btnAsync_Click End, Thread Id is:  " +
+                              $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                              $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                              $"***************");
         }
     }
 }
