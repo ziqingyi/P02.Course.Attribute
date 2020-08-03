@@ -69,12 +69,12 @@ namespace P19.Course.AsyncThreadForm
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
                               $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
-            Action<string> action = this.DoSomethingLong;
+            Action<string> action = this.DoSomethingLong;//new Action<string>(this.DoSomethingLong);
 
             action.Invoke("btnAsync_Click");
             action("btnAsync_Click");
 
-            action.BeginInvoke("btnAsync_Click",null,null);
+            action.BeginInvoke("btnAsync_Click",null,null);//async need 2 extra params
 
             for (int i = 0; i < 5; i++)
             {
