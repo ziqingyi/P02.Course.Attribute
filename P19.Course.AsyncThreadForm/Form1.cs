@@ -89,5 +89,10 @@ namespace P19.Course.AsyncThreadForm
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
         }
+
+        private void btnAsyncAdvanced_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
