@@ -70,6 +70,7 @@ namespace P19.Course.AsyncThreadForm
                               $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
             Action<string> action = this.DoSomethingLong;//new Action<string>(this.DoSomethingLong);
+            //action += this.DoSomethingLong;//wrong, The delegate must have only one target for multi-thread.but you can write methods in s=>{}; then assign to action.
 
             //action.Invoke("btnAsync_Click"); //sync way
             //action("btnAsync_Click");  // syntactic sugar 
