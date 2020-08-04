@@ -71,10 +71,10 @@ namespace P19.Course.AsyncThreadForm
                               $"***************");
             Action<string> action = this.DoSomethingLong;//new Action<string>(this.DoSomethingLong);
 
-            action.Invoke("btnAsync_Click");
-            action("btnAsync_Click");
+            //action.Invoke("btnAsync_Click"); //sync way
+            //action("btnAsync_Click");  // syntactic sugar 
 
-            action.BeginInvoke("btnAsync_Click",null,null);//async need 2 extra params
+            //action.BeginInvoke("btnAsync_Click",null,null);//async need 2 extra params
 
             for (int i = 0; i < 5; i++)
             {
