@@ -96,8 +96,6 @@ namespace P19.Course.AsyncThreadForm
                               $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
 
-            #region
-
             {
                 //1 Call back. callback will be called when the action finished,
                 //        you can pass some parameters to callback
@@ -116,8 +114,51 @@ namespace P19.Course.AsyncThreadForm
                 asyncResult = action.BeginInvoke("btnAsyncAdvanced_Click", callback, "any object being passed in....");
             }
 
+            {
+                // 2 check asyncResult IsCompleted. The main thread will wait and provide notification.
+                Console.WriteLine("----------------------------------------------------------------------");
 
-        #endregion
+                Action<string> action = this.DoSomethingLong;
+                IAsyncResult asyncResult = null;
+
+
+                AsyncCallback callback = ar =>
+                {
+                    Console.WriteLine($"{object.ReferenceEquals(ar, asyncResult)}");
+                    Console.WriteLine($"btnAsyncAdvanced_Click finish successfully, " +
+                                      $"{ar.AsyncState}. {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                };
+
+                asyncResult = action.BeginInvoke("btnAsyncAdvanced_Click", callback, "any object being passed in....");
+
+
+
+                int i = 0;
+                while (!asyncResult.IsCompleted)
+                {
+                    Thread.Sleep(200);
+                    if (i < 9)
+                    {
+                        Console.WriteLine($"the action is being processing {++i * 10}%....");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"the action has completed 99.999999%");
+                    }
+
+                    //Thread.Sleep(200); // lines less
+
+                }
+
+                Console.WriteLine("the action has completed 100%");
+
+
+
+
+
+
+            }
+
 
 
 
