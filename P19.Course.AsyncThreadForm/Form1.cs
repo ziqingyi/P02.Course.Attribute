@@ -55,8 +55,7 @@ namespace P19.Course.AsyncThreadForm
             }
             //Thread.Sleep(2000);
 
-            Console.WriteLine($"****************DoSomethingLong   End  " +
-                              $"{name}  , Thread Id is: " +
+            Console.WriteLine($"****************DoSomethingLong   End {name}  , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
                               $"{lResult}***************");
@@ -92,7 +91,46 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnAsyncAdvanced_Click(object sender, EventArgs e)
         {
+            Console.WriteLine($"****************btnAsyncAdvanced_Click Start, Thread Id is: " +
+                              $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                              $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                              $"***************");
 
+            #region
+
+            {
+                //1 Call back. callback will be called when the action finished,
+                //        you can pass some parameters to callback
+
+                Action<string> action = this.DoSomethingLong;
+
+                IAsyncResult asyncResult = null;
+
+                AsyncCallback callback = ar =>
+                {
+                    Console.WriteLine($"{object.ReferenceEquals(ar, asyncResult)}");
+                    Console.WriteLine($"btnAsyncAdvanced_Click finish successfully, " +
+                                      $"{ar.AsyncState}. {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                };
+
+                asyncResult = action.BeginInvoke("btnAsyncAdvanced_Click", callback, "any object being passed in....");
+            }
+
+
+        #endregion
+
+
+
+
+
+
+
+
+
+            Console.WriteLine($"****************btnAsyncAdvanced_Click End, Thread Id is:  " +
+                              $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                              $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                              $"***************");
         }
     }
 }
