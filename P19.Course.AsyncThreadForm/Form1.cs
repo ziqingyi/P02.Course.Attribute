@@ -97,21 +97,21 @@ namespace P19.Course.AsyncThreadForm
                               $"***************");
 
             {
-                //1 Call back. callback will be called when the action finished,
-                //        you can pass some parameters to callback
+                ////1 Call back. callback will be called when the action finished,
+                ////        you can pass some parameters to callback
 
-                Action<string> action = this.DoSomethingLong;
+                //Action<string> action = this.DoSomethingLong;
 
-                IAsyncResult asyncResult = null;
+                //IAsyncResult asyncResult = null;
 
-                AsyncCallback callback = ar =>
-                {
-                    Console.WriteLine($"{object.ReferenceEquals(ar, asyncResult)}");
-                    Console.WriteLine($"btnAsyncAdvanced_Click finish successfully, " +
-                                      $"{ar.AsyncState}. {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-                };
+                //AsyncCallback callback = ar =>
+                //{
+                //    Console.WriteLine($"{object.ReferenceEquals(ar, asyncResult)}");
+                //    Console.WriteLine($"btnAsyncAdvanced_Click finish successfully, " +
+                //                      $"{ar.AsyncState}. {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                //};
 
-                asyncResult = action.BeginInvoke("btnAsyncAdvanced_Click", callback, "any object being passed in....");
+                //asyncResult = action.BeginInvoke("btnAsyncAdvanced_Click", callback, "any object being passed in....");
             }
 
             {
@@ -136,17 +136,17 @@ namespace P19.Course.AsyncThreadForm
                 int i = 0;
                 while (!asyncResult.IsCompleted)
                 {
-                    Thread.Sleep(200);
+                    //Thread.Sleep(200); //one line more, because when sleep, another thread finish. 
                     if (i < 9)
                     {
-                        Console.WriteLine($"the action is being processing {++i * 10}%....");
+                        Console.WriteLine($"the action is being processing {++i * 10}%....");//notification
                     }
                     else
                     {
-                        Console.WriteLine($"the action has completed 99.999999%");
+                        Console.WriteLine($"the action has completed 99.999999%");//notification
                     }
 
-                    //Thread.Sleep(200); // lines less
+                    Thread.Sleep(200); // add this to adjust number of notifications
 
                 }
 
