@@ -128,14 +128,13 @@ namespace P19.Course.AsyncThreadForm
                     Console.WriteLine($"AsyncCallback and IAsyncResult are same? : {object.ReferenceEquals(ar, asyncResult)}");
                     Console.WriteLine($"btnAsyncAdvanced_Click's new thread " +
                                       $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} finish successfully, " +
-                                      $"ar.AsyncState : {ar.AsyncState}. ");
+                                      $"objects passed by --- ar.AsyncState : {ar.AsyncState}. ");
                 };
 
-                asyncResult = action.BeginInvoke("btnAsyncAdvanced_Click", callback, "any object being passed in....");
-
-
+                asyncResult = action.BeginInvoke("btnAsyncAdvanced_Click", callback, "any parameters being passed in....");
 
                 int i = 0;
+                Thread.Sleep(100);//wait for sub thread to start. not a good solution. 
                 while (!asyncResult.IsCompleted)
                 {
                     //Thread.Sleep(200); //one line more, because when sleep, another thread finish. 
@@ -151,16 +150,9 @@ namespace P19.Course.AsyncThreadForm
                     }
 
                     Thread.Sleep(200); // add this to adjust number of notifications
-
                 }
-
                 Console.WriteLine("the action has completed 100%, " + 
                                   $" checked by thread: {Thread.CurrentThread.ManagedThreadId.ToString("00")} ");
-
-
-
-
-
 
             }
 
