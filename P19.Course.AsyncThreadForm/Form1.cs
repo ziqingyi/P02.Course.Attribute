@@ -44,7 +44,7 @@ namespace P19.Course.AsyncThreadForm
         // a time consuming task
         private void DoSomethingLong(string name)
         {
-            Console.WriteLine($"**************DoSomethingLong Start  {name}  , Thread Id is: " +
+            Console.WriteLine($"**************DoSomethingLong Start by {name}  , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
@@ -55,7 +55,7 @@ namespace P19.Course.AsyncThreadForm
             }
             //Thread.Sleep(2000);
 
-            Console.WriteLine($"****************DoSomethingLong   End {name}  , Thread Id is: " +
+            Console.WriteLine($"****************DoSomethingLong End by {name}  , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
                               $"{lResult}***************");
@@ -121,12 +121,14 @@ namespace P19.Course.AsyncThreadForm
                 Action<string> action = this.DoSomethingLong;
                 IAsyncResult asyncResult = null;
 
-
+                //public delegate void AsyncCallback(IAsyncResult ar); //definition of AsyncCallback
+                //ar is the result of invoke. 
                 AsyncCallback callback = ar =>
                 {
-                    Console.WriteLine($"{object.ReferenceEquals(ar, asyncResult)}");
-                    Console.WriteLine($"btnAsyncAdvanced_Click finish successfully, " +
-                                      $"{ar.AsyncState}. {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    Console.WriteLine($"AsyncCallback and IAsyncResult are same? : {object.ReferenceEquals(ar, asyncResult)}");
+                    Console.WriteLine($"btnAsyncAdvanced_Click's new thread " +
+                                      $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} finish successfully, " +
+                                      $"ar.AsyncState : {ar.AsyncState}. ");
                 };
 
                 asyncResult = action.BeginInvoke("btnAsyncAdvanced_Click", callback, "any object being passed in....");
@@ -139,18 +141,21 @@ namespace P19.Course.AsyncThreadForm
                     //Thread.Sleep(200); //one line more, because when sleep, another thread finish. 
                     if (i < 9)
                     {
-                        Console.WriteLine($"the action is being processing {++i * 10}%....");//notification
+                        Console.WriteLine($" the action is being processing {++i * 10}%...." +
+                                          $" checked by thread: {Thread.CurrentThread.ManagedThreadId.ToString("00")}");//notification
                     }
                     else
                     {
-                        Console.WriteLine($"the action has completed 99.999999%");//notification
+                        Console.WriteLine($"the action has completed 99.999999%" +
+                                          $" checked by thread: {Thread.CurrentThread.ManagedThreadId.ToString("00")}");//notification
                     }
 
                     Thread.Sleep(200); // add this to adjust number of notifications
 
                 }
 
-                Console.WriteLine("the action has completed 100%");
+                Console.WriteLine("the action has completed 100%, " + 
+                                  $" checked by thread: {Thread.CurrentThread.ManagedThreadId.ToString("00")} ");
 
 
 
