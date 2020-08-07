@@ -291,5 +291,38 @@ namespace P19.Course.AsyncThreadForm
 
         }
 
+        private void btnThread_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("****************btnThread_Click Start, Thread Id is: {0} Now:{1}***************", 
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            {
+                ThreadStart method = () => this.DoSomethingLong("btnThread_Click");
+                Thread thread = new Thread(method);
+                thread.Start();//start a thread to run the delegate 
+                //thread.Suspend();//may not suspend immediately , deprecated
+                //thread.Resume(); //deprecated
+                //thread.Abort();  //rarely used
+                //Thread.ResetAbort();//rarely used
+
+
+
+            }
+            {
+                ParameterizedThreadStart method = o => this.DoSomethingLong(o.ToString() + "btnThread_Click");
+                Thread thread = new Thread(method);
+                thread.Start(123);
+            }
+
+
+
+
+
+
+
+            Console.WriteLine("****************btnThread_Click End, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
     }
 }
