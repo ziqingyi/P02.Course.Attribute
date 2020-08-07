@@ -298,20 +298,32 @@ namespace P19.Course.AsyncThreadForm
                  DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             {
                 ThreadStart method = () => this.DoSomethingLong("btnThread_Click");
-                Thread thread = new Thread(method);
-                thread.Start();//start a thread to run the delegate 
-                //thread.Suspend();//may not suspend immediately , deprecated
-                //thread.Resume(); //deprecated
-                //thread.Abort();  //rarely used
-                //Thread.ResetAbort();//rarely used
+                Thread newthread = new Thread(method);
+                newthread.Start();//start a thread to run the delegate 
+                //newthread.Suspend();//may not suspend immediately , deprecated
+                //newthread.Resume(); //deprecated
+                //newthread.Abort();  //rarely used
+                //newthread.ResetAbort();//rarely used
+
+                ////1 thread run this will wait newthread by checking the ThreadState
+                //while (newthread.ThreadState != ThreadState.Stopped)
+                //{
+                //    Thread.Sleep(200);
+                //}
+                //2 the thread run this  will wait for newthread finish,can set max time waiting.
+                newthread.Join();
+
+
+
 
 
 
             }
             {
-                ParameterizedThreadStart method = o => this.DoSomethingLong(o.ToString() + "btnThread_Click");
-                Thread thread = new Thread(method);
-                thread.Start(123);
+                ////new thread with parameter
+                //ParameterizedThreadStart method = o => this.DoSomethingLong(o.ToString() + "btnThread_Click");
+                //Thread thread = new Thread(method);
+                //thread.Start(123);
             }
 
 
