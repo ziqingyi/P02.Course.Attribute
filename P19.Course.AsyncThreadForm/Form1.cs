@@ -297,9 +297,18 @@ namespace P19.Course.AsyncThreadForm
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                  DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             {
-                ThreadStart method = () => this.DoSomethingLong("btnThread_Click");
-                Thread newthread = new Thread(method);
-                newthread.Start();//start a thread to run the delegate 
+                #region some methods with Join
+                //ThreadStart method = () => this.DoSomethingLong("btnThread_Click");
+                //Thread newthread1 = new Thread(method); 
+                //newthread1.Priority = ThreadPriority.Lowest;//set priority, may not execute first or last.
+
+                ////a new thread to compare the 
+                //ThreadStart method2 = () => { Console.WriteLine("thread with highest priority..."); };
+                //Thread newthread2 = new Thread(method2);
+                //newthread2.Priority = ThreadPriority.Highest;//normally it will execute in between of method 1.
+
+                //newthread1.Start();//start a thread to run the delegate 
+                //newthread2.Start();
                 //newthread.Suspend();//may not suspend immediately , deprecated
                 //newthread.Resume(); //deprecated
                 //newthread.Abort();  //rarely used
@@ -310,13 +319,10 @@ namespace P19.Course.AsyncThreadForm
                 //{
                 //    Thread.Sleep(200);
                 //}
-                //2 the thread run this  will wait for newthread finish,can set max time waiting.
-                newthread.Join();
+                //2 the thread run this  will wait for newthread finish,can set max time of waiting.
+                //newthread.Join(1000);
 
-
-
-
-
+                #endregion
 
             }
             {
@@ -325,16 +331,37 @@ namespace P19.Course.AsyncThreadForm
                 //Thread thread = new Thread(method);
                 //thread.Start(123);
             }
+            {
+                ThreadStart method = () => this.DoSomethingLong("btnThread_Click");
+                Thread newthread = new Thread(method);
+                newthread.Start();//start a thread to run the delegate 
 
+                newthread.IsBackground = false;//if process stops, this thread will still running.
+                //newthread.IsBackground = true;//if process stops, thread stops. 
 
-
-
-
+            }
 
 
             Console.WriteLine("****************btnThread_Click End, Thread Id is: {0} Now:{1}***************",
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
         }
+
+        private void ThreadWithCallBack(ThreadStart threadStart, Action actionCallback)
+        {
+           
+        }
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
