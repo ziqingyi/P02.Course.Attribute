@@ -36,6 +36,7 @@
             this.btnAsyncAdvanced4_EndInvoke = new System.Windows.Forms.Button();
             this.btnThread = new System.Windows.Forms.Button();
             this.btnThread_CallBack = new System.Windows.Forms.Button();
+            this.btnThread_CallBack_Return = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSync
@@ -118,11 +119,22 @@
             this.btnThread_CallBack.UseVisualStyleBackColor = true;
             this.btnThread_CallBack.Click += new System.EventHandler(this.btnThread_CallBack_Click);
             // 
+            // btnThread_CallBack_Return
+            // 
+            this.btnThread_CallBack_Return.Location = new System.Drawing.Point(289, 142);
+            this.btnThread_CallBack_Return.Name = "btnThread_CallBack_Return";
+            this.btnThread_CallBack_Return.Size = new System.Drawing.Size(158, 23);
+            this.btnThread_CallBack_Return.TabIndex = 8;
+            this.btnThread_CallBack_Return.Text = "Thread_CallBack_Return";
+            this.btnThread_CallBack_Return.UseVisualStyleBackColor = true;
+            this.btnThread_CallBack_Return.Click += new System.EventHandler(this.btnThread_CallBack_Return_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 415);
+            this.Controls.Add(this.btnThread_CallBack_Return);
             this.Controls.Add(this.btnThread_CallBack);
             this.Controls.Add(this.btnThread);
             this.Controls.Add(this.btnAsyncAdvanced4_EndInvoke);
@@ -147,6 +159,7 @@
         private System.Windows.Forms.Button btnAsyncAdvanced4_EndInvoke;
         private System.Windows.Forms.Button btnThread;
         private System.Windows.Forms.Button btnThread_CallBack;
+        private System.Windows.Forms.Button btnThread_CallBack_Return;
     }
 }
 

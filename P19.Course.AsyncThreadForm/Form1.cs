@@ -398,8 +398,66 @@ namespace P19.Course.AsyncThreadForm
 
             Thread t = new Thread(method);
             t.Start();
+        }
 
+        private void btnThread_CallBack_Return_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("****************btnThread_CallBack_Return_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+            Func<long> funcNeedReturn = ()=> DoSomethingLongReturn("btnThread_CallBack_Return_Click");
+
+
+            Func<long> funcForNewThreadReturn = ThreadWithReturn(funcNeedReturn);//non-block,just get Func and thread. 
+            Console.WriteLine("do something else......"+ DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            Console.WriteLine("do something else......");
+            Console.WriteLine("do something else......");
+            Console.WriteLine("do something else......");
+            Console.WriteLine("do something else......");
+            Console.WriteLine("do something else......");
+            Console.WriteLine("do something else......" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+            long iResult = funcForNewThreadReturn.Invoke();//block thread
+
+            
+
+
+            Console.WriteLine("****************btnThread_CallBack_Return_Click End, Result is {2} " +
+                              "Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"),
+                iResult);
+        }
+
+        private Func<T> ThreadWithReturn<T>(Func<T> func)
+        {
+            //1 async and no block
+            //2 get final result
+            T t = default(T);
+            ThreadStart threadStart = new ThreadStart(
+                () =>
+                {
+                     t = func.Invoke();
+                });
+
+            Thread thread = new Thread(threadStart);
+            thread.Start();
+            Console.WriteLine(" show the thread is start? ");
+            return new Func<T>(()=>
+            {
+                thread.Join();
+                return t;
+            });
 
         }
+
+
+
+
+
+
+
+
     }
 }
