@@ -452,10 +452,26 @@ namespace P19.Course.AsyncThreadForm
 
         }
 
+        private void btnTheadCount_Click(object sender, EventArgs e)
+        {
+            List<Thread> threads = new List<Thread>();
+            for (int i = 0; i < 100; i++)
+            {
+                if (threads.Count(t => t.ThreadState == ThreadState.Running) < 10)
+                {
+                    Thread thread = new Thread(()=>{
+                        Console.WriteLine("a new thread with ID: "+Thread.CurrentThread.ManagedThreadId);
+                    });
 
-
-
-
+                    thread.Start();
+                    threads.Add(thread);
+                }
+                else
+                {
+                    Thread.Sleep(200);
+                }
+            }
+        }
 
 
 

@@ -37,6 +37,7 @@
             this.btnThread = new System.Windows.Forms.Button();
             this.btnThread_CallBack = new System.Windows.Forms.Button();
             this.btnThread_CallBack_Return = new System.Windows.Forms.Button();
+            this.btnTheadCount = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSync
@@ -101,7 +102,7 @@
             // 
             // btnThread
             // 
-            this.btnThread.Location = new System.Drawing.Point(293, 36);
+            this.btnThread.Location = new System.Drawing.Point(238, 28);
             this.btnThread.Name = "btnThread";
             this.btnThread.Size = new System.Drawing.Size(75, 23);
             this.btnThread.TabIndex = 6;
@@ -111,7 +112,7 @@
             // 
             // btnThread_CallBack
             // 
-            this.btnThread_CallBack.Location = new System.Drawing.Point(293, 83);
+            this.btnThread_CallBack.Location = new System.Drawing.Point(238, 77);
             this.btnThread_CallBack.Name = "btnThread_CallBack";
             this.btnThread_CallBack.Size = new System.Drawing.Size(154, 23);
             this.btnThread_CallBack.TabIndex = 7;
@@ -121,7 +122,7 @@
             // 
             // btnThread_CallBack_Return
             // 
-            this.btnThread_CallBack_Return.Location = new System.Drawing.Point(289, 142);
+            this.btnThread_CallBack_Return.Location = new System.Drawing.Point(238, 125);
             this.btnThread_CallBack_Return.Name = "btnThread_CallBack_Return";
             this.btnThread_CallBack_Return.Size = new System.Drawing.Size(158, 23);
             this.btnThread_CallBack_Return.TabIndex = 8;
@@ -129,11 +130,22 @@
             this.btnThread_CallBack_Return.UseVisualStyleBackColor = true;
             this.btnThread_CallBack_Return.Click += new System.EventHandler(this.btnThread_CallBack_Return_Click);
             // 
+            // btnTheadCount
+            // 
+            this.btnTheadCount.Location = new System.Drawing.Point(238, 173);
+            this.btnTheadCount.Name = "btnTheadCount";
+            this.btnTheadCount.Size = new System.Drawing.Size(134, 23);
+            this.btnTheadCount.TabIndex = 9;
+            this.btnTheadCount.Text = "Thread_Count";
+            this.btnTheadCount.UseVisualStyleBackColor = true;
+            this.btnTheadCount.Click += new System.EventHandler(this.btnTheadCount_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 415);
+            this.Controls.Add(this.btnTheadCount);
             this.Controls.Add(this.btnThread_CallBack_Return);
             this.Controls.Add(this.btnThread_CallBack);
             this.Controls.Add(this.btnThread);
@@ -160,6 +172,7 @@
         private System.Windows.Forms.Button btnThread;
         private System.Windows.Forms.Button btnThread_CallBack;
         private System.Windows.Forms.Button btnThread_CallBack_Return;
+        private System.Windows.Forms.Button btnTheadCount;
     }
 }
 
