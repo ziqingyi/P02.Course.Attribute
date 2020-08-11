@@ -523,7 +523,7 @@ namespace P19.Course.AsyncThreadForm
             //the ThreadPool Max and Min value is set for whole process, 
             //will affect Task, Parallel, async/await, they all use ThreadPool
             // new Thread will use thread from the pool, reduce Max threads available.. 
-            ThreadPool.SetMaxThreads(123, 234);
+            ThreadPool.SetMaxThreads(5, 5);// the max number must be more than computer's num of processors 
 
             ThreadPool.SetMinThreads(3, 3);
 
