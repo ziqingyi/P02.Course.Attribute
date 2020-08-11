@@ -483,10 +483,11 @@ namespace P19.Course.AsyncThreadForm
 
             ManualResetEvent mre = new ManualResetEvent(false);
 
+            //all thread pool threads are background thread, //if process stops, thread stops. 
             ThreadPool.QueueUserWorkItem(o =>
                 {
                     this.DoSomethingLong("btnThreadPool_Click param: " + o.ToString());
-                    mre.Set();
+                    mre.Set();// set mre
                 },
                 "state value");// state will pass to o
             Console.WriteLine("Do something else...."+Thread.CurrentThread.ManagedThreadId);
@@ -541,6 +542,46 @@ namespace P19.Course.AsyncThreadForm
 
 
             Console.WriteLine("****************btnThreadPool_MaxMin_Click End, " +
+                              "Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
+
+        private void btnThreadPoolLock_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("****************btnThreadPoolLock_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+            ThreadPool.SetMaxThreads(8, 8);
+            ManualResetEvent mre = new ManualResetEvent(false);
+
+            for (int i = 0; i <= 9; i++)
+            {
+                int k = i;
+
+                ThreadPool.QueueUserWorkItem(t =>
+                {
+                    Console.WriteLine($"ThreadPool thread ID is: {Thread.CurrentThread.ManagedThreadId.ToString("00")} show k is {k}");
+                    if (k == 9)
+                    {
+                        mre.Set();
+                    }
+                    else
+                    {
+                        mre.WaitOne();
+                    }
+                });
+
+            }
+
+            if (mre.WaitOne())
+            {
+                Console.WriteLine("all tasks completed ....");
+            }
+
+
+            Console.WriteLine("****************btnThreadPoolLock_Click End, " +
                               "Thread Id is: {0} Now:{1}***************",
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
