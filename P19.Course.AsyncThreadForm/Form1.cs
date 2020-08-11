@@ -473,7 +473,65 @@ namespace P19.Course.AsyncThreadForm
             }
         }
 
+        private void btnThreadPool_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("****************btnThreadPool_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+            ThreadPool.QueueUserWorkItem(o => this.DoSomethingLong("btnThreadPool_Click"+ o.ToString()),"state value");
 
 
+
+
+
+            Console.WriteLine("****************btnThreadPool_Click End, " +
+                              "Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
+
+        private void btnThreadPool_MaxMin_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("****************btnThreadPool_MaxMin_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+
+
+
+            ThreadPool.GetMaxThreads(out int workerThreadsMax, out int completionPortThreadsMax);
+            Console.WriteLine($"The computer's max workerThreads = {workerThreadsMax} " +
+                              $"max completion port threads = {completionPortThreadsMax}");
+
+            ThreadPool.GetMinThreads(out int workerThreadsMin, out int completionPortThreadsMin);
+            Console.WriteLine($"The computer's min workerThreads = {workerThreadsMin} " +
+                              $"min completion port threads = {completionPortThreadsMin}");
+
+            //the ThreadPool Max and Min value is set for whole process, 
+            //will affect Task, Parallel, async/await, they all use ThreadPool
+            // new Thread will use thread from the pool, reduce Max threads available.. 
+            ThreadPool.SetMaxThreads(123, 234);
+
+            ThreadPool.SetMinThreads(3, 3);
+
+
+            ThreadPool.GetMaxThreads(out int workerThreadsMax1, out int completionPortThreadsMax1);
+            Console.WriteLine($"The computer's max workerThreads = {workerThreadsMax1} " +
+                              $"max completion port threads = {completionPortThreadsMax1}");
+
+            ThreadPool.GetMinThreads(out int workerThreadsMin1, out int completionPortThreadsMin1);
+            Console.WriteLine($"The computer's min workerThreads = {workerThreadsMin1} " +
+                              $"min completion port threads = {completionPortThreadsMin1}");
+
+
+
+
+
+            Console.WriteLine("****************btnThreadPool_MaxMin_Click End, " +
+                              "Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
     }
 }

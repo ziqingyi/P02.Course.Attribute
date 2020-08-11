@@ -38,6 +38,8 @@
             this.btnThread_CallBack = new System.Windows.Forms.Button();
             this.btnThread_CallBack_Return = new System.Windows.Forms.Button();
             this.btnTheadCount = new System.Windows.Forms.Button();
+            this.btnThreadPool = new System.Windows.Forms.Button();
+            this.btnThreadPool_MaxMin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSync
@@ -140,11 +142,33 @@
             this.btnTheadCount.UseVisualStyleBackColor = true;
             this.btnTheadCount.Click += new System.EventHandler(this.btnTheadCount_Click);
             // 
+            // btnThreadPool
+            // 
+            this.btnThreadPool.Location = new System.Drawing.Point(443, 77);
+            this.btnThreadPool.Name = "btnThreadPool";
+            this.btnThreadPool.Size = new System.Drawing.Size(158, 23);
+            this.btnThreadPool.TabIndex = 10;
+            this.btnThreadPool.Text = "Thread_pool";
+            this.btnThreadPool.UseVisualStyleBackColor = true;
+            this.btnThreadPool.Click += new System.EventHandler(this.btnThreadPool_Click);
+            // 
+            // btnThreadPool_MaxMin
+            // 
+            this.btnThreadPool_MaxMin.Location = new System.Drawing.Point(443, 28);
+            this.btnThreadPool_MaxMin.Name = "btnThreadPool_MaxMin";
+            this.btnThreadPool_MaxMin.Size = new System.Drawing.Size(158, 23);
+            this.btnThreadPool_MaxMin.TabIndex = 11;
+            this.btnThreadPool_MaxMin.Text = "Thread Pool Max/Min";
+            this.btnThreadPool_MaxMin.UseVisualStyleBackColor = true;
+            this.btnThreadPool_MaxMin.Click += new System.EventHandler(this.btnThreadPool_MaxMin_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 415);
+            this.Controls.Add(this.btnThreadPool_MaxMin);
+            this.Controls.Add(this.btnThreadPool);
             this.Controls.Add(this.btnTheadCount);
             this.Controls.Add(this.btnThread_CallBack_Return);
             this.Controls.Add(this.btnThread_CallBack);
@@ -173,6 +197,8 @@
         private System.Windows.Forms.Button btnThread_CallBack;
         private System.Windows.Forms.Button btnThread_CallBack_Return;
         private System.Windows.Forms.Button btnTheadCount;
+        private System.Windows.Forms.Button btnThreadPool;
+        private System.Windows.Forms.Button btnThreadPool_MaxMin;
     }
 }
 
