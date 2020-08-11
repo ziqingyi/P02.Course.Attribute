@@ -479,8 +479,20 @@ namespace P19.Course.AsyncThreadForm
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
 
-            ThreadPool.QueueUserWorkItem(o => this.DoSomethingLong("btnThreadPool_Click"+ o.ToString()),"state value");
+            //wait for new thread complete
 
+            ManualResetEvent mre = new ManualResetEvent(false);
+
+            ThreadPool.QueueUserWorkItem(o =>
+                {
+                    this.DoSomethingLong("btnThreadPool_Click param: " + o.ToString());
+                    mre.Set();
+                },
+                "state value");// state will pass to o
+            Console.WriteLine("Do something else...."+Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine("Do something else....");
+            Console.WriteLine("Do something else....");
+            mre.WaitOne();//wait for thread finish set() in the thread pool
 
 
 
