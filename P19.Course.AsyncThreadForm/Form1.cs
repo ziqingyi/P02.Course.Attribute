@@ -553,17 +553,18 @@ namespace P19.Course.AsyncThreadForm
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
 
-            ThreadPool.SetMaxThreads(8, 8);
+            ThreadPool.SetMaxThreads(9, 9);
             ManualResetEvent mre = new ManualResetEvent(false);
 
-            for (int i = 0; i <= 9; i++)
+            int numOfTheadNeedToOpen = 9;
+            for (int i = 1; i <= numOfTheadNeedToOpen; i++)
             {
                 int k = i;
 
                 ThreadPool.QueueUserWorkItem(t =>
                 {
                     Console.WriteLine($"ThreadPool thread ID is: {Thread.CurrentThread.ManagedThreadId.ToString("00")} show k is {k}");
-                    if (k == 9)
+                    if (k == numOfTheadNeedToOpen)//if numOfTheadNeedToOpen > Max Threads in pool, mre will not execute Set(), then lock.
                     {
                         mre.Set();
                     }
