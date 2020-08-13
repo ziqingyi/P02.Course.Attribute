@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThreadState = System.Threading.ThreadState;
 
 namespace P19.Course.AsyncThreadForm
 {
@@ -637,8 +639,46 @@ namespace P19.Course.AsyncThreadForm
                 }
             }
 
+            Console.WriteLine("****************btnTask_Click End, " +
+                              "Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
 
+        private void btnTaskDelay_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("****************btnTask_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
 
+            {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                Console.WriteLine("before the sleep....");
+
+                Thread.Sleep(2000);
+
+                Console.WriteLine("after the sleep.....");
+
+                sw.Stop();
+
+                Console.WriteLine($" sleep takes {sw.ElapsedMilliseconds}");
+            }
+            {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                Console.WriteLine("before the delay...");
+
+                Task task = Task.Delay(2000).ContinueWith(t =>
+                {
+                    sw.Stop();
+                    Console.WriteLine($"Delay takes {sw.ElapsedMilliseconds}");
+                    Console.WriteLine($"this is ThreadId={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                });
+
+                Console.WriteLine("after the delay.....");
+
+            }
 
 
 
@@ -646,6 +686,7 @@ namespace P19.Course.AsyncThreadForm
                               "Thread Id is: {0} Now:{1}***************",
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
         }
     }
 }
