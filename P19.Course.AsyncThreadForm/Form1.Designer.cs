@@ -43,13 +43,14 @@
             this.btnThreadPoolLock = new System.Windows.Forms.Button();
             this.btnTask = new System.Windows.Forms.Button();
             this.btnTaskDelay = new System.Windows.Forms.Button();
+            this.btnTask_Teach_Proj = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSync
             // 
-            this.btnSync.Location = new System.Drawing.Point(12, 53);
+            this.btnSync.Location = new System.Drawing.Point(12, 49);
             this.btnSync.Name = "btnSync";
-            this.btnSync.Size = new System.Drawing.Size(75, 23);
+            this.btnSync.Size = new System.Drawing.Size(75, 21);
             this.btnSync.TabIndex = 0;
             this.btnSync.Text = "Sync";
             this.btnSync.UseVisualStyleBackColor = true;
@@ -57,9 +58,9 @@
             // 
             // btnAsync
             // 
-            this.btnAsync.Location = new System.Drawing.Point(12, 107);
+            this.btnAsync.Location = new System.Drawing.Point(12, 99);
             this.btnAsync.Name = "btnAsync";
-            this.btnAsync.Size = new System.Drawing.Size(75, 23);
+            this.btnAsync.Size = new System.Drawing.Size(75, 21);
             this.btnAsync.TabIndex = 1;
             this.btnAsync.Text = "Async";
             this.btnAsync.UseVisualStyleBackColor = true;
@@ -67,9 +68,9 @@
             // 
             // btnAsyncAdvanced
             // 
-            this.btnAsyncAdvanced.Location = new System.Drawing.Point(12, 152);
+            this.btnAsyncAdvanced.Location = new System.Drawing.Point(12, 140);
             this.btnAsyncAdvanced.Name = "btnAsyncAdvanced";
-            this.btnAsyncAdvanced.Size = new System.Drawing.Size(148, 23);
+            this.btnAsyncAdvanced.Size = new System.Drawing.Size(148, 21);
             this.btnAsyncAdvanced.TabIndex = 2;
             this.btnAsyncAdvanced.Text = "AsyncAdvanced";
             this.btnAsyncAdvanced.UseVisualStyleBackColor = true;
@@ -77,9 +78,9 @@
             // 
             // btnAsyncAdvanced2_IAsyncResult
             // 
-            this.btnAsyncAdvanced2_IAsyncResult.Location = new System.Drawing.Point(12, 204);
+            this.btnAsyncAdvanced2_IAsyncResult.Location = new System.Drawing.Point(12, 188);
             this.btnAsyncAdvanced2_IAsyncResult.Name = "btnAsyncAdvanced2_IAsyncResult";
-            this.btnAsyncAdvanced2_IAsyncResult.Size = new System.Drawing.Size(197, 23);
+            this.btnAsyncAdvanced2_IAsyncResult.Size = new System.Drawing.Size(197, 21);
             this.btnAsyncAdvanced2_IAsyncResult.TabIndex = 3;
             this.btnAsyncAdvanced2_IAsyncResult.Text = "AsyncAdvanced2_IAsyncResult";
             this.btnAsyncAdvanced2_IAsyncResult.UseVisualStyleBackColor = true;
@@ -87,9 +88,9 @@
             // 
             // btnAsyncAdvanced3_WaitOne
             // 
-            this.btnAsyncAdvanced3_WaitOne.Location = new System.Drawing.Point(12, 265);
+            this.btnAsyncAdvanced3_WaitOne.Location = new System.Drawing.Point(12, 245);
             this.btnAsyncAdvanced3_WaitOne.Name = "btnAsyncAdvanced3_WaitOne";
-            this.btnAsyncAdvanced3_WaitOne.Size = new System.Drawing.Size(178, 23);
+            this.btnAsyncAdvanced3_WaitOne.Size = new System.Drawing.Size(178, 21);
             this.btnAsyncAdvanced3_WaitOne.TabIndex = 4;
             this.btnAsyncAdvanced3_WaitOne.Text = "AsyncAdvanced3_WaitOne";
             this.btnAsyncAdvanced3_WaitOne.UseVisualStyleBackColor = true;
@@ -97,9 +98,9 @@
             // 
             // btnAsyncAdvanced4_EndInvoke
             // 
-            this.btnAsyncAdvanced4_EndInvoke.Location = new System.Drawing.Point(12, 322);
+            this.btnAsyncAdvanced4_EndInvoke.Location = new System.Drawing.Point(12, 297);
             this.btnAsyncAdvanced4_EndInvoke.Name = "btnAsyncAdvanced4_EndInvoke";
-            this.btnAsyncAdvanced4_EndInvoke.Size = new System.Drawing.Size(178, 23);
+            this.btnAsyncAdvanced4_EndInvoke.Size = new System.Drawing.Size(178, 21);
             this.btnAsyncAdvanced4_EndInvoke.TabIndex = 5;
             this.btnAsyncAdvanced4_EndInvoke.Text = "AsyncAdvanced4_EndInvoke";
             this.btnAsyncAdvanced4_EndInvoke.UseVisualStyleBackColor = true;
@@ -107,9 +108,9 @@
             // 
             // btnThread
             // 
-            this.btnThread.Location = new System.Drawing.Point(238, 30);
+            this.btnThread.Location = new System.Drawing.Point(238, 28);
             this.btnThread.Name = "btnThread";
-            this.btnThread.Size = new System.Drawing.Size(75, 25);
+            this.btnThread.Size = new System.Drawing.Size(75, 23);
             this.btnThread.TabIndex = 6;
             this.btnThread.Text = "Thread";
             this.btnThread.UseVisualStyleBackColor = true;
@@ -117,9 +118,9 @@
             // 
             // btnThread_CallBack
             // 
-            this.btnThread_CallBack.Location = new System.Drawing.Point(238, 83);
+            this.btnThread_CallBack.Location = new System.Drawing.Point(238, 77);
             this.btnThread_CallBack.Name = "btnThread_CallBack";
-            this.btnThread_CallBack.Size = new System.Drawing.Size(154, 25);
+            this.btnThread_CallBack.Size = new System.Drawing.Size(154, 23);
             this.btnThread_CallBack.TabIndex = 7;
             this.btnThread_CallBack.Text = "Thead_CallBack";
             this.btnThread_CallBack.UseVisualStyleBackColor = true;
@@ -127,9 +128,9 @@
             // 
             // btnThread_CallBack_Return
             // 
-            this.btnThread_CallBack_Return.Location = new System.Drawing.Point(238, 135);
+            this.btnThread_CallBack_Return.Location = new System.Drawing.Point(238, 125);
             this.btnThread_CallBack_Return.Name = "btnThread_CallBack_Return";
-            this.btnThread_CallBack_Return.Size = new System.Drawing.Size(158, 25);
+            this.btnThread_CallBack_Return.Size = new System.Drawing.Size(158, 23);
             this.btnThread_CallBack_Return.TabIndex = 8;
             this.btnThread_CallBack_Return.Text = "Thread_CallBack_Return";
             this.btnThread_CallBack_Return.UseVisualStyleBackColor = true;
@@ -137,9 +138,9 @@
             // 
             // btnTheadCount
             // 
-            this.btnTheadCount.Location = new System.Drawing.Point(238, 187);
+            this.btnTheadCount.Location = new System.Drawing.Point(238, 173);
             this.btnTheadCount.Name = "btnTheadCount";
-            this.btnTheadCount.Size = new System.Drawing.Size(134, 25);
+            this.btnTheadCount.Size = new System.Drawing.Size(134, 23);
             this.btnTheadCount.TabIndex = 9;
             this.btnTheadCount.Text = "Thread_Count";
             this.btnTheadCount.UseVisualStyleBackColor = true;
@@ -147,9 +148,9 @@
             // 
             // btnThreadPool
             // 
-            this.btnThreadPool.Location = new System.Drawing.Point(234, 320);
+            this.btnThreadPool.Location = new System.Drawing.Point(234, 295);
             this.btnThreadPool.Name = "btnThreadPool";
-            this.btnThreadPool.Size = new System.Drawing.Size(158, 25);
+            this.btnThreadPool.Size = new System.Drawing.Size(158, 23);
             this.btnThreadPool.TabIndex = 10;
             this.btnThreadPool.Text = "Thread_pool";
             this.btnThreadPool.UseVisualStyleBackColor = true;
@@ -157,9 +158,9 @@
             // 
             // btnThreadPool_MaxMin
             // 
-            this.btnThreadPool_MaxMin.Location = new System.Drawing.Point(234, 373);
+            this.btnThreadPool_MaxMin.Location = new System.Drawing.Point(234, 344);
             this.btnThreadPool_MaxMin.Name = "btnThreadPool_MaxMin";
-            this.btnThreadPool_MaxMin.Size = new System.Drawing.Size(158, 25);
+            this.btnThreadPool_MaxMin.Size = new System.Drawing.Size(158, 23);
             this.btnThreadPool_MaxMin.TabIndex = 11;
             this.btnThreadPool_MaxMin.Text = "Thread Pool Max/Min";
             this.btnThreadPool_MaxMin.UseVisualStyleBackColor = true;
@@ -167,9 +168,9 @@
             // 
             // btnThreadPoolLock
             // 
-            this.btnThreadPoolLock.Location = new System.Drawing.Point(234, 425);
+            this.btnThreadPoolLock.Location = new System.Drawing.Point(234, 392);
             this.btnThreadPoolLock.Name = "btnThreadPoolLock";
-            this.btnThreadPoolLock.Size = new System.Drawing.Size(158, 23);
+            this.btnThreadPoolLock.Size = new System.Drawing.Size(158, 21);
             this.btnThreadPoolLock.TabIndex = 12;
             this.btnThreadPoolLock.Text = "Thread Pool deadLock";
             this.btnThreadPoolLock.UseVisualStyleBackColor = true;
@@ -177,9 +178,9 @@
             // 
             // btnTask
             // 
-            this.btnTask.Location = new System.Drawing.Point(432, 30);
+            this.btnTask.Location = new System.Drawing.Point(432, 28);
             this.btnTask.Name = "btnTask";
-            this.btnTask.Size = new System.Drawing.Size(75, 25);
+            this.btnTask.Size = new System.Drawing.Size(75, 23);
             this.btnTask.TabIndex = 13;
             this.btnTask.Text = "Task";
             this.btnTask.UseVisualStyleBackColor = true;
@@ -187,19 +188,30 @@
             // 
             // btnTaskDelay
             // 
-            this.btnTaskDelay.Location = new System.Drawing.Point(432, 83);
+            this.btnTaskDelay.Location = new System.Drawing.Point(432, 77);
             this.btnTaskDelay.Name = "btnTaskDelay";
-            this.btnTaskDelay.Size = new System.Drawing.Size(93, 23);
+            this.btnTaskDelay.Size = new System.Drawing.Size(93, 21);
             this.btnTaskDelay.TabIndex = 14;
             this.btnTaskDelay.Text = "Task_Delay";
             this.btnTaskDelay.UseVisualStyleBackColor = true;
             this.btnTaskDelay.Click += new System.EventHandler(this.btnTaskDelay_Click);
             // 
+            // btnTask_Teach_Proj
+            // 
+            this.btnTask_Teach_Proj.Location = new System.Drawing.Point(432, 125);
+            this.btnTask_Teach_Proj.Name = "btnTask_Teach_Proj";
+            this.btnTask_Teach_Proj.Size = new System.Drawing.Size(122, 23);
+            this.btnTask_Teach_Proj.TabIndex = 15;
+            this.btnTask_Teach_Proj.Text = "Task_Teach_Proj";
+            this.btnTask_Teach_Proj.UseVisualStyleBackColor = true;
+            this.btnTask_Teach_Proj.Click += new System.EventHandler(this.btnTask_Teach_Proj_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 478);
+            this.ClientSize = new System.Drawing.Size(822, 441);
+            this.Controls.Add(this.btnTask_Teach_Proj);
             this.Controls.Add(this.btnTaskDelay);
             this.Controls.Add(this.btnTask);
             this.Controls.Add(this.btnThreadPoolLock);
@@ -238,6 +250,7 @@
         private System.Windows.Forms.Button btnThreadPoolLock;
         private System.Windows.Forms.Button btnTask;
         private System.Windows.Forms.Button btnTaskDelay;
+        private System.Windows.Forms.Button btnTask_Teach_Proj;
     }
 }
 

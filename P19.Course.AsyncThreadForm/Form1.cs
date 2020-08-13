@@ -656,7 +656,7 @@ namespace P19.Course.AsyncThreadForm
                 sw.Start();
                 Console.WriteLine("before the sleep....");
 
-                Thread.Sleep(2000);
+                Thread.Sleep(2000);//windows freeze 
 
                 Console.WriteLine("after the sleep.....");
 
@@ -669,7 +669,7 @@ namespace P19.Course.AsyncThreadForm
                 sw.Start();
                 Console.WriteLine("before the delay...");
 
-                Task task = Task.Delay(2000).ContinueWith(t =>
+                Task task = Task.Delay(2000).ContinueWith(t =>//new task will not freeze window
                 {
                     sw.Stop();
                     Console.WriteLine($"Delay takes {sw.ElapsedMilliseconds}");
@@ -680,13 +680,72 @@ namespace P19.Course.AsyncThreadForm
 
             }
 
-
-
             Console.WriteLine("****************btnTask_Click End, " +
                               "Thread Id is: {0} Now:{1}***************",
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
 
         }
+
+        private void btnTask_Teach_Proj_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(@"****************btnTask_Teach_Proj_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            Teach("Professor Adrian","lesson 1");//no concurrency, must complete one by one
+            Teach("Professor Adrian", "lesson 2");
+
+            Console.WriteLine(@"Now start a project...");
+
+            TaskFactory taskFactory = new TaskFactory();
+            List<Task> taskList = new List<Task>();
+            taskList.Add(taskFactory.StartNew(()=>coding("student1", " Portal ")));
+            taskList.Add(taskFactory.StartNew(()=>coding("student2", " DBA ")));
+            taskList.Add(taskFactory.StartNew(()=>coding("student3","Backend")));
+
+
+
+            Task.WaitAll(taskList.ToArray());
+
+            Console.WriteLine(@"Professor Adrian start to review the project ");
+
+            Console.WriteLine(@"****************btnTask_Teach_Proj_Click End, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
+
+        private void Teach(string name,string course)
+        {
+            Console.WriteLine($"+++++++++++++Tutorial {course} Start by {name}  , Thread Id is: " +
+                              $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                              $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}++++++++++++");
+            long lResult = 0;
+            for (int i = 0; i < 1_000_000_000; i++)
+            {
+                lResult += i;
+            }
+
+            Console.WriteLine($"++++++++++++++Tutorial  {course} End by {name}  , Thread Id is: " +
+                              $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                              $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                              $"result is : {lResult}+++++++++++");
+        }
+        private void coding(string name, string prjectName)
+        {
+            Console.WriteLine($"+++++++++++++{name} is working on project {prjectName} , Thread Id is: " +
+                              $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                              $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} ++++++++++++");
+            long lResult = 0;
+            for (int i = 0; i < 1_000_000_000; i++)
+            {
+                lResult += i;
+            }
+            Console.WriteLine($"++++++++++++++{name} finish the project {prjectName}, Thread Id is: " +
+                              $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                              $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                              $"result is : {lResult}+++++++++++");
+        }
+
+
     }
 }
