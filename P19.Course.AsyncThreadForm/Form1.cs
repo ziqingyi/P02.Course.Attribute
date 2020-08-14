@@ -704,10 +704,32 @@ namespace P19.Course.AsyncThreadForm
             taskList.Add(taskFactory.StartNew(()=>coding("student3","Backend")));
 
 
+            //Task.WaitAny(taskList.ToArray()); // if any task complete, do something using main thread. 
+            //Console.WriteLine(@"Professor Adrian start to config environment");  // can use ContinueWhenAll
+            Task continueTask = taskFactory.ContinueWhenAny(taskList.ToArray(), rArray =>
+            {
+                Console.WriteLine($"one of the Project is finished, current thread ID IS {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                Console.WriteLine(@"Professor Adrian start to config environment ");
+            });//ContinueWhenAny will pick a new thread from the threadpool, maybe the one of the previous thread, may not. But not main thread ID. 
 
-            Task.WaitAll(taskList.ToArray());
+            
+            //if you need to wait for callback task finish, just add to taskList
+            taskList.Add(continueTask);
 
-            Console.WriteLine(@"Professor Adrian start to review the project ");
+
+
+            //Task.WaitAll(taskList.ToArray()); //wait until all finished, then can do something with main thread.  
+            //
+            //do something when all finish
+            taskFactory.ContinueWhenAll(taskList.ToArray(), rArray =>
+            {
+                Console.WriteLine($"Project is finished, current thread ID IS {Thread.CurrentThread.ManagedThreadId.ToString("00")}"); 
+                Console.WriteLine(@"Professor Adrian start to review the project ");
+            });//ContinueWhenAny will pick a new thread from the threadpool, maybe the one of the previous thread, may not. 
+
+
+
+
 
             Console.WriteLine(@"****************btnTask_Teach_Proj_Click End, Thread Id is: {0} Now:{1}***************",
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
