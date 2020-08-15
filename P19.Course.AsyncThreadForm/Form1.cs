@@ -645,6 +645,91 @@ namespace P19.Course.AsyncThreadForm
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
         }
 
+        private void btnTask_LimitNumOfTasks_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("****************btnTask_LimitNumOfTasks_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            HashSet<string> collectAllThreadId = new HashSet<string>();
+
+
+            //limit num of tasks running.
+            List<int> list = new List<int>();
+            for (int i = 0; i < 1000; i++)
+            {
+                list.Add(i);
+            }
+            //complete 1000 tasks with 11 theads
+            Action<int> action = i =>
+            {
+                
+                Console.WriteLine($"action {i} start with thread id: {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                Thread.Sleep(new Random(i).Next(100,300));
+                Console.WriteLine($"action {i} finish with thread id: {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                collectAllThreadId.Add(Thread.CurrentThread.ManagedThreadId.ToString("00"));//collect thread ID
+            };
+            List<Task> taskList = new List<Task>();
+
+            foreach (var i in list)
+            {
+                int k = i;
+                ////invoke a new thread, can also use a taskfactory.StartNew(), to pass state
+                taskList.Add(
+                    Task.Run(
+                        () => 
+                        action.Invoke(k)
+                        )
+                    );
+
+                if (taskList.Count > 10)
+                {
+                    Console.WriteLine("there are {0} tasks running in the list, just wait any to finish.",taskList.Count);
+                    
+                    //task list is full, show all task id
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("all running tasks' Task Id : ");
+                    foreach (Task t in taskList)
+                    {
+                        sb.Append(t.Id + ", ");
+                    }
+
+                    Console.WriteLine(sb.ToString());
+
+
+                    //wait any to complete
+                    Task.WaitAny(taskList.ToArray());
+                    //remove the completed tasks.
+                    taskList = taskList.Where(t => t.Status != TaskStatus.RanToCompletion).ToList();
+                    Console.WriteLine("some tasks are finished, so now task list have {0} tasks.",taskList.Count);
+
+                    //now check task id again
+                    StringBuilder sb2 = new StringBuilder();
+                    sb2.Append("anyone finished, now all running task Id : ");
+                    foreach (Task t in taskList)
+                    {
+                        sb2.Append(t.Id + ", ");
+                    }
+
+                    Console.WriteLine(sb2.ToString());
+
+                }
+            }
+            Task.WhenAll(taskList.ToArray());
+
+            //print out all thread id, may exceed 10 because the limitation is set to num of thread at a time. 
+            Console.WriteLine(collectAllThreadId.ToArray() +"    "+ collectAllThreadId.Count);
+            foreach (string s in collectAllThreadId.OrderBy(s=>s))
+            {
+                Console.WriteLine("we use thread ids: "+s);
+            }
+
+            Console.WriteLine(@"****************btnTask_LimitNumOfTasks_Click End, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
+
+
+
         private void btnTaskDelay_Click(object sender, EventArgs e)
         {
             Console.WriteLine("****************btnTask_Click Start, Thread Id is: {0} Now:{1}***************",
@@ -689,18 +774,19 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnTask_Teach_Proj_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(@"****************btnTask_Teach_Proj_Click Start, Thread Id is: {0} Now:{1}***************",
+            Console.WriteLine(
+                @"****************btnTask_Teach_Proj_Click Start, Thread Id is: {0} Now:{1}***************",
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-            Teach("Professor Adrian","lesson 1");//no concurrency, must complete one by one
+            Teach("Professor Adrian", "lesson 1"); //no concurrency, must complete one by one
             Teach("Professor Adrian", "lesson 2");
 
             Console.WriteLine(@"Now start a project...");
 
             TaskFactory taskFactory = new TaskFactory();
             List<Task> taskList = new List<Task>();
-            taskList.Add(taskFactory.StartNew(()=>coding("student1", " Portal ")));
-            taskList.Add(taskFactory.StartNew(()=>coding("student2", " DBA ")));
+            taskList.Add(taskFactory.StartNew(o => coding("student1", " Portal "),"async state"));
+            taskList.Add(taskFactory.StartNew(o =>coding("student2", " DBA "),"async state" ));
             taskList.Add(taskFactory.StartNew(()=>coding("student3","Backend")));
 
 
@@ -708,6 +794,8 @@ namespace P19.Course.AsyncThreadForm
             //Console.WriteLine(@"Professor Adrian start to config environment");  // can use ContinueWhenAll
             Task continueTask = taskFactory.ContinueWhenAny(taskList.ToArray(), rArray =>
             {
+                Console.WriteLine("AsyncState is : "+rArray.AsyncState);
+                
                 Console.WriteLine($"one of the Project is finished, current thread ID IS {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 Console.WriteLine(@"Professor Adrian start to config environment ");
             });//ContinueWhenAny will pick a new thread from the threadpool, maybe the one of the previous thread, may not. But not main thread ID. 

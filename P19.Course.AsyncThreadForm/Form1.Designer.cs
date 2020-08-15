@@ -44,6 +44,7 @@
             this.btnTask = new System.Windows.Forms.Button();
             this.btnTaskDelay = new System.Windows.Forms.Button();
             this.btnTask_Teach_Proj = new System.Windows.Forms.Button();
+            this.btnTask_LimitNumOfTasks = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSync
@@ -188,7 +189,7 @@
             // 
             // btnTaskDelay
             // 
-            this.btnTaskDelay.Location = new System.Drawing.Point(432, 77);
+            this.btnTaskDelay.Location = new System.Drawing.Point(432, 127);
             this.btnTaskDelay.Name = "btnTaskDelay";
             this.btnTaskDelay.Size = new System.Drawing.Size(93, 21);
             this.btnTaskDelay.TabIndex = 14;
@@ -198,7 +199,7 @@
             // 
             // btnTask_Teach_Proj
             // 
-            this.btnTask_Teach_Proj.Location = new System.Drawing.Point(432, 125);
+            this.btnTask_Teach_Proj.Location = new System.Drawing.Point(432, 175);
             this.btnTask_Teach_Proj.Name = "btnTask_Teach_Proj";
             this.btnTask_Teach_Proj.Size = new System.Drawing.Size(122, 23);
             this.btnTask_Teach_Proj.TabIndex = 15;
@@ -206,11 +207,22 @@
             this.btnTask_Teach_Proj.UseVisualStyleBackColor = true;
             this.btnTask_Teach_Proj.Click += new System.EventHandler(this.btnTask_Teach_Proj_Click);
             // 
+            // btnTask_LimitNumOfTasks
+            // 
+            this.btnTask_LimitNumOfTasks.Location = new System.Drawing.Point(432, 77);
+            this.btnTask_LimitNumOfTasks.Name = "btnTask_LimitNumOfTasks";
+            this.btnTask_LimitNumOfTasks.Size = new System.Drawing.Size(148, 23);
+            this.btnTask_LimitNumOfTasks.TabIndex = 16;
+            this.btnTask_LimitNumOfTasks.Text = "Task_LimitNumOfTasks";
+            this.btnTask_LimitNumOfTasks.UseVisualStyleBackColor = true;
+            this.btnTask_LimitNumOfTasks.Click += new System.EventHandler(this.btnTask_LimitNumOfTasks_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 441);
+            this.Controls.Add(this.btnTask_LimitNumOfTasks);
             this.Controls.Add(this.btnTask_Teach_Proj);
             this.Controls.Add(this.btnTaskDelay);
             this.Controls.Add(this.btnTask);
@@ -251,6 +263,7 @@
         private System.Windows.Forms.Button btnTask;
         private System.Windows.Forms.Button btnTaskDelay;
         private System.Windows.Forms.Button btnTask_Teach_Proj;
+        private System.Windows.Forms.Button btnTask_LimitNumOfTasks;
     }
 }
 
