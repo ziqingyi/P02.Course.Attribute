@@ -724,7 +724,17 @@ namespace P19.Course.AsyncThreadForm
             taskFactory.ContinueWhenAll(taskList.ToArray(), rArray =>
             {
                 Console.WriteLine($"Project is finished, current thread ID IS {Thread.CurrentThread.ManagedThreadId.ToString("00")}"); 
-                Console.WriteLine(@"Professor Adrian start to review the project ");
+                
+
+                Task<int> ToGrade = Task.Run<int>(() =>
+                {
+                    Thread.Sleep(2000);//will block the thread, will give a score
+                    Random r = new Random();
+                    return r.Next(50, 100);
+                });
+                int result = ToGrade.Result;
+                Console.WriteLine(@"Professor Adrian start to review the project, Score is  "+result);
+
             });//ContinueWhenAny will pick a new thread from the threadpool, maybe the one of the previous thread, may not. 
 
 
