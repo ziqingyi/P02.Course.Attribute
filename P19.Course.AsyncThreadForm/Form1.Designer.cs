@@ -45,6 +45,8 @@
             this.btnTaskDelay = new System.Windows.Forms.Button();
             this.btnTask_Teach_Proj = new System.Windows.Forms.Button();
             this.btnTask_LimitNumOfTasks = new System.Windows.Forms.Button();
+            this.btnParallel = new System.Windows.Forms.Button();
+            this.btnParallel_no_block = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSync
@@ -217,11 +219,33 @@
             this.btnTask_LimitNumOfTasks.UseVisualStyleBackColor = true;
             this.btnTask_LimitNumOfTasks.Click += new System.EventHandler(this.btnTask_LimitNumOfTasks_Click);
             // 
+            // btnParallel
+            // 
+            this.btnParallel.Location = new System.Drawing.Point(432, 245);
+            this.btnParallel.Name = "btnParallel";
+            this.btnParallel.Size = new System.Drawing.Size(122, 23);
+            this.btnParallel.TabIndex = 17;
+            this.btnParallel.Text = "Parallel";
+            this.btnParallel.UseVisualStyleBackColor = true;
+            this.btnParallel.Click += new System.EventHandler(this.btnParallel_Click);
+            // 
+            // btnParallel_no_block
+            // 
+            this.btnParallel_no_block.Location = new System.Drawing.Point(432, 295);
+            this.btnParallel_no_block.Name = "btnParallel_no_block";
+            this.btnParallel_no_block.Size = new System.Drawing.Size(172, 23);
+            this.btnParallel_no_block.TabIndex = 18;
+            this.btnParallel_no_block.Text = "Parallel_no_block";
+            this.btnParallel_no_block.UseVisualStyleBackColor = true;
+            this.btnParallel_no_block.Click += new System.EventHandler(this.btnParallel_no_block_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 441);
+            this.Controls.Add(this.btnParallel_no_block);
+            this.Controls.Add(this.btnParallel);
             this.Controls.Add(this.btnTask_LimitNumOfTasks);
             this.Controls.Add(this.btnTask_Teach_Proj);
             this.Controls.Add(this.btnTaskDelay);
@@ -264,6 +288,8 @@
         private System.Windows.Forms.Button btnTaskDelay;
         private System.Windows.Forms.Button btnTask_Teach_Proj;
         private System.Windows.Forms.Button btnTask_LimitNumOfTasks;
+        private System.Windows.Forms.Button btnParallel;
+        private System.Windows.Forms.Button btnParallel_no_block;
     }
 }
 

@@ -873,6 +873,61 @@ namespace P19.Course.AsyncThreadForm
                               $"result is : {lResult}+++++++++++");
         }
 
+        private void btnParallel_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(@"****************btnParallel_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
 
+            //Parallel run multiple actions with multiple thread, 
+            //main thread will join in computation, eg. thread 01
+            //main thread will wait all tasks finish, similar to TaskWaitAll + main thread computation.
+
+            //Parallel.Invoke()
+            Parallel.Invoke(()=>DoSomethingLong("btnParallel_Click_00"),
+                ()=>DoSomethingLong("btnParallel_Click_01"),
+                ()=>DoSomethingLong("btnParallel_Click_02"),
+                ()=>DoSomethingLong("btnParallel_Click_03"),
+                ()=>DoSomethingLong("btnParallel_Click_04"));
+
+            //then set limit to num of parallel tasks at a time. 
+            ParallelOptions options = new ParallelOptions();
+            options.MaxDegreeOfParallelism = 3;
+
+            //Parallel.For()
+            Parallel.For(5,15,options,i=>DoSomethingLong($"btnParallel_Click_{i}"));
+
+            //Parallel.ForEach
+            Parallel.ForEach(new int[] {16, 19}, i => DoSomethingLong($"btnParallel_Click_{i}"));
+
+
+
+
+            Console.WriteLine(@"****************btnParallel_Click End, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
+
+        private void btnParallel_no_block_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(@"****************btnParallel_no_block_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+
+            Action someParallelTasks = () =>
+            {
+                ParallelOptions options = new ParallelOptions();
+                options.MaxDegreeOfParallelism = 3;
+                Parallel.For(0, 10, options, i => DoSomethingLong($"btnParallel_no_block_Click_{i}"));
+            };
+
+            Task.Run(someParallelTasks);
+
+
+            Console.WriteLine(@"****************btnParallel_no_block_Click End, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
     }
 }
