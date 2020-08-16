@@ -785,7 +785,7 @@ namespace P19.Course.AsyncThreadForm
 
             TaskFactory taskFactory = new TaskFactory();
             List<Task> taskList = new List<Task>();
-            taskList.Add(taskFactory.StartNew(o => coding("student1", " Portal "),"async state Protal"));
+            taskList.Add(taskFactory.StartNew(o =>coding(o.ToString(), " Portal "), "student1 async state Protal"));
             taskList.Add(taskFactory.StartNew(o =>coding("student2", " DBA "),"async state DBA" ));
             taskList.Add(taskFactory.StartNew(()=>coding("student3","Backend")));
 
@@ -794,7 +794,7 @@ namespace P19.Course.AsyncThreadForm
             //Console.WriteLine(@"Professor Adrian start to config environment");  // can use ContinueWhenAll
             Task continueTask = taskFactory.ContinueWhenAny(taskList.ToArray(), rArray =>
             {
-                Console.WriteLine("AsyncState is : "+rArray.AsyncState);
+                Console.WriteLine("AsyncState is : "+rArray.AsyncState +" finish first, very good...");
                 
                 Console.WriteLine($"one of the Project is finished, current thread ID IS {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 Console.WriteLine(@"Professor Adrian start to config environment ");
