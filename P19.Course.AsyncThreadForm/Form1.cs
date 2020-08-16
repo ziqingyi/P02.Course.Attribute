@@ -785,8 +785,8 @@ namespace P19.Course.AsyncThreadForm
 
             TaskFactory taskFactory = new TaskFactory();
             List<Task> taskList = new List<Task>();
-            taskList.Add(taskFactory.StartNew(o => coding("student1", " Portal "),"async state"));
-            taskList.Add(taskFactory.StartNew(o =>coding("student2", " DBA "),"async state" ));
+            taskList.Add(taskFactory.StartNew(o => coding("student1", " Portal "),"async state Protal"));
+            taskList.Add(taskFactory.StartNew(o =>coding("student2", " DBA "),"async state DBA" ));
             taskList.Add(taskFactory.StartNew(()=>coding("student3","Backend")));
 
 
@@ -811,17 +811,24 @@ namespace P19.Course.AsyncThreadForm
             //do something when all finish
             taskFactory.ContinueWhenAll(taskList.ToArray(), rArray =>
             {
-                Console.WriteLine($"Project is finished, current thread ID IS {Thread.CurrentThread.ManagedThreadId.ToString("00")}"); 
-                
+                Console.WriteLine($"Project is FINISHED, current thread ID is {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
-                Task<int> ToGrade = Task.Run<int>(() =>
+                
+                //one way of get task result and then do something,but block main thread running the task
+                Task<int> res = Task.Run<int>(() => { return 1;} );
+                Console.WriteLine(res.Result); 
+
+                //another way of get task result and then do something, not block main thread running the task
+                Task toGrade = Task.Run<int>(() => 
                 {
                     Thread.Sleep(2000);//will block the thread, will give a score
                     Random r = new Random();
                     return r.Next(50, 100);
-                });
-                int result = ToGrade.Result;
-                Console.WriteLine(@"Professor Adrian start to review the project, Score is  "+result);
+                }).ContinueWith(tint =>
+                    {
+                        int result = tint.Result; 
+                        Console.WriteLine(@"Professor Adrian start to review the project, Score is  "+result);
+                    });
 
             });//ContinueWhenAny will pick a new thread from the threadpool, maybe the one of the previous thread, may not. 
 
