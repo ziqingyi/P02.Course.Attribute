@@ -964,10 +964,7 @@ namespace P19.Course.AsyncThreadForm
                         })
                     );
                 }
-
-                Task.WaitAll(taskList.ToArray());//if not wait all, exception will not be catched. 
-
-
+                Task.WaitAll(taskList.ToArray());//if not wait all, exception will not be catched. waitAny will not catch exception.
             }
             catch (AggregateException aex)
             {
