@@ -938,6 +938,8 @@ namespace P19.Course.AsyncThreadForm
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             //exception in one thread will only stop current thread, but not affect other threads.
             //so use waitall to catch the exceptions.
+            //the best practice is to try catch(may have log) in the sub tasks(threads),
+            //which means no error in delegate in tasks. 
             try
             {
                 List<Task> taskList = new List<Task>();
@@ -978,10 +980,22 @@ namespace P19.Course.AsyncThreadForm
                 Console.WriteLine(ex.ToString());
             }
 
-
-
-
             Console.WriteLine(@"****************btnThreadCore_Exception_Click End, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
+
+        private void btnThreadCore_CancellationTokenSource_Click(object sender, EventArgs e)
+        {
+
+            Console.WriteLine(@"****************btnThreadCore_CancellationTokenSource_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+
+
+
+            Console.WriteLine(@"****************btnThreadCore_CancellationTokenSource_Click End, Thread Id is: {0} Now:{1}***************",
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
         }

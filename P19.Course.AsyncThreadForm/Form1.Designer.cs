@@ -48,6 +48,7 @@
             this.btnParallel = new System.Windows.Forms.Button();
             this.btnParallel_no_block = new System.Windows.Forms.Button();
             this.btnThreadCore_Exception = new System.Windows.Forms.Button();
+            this.btnThreadCore_CancellationTokenSource = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSync
@@ -242,7 +243,7 @@
             // 
             // btnThreadCore_Exception
             // 
-            this.btnThreadCore_Exception.Location = new System.Drawing.Point(432, 344);
+            this.btnThreadCore_Exception.Location = new System.Drawing.Point(640, 28);
             this.btnThreadCore_Exception.Name = "btnThreadCore_Exception";
             this.btnThreadCore_Exception.Size = new System.Drawing.Size(158, 23);
             this.btnThreadCore_Exception.TabIndex = 19;
@@ -250,11 +251,22 @@
             this.btnThreadCore_Exception.UseVisualStyleBackColor = true;
             this.btnThreadCore_Exception.Click += new System.EventHandler(this.btnThreadCore_Exception_Click);
             // 
+            // btnThreadCore_CancellationTokenSource
+            // 
+            this.btnThreadCore_CancellationTokenSource.Location = new System.Drawing.Point(640, 77);
+            this.btnThreadCore_CancellationTokenSource.Name = "btnThreadCore_CancellationTokenSource";
+            this.btnThreadCore_CancellationTokenSource.Size = new System.Drawing.Size(255, 23);
+            this.btnThreadCore_CancellationTokenSource.TabIndex = 20;
+            this.btnThreadCore_CancellationTokenSource.Text = "ThreadCore_CancellationTokenSource";
+            this.btnThreadCore_CancellationTokenSource.UseVisualStyleBackColor = true;
+            this.btnThreadCore_CancellationTokenSource.Click += new System.EventHandler(this.btnThreadCore_CancellationTokenSource_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 441);
+            this.ClientSize = new System.Drawing.Size(991, 460);
+            this.Controls.Add(this.btnThreadCore_CancellationTokenSource);
             this.Controls.Add(this.btnThreadCore_Exception);
             this.Controls.Add(this.btnParallel_no_block);
             this.Controls.Add(this.btnParallel);
@@ -303,6 +315,7 @@
         private System.Windows.Forms.Button btnParallel;
         private System.Windows.Forms.Button btnParallel_no_block;
         private System.Windows.Forms.Button btnThreadCore_Exception;
+        private System.Windows.Forms.Button btnThreadCore_CancellationTokenSource;
     }
 }
 
