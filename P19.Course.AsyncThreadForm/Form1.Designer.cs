@@ -47,6 +47,7 @@
             this.btnTask_LimitNumOfTasks = new System.Windows.Forms.Button();
             this.btnParallel = new System.Windows.Forms.Button();
             this.btnParallel_no_block = new System.Windows.Forms.Button();
+            this.btnThreadCore_Exception = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSync
@@ -239,11 +240,22 @@
             this.btnParallel_no_block.UseVisualStyleBackColor = true;
             this.btnParallel_no_block.Click += new System.EventHandler(this.btnParallel_no_block_Click);
             // 
+            // btnThreadCore_Exception
+            // 
+            this.btnThreadCore_Exception.Location = new System.Drawing.Point(432, 344);
+            this.btnThreadCore_Exception.Name = "btnThreadCore_Exception";
+            this.btnThreadCore_Exception.Size = new System.Drawing.Size(158, 23);
+            this.btnThreadCore_Exception.TabIndex = 19;
+            this.btnThreadCore_Exception.Text = "ThreadCore_Exception";
+            this.btnThreadCore_Exception.UseVisualStyleBackColor = true;
+            this.btnThreadCore_Exception.Click += new System.EventHandler(this.btnThreadCore_Exception_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 441);
+            this.Controls.Add(this.btnThreadCore_Exception);
             this.Controls.Add(this.btnParallel_no_block);
             this.Controls.Add(this.btnParallel);
             this.Controls.Add(this.btnTask_LimitNumOfTasks);
@@ -290,6 +302,7 @@
         private System.Windows.Forms.Button btnTask_LimitNumOfTasks;
         private System.Windows.Forms.Button btnParallel;
         private System.Windows.Forms.Button btnParallel_no_block;
+        private System.Windows.Forms.Button btnThreadCore_Exception;
     }
 }
 

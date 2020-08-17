@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -926,6 +927,64 @@ namespace P19.Course.AsyncThreadForm
 
 
             Console.WriteLine(@"****************btnParallel_no_block_Click End, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
+
+        private void btnThreadCore_Exception_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(@"****************btnThreadCore_Exception_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            //exception in one thread will only stop current thread, but not affect other threads.
+            //so use waitall to catch the exceptions.
+            try
+            {
+                List<Task> taskList = new List<Task>();
+                for (int i = 0; i < 100; i++)
+                {
+                    string name = $"btnThreadCore_Exception_Click_{i}";
+                    taskList.Add(
+                        Task.Run(() =>
+                        {
+                            if (name.Equals("btnThreadCore_Exception_Click_10"))
+                            {
+                                throw new Exception("btnThreadCore_Exception_Click_10 Exception...."+ Thread.CurrentThread.ManagedThreadId.ToString("00"));
+                            }
+                            else if (name.Equals("btnThreadCore_Exception_Click_11"))
+                            {
+                                throw new Exception("btnThreadCore_Exception_Click_11 Exception...." + Thread.CurrentThread.ManagedThreadId.ToString("00"));
+                            }
+                            else if (name.Equals("btnThreadCore_Exception_Click_12"))
+                            {
+                                throw new Exception("btnThreadCore_Exception_Click_12 Exception...." + Thread.CurrentThread.ManagedThreadId.ToString("00"));
+                            }
+                            Console.WriteLine($"This is {name} success, Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+
+                        })
+                    );
+                }
+
+                Task.WaitAll(taskList.ToArray());//if not wait all, exception will not be catched. 
+
+
+            }
+            catch (AggregateException aex)
+            {
+                foreach (var exception in aex.InnerExceptions)
+                {
+                    Console.WriteLine(exception.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+
+
+
+            Console.WriteLine(@"****************btnThreadCore_Exception_Click End, Thread Id is: {0} Now:{1}***************",
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
         }
