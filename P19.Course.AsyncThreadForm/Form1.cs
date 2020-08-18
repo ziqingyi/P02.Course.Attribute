@@ -1064,5 +1064,26 @@ namespace P19.Course.AsyncThreadForm
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
         }
+
+        private void btnThreadCore_Variable_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(@"****************btnThreadCore_Variable_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+            for (int i = 0; i < 5; i++)
+            {
+                int k = i; //show the different between i and k, i is shared. 
+                Task.Run(()=>
+                {
+                    Console.WriteLine($"this is btnThreadCore_Variable_Click_{i}_{k}, " +
+                                      $"ThreadId ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                });
+            }
+
+            Console.WriteLine(@"****************btnThreadCore_Variable_Click End, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
     }
 }
