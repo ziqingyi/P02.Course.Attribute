@@ -1149,5 +1149,39 @@ namespace P19.Course.AsyncThreadForm
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
         }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.DoTest();
+        }
+
+        private int iDoTestNum = 0;
+
+        private void DoTest()
+        {
+            //will not lock, because this is locked by same thread.
+            //lock is used for preventing other threads.
+            lock (this)
+            {
+                this.iDoTestNum++;
+                if (DateTime.Now.Day < 28 && iDoTestNum < 10)
+                {
+                    Console.WriteLine($"This is the {iDoTestNum}th , {DateTime.Now.Day}");
+                    this.DoTest();
+                }
+                else
+                {
+                    Console.WriteLine("this is 28");
+                }
+
+            }
+        }
+
     }
+
+    
+
+
+
 }

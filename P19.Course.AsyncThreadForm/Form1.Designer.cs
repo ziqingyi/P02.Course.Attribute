@@ -51,6 +51,7 @@
             this.btnThreadCore_CancellationTokenSource = new System.Windows.Forms.Button();
             this.btnThreadCore_Variable = new System.Windows.Forms.Button();
             this.btnThreadCore_ThreadSafety = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSync
@@ -283,11 +284,22 @@
             this.btnThreadCore_ThreadSafety.UseVisualStyleBackColor = true;
             this.btnThreadCore_ThreadSafety.Click += new System.EventHandler(this.btnThreadCore_ThreadSafety_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(640, 245);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(192, 23);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "ThreadCore_LockThis";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(991, 460);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnThreadCore_ThreadSafety);
             this.Controls.Add(this.btnThreadCore_Variable);
             this.Controls.Add(this.btnThreadCore_CancellationTokenSource);
@@ -342,6 +354,7 @@
         private System.Windows.Forms.Button btnThreadCore_CancellationTokenSource;
         private System.Windows.Forms.Button btnThreadCore_Variable;
         private System.Windows.Forms.Button btnThreadCore_ThreadSafety;
+        private System.Windows.Forms.Button button1;
     }
 }
 
