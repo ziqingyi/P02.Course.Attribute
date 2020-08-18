@@ -50,6 +50,7 @@
             this.btnThreadCore_Exception = new System.Windows.Forms.Button();
             this.btnThreadCore_CancellationTokenSource = new System.Windows.Forms.Button();
             this.btnThreadCore_Variable = new System.Windows.Forms.Button();
+            this.btnThreadCore_ThreadSafety = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSync
@@ -272,11 +273,22 @@
             this.btnThreadCore_Variable.UseVisualStyleBackColor = true;
             this.btnThreadCore_Variable.Click += new System.EventHandler(this.btnThreadCore_Variable_Click);
             // 
+            // btnThreadCore_ThreadSafety
+            // 
+            this.btnThreadCore_ThreadSafety.Location = new System.Drawing.Point(640, 198);
+            this.btnThreadCore_ThreadSafety.Name = "btnThreadCore_ThreadSafety";
+            this.btnThreadCore_ThreadSafety.Size = new System.Drawing.Size(192, 23);
+            this.btnThreadCore_ThreadSafety.TabIndex = 22;
+            this.btnThreadCore_ThreadSafety.Text = "ThreadCore_ThreadSafety";
+            this.btnThreadCore_ThreadSafety.UseVisualStyleBackColor = true;
+            this.btnThreadCore_ThreadSafety.Click += new System.EventHandler(this.btnThreadCore_ThreadSafety_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(991, 460);
+            this.Controls.Add(this.btnThreadCore_ThreadSafety);
             this.Controls.Add(this.btnThreadCore_Variable);
             this.Controls.Add(this.btnThreadCore_CancellationTokenSource);
             this.Controls.Add(this.btnThreadCore_Exception);
@@ -329,6 +341,7 @@
         private System.Windows.Forms.Button btnThreadCore_Exception;
         private System.Windows.Forms.Button btnThreadCore_CancellationTokenSource;
         private System.Windows.Forms.Button btnThreadCore_Variable;
+        private System.Windows.Forms.Button btnThreadCore_ThreadSafety;
     }
 }
 

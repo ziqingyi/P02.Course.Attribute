@@ -1085,5 +1085,69 @@ namespace P19.Course.AsyncThreadForm
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
         }
+
+        List<Task> waitList = new List<Task>();
+
+        private int iNumSync = 0;
+        private List<int> iListSync = new List<int>();
+
+        private int iNumAsync = 0;
+        private static readonly object Form_lock = new object();
+
+        private void btnThreadCore_ThreadSafety_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(@"****************btnThreadCore_Variable_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+            int numOfTasks = 10000;
+
+            //Sync method
+            for (int i = 0; i < numOfTasks; i++)
+            {
+                iNumSync++;
+            }
+
+            //run 1000 tasks at same time. use lock for safety.
+               
+            //use lock (Syntactic sugar), in IL, it's Monitor.Enter, it will occupy the ref of the ref type. 
+            //Lock object should be private static readonly object.
+            //private: not used in other classes, static:only have one in one class, 
+            //readonly: should not be modified. object: must be reference type.
+            //(null will be exception in threads)(string will have sharing issue.)
+            //(lock(this))
+            for (int i = 0; i < numOfTasks; i++)
+            {
+                Task t = Task.Run(() =>
+                {
+                    lock (Form_lock)
+                    { 
+                        Thread.Sleep(5); 
+                        return iNumAsync++;
+                    }
+                });
+
+                waitList.Add(t);
+            }
+
+            //test List, which is not thread safe.
+            for (int i = 0; i < numOfTasks; i++)
+            {
+                int k = i;
+                Task.Run(() => iListSync.Add(k));
+            }
+
+
+            Task.WaitAll(waitList.ToArray());//just wait all task complete
+
+
+
+            Console.WriteLine($"iNumSync = {iNumSync}, iNumAsync={iNumAsync}, IListSync.Count={iListSync.Count}");
+
+
+            Console.WriteLine(@"****************btnThreadCore_Variable_Click End, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
     }
 }
