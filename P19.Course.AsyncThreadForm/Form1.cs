@@ -939,7 +939,7 @@ namespace P19.Course.AsyncThreadForm
             //exception in one thread will only stop current thread, but not affect other threads.
             //so use waitall to catch the exceptions.
             //the best practice is to try catch(may have log) in the sub tasks(threads),
-            //which means no error in delegate in tasks. 
+            //which means no error in delegate in tasks. this is applied in next button.
             try
             {
                 List<Task> taskList = new List<Task>();
@@ -992,7 +992,72 @@ namespace P19.Course.AsyncThreadForm
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
 
+            try
+            {
+                CancellationTokenSource cts = new CancellationTokenSource();
+                List<Task> taskList = new List<Task>();
+                for (int i = 0; i < 30; i++)
+                {
+                    string name = $"btnThreadCore_Exception_Click_{i}";
+                    taskList.Add(
+                        Task.Run(() =>
+                        {
+                            try
+                            {
+                                if (!cts.IsCancellationRequested)// check cancellation request
+                                {
+                                    Console.WriteLine($"This is {name} start, " +
+                                                      $"Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
+                                    Thread.Sleep(new Random().Next(50, 100));
+
+                                    if (name.Equals("btnThreadCore_Exception_Click_10"))
+                                    {
+                                        throw new Exception("btnThreadCore_Exception_Click_10 Exception...." + Thread.CurrentThread.ManagedThreadId.ToString("00"));
+                                    }
+                                    else if (name.Equals("btnThreadCore_Exception_Click_11"))
+                                    {
+                                        throw new Exception("btnThreadCore_Exception_Click_11 Exception...." + Thread.CurrentThread.ManagedThreadId.ToString("00"));
+                                    }
+                                    else if (name.Equals("btnThreadCore_Exception_Click_12"))
+                                    {
+                                        throw new Exception("btnThreadCore_Exception_Click_12 Exception...." + Thread.CurrentThread.ManagedThreadId.ToString("00"));
+                                    }
+
+                                    if (!cts.IsCancellationRequested) //check cancellation request
+                                    {
+                                        Console.WriteLine($"This is {name} success, Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine($"This is {name} stops in middle, Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                                    }
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex);
+                                cts.Cancel();// cancel() in  CancellationTokenSource
+                                throw;
+                            }
+
+                        }, cts.Token) // show the cancelled tasks, these tasks did not execute
+                    );
+                }
+                Task.WaitAll(taskList.ToArray());//if not wait all, exception will not be catched. waitAny will not catch exception.
+            }
+            catch (AggregateException aex)
+            {
+                foreach (var exception in aex.InnerExceptions)
+                {
+                    Console.WriteLine(exception.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
 
 
             Console.WriteLine(@"****************btnThreadCore_CancellationTokenSource_Click End, Thread Id is: {0} Now:{1}***************",
