@@ -1150,33 +1150,66 @@ namespace P19.Course.AsyncThreadForm
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
+        private void ThreadCore_LockThis_Click(object sender, EventArgs e)
         {
-            this.DoTest();
+            Console.WriteLine(@"****************ThreadCore_LockThis_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+            //main thread lock the same object with sub threads. 
+            // in this case, the DoTest() method lock this, which is same to task in ContinueWith
+            // so two thread lock same object. 
+            TestLock test = new TestLock();
+            
+            Task.Delay(1000).ContinueWith(
+                t =>
+                {
+                    lock (test)
+                    {
+                        Console.WriteLine("*******Begin**********");
+                        Thread.Sleep(5000);
+                        Console.WriteLine("*******End**********");
+                    }
+                }
+                );
+            
+            test.DoTest();
+
+            Console.WriteLine(@"****************ThreadCore_LockThis_Click End, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
+        class TestLock
+        {
+                private int iDoTestNum = 0;
+
+                public void DoTest()
+                {
+                    //will not lock, because this is locked by same thread.
+                    //lock is used for preventing other threads.
+                    lock (this)
+                    {
+                        Thread.Sleep(500);
+                        this.iDoTestNum++;
+                        if (DateTime.Now.Day < 28 && iDoTestNum < 10)
+                        {
+                            Console.WriteLine($"This is the {iDoTestNum}th , {DateTime.Now.Day}");
+                            this.DoTest();
+                        }
+                        else
+                        {
+                            Console.WriteLine("this is 28");
+                        }
+
+                    }
+                }
         }
 
-        private int iDoTestNum = 0;
 
-        private void DoTest()
-        {
-            //will not lock, because this is locked by same thread.
-            //lock is used for preventing other threads.
-            lock (this)
-            {
-                this.iDoTestNum++;
-                if (DateTime.Now.Day < 28 && iDoTestNum < 10)
-                {
-                    Console.WriteLine($"This is the {iDoTestNum}th , {DateTime.Now.Day}");
-                    this.DoTest();
-                }
-                else
-                {
-                    Console.WriteLine("this is 28");
-                }
 
-            }
-        }
+
+
+
 
     }
 
