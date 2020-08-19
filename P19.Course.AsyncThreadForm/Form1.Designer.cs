@@ -52,6 +52,7 @@
             this.btnThreadCore_Variable = new System.Windows.Forms.Button();
             this.btnThreadCore_ThreadSafety = new System.Windows.Forms.Button();
             this.btnThreadCore_LockThis = new System.Windows.Forms.Button();
+            this.btnThreadCore_LockStringNull = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSync
@@ -294,11 +295,22 @@
             this.btnThreadCore_LockThis.UseVisualStyleBackColor = true;
             this.btnThreadCore_LockThis.Click += new System.EventHandler(this.ThreadCore_LockThis_Click);
             // 
+            // btnThreadCore_LockStringNull
+            // 
+            this.btnThreadCore_LockStringNull.Location = new System.Drawing.Point(640, 320);
+            this.btnThreadCore_LockStringNull.Name = "btnThreadCore_LockStringNull";
+            this.btnThreadCore_LockStringNull.Size = new System.Drawing.Size(181, 23);
+            this.btnThreadCore_LockStringNull.TabIndex = 24;
+            this.btnThreadCore_LockStringNull.Text = "ThreadCore_LockStringNull";
+            this.btnThreadCore_LockStringNull.UseVisualStyleBackColor = true;
+            this.btnThreadCore_LockStringNull.Click += new System.EventHandler(this.btnThreadCore_LockStringNull_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(991, 498);
+            this.Controls.Add(this.btnThreadCore_LockStringNull);
             this.Controls.Add(this.btnThreadCore_LockThis);
             this.Controls.Add(this.btnThreadCore_ThreadSafety);
             this.Controls.Add(this.btnThreadCore_Variable);
@@ -355,6 +367,7 @@
         private System.Windows.Forms.Button btnThreadCore_Variable;
         private System.Windows.Forms.Button btnThreadCore_ThreadSafety;
         private System.Windows.Forms.Button btnThreadCore_LockThis;
+        private System.Windows.Forms.Button btnThreadCore_LockStringNull;
     }
 }
 

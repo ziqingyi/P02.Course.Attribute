@@ -1173,7 +1173,7 @@ namespace P19.Course.AsyncThreadForm
                 }
                 );
             
-            test.DoTest();
+            test.DoTestLockThis();
 
             Console.WriteLine(@"****************ThreadCore_LockThis_Click End, Thread Id is: {0} Now:{1}***************",
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
@@ -1183,7 +1183,7 @@ namespace P19.Course.AsyncThreadForm
         {
                 private int iDoTestNum = 0;
 
-                public void DoTest()
+                public void DoTestLockThis()
                 {
                     //will not lock, because this is locked by same thread.
                     //lock is used for preventing other threads.
@@ -1194,7 +1194,7 @@ namespace P19.Course.AsyncThreadForm
                         if (DateTime.Now.Day < 28 && iDoTestNum < 10)
                         {
                             Console.WriteLine($"This is the {iDoTestNum}th , {DateTime.Now.Day}");
-                            this.DoTest();
+                            this.DoTestLockThis();
                         }
                         else
                         {
@@ -1203,12 +1203,66 @@ namespace P19.Course.AsyncThreadForm
 
                     }
                 }
+
+                private string LockString = "LockString";
+                public void DoTestLockString()
+                {
+                    
+                    lock (LockString)
+                    {
+                        Thread.Sleep(500);
+                        this.iDoTestNum++;
+                        if (DateTime.Now.Day < 28 && iDoTestNum < 10)
+                        {
+                            Console.WriteLine($"This is the {iDoTestNum}th , {DateTime.Now.Day}");
+                            this.DoTestLockThis();
+                        }
+                        else
+                        {
+                            Console.WriteLine("this is 28");
+                        }
+
+                    }
+                }
+
+        }
+
+        private void btnThreadCore_LockStringNull_Click(object sender, EventArgs e)
+        { 
+            Console.WriteLine(@"****************ThreadCore_LockThis_Click Start, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+            //main thread lock the same object with sub threads. 
+            // 
+            // so two thread lock same object.
+            
+            TestLock test = new TestLock();
+            
+            string LockString = "LockString";
+
+            Task.Delay(1000).ContinueWith(
+                t =>
+                {
+                    lock (LockString)
+                    {
+                        Console.WriteLine("*******Begin**********");
+                        Thread.Sleep(5000);
+                        Console.WriteLine("*******End**********");
+                    }
+                }
+            );
+
+            test.DoTestLockString();
+
+            Console.WriteLine(@"****************ThreadCore_LockThis_Click End, Thread Id is: {0} Now:{1}***************",
+                Thread.CurrentThread.ManagedThreadId.ToString("00"),
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
         }
 
 
-
-
-
+        
 
 
     }
