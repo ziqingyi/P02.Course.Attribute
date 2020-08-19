@@ -1108,6 +1108,8 @@ namespace P19.Course.AsyncThreadForm
                 iNumSync++;
             }
 
+            //1 ThreadSafety method one, use Lock
+
             //run 1000 tasks at same time. use lock for safety.
                
             //use lock (Syntactic sugar), in IL, it's Monitor.Enter, it will occupy the ref of the ref type. 
@@ -1137,13 +1139,17 @@ namespace P19.Course.AsyncThreadForm
                 Task.Run(() => iListSync.Add(k));
             }
 
-
             Task.WaitAll(waitList.ToArray());//just wait all task complete
-
-
 
             Console.WriteLine($"iNumSync = {iNumSync}, iNumAsync={iNumAsync}, IListSync.Count={iListSync.Count}");
 
+
+            //2 ThreadSafety method two, use thread-safe collections. Performance better than lock.
+            //System.Collections.Concurrent.ConcurrentBag<int> cbag;
+
+
+            //3 ThreadSafety method three, the best solution is to separate the tasks with each threads.
+            //  one thread work in one task from begin to finish.Then combine task result together. Safe and high performance. 
 
             Console.WriteLine(@"****************btnThreadCore_Variable_Click End, Thread Id is: {0} Now:{1}***************",
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
@@ -1232,11 +1238,26 @@ namespace P19.Course.AsyncThreadForm
             Console.WriteLine(@"****************ThreadCore_LockThis_Click Start, Thread Id is: {0} Now:{1}***************",
                 Thread.CurrentThread.ManagedThreadId.ToString("00"),
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            string a = "abc";
+            string b = a;
+            Console.WriteLine(object.ReferenceEquals(a, b) + b); //true abc
+            a = "def";
+            Console.WriteLine(object.ReferenceEquals(a,b) + b);//false abc
+
+            int aa = 123;
+            int bb = aa;
+            aa = 456;
+            Console.WriteLine(aa + " " + bb);//123  456
 
             //main thread lock the same object with sub threads. 
-            // 
+            //all the strings are different references with the same value to a single string object.
+            //This is because the ldstr IL instruction interns literal strings and reuses them
+            //rather than allocate per ldstr.
             // so two thread lock same object.
-            
+
+            // lock null will pass compile but will not be able to run 
+            // There is only one thread in Lock(){}, so do not put too many code inside. 
+
             TestLock test = new TestLock();
             
             string LockString = "LockString";
