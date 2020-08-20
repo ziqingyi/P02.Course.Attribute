@@ -59,6 +59,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P18.Course.MyAOP", "P18.Cou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P19.Course.AsyncThreadForm", "P19.Course.AsyncThreadForm\P19.Course.AsyncThreadForm.csproj", "{F8695B4D-B02F-4BCC-A156-A82C9E208357}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P20.Course.AwaitAsyncConsole", "P20.Course.AwaitAsyncConsole\P20.Course.AwaitAsyncConsole.csproj", "{64DFE7FE-B016-4420-AAF9-9D17C32FDD6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P20.Course.AwaitAsyncLibrary", "P20.Course.AwaitAsyncLibrary\P20.Course.AwaitAsyncLibrary.csproj", "{84F04E99-6179-4358-B7A4-CD4A2BF2662C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -177,6 +181,14 @@ Global
 		{F8695B4D-B02F-4BCC-A156-A82C9E208357}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8695B4D-B02F-4BCC-A156-A82C9E208357}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8695B4D-B02F-4BCC-A156-A82C9E208357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64DFE7FE-B016-4420-AAF9-9D17C32FDD6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64DFE7FE-B016-4420-AAF9-9D17C32FDD6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64DFE7FE-B016-4420-AAF9-9D17C32FDD6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64DFE7FE-B016-4420-AAF9-9D17C32FDD6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84F04E99-6179-4358-B7A4-CD4A2BF2662C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84F04E99-6179-4358-B7A4-CD4A2BF2662C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84F04E99-6179-4358-B7A4-CD4A2BF2662C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84F04E99-6179-4358-B7A4-CD4A2BF2662C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
