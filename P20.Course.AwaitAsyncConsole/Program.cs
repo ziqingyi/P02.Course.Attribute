@@ -18,7 +18,6 @@ namespace P20.Course.AwaitAsyncConsole
 
 
 
-
             }
             catch (Exception e)
             {
