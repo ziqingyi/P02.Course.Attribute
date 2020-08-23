@@ -20,7 +20,7 @@ namespace P20.Course.AwaitAsyncLibrary
 
         private async static Task Test()
         {
-            Console.WriteLine($"current async Test() main start thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            Console.WriteLine($"current async Test() method start thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
             
             {
                 //normal case
@@ -38,20 +38,21 @@ namespace P20.Course.AwaitAsyncLibrary
             }
             {
                 Task t = NoReturn_returnTask();
-                Console.WriteLine($"current async Test() running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-                t.Wait();//wait for complation of t
+                Console.WriteLine($"current async Test() task running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                //t.Wait();//1 main thread wait for complation of t, following will be main thread running
 
-                Console.WriteLine($"current async Test() running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                Console.WriteLine($"current async Test() task running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
-                await t;//a thread from threadpool with execute logic after await
-
-                Console.WriteLine($"current async Test() running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                await t;//2 main thread not wait for t(go out of method), a thread from threadpool with execute logic after await in the method.
+                        //following part will be a call back if t is not finished. 
+                        //if t completed before await, following will also be main thread running.
+                Console.WriteLine($"current async Test() task running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
             }
 
 
 
-            Console.WriteLine($"current async Test() main end thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            Console.WriteLine($"current async Test() method end thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
         }
 
         //if there is no await for async, it works like a normal method. 
