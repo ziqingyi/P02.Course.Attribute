@@ -11,16 +11,17 @@ namespace P20.Course.AwaitAsyncLibrary
     {
         public static void TestShow()
         {
+            Console.WriteLine($"TestShow() start thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
             Test();
 
-            Console.WriteLine($"current static TestShow()  start thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            Console.WriteLine($"TestShow() end thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
             Console.ReadLine();
         }
 
         private async static Task Test()
         {
-            Console.WriteLine($"current async Test() method start thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            Console.WriteLine($"async Test() method start thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
             
             {
                 //normal case
@@ -52,7 +53,7 @@ namespace P20.Course.AwaitAsyncLibrary
 
 
 
-            Console.WriteLine($"current async Test() method end thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            Console.WriteLine($"async Test() method end thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
         }
 
         //if there is no await for async, it works like a normal method. 
@@ -135,8 +136,45 @@ namespace P20.Course.AwaitAsyncLibrary
             //here, the thread id would be any thread, these logic may be executed by task's thread, maybe a new thread, maybe main(01) thread.
             Console.WriteLine($"async NoReturn_returnTask() end running after await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
         }
+        /// <summary>
+        /// Task with return value, getting result must wait for the task.
+        /// </summary>
+        /// <returns></returns>
+        private static async Task<long> SumAsync()
+        {
+            Console.WriteLine($"async SumAsync() start running before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            long result = 0;
+
+            await Task.Run(
+                () =>
+                {
+                    for (int k = 0; k < 10; k++)
+                    {
+                        Console.WriteLine($"SumAsync() {k} await Task.Run Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                        Thread.Sleep(1000);
+                    }
+
+                    for (int i = 0; i < 999_999; i++)
+                    {
+                        result += i;
+                    }
+
+                }
+                );
+            Console.WriteLine($"SumAsync() is running Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
 
+
+
+
+
+
+
+
+            
+            Console.WriteLine($"async SumAsync() end running after await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}"); 
+            return result;
+        }
 
 
 
