@@ -24,33 +24,56 @@ namespace P20.Course.AwaitAsyncLibrary
             Console.WriteLine($"async Test() method start thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
             
             {
-                //normal case
+                #region normal case
+
                 //NoReturnNoAwait();
+
+                #endregion
             }
             {
-                ////test 2 ways of recall,
+                #region test 2 ways of recall
                 //NoReturn();//1 await
                 ////NoReturnContinueWith();//2 ContinueWith
                 //for (int i = 0; i < 10; i++)
                 //{
                 //    Thread.Sleep(300);//just to show main thread will continue do something. 
-                //    Console.WriteLine($"current async Test()'s task running, ThreadId={Thread.CurrentThread.ManagedThreadId.ToString("00")} i={i}");
+                //    Console.WriteLine($"current async Test()'s task 1 running, ThreadId={Thread.CurrentThread.ManagedThreadId.ToString("00")} i={i}");
                 //}
+                #endregion
             }
             {
-                Task t = NoReturn_returnTask();
-                Console.WriteLine($"current async Test() task running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-                //t.Wait();//1 main thread wait for complation of t, following will be main thread running
+                #region test Wait() and await
 
-                Console.WriteLine($"current async Test() task running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                //Task t = NoReturn_returnTask();
+                //Console.WriteLine($"current async Test() task 2 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                ////t.Wait();//1 main thread wait for complation of t, following will be main thread running
 
-                await t;//2 main thread not wait for t(go out of method), a thread from threadpool with execute logic after await in the method.
-                        //following part will be a call back if t is not finished. 
-                        //if t completed before await, following will also be main thread running.
-                Console.WriteLine($"current async Test() task running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                //Console.WriteLine($"current async Test() task 2 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+
+                //await t;//2 main thread not wait for t(go out of method), a thread from threadpool with execute logic after await in the method.
+                //        //following part will be a call back if t is not finished. 
+                //        //if t completed before await, following will also be main thread running.
+                //Console.WriteLine($"current async Test() task 2 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+
+                #endregion
+            }
+            {
+                #region  Task with return value
+
+                Console.WriteLine($"current async Test() task 3 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+
+                Task<long> t = SumAsync();
+
+                Console.WriteLine($"current async Test() task 3 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+
+                long lResult = t.Result;// same to t.Wait(),  wait for the result returns and then continue. 
+
+                Console.WriteLine($"current async Test() task 3 result is {lResult} thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+
+                #endregion
+
 
             }
-
 
 
             Console.WriteLine($"async Test() method end thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
@@ -145,6 +168,7 @@ namespace P20.Course.AwaitAsyncLibrary
             Console.WriteLine($"async SumAsync() start running before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
             long result = 0;
 
+            //await: the following logic in the method will wait for the await task. .
             await Task.Run(
                 () =>
                 {
