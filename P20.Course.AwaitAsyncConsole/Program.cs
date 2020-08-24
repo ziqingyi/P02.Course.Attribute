@@ -13,12 +13,13 @@ namespace P20.Course.AwaitAsyncConsole
         {
             try
             {
-                Console.WriteLine("Main is running......");
+                Console.WriteLine("Main start to run......");
 
-                AwaitAsyncClass.TestShow();
+                //AwaitAsyncClass.TestShow();
+                AwaitAsyncILSpy.Show();
 
-
-                Console.WriteLine("Main is running......");
+                Console.WriteLine("Main finish running......");
+                Console.ReadKey();
             }
             catch (Exception e)
             {
