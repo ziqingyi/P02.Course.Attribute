@@ -252,6 +252,8 @@ namespace P20.Course.AwaitAsyncLibrary
             Console.WriteLine($"SumAsync() is running, part 3 tasks finished, Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
             Console.WriteLine($"async SumAsync() end running after await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}"); 
+            
+            //method have async, just return a long value 
             return result;
         }
 
@@ -269,8 +271,11 @@ namespace P20.Course.AwaitAsyncLibrary
                 }
                 );
 
+            //this line will be executed by main thread without waiting. 
             Console.WriteLine($"static SumFactory() end running after await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
+
+            //method do not have async, must return Task
             return iResult;
         }
 
