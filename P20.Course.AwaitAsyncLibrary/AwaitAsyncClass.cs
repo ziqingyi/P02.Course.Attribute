@@ -161,6 +161,8 @@ namespace P20.Course.AwaitAsyncLibrary
         }
         /// <summary>
         /// Task with return value, getting result must wait for the task.
+        ///
+        /// await will make the program running synchronously and in steps, but not block main thread. it will open multiple threads.
         /// </summary>
         /// <returns></returns>
         private static async Task<long> SumAsync()
@@ -174,7 +176,7 @@ namespace P20.Course.AwaitAsyncLibrary
                 {
                     for (int k = 0; k < 10; k++)
                     {
-                        Console.WriteLine($"SumAsync() {k} await Task.Run Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                        Console.WriteLine($"SumAsync() task {k} await Task.Run Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                         Thread.Sleep(1000);
                     }
 
@@ -185,17 +187,47 @@ namespace P20.Course.AwaitAsyncLibrary
 
                 }
                 );
-            Console.WriteLine($"SumAsync() is running Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
+            Console.WriteLine($"SumAsync() is running, part 1 tasks finished, Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
+            await Task.Run(
+                () =>
+                {
+                    for (int k = 11; k < 20; k++)
+                    {
+                        Console.WriteLine($"SumAsync() task {k} await Task.Run Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                        Thread.Sleep(1000);
+                    }
 
+                    for (int i = 0; i < 999_999; i++)
+                    {
+                        result += i;
+                    }
 
+                }
+            );
 
+            Console.WriteLine($"SumAsync() is running, part 2 tasks finished, Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
+            await Task.Run(
+                () =>
+                {
+                    for (int k = 20; k < 30; k++)
+                    {
+                        Console.WriteLine($"SumAsync() task {k} await Task.Run Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                        Thread.Sleep(1000);
+                    }
 
+                    for (int i = 0; i < 999_999; i++)
+                    {
+                        result += i;
+                    }
 
+                }
+            );
 
-            
+            Console.WriteLine($"SumAsync() is running, part 3 tasks finished, Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+
             Console.WriteLine($"async SumAsync() end running after await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}"); 
             return result;
         }
