@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AwaitAsyncClass.cs" />
     <Compile Include="AwaitAsyncILSpy.cs" />
+    <Compile Include="AwaitAsyncILSpyWeb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

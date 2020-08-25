@@ -16,7 +16,8 @@ namespace P20.Course.AwaitAsyncConsole
                 Console.WriteLine("Main start to run......");
 
                 //AwaitAsyncClass.TestShow();
-                AwaitAsyncILSpy.Show();
+                //AwaitAsyncILSpy.Show();
+                AwaitAsyncILSpyWeb.Show();
 
                 Console.WriteLine("Main finish running......");
                 Console.ReadKey();
