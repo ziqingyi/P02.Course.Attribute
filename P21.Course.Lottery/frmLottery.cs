@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,6 +39,46 @@ namespace P21.Course.Lottery
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            #region initial steps
+
+            this.btnStart.Text = "running";
+            this.btnStart.Enabled = false;
+
+            this.lblRed1.Text = "00";
+            this.lblRed2.Text = "00";
+            this.lblRed3.Text = "00";
+            this.lblRed4.Text = "00";
+            this.lblRed5.Text = "00";
+            this.lblRed6.Text = "00";
+            this.lblBlue1.Text = "00";
+            #endregion
+            Thread.Sleep(1000);
+            foreach (var control in this.groupBoxDisplay.Controls)
+            {
+                if (control is Label)
+                {
+                    Label label = (Label) control;
+                    if (label.Name.Contains("Blue"))
+                    {
+
+
+                        //1 get random number
+
+                        //2 refresh window
+
+
+                        //3 loop
+                    }
+
+
+
+                }
+
+            }
+
+
+
+
 
         }
 
