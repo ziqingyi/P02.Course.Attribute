@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\RandomHelper.cs" />
     <Compile Include="frmLottery.cs">
       <SubType>Form</SubType>
     </Compile>
