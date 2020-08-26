@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using P21.Course.Lottery.Common;
 
 namespace P21.Course.Lottery
 {
@@ -52,6 +53,9 @@ namespace P21.Course.Lottery
             this.lblRed6.Text = "00";
             this.lblBlue1.Text = "00";
             #endregion
+
+            //int i  =new RandomHelper().GetRandomNumber(1,20);
+
             Thread.Sleep(1000);
             foreach (var control in this.groupBoxDisplay.Controls)
             {
@@ -60,12 +64,12 @@ namespace P21.Course.Lottery
                     Label label = (Label) control;
                     if (label.Name.Contains("Blue"))
                     {
-
-
-                        //1 get random number
+                        //1 get random number, not include upper bound.
+                        int index = new RandomHelper().GetRandomNumDelay(0,BlueNums.Length);
+                        string sNumber = this.BlueNums[index];
 
                         //2 refresh window
-
+                        this.lblBlue1.Text = sNumber;
 
                         //3 loop
                     }

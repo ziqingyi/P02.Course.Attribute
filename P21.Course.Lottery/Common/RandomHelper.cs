@@ -18,6 +18,8 @@ namespace P21.Course.Lottery.Common
         public int GetRandomNumber(int min, int max)
         {
             Guid guid = Guid.NewGuid();
+            Guid g2 = new Guid();
+            
             String sGuid = guid.ToString();
 
             int seed = DateTime.Now.Millisecond;
@@ -68,9 +70,11 @@ namespace P21.Course.Lottery.Common
 
 
             Random random = new Random(seed);
-                int result = random.Next(min, max);
-
-                return result;
+            // The inclusive lower bound of the random number returned.
+            // The exclusive upper bound of the random number returned.
+            int result = random.Next(min, max);
+            
+            return result;
 
         }
 
