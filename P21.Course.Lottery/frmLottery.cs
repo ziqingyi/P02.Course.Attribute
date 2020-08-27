@@ -57,21 +57,84 @@ namespace P21.Course.Lottery
             //int i  =new RandomHelper().GetRandomNumber(1,20);
 
             Thread.Sleep(1000);
-            foreach (var control in this.groupBoxDisplay.Controls)
+            foreach (var control in this.groupBoxDisplay.Controls)  //loop through all controls
             {
-                if (control is Label)
+                if (control is Label)   // if it's Label
                 {
-                    Label label = (Label) control;
+                    Label label = (Label) control;  // convert to Label
+
+
                     if (label.Name.Contains("Blue"))
                     {
-                        //1 get random number, not include upper bound.
-                        int index = new RandomHelper().GetRandomNumDelay(0,BlueNums.Length);
-                        string sNumber = this.BlueNums[index];
+                        Task.Run(
+                            () =>
+                            {
+                                try
+                                {
+                                    while (true)
+                                    {
+                                         //1 get random number, not include upper bound.
+                                        int index = new RandomHelper().GetRandomNumDelay(0,BlueNums.Length);
+                                        string sNumber = this.BlueNums[index];
 
-                        //2 refresh window
-                        this.lblBlue1.Text = sNumber;
+                                        //2 refresh window
+                                        //this.lblBlue1.Text = sNumber;
+                                        //cannot modify control in sub thread. should assign to main thread. 
+                                        this.Invoke(new Action(
+                                            () =>
+                                            {
+                                                label.Text = sNumber;
+                                            }));
 
-                        //3 loop
+                                        //3 loop
+                                       
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine(ex.Message);
+                                    throw;
+                                }
+
+                            }
+                        );
+                    }
+                    else if (label.Name.Contains("Red"))
+                    {
+
+                        Task.Run(
+                            () =>
+                            {
+                                try
+                                {
+                                    while (true)
+                                    {
+                                        //1 get random number, not include upper bound.
+                                        int index = new RandomHelper().GetRandomNumDelay(0, RedNums.Length);
+                                        string sNumber = this.RedNums[index];
+
+                                        //2 refresh window
+           
+                                        this.Invoke(new Action(
+                                            () =>
+                                            {
+                                                label.Text = sNumber;
+                                            }));
+
+                                        //3 loop
+
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine(ex.Message);
+                                    throw;
+                                }
+
+                            }
+                        );
+
+
                     }
 
 
