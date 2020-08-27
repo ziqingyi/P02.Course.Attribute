@@ -61,7 +61,7 @@ namespace P03.Course.Delegate
             {
                 Action a = new Action(this.DoNothing); // up to 16 param, no return 
                 Action aa = this.DoNothing; // Syntactic sugar
-                Action<int> a_in = this.ShowInt; // ni 
+                Action<int> a_in = this.ShowInt; // contra variant, because it's in:  void Action<in T>(T obj)
 
                 Func<int> fun_out = this.Get; // can have return, no param
                 int iRes = fun_out.Invoke();
