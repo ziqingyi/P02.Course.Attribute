@@ -114,12 +114,19 @@ namespace P21.Course.Lottery
                                         string sNumber = this.RedNums[index];
 
                                         //2 refresh window
-           
-                                        this.Invoke(new Action(
-                                            () =>
-                                            {
-                                                label.Text = sNumber;
-                                            }));
+
+
+                                        List<string> usedNumberList = this.GetUsedRedNumbers();
+                                        if (!usedNumberList.Contains(sNumber))
+                                        {
+                                            this.Invoke(new Action(
+                                                () =>
+                                                {
+                                                    label.Text = sNumber;
+                                                }));
+
+                                        }
+
 
                                         //3 loop
 
@@ -143,11 +150,44 @@ namespace P21.Course.Lottery
 
             }
 
-
-
-
-
         }
+
+        private List<string> GetUsedRedNumbers()
+        {
+            List<string> usedNumberList = new List<string>();
+            foreach (Control ctr in groupBoxDisplay.Controls)
+            {
+
+
+                if (ctr is Label)
+                {
+                    if (    (  (Label)ctr  ).Name.Contains("Red")     )
+                    {
+                        usedNumberList.Add( ( (Label)ctr ).Text  );
+                    }
+                }
+
+                
+            }
+
+            if (usedNumberList.Distinct<string>().Count() < 6)
+            {
+                Console.WriteLine("---------has duplicates?-----------");
+                usedNumberList.ForEach(s =>
+                {
+                    Console.WriteLine($"{s}");
+                }
+                );
+            }
+
+            return usedNumberList;
+        }
+
+
+
+
+
+
 
         private void btnStop_Click(object sender, EventArgs e)
         {
