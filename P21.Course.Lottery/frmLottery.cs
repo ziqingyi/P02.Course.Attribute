@@ -45,6 +45,7 @@ namespace P21.Course.Lottery
             this.btnStart.Text = "running";
             this.btnStart.Enabled = false;
             this.IsGoOn = true;
+            this.taskList.Clear();
             this.lblRed1.Text = "00";
             this.lblRed2.Text = "00";
             this.lblRed3.Text = "00";
@@ -66,15 +67,15 @@ namespace P21.Course.Lottery
 
                     if (label.Name.Contains("Blue"))
                     {
-                        Task.Run(
+                        Task blueTask = Task.Run(
                             () =>
                             {
                                 try
                                 {
                                     while (IsGoOn)
                                     {
-                                         //1 get random number, not include upper bound.
-                                        int index = new RandomHelper().GetRandomNumDelay(0,BlueNums.Length);
+                                        //1 get random number, not include upper bound.
+                                        int index = new RandomHelper().GetRandomNumDelay(0, BlueNums.Length);
                                         string sNumber = this.BlueNums[index];
 
                                         //2 refresh window
@@ -87,7 +88,7 @@ namespace P21.Course.Lottery
                                             }));
 
                                         //3 loop
-                                       
+
                                     }
                                 }
                                 catch (Exception ex)
@@ -98,59 +99,72 @@ namespace P21.Course.Lottery
 
                             }
                         );
+                        taskList.Add(blueTask);
+
+
+
                     }
                     else if (label.Name.Contains("Red"))
                     {
 
-                        Task.Run(
-                            () =>
-                            {
-                                try
-                                {
-                                    while (IsGoOn)
-                                    {
+                        Task redTask = Task.Run(
+                             () =>
+                             {
+                                 try
+                                 {
+                                     while (IsGoOn)
+                                     {
                                         //1 get random number, not include upper bound.
                                         int index = new RandomHelper().GetRandomNumDelay(0, RedNums.Length);
-                                        string sNumber = this.RedNums[index];
+                                         string sNumber = this.RedNums[index];
 
                                         //2 refresh window
 
                                         lock (_Lock)
-                                        {
-                                            List<string> usedNumberList = this.GetUsedRedNumbers();
-                                            if (!usedNumberList.Contains(sNumber))
-                                            {
-                                                this.Invoke(new Action(
-                                                    () =>
-                                                    {
-                                                        label.Text = sNumber;
-                                                    }));
+                                         {
+                                             List<string> usedNumberList = this.GetUsedRedNumbers();
+                                             if (!usedNumberList.Contains(sNumber))
+                                             {
+                                                 this.Invoke(new Action(
+                                                     () =>
+                                                     {
+                                                         label.Text = sNumber;
+                                                     }));
 
-                                            }
-                                        }
+                                             }
+                                         }
 
 
                                         //3 loop
 
                                     }
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine(ex.Message);
-                                    throw;
-                                }
+                                 }
+                                 catch (Exception ex)
+                                 {
+                                     Console.WriteLine(ex.Message);
+                                     throw;
+                                 }
 
-                            }
-                        );
+                             }
+                         );
 
-
+                        taskList.Add(redTask);
                     }
-
-
 
                 }
 
             }
+
+            Task.Factory.ContinueWhenAll(this.taskList.ToArray(), tArray =>
+            {
+                this.btnStart.Enabled = true;
+                this.btnStop.Enabled = false;
+                this.btnStart.Text = "Start";
+                this.ShowResult();
+
+            });
+
+
 
 
             btnStop.Enabled = true;
@@ -206,7 +220,38 @@ namespace P21.Course.Lottery
             this.btnStop.Enabled = false;
             this.btnStart.Text = "Start";
 
+            //wait for all tasks completed, must use another thread.
+            //if still use main thread execute below, program will be dead lock.
+            //because main thread will wait for tasks in list to complete,
+            //but threads updating the label need to wait for main thread to assign value. (they are at around lock or executing in the lock)
 
+            ////method 1 
+            //Task.Run(() =>
+            //{
+            //    Task.WaitAll(taskList.ToArray());
+
+            //    ShowResult();
+            //});
+
+            ////method 2, add a call back function to btnStart_Click() 
+            //Task.Factory.ContinueWhenAll(this.taskList.ToArray(), tArray =>
+            //{
+            //    //ShowResult() and Enable buttons when everything finish
+            //});
         }
+
+
+        private void ShowResult()
+        {
+            MessageBox.Show(string.Format("the Red Balls are: {0} {1} {2} {3} {4} {5}  Blue Ball:{6}"
+                , this.lblRed1.Text
+                , this.lblRed2.Text
+                , this.lblRed3.Text
+                , this.lblRed4.Text
+                , this.lblRed5.Text
+                , this.lblRed6.Text
+                , this.lblBlue1.Text));
+        }
+
     }
 }
