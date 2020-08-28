@@ -44,7 +44,7 @@ namespace P21.Course.Lottery
 
             this.btnStart.Text = "running";
             this.btnStart.Enabled = false;
-
+            this.IsGoOn = true;
             this.lblRed1.Text = "00";
             this.lblRed2.Text = "00";
             this.lblRed3.Text = "00";
@@ -71,7 +71,7 @@ namespace P21.Course.Lottery
                             {
                                 try
                                 {
-                                    while (true)
+                                    while (IsGoOn)
                                     {
                                          //1 get random number, not include upper bound.
                                         int index = new RandomHelper().GetRandomNumDelay(0,BlueNums.Length);
@@ -107,7 +107,7 @@ namespace P21.Course.Lottery
                             {
                                 try
                                 {
-                                    while (true)
+                                    while (IsGoOn)
                                     {
                                         //1 get random number, not include upper bound.
                                         int index = new RandomHelper().GetRandomNumDelay(0, RedNums.Length);
@@ -152,6 +152,10 @@ namespace P21.Course.Lottery
 
             }
 
+
+            btnStop.Enabled = true;
+
+
         }
 
         private static readonly object _Lock = new object();
@@ -194,6 +198,14 @@ namespace P21.Course.Lottery
 
         private void btnStop_Click(object sender, EventArgs e)
         {
+
+
+            this.IsGoOn = false;
+
+            this.btnStart.Enabled = true;
+            this.btnStop.Enabled = false;
+            this.btnStart.Text = "Start";
+
 
         }
     }
