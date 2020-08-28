@@ -157,9 +157,17 @@ namespace P21.Course.Lottery
 
             Task.Factory.ContinueWhenAll(this.taskList.ToArray(), tArray =>
             {
-                this.btnStart.Enabled = true;
-                this.btnStop.Enabled = false;
-                this.btnStart.Text = "Start";
+                //must use main thread to invoke operations to controls, otherwise lock. 
+                this.Invoke(new Action(()=>
+                    {
+
+                        this.btnStart.Enabled = true;
+                        this.btnStop.Enabled = false;
+                        this.btnStart.Text = "Start";
+
+                    })
+                );
+ 
                 this.ShowResult();
 
             });
@@ -216,16 +224,17 @@ namespace P21.Course.Lottery
 
             this.IsGoOn = false;
 
-            this.btnStart.Enabled = true;
-            this.btnStop.Enabled = false;
-            this.btnStart.Text = "Start";
+         
 
             //wait for all tasks completed, must use another thread.
             //if still use main thread execute below, program will be dead lock.
             //because main thread will wait for tasks in list to complete,
             //but threads updating the label need to wait for main thread to assign value. (they are at around lock or executing in the lock)
-
-            ////method 1 
+   
+            ////method 1
+            //this.btnStart.Enabled = true;
+            //this.btnStop.Enabled = false;
+            //this.btnStart.Text = "Start";
             //Task.Run(() =>
             //{
             //    Task.WaitAll(taskList.ToArray());
