@@ -172,10 +172,20 @@ namespace P21.Course.Lottery
 
             });
 
+            //delay 5 seconds after start, then  user can stop it, using main to invoke. 
+            Task.Delay(5 * 1000).ContinueWith(
+                t => 
+                { 
+                    this.Invoke(
+                        new Action(
+                        () => 
+                        { this.btnStop.Enabled = true; }
+                        )
+                    );
+                }
+                );
 
-
-
-            btnStop.Enabled = true;
+        
 
 
         }
