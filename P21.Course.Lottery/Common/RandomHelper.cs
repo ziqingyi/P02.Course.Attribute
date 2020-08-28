@@ -11,8 +11,9 @@ namespace P21.Course.Lottery.Common
     {
         public int GetRandomNumDelay(int min, int max)
         {
-            Thread.Sleep(this.GetRandomNumber(500,1000));
-            //Thread.Sleep(100);// test duplicates if there is no lock. try to make threads check at same time. 
+            //Thread.Sleep(this.GetRandomNumber(500,1000));//if wait different time, may not check at same time.
+            Thread.Sleep(100);// test duplicates if there is no lock. try to make threads check at same time. 
+            //if different thread generate same number and check existing nums at same time, it will have duplicates. 
             return this.GetRandomNumber(min, max);
         }
 

@@ -115,16 +115,18 @@ namespace P21.Course.Lottery
 
                                         //2 refresh window
 
-
-                                        List<string> usedNumberList = this.GetUsedRedNumbers();
-                                        if (!usedNumberList.Contains(sNumber))
+                                        lock (_Lock)
                                         {
-                                            this.Invoke(new Action(
-                                                () =>
-                                                {
-                                                    label.Text = sNumber;
-                                                }));
+                                            List<string> usedNumberList = this.GetUsedRedNumbers();
+                                            if (!usedNumberList.Contains(sNumber))
+                                            {
+                                                this.Invoke(new Action(
+                                                    () =>
+                                                    {
+                                                        label.Text = sNumber;
+                                                    }));
 
+                                            }
                                         }
 
 
@@ -152,6 +154,7 @@ namespace P21.Course.Lottery
 
         }
 
+        private static readonly object _Lock = new object();
         private List<string> GetUsedRedNumbers()
         {
             List<string> usedNumberList = new List<string>();
