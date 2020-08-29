@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace P03.Course.Delegate
@@ -75,6 +76,18 @@ namespace P03.Course.Delegate
 
                 this.DOAction(a0);
                 //this.DOAction(method);//wrong, different kind of delegate.
+
+
+                //if there are many delegates in the system, the delegate parameter cannot be commonly used.
+                // so the system defined action and func 
+                Thread a = new Thread(new ParameterizedThreadStart(t => { Console.WriteLine("ddd"); }));
+
+                ThreadPool.QueueUserWorkItem(new WaitCallback(t => { Console.WriteLine("ddd"); }));
+
+                Task.Run(new Action(
+                    ()=> { Console.WriteLine("ddd"); }
+                    ));
+
             }
             { 
                 //many ways to init, must keep same param and return value with delegate
