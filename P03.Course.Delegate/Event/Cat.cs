@@ -78,6 +78,11 @@ namespace P03.Course.Delegate.Event
         //A delegate specifies a TYPE (such as a class , or an interface does),
         //whereas an event is just a kind of MEMBER (such as fields, properties, etc).
         //just like any other kind of member,  an event also has a type.
+        //An Event declaration adds a layer of abstraction and protection on the delegate instance.
+        //So Event can be static, delegate cannot. eg as below:
+        //public delegate void MoveDelegate(object o);
+        //public static MoveDelegate MoveMethod;
+
         public event Action CatMiaoActionHandler;
         public void MiaoEvent()
         {
