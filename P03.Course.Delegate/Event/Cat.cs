@@ -68,8 +68,16 @@ namespace P03.Course.Delegate.Event
             Console.WriteLine("*&^&*^*^*(^&*^&*^&*^&*^");
 
         }
-        // cannot be used outside of the class, not available in subclass. 
+        // event cannot be used outside of the class, not available in subclass. 
         // support by compiler. 
+        //You aren't using a public property but a public field (using events, the compiler protects your fields from unwanted access)
+        // Events can't be assigned directly.only += or -=. cannot just be override outside.
+        // No one outside of your class can raise the event.
+        // Events can be included in an interface declaration, whereas a field cannot
+
+        //A delegate specifies a TYPE (such as a class , or an interface does),
+        //whereas an event is just a kind of MEMBER (such as fields, properties, etc).
+        //just like any other kind of member,  an event also has a type.
         public event Action CatMiaoActionHandler;
         public void MiaoEvent()
         {
@@ -82,6 +90,8 @@ namespace P03.Course.Delegate.Event
             Console.WriteLine("*&^&*^*^*(^&*^&*^&*^&*^");
             Console.WriteLine("*&^&*^*^*(^&*^&*^&*^&*^");
         }
+
+
 
     }
 
