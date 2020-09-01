@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using P22.Course.Crawler.Utility;
 
 namespace P22.Course.Crawler
 {
@@ -15,8 +17,9 @@ namespace P22.Course.Crawler
                 Console.WriteLine("-------------------Crawler Start-----------------------------");
 
                 #region test DownloadHTML
+
                 {
-                    string html = 
+                    string html = HttpHelper.DownloadHtml(@"https://hairbeauty.livingstone.com.au/",Encoding.UTF8);
                 }
                 #endregion
 
