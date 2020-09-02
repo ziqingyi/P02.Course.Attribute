@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
 using P22.Course.Crawler.Model;
 using P22.Course.Crawler.Utility;
-using HtmlAgilityPack;
-
-
 
 namespace P22.Course.Crawler
 {
@@ -26,23 +24,34 @@ namespace P22.Course.Crawler
         {
             try
             {
-
-
-                //if category.Url is not null
                 string html = HttpHelper.DownloadUrl(category.Url);
                 {
+                    //HtmlAgilityPack can help to load the html
                     HtmlDocument document = new HtmlDocument();
                     document.LoadHtml(html);
+
+
                     {
-                        string path;
+                        //copy the xpath from the web browser. then get node from the path. 
+                        string path = @"//*[@id='brand-11026']/a";
+                        HtmlNode node = document.DocumentNode.SelectSingleNode(path);
+                        string title = node.Attributes["title"].Value;
 
-
+                    }
+                    {
+                        //copy the xpath from the web browser. then get nodes from the path. 
+                        string path = "//*[@class=\"J_valueList v-fixed\"]/li";
+                        HtmlNodeCollection nodecollection = document.DocumentNode.SelectNodes(path);
+                        foreach (HtmlNode node in nodecollection)
+                        {
+                            Console.WriteLine(node.Id);
+                        }
                     }
 
 
+
                 }
-
-
+                
 
 
 
@@ -53,11 +62,35 @@ namespace P22.Course.Crawler
             }
             catch (Exception ex)
             {
-                logger.Error("CrawlerMuti Exception", ex);
+                logger.Error("Crawler mulit exception",ex);
+                Console.WriteLine(ex);
+                
             }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
+
 
 
 
