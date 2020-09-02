@@ -19,7 +19,7 @@ namespace P22.Course.Crawler
                 #region test DownloadHTML
 
                 {
-                    string html = HttpHelper.DownloadHtml(@"https://hairbeauty.livingstone.com.au/",Encoding.UTF8);
+                    string html = HttpHelper.DownloadHtml(@"https://list.jd.com/list.html?cat=9987,653,655", Encoding.UTF8);
                 }
                 #endregion
 
