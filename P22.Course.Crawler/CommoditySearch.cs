@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using P22.Course.Crawler.Model;
@@ -9,7 +10,7 @@ using P22.Course.Crawler.Utility;
 
 namespace P22.Course.Crawler
 {
-    public class CommoditySearch: ISearch
+    public class CommoditySearch : ISearch
     {
         private Logger logger = new Logger(typeof(CommoditySearch));
 
@@ -48,10 +49,35 @@ namespace P22.Course.Crawler
                         }
                     }
 
+                    {
+                        #region paging: 
+                        string rootUrl = category.Url;
+                        //1 find the total pages, larger page number would be last page. 
+
+                        string totalPagePath = @"//*[@id='J_bottomPage']/span[2]/em";
+                        HtmlNode node = document.DocumentNode.SelectSingleNode(totalPagePath);
+                        string sPage = node.InnerText;//get the total page 
+                                                      
+                        Regex re = new Regex("[0-9]");
+                        object res = re.Match(sPage);
+                        int ipage = int.Parse(res.ToString());
+                        for (int i = 1; i <= ipage; i++)
+                        {
+                            string url = $"{rootUrl}&Page={i}";
+                            Console.WriteLine(url);
+                        }
+
+                        #endregion
+                    }
+
+
+
+
+
 
 
                 }
-                
+
 
 
 
@@ -62,9 +88,9 @@ namespace P22.Course.Crawler
             }
             catch (Exception ex)
             {
-                logger.Error("Crawler mulit exception",ex);
+                logger.Error("Crawler mulit exception", ex);
                 Console.WriteLine(ex);
-                
+
             }
 
 
