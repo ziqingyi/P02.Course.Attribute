@@ -56,69 +56,90 @@ namespace P22.Course.Crawler
 
                         string totalPagePath = @"//*[@id='J_bottomPage']/span[2]/em";
                         HtmlNode node = document.DocumentNode.SelectSingleNode(totalPagePath);
-                        string sPage = node.InnerText;//get the total page 
-                                                      
-                        Regex re = new Regex("[0-9]");
-                        object res = re.Match(sPage);
-                        int ipage = int.Parse(res.ToString());
-                        for (int i = 1; i <= ipage; i++)
+                        if (node != null)
                         {
-                            string url = $"{rootUrl}&Page={i}";
-                            Console.WriteLine(url);
+                            string sPage = node.InnerText;//get the total page 
+                                                          
+                            Regex re = new Regex("[0-9]");
+                            object res = re.Match(sPage);
+                            int ipage = int.Parse(res.ToString());
+                            for (int i = 1; i <= ipage; i++)
+                            {
+                                string url = $"{rootUrl}&Page={i}";
+                                Console.WriteLine(url);
+                                this.FindCommodityPage(url);
+                            }
                         }
-
+                        else
+                        {
+                            string url = $"{rootUrl}&Page=1";
+                            Console.WriteLine(url);
+                            this.FindCommodityPage(url);
+                        }
                         #endregion
                     }
 
 
 
-
-
-
-
                 }
-
-
-
-
-
-
-
-
             }
             catch (Exception ex)
             {
                 logger.Error("Crawler mulit exception", ex);
                 Console.WriteLine(ex);
+            }
+        }
 
+        private void FindCommodityPage(string url)
+        {
+
+            string html = HttpHelper.DownloadUrl(url);
+
+            //method 1: get items by search through the html
+            //method 2: locate the items in html and find attributes there. 
+
+            HtmlDocument document = new HtmlDocument();
+            document.LoadHtml(html);
+            string cPath = "//*[@id=\"J_goodsList\"]/ul/li";
+
+            HtmlNodeCollection nodes = document.DocumentNode.SelectNodes(cPath);
+
+            foreach (HtmlNode node in nodes)
+            {
+                //node.OuterHtml// including the label like li
+                FindCommoditySingle(node);
+            }
+        }
+
+        private void FindCommoditySingle(HtmlNode node)
+        {
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(node.OuterHtml);
+            node = htmlDocument.DocumentNode;
+
+            {
+
+                string namePath = "//*[@class=\"p-name p-name-type-3\"]/a/em";
+                HtmlNode nameNode = node.SelectSingleNode(namePath);
+                string name = nameNode.InnerText;
+
+
+                string urlPath = "//*[@class=\"p-name p-name-type-3\"]/a";
+                HtmlNode urlNode = node.SelectSingleNode(urlPath);
+                string url1 = $"https:{urlNode.Attributes["href"].Value}";
+
+
+                string picturePath = "//*[@class=\"p-img\"]/a/img";
+                HtmlNode picNode = node.SelectSingleNode(picturePath);
+                string pictureUrl = $"https:{picNode.Attributes["src"].Value}";
+
+                Console.WriteLine($"{DateTime.Now}: {name}");
+                Console.WriteLine($"{DateTime.Now}: {url1}");
+                Console.WriteLine($"{DateTime.Now}: {pictureUrl}");
             }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
-
-
-
 
 
 
