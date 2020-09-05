@@ -18,12 +18,14 @@ namespace P19.Course.AsyncThreadForm
     {
         public Form1()
         {
+            Console.WindowWidth = Console.WindowWidth * 3/2;
+
             InitializeComponent();
         }
 
         private void btnSync_Click(object sender, EventArgs e)
         {
-            Console.WriteLine($"*************button Sync Click Start, Thread Id is: " +
+            ConsoleWhite.WriteLine($"*************button Sync Click Start, Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss. fff")}" +
                               $"*********************");
@@ -36,7 +38,7 @@ namespace P19.Course.AsyncThreadForm
                 string name = string.Format($"btnSync_Click_{i}");
                 this.DoSomethingLong(name);
             }
-            Console.WriteLine($"*************btnSync_Click End , Thread Id is: " +
+            ConsoleWhite.WriteLine($"*************btnSync_Click End , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
@@ -47,7 +49,7 @@ namespace P19.Course.AsyncThreadForm
         // a time consuming task
         private void DoSomethingLong(string name)
         {
-            Console.WriteLine($"+++++++++++++DoSomethingLong Start by {name}  , Thread Id is: " +
+            ConsoleWriter.WriteLine($"+++++++++++++DoSomethingLong Start by {name}  , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"++++++++++++");
@@ -58,16 +60,15 @@ namespace P19.Course.AsyncThreadForm
             }
             //Thread.Sleep(2000);
 
-            Console.WriteLine($"++++++++++++++DoSomethingLong End by {name}  , Thread Id is: " +
+            ConsoleWriter.WriteLine($"++++++++++++++DoSomethingLong End by {name}  , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
                               $"result is : {lResult}+++++++++++");
-
         }
 
         private void btnAsync_Click(object sender, EventArgs e)
         {
-            Console.WriteLine($"****************btnAsync_Click Start, Thread Id is: " +
+            ConsoleWhite.WriteLine($"****************btnAsync_Click Start, Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
                               $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
@@ -86,7 +87,7 @@ namespace P19.Course.AsyncThreadForm
             }
 
 
-            Console.WriteLine($"****************btnAsync_Click End, Thread Id is:  " +
+            ConsoleWhite.WriteLine($"****************btnAsync_Click End, Thread Id is:  " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
@@ -1282,10 +1283,10 @@ namespace P19.Course.AsyncThreadForm
 
         }
 
-
-        
-
-
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Console.Clear();
+        }
     }
 
     
