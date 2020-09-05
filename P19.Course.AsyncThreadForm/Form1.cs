@@ -25,7 +25,7 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnSync_Click(object sender, EventArgs e)
         {
-            ConsoleWhite.WriteLine($"*************button Sync Click Start, Thread Id is: " +
+            ConsoleWriter.WriteLine($"*************button Sync Click Start, Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss. fff")}" +
                               $"*********************");
@@ -38,7 +38,7 @@ namespace P19.Course.AsyncThreadForm
                 string name = string.Format($"btnSync_Click_{i}");
                 this.DoSomethingLong(name);
             }
-            ConsoleWhite.WriteLine($"*************btnSync_Click End , Thread Id is: " +
+            ConsoleWriter.WriteLine($"*************btnSync_Click End , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
@@ -49,7 +49,7 @@ namespace P19.Course.AsyncThreadForm
         // a time consuming task
         private void DoSomethingLong(string name)
         {
-            ConsoleWriter.WriteLine($"+++++++++++++DoSomethingLong Start by {name}  , Thread Id is: " +
+            ConsoleWriter.WriteLineYellow($"+++++++++++++DoSomethingLong Start by {name}  , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"++++++++++++");
@@ -60,7 +60,7 @@ namespace P19.Course.AsyncThreadForm
             }
             //Thread.Sleep(2000);
 
-            ConsoleWriter.WriteLine($"++++++++++++++DoSomethingLong End by {name}  , Thread Id is: " +
+            ConsoleWriter.WriteLineYellow($"++++++++++++++DoSomethingLong End by {name}  , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
                               $"result is : {lResult}+++++++++++");
@@ -68,7 +68,7 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnAsync_Click(object sender, EventArgs e)
         {
-            ConsoleWhite.WriteLine($"****************btnAsync_Click Start, Thread Id is: " +
+            ConsoleWriter.WriteLine($"****************btnAsync_Click Start, Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
                               $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
@@ -87,7 +87,7 @@ namespace P19.Course.AsyncThreadForm
             }
 
 
-            ConsoleWhite.WriteLine($"****************btnAsync_Click End, Thread Id is:  " +
+            ConsoleWriter.WriteLine($"****************btnAsync_Click End, Thread Id is:  " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
@@ -95,11 +95,11 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnAsyncAdvanced_Click(object sender, EventArgs e)
         {
-            Console.WriteLine($"****************btnAsyncAdvanced_Click Start, Thread Id is: " +
+            ConsoleWriter.WriteLine($"****************btnAsyncAdvanced_Click Start, Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
                               $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
-            Console.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
             
             {
                 //1 call back. callback will be called when the action finished,
@@ -111,16 +111,16 @@ namespace P19.Course.AsyncThreadForm
 
                 AsyncCallback callback = ar =>
                 {
-                    Console.WriteLine($"{object.ReferenceEquals(ar, asyncresult)}");
-                    Console.WriteLine($"btnasyncadvanced_click finish successfully, " +
-                                      $"{ar.AsyncState}. {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    ConsoleWriter.WriteLineGreen($"IAsyncResult are passed to AsyncCallback func? {object.ReferenceEquals(ar, asyncresult)}");
+                    ConsoleWriter.WriteLineGreen($"btnasyncadvanced_click computation finished, IAsyncResult state is " +
+                                      $"{ar.AsyncState} in thread {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 };
 
                 asyncresult = action.BeginInvoke("btnasyncadvanced_click", callback, "any object being passed in....");
             }
 
-            Console.WriteLine("----------------------------------------------------------------------");
-            Console.WriteLine($"****************btnAsyncAdvanced_Click End, Thread Id is:  " +
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnAsyncAdvanced_Click End, Thread Id is:  " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
@@ -128,11 +128,11 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnAsyncAdvanced2_IAsyncResult_Click(object sender, EventArgs e)
         {
-            Console.WriteLine($"****************btnAsyncAdvanced2_IAsyncResult_Click Start, Thread Id is: " +
+            ConsoleWriter.WriteLine($"****************btnAsyncAdvanced2_IAsyncResult_Click Start, Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
                               $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
-            Console.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
 
             {
                 // 2 check asyncResult IsCompleted. The main thread will wait and provide notification.
@@ -144,8 +144,9 @@ namespace P19.Course.AsyncThreadForm
                 //ar is the result of invoke. 
                 AsyncCallback callback = ar =>
                 {
-                    Console.WriteLine($"AsyncCallback and IAsyncResult are same? : {object.ReferenceEquals(ar, asyncResult)}");
-                    Console.WriteLine($"btnAsyncAdvanced2_IAsyncResult_Click's new thread " +
+                    ConsoleWriter.WriteLineGreen($"AsyncCallback and IAsyncResult are same? : {object.ReferenceEquals(ar, asyncResult)}");
+                    this.DoSomethingLong("callback");//just make call back running long time for checking whether IsCompleted means callback finished. 
+                    ConsoleWriter.WriteLineGreen($"btnAsyncAdvanced2_IAsyncResult_Click's new thread " +
                                       $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} finish successfully, " +
                                       $"objects passed by --- ar.AsyncState : {ar.AsyncState}. ");
                 };
@@ -154,30 +155,30 @@ namespace P19.Course.AsyncThreadForm
 
                 int i = 0;
                 Thread.Sleep(100);//wait for sub thread to start. not a good solution. 
-                while (!asyncResult.IsCompleted)
+                while (!asyncResult.IsCompleted)//not wait for call back
                 {
                     //Thread.Sleep(200); //one line more, because when sleep, another thread finish. 
                     if (i < 9)
                     {
-                        Console.WriteLine($" the action is being processing {++i * 10}%...." +
+                        ConsoleWriter.WriteLine($" the action is being processing {++i * 10}%...." +
                                           $" checked by thread: {Thread.CurrentThread.ManagedThreadId.ToString("00")}");//notification
                     }
                     else
                     {
-                        Console.WriteLine($"the action has completed 99.999999%" +
+                        ConsoleWriter.WriteLine($"the action has completed 99.999999%" +
                                           $" checked by thread: {Thread.CurrentThread.ManagedThreadId.ToString("00")}");//notification
                     }
 
-                    Thread.Sleep(200); // add this to adjust number of notifications
+                    Thread.Sleep(200); // add this to adjust number of notifications, this is check time gap
                 }
-                Console.WriteLine("the action has completed 100%, " +
+                ConsoleWriter.WriteLine("the action has completed 100%, " +
                                   $" checked by thread: {Thread.CurrentThread.ManagedThreadId.ToString("00")} ");
 
             }
 
 
-            Console.WriteLine("----------------------------------------------------------------------");
-            Console.WriteLine($"****************btnAsyncAdvanced2_IAsyncResult_Click End, Thread Id is:  " +
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnAsyncAdvanced2_IAsyncResult_Click End, Thread Id is:  " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
@@ -185,11 +186,11 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnAsyncAdvanced3_WaitOne_Click(object sender, EventArgs e)
         {
-            Console.WriteLine($"****************btnAsyncAdvanced3_WaitOne_Click Start, Thread Id is: " +
+            ConsoleWriter.WriteLine($"****************btnAsyncAdvanced3_WaitOne_Click Start, Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
                               $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
-            Console.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
 
             {
                 // 3 AsyncWaitHandle.WaitOne()   wait for task finishing. 
@@ -201,8 +202,8 @@ namespace P19.Course.AsyncThreadForm
                 AsyncCallback callback = ar =>
                 {
                     Thread.Sleep(1000);//make it execute after main finish. WaitOne not wait for call back.
-                    Console.WriteLine($"AsyncCallback and IAsyncResult are same? : {object.ReferenceEquals(ar, asyncResult)}");
-                    Console.WriteLine($"btnAsyncAdvanced3_WaitOne_Click's new thread " +
+                    ConsoleWriter.WriteLineGreen($"AsyncCallback and IAsyncResult are same? : {object.ReferenceEquals(ar, asyncResult)}");
+                    ConsoleWriter.WriteLineGreen($"btnAsyncAdvanced3_WaitOne_Click's new thread " +
                                       $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} finish successfully, " +
                                       $"objects passed by --- ar.AsyncState : {ar.AsyncState}. ");
                 };
@@ -213,13 +214,13 @@ namespace P19.Course.AsyncThreadForm
                 //asyncResult.AsyncWaitHandle.WaitOne(1000);//wait 1000 miliseconds 
 
 
-                Console.WriteLine("the action has completed 100%, " +
+                ConsoleWriter.WriteLine("the action has completed 100%, " +
                                   $" checked by thread: {Thread.CurrentThread.ManagedThreadId.ToString("00")} ");
 
             }
 
-            Console.WriteLine("----------------------------------------------------------------------");
-            Console.WriteLine($"****************btnAsyncAdvanced3_WaitOne_Click End, Thread Id is:  " +
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnAsyncAdvanced3_WaitOne_Click End, Thread Id is:  " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
@@ -228,11 +229,11 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnAsyncAdvanced4_EndInvoke_Click(object sender, EventArgs e)
         {
-            Console.WriteLine($"****************btnAsyncAdvanced4_EndInvoke_Click Start, Thread Id is: " +
+            ConsoleWriter.WriteLine($"****************btnAsyncAdvanced4_EndInvoke_Click Start, Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
                               $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
-            Console.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
 
             {
                 // 4  EndInvoke, can wait for end of sub thread delegate and get return value 
@@ -247,8 +248,9 @@ namespace P19.Course.AsyncThreadForm
                 {
                     //funcResult2 = func.EndInvoke(ar);
                     //Console.WriteLine(funcResult2);//can also get here but one async can only get one endInvoke.
-                    Console.WriteLine($"AsyncCallback and IAsyncResult are same? : {object.ReferenceEquals(ar, asyncResult)}");
-                    Console.WriteLine($"btnAsyncAdvanced4_EndInvoke_Click's new thread " +
+                    ConsoleWriter.WriteLineGreen($"AsyncCallback and IAsyncResult are same? : {object.ReferenceEquals(ar, asyncResult)}");
+                    DoSomethingLong("callback");
+                    ConsoleWriter.WriteLineGreen($"btnAsyncAdvanced4_EndInvoke_Click's new thread " +
                                       $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} finish successfully, " +
                                       $"objects passed by --- ar.AsyncState : {ar.AsyncState}. ");
                 };
@@ -256,17 +258,17 @@ namespace P19.Course.AsyncThreadForm
                 asyncResult = func.BeginInvoke("btnAsyncAdvanced4_EndInvoke_Click", callback, "any parameters being passed in....");
 
 
-                long funcResult = func.EndInvoke(asyncResult);//EndInvoke can also get return value
+                long funcResult = func.EndInvoke(asyncResult);//EndInvoke can also get return value, still not wait for callback. 
 
 
-                Console.WriteLine($"the action has completed 100%, result is {funcResult}" +
+                ConsoleWriter.WriteLine($"the action has completed 100%, result is {funcResult}" +
                                   $" checked by thread: {Thread.CurrentThread.ManagedThreadId.ToString("00")} ");
 
             }
 
 
-            Console.WriteLine("----------------------------------------------------------------------");
-            Console.WriteLine($"****************btnAsyncAdvanced4_EndInvoke_Click End, Thread Id is:  " +
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnAsyncAdvanced4_EndInvoke_Click End, Thread Id is:  " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"***************");
@@ -276,7 +278,7 @@ namespace P19.Course.AsyncThreadForm
         // a time consuming task with return 
         private long DoSomethingLongReturn(string name)
         {
-            Console.WriteLine($"+++++++++++++DoSomethingLong Start by {name}  , Thread Id is: " +
+            ConsoleWriter.WriteLineYellow($"+++++++++++++DoSomethingLong Start by {name}  , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
                               $"++++++++++++");
@@ -286,8 +288,8 @@ namespace P19.Course.AsyncThreadForm
                 lResult += i;
             }
             //Thread.Sleep(2000);
-            
-            Console.WriteLine($"++++++++++++++DoSomethingLong End by {name}  , Thread Id is: " +
+
+            ConsoleWriter.WriteLineYellow($"++++++++++++++DoSomethingLong End by {name}  , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
                               $"result is : {lResult}+++++++++++");

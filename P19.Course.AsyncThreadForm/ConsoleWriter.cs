@@ -10,7 +10,16 @@ namespace P19.Course.AsyncThreadForm
     {
         private static object _messageLock = new Object();
 
-        public static void WriteLine( string message)
+        public static void WriteLine(string message)
+        {
+            lock (_messageLock)
+            {
+                Console.ResetColor();
+                Console.WriteLine(message);
+            }
+        }
+
+        public static void WriteLineYellow(string message)
         {
             lock (_messageLock)
             {
@@ -19,21 +28,20 @@ namespace P19.Course.AsyncThreadForm
                 Console.ResetColor();
             }
         }
-    }
 
-    public static class ConsoleWhite
-    {
-        private static object _messageLock = new Object();
-
-        public static void WriteLine(string message)
+        public static void WriteLineGreen(string message)
         {
             lock (_messageLock)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(message);
+                Console.ResetColor();
             }
         }
+
     }
 
+    
 
 
 }
