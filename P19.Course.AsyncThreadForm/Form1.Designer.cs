@@ -59,7 +59,7 @@
             // 
             // btnSync
             // 
-            this.btnSync.Location = new System.Drawing.Point(12, 49);
+            this.btnSync.Location = new System.Drawing.Point(12, 78);
             this.btnSync.Name = "btnSync";
             this.btnSync.Size = new System.Drawing.Size(75, 21);
             this.btnSync.TabIndex = 0;
@@ -69,7 +69,7 @@
             // 
             // btnAsync
             // 
-            this.btnAsync.Location = new System.Drawing.Point(12, 99);
+            this.btnAsync.Location = new System.Drawing.Point(12, 113);
             this.btnAsync.Name = "btnAsync";
             this.btnAsync.Size = new System.Drawing.Size(75, 21);
             this.btnAsync.TabIndex = 1;
@@ -79,17 +79,17 @@
             // 
             // btnAsyncAdvanced
             // 
-            this.btnAsyncAdvanced.Location = new System.Drawing.Point(12, 140);
+            this.btnAsyncAdvanced.Location = new System.Drawing.Point(12, 173);
             this.btnAsyncAdvanced.Name = "btnAsyncAdvanced";
-            this.btnAsyncAdvanced.Size = new System.Drawing.Size(148, 21);
+            this.btnAsyncAdvanced.Size = new System.Drawing.Size(197, 21);
             this.btnAsyncAdvanced.TabIndex = 2;
-            this.btnAsyncAdvanced.Text = "AsyncAdvanced";
+            this.btnAsyncAdvanced.Text = "AsyncAdvanced_AsyncCallback";
             this.btnAsyncAdvanced.UseVisualStyleBackColor = true;
             this.btnAsyncAdvanced.Click += new System.EventHandler(this.btnAsyncAdvanced_Click);
             // 
             // btnAsyncAdvanced2_IAsyncResult
             // 
-            this.btnAsyncAdvanced2_IAsyncResult.Location = new System.Drawing.Point(12, 188);
+            this.btnAsyncAdvanced2_IAsyncResult.Location = new System.Drawing.Point(12, 210);
             this.btnAsyncAdvanced2_IAsyncResult.Name = "btnAsyncAdvanced2_IAsyncResult";
             this.btnAsyncAdvanced2_IAsyncResult.Size = new System.Drawing.Size(197, 21);
             this.btnAsyncAdvanced2_IAsyncResult.TabIndex = 3;
@@ -99,7 +99,7 @@
             // 
             // btnAsyncAdvanced3_WaitOne
             // 
-            this.btnAsyncAdvanced3_WaitOne.Location = new System.Drawing.Point(12, 245);
+            this.btnAsyncAdvanced3_WaitOne.Location = new System.Drawing.Point(12, 295);
             this.btnAsyncAdvanced3_WaitOne.Name = "btnAsyncAdvanced3_WaitOne";
             this.btnAsyncAdvanced3_WaitOne.Size = new System.Drawing.Size(178, 21);
             this.btnAsyncAdvanced3_WaitOne.TabIndex = 4;
@@ -109,7 +109,7 @@
             // 
             // btnAsyncAdvanced4_EndInvoke
             // 
-            this.btnAsyncAdvanced4_EndInvoke.Location = new System.Drawing.Point(12, 297);
+            this.btnAsyncAdvanced4_EndInvoke.Location = new System.Drawing.Point(12, 335);
             this.btnAsyncAdvanced4_EndInvoke.Name = "btnAsyncAdvanced4_EndInvoke";
             this.btnAsyncAdvanced4_EndInvoke.Size = new System.Drawing.Size(178, 21);
             this.btnAsyncAdvanced4_EndInvoke.TabIndex = 5;
@@ -318,9 +318,10 @@
             // 
             // btnClear
             // 
+            this.btnClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnClear.Location = new System.Drawing.Point(12, 12);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(204, 23);
+            this.btnClear.Size = new System.Drawing.Size(188, 39);
             this.btnClear.TabIndex = 26;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -330,7 +331,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(991, 460);
+            this.ClientSize = new System.Drawing.Size(918, 456);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnThreadCore_LockStringNull);

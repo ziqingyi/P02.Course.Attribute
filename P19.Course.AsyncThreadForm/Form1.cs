@@ -154,7 +154,7 @@ namespace P19.Course.AsyncThreadForm
                 asyncResult = action.BeginInvoke("btnAsyncAdvanced2_IAsyncResult_Click", callback, "any parameters being passed in....");
 
                 int i = 0;
-                Thread.Sleep(100);//wait for sub thread to start. not a good solution. 
+                //Thread.Sleep(100);//wait for sub thread to start. not a good solution. 
                 while (!asyncResult.IsCompleted)//not wait for call back
                 {
                     //Thread.Sleep(200); //one line more, because when sleep, another thread finish. 
@@ -255,11 +255,12 @@ namespace P19.Course.AsyncThreadForm
                                       $"objects passed by --- ar.AsyncState : {ar.AsyncState}. ");
                 };
 
+                //long funcResult1 = func.Invoke("btnAsyncAdvanced4_EndInvoke_Click");  //normal way of invoke action, just wait for method running. 
+                
+                
                 asyncResult = func.BeginInvoke("btnAsyncAdvanced4_EndInvoke_Click", callback, "any parameters being passed in....");
-
-
-                long funcResult = func.EndInvoke(asyncResult);//EndInvoke can also get return value, still not wait for callback. 
-
+                long funcResult = func.EndInvoke(asyncResult);//EndInvoke also wait return value(not IAsyncResult), still not wait for callback. 
+                //so it's better to wait for EndInvoke in the callback function, because the UI will not get stuck.
 
                 ConsoleWriter.WriteLine($"the action has completed 100%, result is {funcResult}" +
                                   $" checked by thread: {Thread.CurrentThread.ManagedThreadId.ToString("00")} ");
