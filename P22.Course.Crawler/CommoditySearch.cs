@@ -41,6 +41,12 @@ namespace P22.Course.Crawler
 
                     }
                     {
+                        //get price
+                        string path = @"//*[@id='J_goodsList']/ul/li[1]/div/div[2]/strong/i";
+                        HtmlNode node = document.DocumentNode.SelectSingleNode(path);
+                        string price = node.InnerText;
+                    }
+                    {
                         //copy the xpath from the web browser. then get nodes from the path. 
                         string path = "//*[@class=\"J_valueList v-fixed\"]/li";
                         HtmlNodeCollection nodecollection = document.DocumentNode.SelectNodes(path);
@@ -114,9 +120,9 @@ namespace P22.Course.Crawler
 
         private void FindCommoditySingle(HtmlNode node)
         {
-            HtmlDocument htmlDocument = new HtmlDocument();
-            htmlDocument.LoadHtml(node.OuterHtml);
-            node = htmlDocument.DocumentNode;
+            //HtmlDocument htmlDocument = new HtmlDocument();
+            //htmlDocument.LoadHtml(node.OuterHtml);
+            //node = htmlDocument.DocumentNode;
 
             {
 
