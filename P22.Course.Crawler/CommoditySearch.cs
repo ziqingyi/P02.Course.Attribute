@@ -74,7 +74,13 @@ namespace P22.Course.Crawler
                             {
                                 string url = $"{rootUrl}&Page={i}";
                                 Console.WriteLine(url);
+
+                                //read every page 
+                                this.skuIdList = new List<string>();
+
                                 this.FindCommodityPage(url);
+
+                                this.FindPrice();
                             }
                         }
                         else
@@ -118,6 +124,9 @@ namespace P22.Course.Crawler
             }
         }
 
+
+        private List<string> skuIdList = new List<string>();
+
         private void FindCommoditySingle(HtmlNode node)
         {
             //HtmlDocument htmlDocument = new HtmlDocument();
@@ -154,7 +163,9 @@ namespace P22.Course.Crawler
                     pictureUrl= $"https:{picNode.Attributes["src"].Value}";
                 }
                 
-
+                //get id 
+                string skuId = url1.Substring(url1.LastIndexOf('/') + 1).Replace(".html", "");
+                skuIdList.Add(skuId);
 
 
                 Console.WriteLine($"{DateTime.Now}: {name}");
@@ -165,6 +176,13 @@ namespace P22.Course.Crawler
 
         }
 
+
+        private void FindPrice()
+        {
+            string url = "";
+
+
+        }
 
 
 
