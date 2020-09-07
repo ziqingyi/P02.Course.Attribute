@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -54,13 +55,13 @@ namespace P22.Course.Crawler
                         string rootUrl = category.Url;
                         //1 find the total pages, larger page number would be last page. 
 
-                        string totalPagePath = @"//*[@id='J_bottomPage']/span[2]/em";
+                        string totalPagePath = @"//*[@id='J_topPage']/span/i";
                         HtmlNode node = document.DocumentNode.SelectSingleNode(totalPagePath);
                         if (node != null)
                         {
                             string sPage = node.InnerText;//get the total page 
                                                           
-                            Regex re = new Regex("[0-9]");
+                            Regex re = new Regex("[0-9]*");
                             object res = re.Match(sPage);
                             int ipage = int.Parse(res.ToString());
                             for (int i = 1; i <= ipage; i++)
@@ -131,7 +132,24 @@ namespace P22.Course.Crawler
 
                 string picturePath = "//*[@class=\"p-img\"]/a/img";
                 HtmlNode picNode = node.SelectSingleNode(picturePath);
-                string pictureUrl = $"https:{picNode.Attributes["src"].Value}";
+                //string pictureUrl = $"https:{picNode.Attributes["src"].Value}";
+
+                string pictureUrl = null;
+                if (picNode == null)
+                {
+                    Console.WriteLine("Empty src attribute");
+                }
+                else if (picNode.Attributes["src"] == null) 
+                {
+                    pictureUrl = $"https:{picNode.Attributes["data-lazy-img"].Value}";
+                }
+                else
+                {
+                    pictureUrl= $"https:{picNode.Attributes["src"].Value}";
+                }
+                
+
+
 
                 Console.WriteLine($"{DateTime.Now}: {name}");
                 Console.WriteLine($"{DateTime.Now}: {url1}");
