@@ -150,9 +150,10 @@ namespace P22.Course.Crawler
 
         private void FindCommoditySingle(HtmlNode node)
         {
-            //HtmlDocument htmlDocument = new HtmlDocument();
-            //htmlDocument.LoadHtml(node.OuterHtml);
-            //node = htmlDocument.DocumentNode;
+            //otherwise load first item each time
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(node.OuterHtml);
+            node = htmlDocument.DocumentNode;
 
             {
 
@@ -200,7 +201,23 @@ namespace P22.Course.Crawler
 
         private void FindPrice()
         {
-            string url = "";
+            var items = this.skuIdList.Select(id =>
+                {
+                    return "J_" + id;
+                }
+                );
+
+            var itemUrl = string.Join("%2C",items);
+
+            //Console.WriteLine(itemUrl);
+
+            string url = $"https://p.3.cn/prices/mgets?callback=jQuery7771421&type=1&area=53283_53347_0_0&skuIds="
+                         + itemUrl
+                         + $"&pdbp=0&pdtk=&pdpin=&pduid=15995186632001425589208&source=search_pc&_=1599518810870";
+
+            string jsonPrice = HttpHelper.DownloadUrl(url);
+
+
 
 
         }
