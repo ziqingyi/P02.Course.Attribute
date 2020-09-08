@@ -26,13 +26,18 @@ namespace P22.Course.Crawler
         {
             try
             {
-                string html = HttpHelper.DownloadUrl(category.Url);
+                
                 {
-                    //HtmlAgilityPack can help to load the html
+                    #region test for one item
+
+                    //1 download the html based on Url. 
+                    string html = HttpHelper.DownloadUrl(category.Url);
+
+                    //2 HtmlAgilityPack can help to load the html
                     HtmlDocument document = new HtmlDocument();
                     document.LoadHtml(html);
 
-
+                    //3 select single node or nodes, then analyze it. 
                     {
                         //copy the xpath from the web browser. then get node from the path. 
                         string path = @"//*[@id='brand-11026']/a";
@@ -41,7 +46,7 @@ namespace P22.Course.Crawler
 
                     }
                     {
-                        //get price
+                        //get price for one item
                         string path = @"//*[@id='J_goodsList']/ul/li[1]/div/div[2]/strong/i";
                         HtmlNode node = document.DocumentNode.SelectSingleNode(path);
                         string price = node.InnerText;
@@ -56,45 +61,58 @@ namespace P22.Course.Crawler
                         }
                     }
 
-                    {
-                        #region paging: 
-                        string rootUrl = category.Url;
-                        //1 find the total pages, larger page number would be last page. 
-
-                        string totalPagePath = @"//*[@id='J_topPage']/span/i";
-                        HtmlNode node = document.DocumentNode.SelectSingleNode(totalPagePath);
-                        if (node != null)
-                        {
-                            string sPage = node.InnerText;//get the total page 
-                                                          
-                            Regex re = new Regex("[0-9]*");
-                            object res = re.Match(sPage);
-                            int ipage = int.Parse(res.ToString());
-                            for (int i = 1; i <= ipage; i++)
-                            {
-                                string url = $"{rootUrl}&Page={i}";
-                                Console.WriteLine(url);
-
-                                //read every page 
-                                this.skuIdList = new List<string>();
-
-                                this.FindCommodityPage(url);
-
-                                this.FindPrice();
-                            }
-                        }
-                        else
-                        {
-                            string url = $"{rootUrl}&Page=1";
-                            Console.WriteLine(url);
-                            this.FindCommodityPage(url);
-                        }
-                        #endregion
-                    }
-
-
-
+                    #endregion
                 }
+
+                {
+                    #region paging: find items in different pages, then get price. 
+                    //1 download the html based on Url. 
+                    string html = HttpHelper.DownloadUrl(category.Url);
+
+                    //2 HtmlAgilityPack can help to load the html
+                    HtmlDocument document = new HtmlDocument();
+                    document.LoadHtml(html);
+
+                    //3 get url link
+                    string rootUrl = category.Url;
+
+                    //4 find the total pages, larger page number would be last page. 
+                    string totalPagePath = @"//*[@id='J_topPage']/span/i";
+                    HtmlNode node = document.DocumentNode.SelectSingleNode(totalPagePath);
+
+                    //5 assemble the link with page number 
+                    if (node != null)
+                    {
+                        string sPage = node.InnerText;//get the total page 
+
+                        Regex re = new Regex("[0-9]*");
+                        object res = re.Match(sPage);
+                        int ipage = int.Parse(res.ToString());
+                        for (int i = 1; i <= ipage; i++)
+                        {
+                            string url = $"{rootUrl}&Page={i}";
+                            Console.WriteLine(url);
+
+                            //read every page 
+                            this.skuIdList = new List<string>();
+
+                            this.FindCommodityPage(url);
+
+                            this.FindPrice();
+                        }
+                    }
+                    else
+                    {
+                        string url = $"{rootUrl}&Page=1";
+                        Console.WriteLine(url);
+                        this.FindCommodityPage(url);
+                    }
+                    #endregion
+                }
+
+
+
+
             }
             catch (Exception ex)
             {
@@ -105,7 +123,7 @@ namespace P22.Course.Crawler
 
         private void FindCommodityPage(string url)
         {
-
+            //use HttpHelper to get html 
             string html = HttpHelper.DownloadUrl(url);
 
             //method 1: get items by search through the html
@@ -113,13 +131,16 @@ namespace P22.Course.Crawler
 
             HtmlDocument document = new HtmlDocument();
             document.LoadHtml(html);
-            string cPath = "//*[@id=\"J_goodsList\"]/ul/li";
 
+            //locate the items area in html
+            string cPath = "//*[@id=\"J_goodsList\"]/ul/li";
             HtmlNodeCollection nodes = document.DocumentNode.SelectNodes(cPath);
 
+            //process each item node
             foreach (HtmlNode node in nodes)
             {
                 //node.OuterHtml// including the label like li
+                
                 FindCommoditySingle(node);
             }
         }
@@ -167,7 +188,7 @@ namespace P22.Course.Crawler
                 string skuId = url1.Substring(url1.LastIndexOf('/') + 1).Replace(".html", "");
                 skuIdList.Add(skuId);
 
-
+                Console.WriteLine($"{DateTime.Now}: {skuId}");
                 Console.WriteLine($"{DateTime.Now}: {name}");
                 Console.WriteLine($"{DateTime.Now}: {url1}");
                 Console.WriteLine($"{DateTime.Now}: {pictureUrl}");
