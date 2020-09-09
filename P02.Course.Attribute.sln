@@ -67,6 +67,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P21.Course.Lottery", "P21.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P22.Course.Crawler", "P22.Course.Crawler\P22.Course.Crawler.csproj", "{E0A2B477-C0BD-482A-9379-B84DA76497C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P23.Course.IOC.Project", "P23.Course.IOC.Project\P23.Course.IOC.Project.csproj", "{4DB3BB3D-BA0A-4C47-8685-394224030785}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -201,6 +203,10 @@ Global
 		{E0A2B477-C0BD-482A-9379-B84DA76497C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0A2B477-C0BD-482A-9379-B84DA76497C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0A2B477-C0BD-482A-9379-B84DA76497C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DB3BB3D-BA0A-4C47-8685-394224030785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DB3BB3D-BA0A-4C47-8685-394224030785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DB3BB3D-BA0A-4C47-8685-394224030785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DB3BB3D-BA0A-4C47-8685-394224030785}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
