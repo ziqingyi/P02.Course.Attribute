@@ -62,11 +62,13 @@ namespace P22.Course.Crawler.Service
                     #region find first level and second level
 
                     string firstPath = "//*[@class='category-item m']";
-                    HtmlNodeCollection nodeList1 = document.DocumentNode.SelectNodes(firstPath);
-                    if (nodeList1 != null)
+                    HtmlNodeCollection CategoryNode = document.DocumentNode.SelectNodes(firstPath);
+                    if (CategoryNode != null)
                     {
-                        foreach (HtmlNode node1 in nodeList1)
+                        foreach (HtmlNode node1 in CategoryNode)
                         {
+                            //logger.Info($"Category:{node1.InnerText}");
+
                             //find parts of html
                             string firstHtml = node1.OuterHtml;
                             //use xpath to find second level
@@ -80,9 +82,34 @@ namespace P22.Course.Crawler.Service
                             {
                                 foreach (HtmlNode node2 in nodeList2)
                                 {
-                                    string url = node2.Attributes["href"].Value;
-                                    string name = node2.InnerText;
-                                    logger.Info($"{name}:{url}");
+                                    string url2 = node2.Attributes["href"].Value;
+                                    string name2 = node2.InnerText;
+                                    logger.Info($"{name2}:{url2}");
+
+
+
+
+                                    //find parts of html
+                                    string SecondHtml = node2.OuterHtml;
+                                    //use xpath to find second level
+                                    HtmlDocument documentChildChild = new HtmlDocument();
+                                    documentChild.LoadHtml(SecondHtml);
+
+                                    string thirdPath = "//dl/dd/a";
+                                    HtmlNodeCollection nodeList3 = documentChildChild.DocumentNode.SelectNodes(thirdPath);
+                                    if (nodeList3 != null)
+                                    {
+                                        foreach (HtmlNode node in nodeList3)
+                                        {
+                                            string url3 = node.Attributes["href"].Value;
+                                            string name3 = node.InnerText;
+                                            logger.Info($"{name3}:{url3}");
+                                        }
+                                    }
+
+
+
+
                                 }
                             }
 
