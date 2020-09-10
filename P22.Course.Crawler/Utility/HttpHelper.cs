@@ -37,7 +37,7 @@ namespace P22.Course.Crawler.Utility
                 {
                     if (response.StatusCode != HttpStatusCode.OK)
                     {
-                        logger.Warn(string.Format("try to get {0} failed, response.StatusCode is {1}", url,response.StatusCode));
+                        logger.Warn(string.Format("HttpWebResponse's StatusCode is not ok, try to get {0} failed, response.StatusCode is {1}", url,response.StatusCode));
                     }
                     else
                     {
@@ -49,7 +49,7 @@ namespace P22.Course.Crawler.Utility
                         }
                         catch (Exception ex)
                         {
-                            logger.Error(string.Format($"DownloadHtml get {url} failed", ex));
+                            logger.Error(string.Format($"DownloadHtml StreamReader get {url} failed", ex));
                             html = null;
                         }
 
@@ -60,19 +60,17 @@ namespace P22.Course.Crawler.Utility
             }
             catch (System.Net.WebException ex)
             {
-                if (ex.Message.Contains("306"))
+                if (ex.Message.Contains("remote server error 306"))
                 {
-
+                    logger.Error("remote server error 306");
                     html = null;
                 }
             }
             catch (Exception e)
             {
-
-
+                logger.Error(string.Format("DowmloadHtml failed in download {0}", url));
                 html = null;
             }
-
 
             return html;
         }
