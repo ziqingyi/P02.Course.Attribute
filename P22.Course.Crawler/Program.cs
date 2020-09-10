@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using P22.Course.Crawler.Interface;
 using P22.Course.Crawler.Model;
 using P22.Course.Crawler.Utility;
 

@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using P22.Course.Crawler.Interface;
 using P22.Course.Crawler.Model;
 using P22.Course.Crawler.Utility;
 
