@@ -11,7 +11,7 @@ namespace P22.Course.Crawler.Utility
 {
     public class HttpHelper
     {
-
+        //note down the class name , static: because other methods are static.
         private static Logger logger = new Logger(typeof(HttpHelper));
 
         public static string DownloadUrl(string url)
