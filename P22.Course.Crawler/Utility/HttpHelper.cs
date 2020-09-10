@@ -24,6 +24,7 @@ namespace P22.Course.Crawler.Utility
             string html = string.Empty;
             try
             {
+                logger.Info($"start to download {url}");
                 HttpWebRequest request = HttpWebRequest.Create(url) as HttpWebRequest;
                 request.Timeout = 30 * 1000;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36";
