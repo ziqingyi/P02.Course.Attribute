@@ -61,7 +61,7 @@ namespace P22.Course.Crawler.Service
                 {
                     #region find first level and second level
 
-                    string firstPath = "//*[@class='category - item m']";
+                    string firstPath = "//*[@class='category-item m']";
                     HtmlNodeCollection nodeList1 = document.DocumentNode.SelectNodes(firstPath);
                     if (nodeList1 != null)
                     {
