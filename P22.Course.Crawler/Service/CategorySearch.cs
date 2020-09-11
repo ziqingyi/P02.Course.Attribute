@@ -59,83 +59,80 @@ namespace P22.Course.Crawler.Service
                 //    #endregion
                 //}
                 {
-                    #region find first level and second level
+                    #region find first level and second level and third level
 
+                    //find all large categories
                     string firstPath = "//*[@class='category-item m']";
                     HtmlNodeCollection CategoryNode = document.DocumentNode.SelectNodes(firstPath);
                     if (CategoryNode != null)
                     {
+                        //iterate all the categories 
                         foreach (HtmlNode node1 in CategoryNode)
                         {
-                            //logger.Info($"Category:{node1.InnerText}");
-
-                            //find parts of html
+                            
+                            //reload parts of html, for a large category, eg book, videos etc....
                             string firstHtml = node1.OuterHtml;
                             //use xpath to find second level
-                            HtmlDocument documentChild = new HtmlDocument();
-                            documentChild.LoadHtml(firstHtml);
+                            HtmlDocument documentChild1 = new HtmlDocument();
+                            documentChild1.LoadHtml(firstHtml);
 
 
-                            string secondPath = "//dl/dt/a";
-                            HtmlNodeCollection nodeList2 = documentChild.DocumentNode.SelectNodes(secondPath);
+                            //find the category's topic first
+                            string topicPath = "//*[@class='category-item m']/*[@class='mt']/*[@class='item-title']/span";
+                            HtmlNode topic = documentChild1.DocumentNode.SelectSingleNode(topicPath);
+                            Console.WriteLine($"-----------------------------------------{topic.InnerText}--------------------------------------------");
+
+
+
+
+                            //find parts of line, including category and small categories
+                            string secondPath = "//*[@class='clearfix']";
+                            HtmlNodeCollection nodeList2 = documentChild1.DocumentNode.SelectNodes(secondPath);
                             if (nodeList2 != null)
                             {
+                                //iterate the lines 
                                 foreach (HtmlNode node2 in nodeList2)
                                 {
-                                    string url2 = node2.Attributes["href"].Value;
-                                    string name2 = node2.InnerText;
-                                    logger.Info($"{name2}:{url2}");
+                                    //reload the line html
+                                    string secondHtml = node2.OuterHtml;
+                                    HtmlDocument documentChild2 = new HtmlDocument();
+                                    documentChild2.LoadHtml(secondHtml);
 
 
-
-
-                                    //find parts of html
-                                    string SecondHtml = node2.OuterHtml;
-                                    //use xpath to find second level
-                                    HtmlDocument documentChildChild = new HtmlDocument();
-                                    documentChild.LoadHtml(SecondHtml);
-
-                                    string thirdPath = "//dl/dd/a";
-                                    HtmlNodeCollection nodeList3 = documentChildChild.DocumentNode.SelectNodes(thirdPath);
-                                    if (nodeList3 != null)
+                                    string thirdPath1 = "//dt/a";
+                                    HtmlNodeCollection nodeList31 = documentChild2.DocumentNode.SelectNodes(thirdPath1);
+                                    if (nodeList31 != null)
                                     {
-                                        foreach (HtmlNode node in nodeList3)
+                                        foreach (HtmlNode node in nodeList31)
                                         {
                                             string url3 = node.Attributes["href"].Value;
                                             string name3 = node.InnerText;
-                                            logger.Info($"{name3}:{url3}");
+                                            logger.Info($"{name3}: https:{url3}");
                                         }
                                     }
 
 
-
+                                    string thirdPath2 = "//dd/a";
+                                    HtmlNodeCollection nodeList32 = documentChild2.DocumentNode.SelectNodes(thirdPath2);
+                                    if (nodeList32 != null)
+                                    {
+                                        foreach (HtmlNode node in nodeList32)
+                                        {
+                                            string url3 = node.Attributes["href"].Value;
+                                            string name3 = node.InnerText;
+                                            logger.Info($"            {name3}: https:{url3}");
+                                        }
+                                    }
 
                                 }
                             }
 
-
-
-
-
                         }
-
-
                     }
 
-
-
-
                     #endregion
-
                 }
-
-
-
-
-
             }
-
-
         }
     }
 }

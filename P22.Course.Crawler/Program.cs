@@ -28,7 +28,7 @@ namespace P22.Course.Crawler
                 #endregion
 
                 {
-                    Console.WriteLine("****************Category*******************************");
+                    Console.WriteLine("*****************************************Category Search**********************************************");
                     ISearch iSearchCat = new CategorySearch();
                     iSearchCat.Crawler();
 
