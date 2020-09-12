@@ -28,54 +28,54 @@ namespace P22.Course.Crawler
             try
             {
                 
-                {
-                    #region test for one item
+                //{
+                //    #region test for one item
 
-                    //1 download the html based on Url. 
-                    string html = HttpHelper.DownloadUrl(category.Url);
+                //    //1 download the html based on Url. 
+                //    string html = HttpHelper.DownloadUrl(category.Url);
 
-                    //2 HtmlAgilityPack can help to load the html
-                    HtmlDocument document = new HtmlDocument();
-                    document.LoadHtml(html);
+                //    //2 HtmlAgilityPack can help to load the html
+                //    HtmlDocument document = new HtmlDocument();
+                //    document.LoadHtml(html);
 
-                    //3 select single node or nodes, then analyze it. 
-                    {
-                        //copy the xpath from the web browser. then get node from the path. 
-                        string path = @"//*[@id='brand-11026']/a";
-                        HtmlNode node = document.DocumentNode.SelectSingleNode(path);
-                        string title = node.Attributes["title"].Value;
+                //    //3 select single node or nodes, then analyze it. 
+                //    {
+                //        //copy the xpath from the web browser. then get node from the path. 
+                //        string path = @"//*[@id='brand-11026']/a";
+                //        HtmlNode node = document.DocumentNode.SelectSingleNode(path);
+                //        string title = node.Attributes["title"].Value;
 
-                    }
-                    {
-                        string path = @"//*[@id='J_goodsList']/ul/li/div/div[1]/a/img";
-                        HtmlNodeCollection nodes = document.DocumentNode.SelectNodes(path);
-                        foreach (HtmlNode node in nodes)
-                        {
-                            HtmlAttributeCollection attcol = node.Attributes;
-                            string imglink = " https:"+ attcol[3].Value;
-                            Console.WriteLine(imglink);
-                        }
+                //    }
+                //    {
+                //        //get image link from the page 
+                //        string path = @"//*[@id='J_goodsList']/ul/li/div/div[1]/a/img";
+                //        HtmlNodeCollection nodes = document.DocumentNode.SelectNodes(path);
+                //        foreach (HtmlNode node in nodes)
+                //        {
+                //            HtmlAttributeCollection attcol = node.Attributes;
+                //            string imglink = " https:"+ attcol[3].Value;
+                //            Console.WriteLine(imglink);
+                //        }
+                //    }
 
-                    }
+                //    {
+                //        //get price for one item
+                //        string path = @"//*[@id='J_goodsList']/ul/li[1]/div/div[2]/strong/i";
+                //        HtmlNode node = document.DocumentNode.SelectSingleNode(path);
+                //        string price = node.InnerText;
+                //    }
+                //    {
+                //        //copy the xpath from the web browser. then get nodes from the path. 
+                //        string path = "//*[@class=\"J_valueList v-fixed\"]/li";
+                //        HtmlNodeCollection nodecollection = document.DocumentNode.SelectNodes(path);
+                //        foreach (HtmlNode node in nodecollection)
+                //        {
+                //            Console.WriteLine(node.Id);
+                //        }
+                //    }
 
-                    {
-                        //get price for one item
-                        string path = @"//*[@id='J_goodsList']/ul/li[1]/div/div[2]/strong/i";
-                        HtmlNode node = document.DocumentNode.SelectSingleNode(path);
-                        string price = node.InnerText;
-                    }
-                    {
-                        //copy the xpath from the web browser. then get nodes from the path. 
-                        string path = "//*[@class=\"J_valueList v-fixed\"]/li";
-                        HtmlNodeCollection nodecollection = document.DocumentNode.SelectNodes(path);
-                        foreach (HtmlNode node in nodecollection)
-                        {
-                            Console.WriteLine(node.Id);
-                        }
-                    }
-
-                    #endregion
-                }
+                //    #endregion
+                //}
 
                 {
                     #region paging: find items in different pages, then get price. 
@@ -168,6 +168,9 @@ namespace P22.Course.Crawler
                 string namePath = "//*[@class=\"p-name p-name-type-3\"]/a/em";
                 HtmlNode nameNode = node.SelectSingleNode(namePath);
                 string name = nameNode.InnerText;
+                Regex pattern = new Regex("[\n\t]");
+                name = pattern.Replace( name,"").Substring(0, 20);
+
 
                 string urlPath = "//*[@class=\"p-name p-name-type-3\"]/a";
                 HtmlNode urlNode = node.SelectSingleNode(urlPath);
@@ -186,19 +189,26 @@ namespace P22.Course.Crawler
                 {
                     pictureUrl = $"https:{picNode.Attributes["data-lazy-img"].Value}";
                 }
-                else
+                else if(picNode.Attributes["src"] != null && picNode.Attributes["src"].Value.ToString().StartsWith("//") )
                 {
                     pictureUrl= $"https:{picNode.Attributes["src"].Value}";
                 }
-                
+                else if (picNode.Attributes["src"] != null && picNode.Attributes["src"].Value.ToString().StartsWith("https"))
+                {
+                    pictureUrl = $"{picNode.Attributes["src"].Value}";
+                }
+                else
+                {
+                    pictureUrl = $"{picNode.Attributes["src"].Value}";
+                }
+
                 //get id 
                 string skuId = url1.Substring(url1.LastIndexOf('/') + 1).Replace(".html", "");
                 skuIdList.Add(skuId);
 
-                Console.WriteLine($"{DateTime.Now}: {skuId}");
-                Console.WriteLine($"{DateTime.Now}: {name}");
-                Console.WriteLine($"{DateTime.Now}: {url1}");
-                Console.WriteLine($"{DateTime.Now}: {pictureUrl}");
+                Console.WriteLine($"                     {DateTime.Now}: {skuId}   {name}: {url1}");
+                Console.WriteLine($"                     {pictureUrl}");
+
             }
 
 
