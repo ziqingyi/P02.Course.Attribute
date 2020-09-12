@@ -28,10 +28,9 @@ namespace P22.Course.Crawler
                 #endregion
 
                 {
-                    Console.WriteLine("*****************************************Category Search**********************************************");
-                    ISearch iSearchCat = new CategorySearch();
-                    iSearchCat.Crawler();
-
+                    //Console.WriteLine("*****************************************Category Search**********************************************");
+                    //ISearch iSearchCat = new CategorySearch();
+                    //iSearchCat.Crawler();
                 }
 
 
@@ -40,13 +39,13 @@ namespace P22.Course.Crawler
 
                 #region test getting product list
                 {
-                    //string testCategory="{\"Id\":73,\"Code\":\"02f01s01T\",\"ParentCode\":\"02f01s\",\"Name\":\"烟机/灶具\",\"Url\":\"http://list.jd.com/list.html?cat=737,13297,1300\",\"Level\":3}";
-                    
-                    //Category category = JsonConvert.DeserializeObject<Category>(testCategory);
+                    string testCategory = "{\"Id\":73,\"Code\":\"02f01s01T\",\"ParentCode\":\"02f01s\",\"Name\":\"烟机/灶具\",\"Url\":\"http://list.jd.com/list.html?cat=737,13297,1300\",\"Level\":3}";
 
-                    //ISearch search = new CommoditySearch(category);
+                    Category category = JsonConvert.DeserializeObject<Category>(testCategory);
 
-                    //search.Crawler();
+                    ISearch search = new CommoditySearch(category);
+
+                    search.Crawler();
 
                 }
                 #endregion

@@ -47,6 +47,18 @@ namespace P22.Course.Crawler
 
                     }
                     {
+                        string path = @"//*[@id='J_goodsList']/ul/li/div/div[1]/a/img";
+                        HtmlNodeCollection nodes = document.DocumentNode.SelectNodes(path);
+                        foreach (HtmlNode node in nodes)
+                        {
+                            HtmlAttributeCollection attcol = node.Attributes;
+                            string imglink = " https:"+ attcol[3].Value;
+                            Console.WriteLine(imglink);
+                        }
+
+                    }
+
+                    {
                         //get price for one item
                         string path = @"//*[@id='J_goodsList']/ul/li[1]/div/div[2]/strong/i";
                         HtmlNode node = document.DocumentNode.SelectSingleNode(path);
@@ -110,10 +122,6 @@ namespace P22.Course.Crawler
                     }
                     #endregion
                 }
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -157,16 +165,13 @@ namespace P22.Course.Crawler
             node = htmlDocument.DocumentNode;
 
             {
-
                 string namePath = "//*[@class=\"p-name p-name-type-3\"]/a/em";
                 HtmlNode nameNode = node.SelectSingleNode(namePath);
                 string name = nameNode.InnerText;
 
-
                 string urlPath = "//*[@class=\"p-name p-name-type-3\"]/a";
                 HtmlNode urlNode = node.SelectSingleNode(urlPath);
                 string url1 = $"https:{urlNode.Attributes["href"].Value}";
-
 
                 string picturePath = "//*[@class=\"p-img\"]/a/img";
                 HtmlNode picNode = node.SelectSingleNode(picturePath);
