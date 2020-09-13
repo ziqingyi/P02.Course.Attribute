@@ -248,7 +248,14 @@ namespace P22.Course.Crawler
                          + $"&pdbp=0&pdtk=&pdpin=&pduid=15895467570321140053578&source=search_pc&_=1599965198653";
 
             string jsonPrice = HttpHelper.DownloadUrl(url);
-            return jsonPrice;
+
+            Regex re = new Regex("\"p\":\"[0-9.]+\"");
+            string Saleprice = re.Match(jsonPrice).ToString();
+
+            Regex res = new Regex("[0-9.]+");
+            string price = res.Match(Saleprice).ToString();
+
+            return price;
         }
 
     }
