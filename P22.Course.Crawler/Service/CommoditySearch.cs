@@ -27,10 +27,8 @@ namespace P22.Course.Crawler
         {
             try
             {
-                
+                #region test for one item
                 //{
-                //    #region test for one item
-
                 //    //1 download the html based on Url. 
                 //    string html = HttpHelper.DownloadUrl(category.Url);
 
@@ -73,9 +71,8 @@ namespace P22.Course.Crawler
                 //            Console.WriteLine(node.Id);
                 //        }
                 //    }
-
-                //    #endregion
                 //}
+                #endregion
 
                 {
                     #region paging: find items in different pages, then get price. 
@@ -166,6 +163,7 @@ namespace P22.Course.Crawler
 
             {
                 string namePath = "//*[@class=\"p-name p-name-type-3\"]/a/em";
+                //string namePath = "//li/*[@class=\"gl-i-wrap\"]/*[@class=\"p-name p-name-type-3\"]/a/em";
                 HtmlNode nameNode = node.SelectSingleNode(namePath);
                 string name = nameNode.InnerText;
                 Regex pattern = new Regex("[\n\t]");
@@ -175,6 +173,11 @@ namespace P22.Course.Crawler
                 string urlPath = "//*[@class=\"p-name p-name-type-3\"]/a";
                 HtmlNode urlNode = node.SelectSingleNode(urlPath);
                 string url1 = $"https:{urlNode.Attributes["href"].Value}";
+
+                string pricePath = "//*[@class=\"p-price\"]/strong/i";
+                HtmlNode priceNode = node.SelectSingleNode(pricePath);
+                string price = priceNode is null ? "": priceNode.InnerText;
+
 
                 string picturePath = "//*[@class=\"p-img\"]/a/img";
                 HtmlNode picNode = node.SelectSingleNode(picturePath);
@@ -206,9 +209,11 @@ namespace P22.Course.Crawler
                 string skuId = url1.Substring(url1.LastIndexOf('/') + 1).Replace(".html", "");
                 skuIdList.Add(skuId);
 
-                Console.WriteLine($"                     {DateTime.Now}: {skuId}   {name}: {url1}");
-                Console.WriteLine($"                     {pictureUrl}");
+                string price2 = FindPriceForOne(skuId);
 
+                Console.WriteLine($"                     {DateTime.Now}: {skuId}   {name}: {url1}");
+                Console.WriteLine($"                     Price: {price} : {price2} PicUrl: {pictureUrl}");
+                Console.WriteLine();
             }
 
 
@@ -229,16 +234,22 @@ namespace P22.Course.Crawler
 
             string url = $"https://p.3.cn/prices/mgets?callback=jQuery7771421&type=1&area=53283_53347_0_0&skuIds="
                          + itemUrl
-                         + $"&pdbp=0&pdtk=&pdpin=&pduid=15995186632001425589208&source=search_pc&_=1599518810870";
+                         + $"&pdbp=0&pdtk=&pdpin=&pduid=15895467570321140053578&source=search_pc&_=1599965198653";
 
             string jsonPrice = HttpHelper.DownloadUrl(url);
 
-
-
-
         }
 
+        //one item one request will take long time
+        private string FindPriceForOne(string sku)
+        {
+            string url = $"https://p.3.cn/prices/mgets?callback=jQuery7771421&type=1&area=53283_53347_0_0&skuIds="
+                         + sku
+                         + $"&pdbp=0&pdtk=&pdpin=&pduid=15895467570321140053578&source=search_pc&_=1599965198653";
 
+            string jsonPrice = HttpHelper.DownloadUrl(url);
+            return jsonPrice;
+        }
 
     }
 }

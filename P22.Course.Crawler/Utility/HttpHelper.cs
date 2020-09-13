@@ -30,10 +30,12 @@ namespace P22.Course.Crawler.Utility
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36";
                 request.ContentType = "text/html; charset=utf-8";
 
+                string cookie = @"shshshfpb=hzPNVCNjGTxJFzWoVg%20MjrQ%3D%3D; shshshfpa=a9861723-1ce4-5c55-2950-3dba4f651c4b-1577859332; __jdu=15895467570321140053578; __jdv=122270672|direct|-|none|-|1598956989875; __jdc=122270672; 3AB9D23F7A4B3C9B=CPKCESYZUUPWO5ADT6CIFFK67ET34ZBQ6PB4AQ4CP5ICRHNW6VBDT5YIVNIEUG52MNFIFONGFYXRR34WNCZVHOWI4Y; areaId=53283; ipLoc-djd=53283-53347-58679-0; __jda=122270672.15895467570321140053578.1589546757.1599886957.1599957035.22; shshshfp=71777fb5b7406b1f21a8eb183b138c64; shshshsID=fa4ae5be557246fee57f95cff7f40b99_4_1599958248775; __jdb=122270672.8.15895467570321140053578|22.1599957035";
+
 
                 //add more to the Headers to make the full request,but make sure it's correct. 
-                //request.Host = "nfa.jd.com";
-                //request.Headers.Add("Cookie", @"shshshfpb=hzPNVCNjGTxJFzWoVg%20MjrQ%3D%3D; shshshfpa=a9861723-1ce4-5c55-2950-3dba4f651c4b-1577859332; __jdu=15895467570321140053578; __jdv=122270672|direct|-|none|-|1598956989875; areaId=53283; __jdc=122270672; 3AB9D23F7A4B3C9B=CPKCESYZUUPWO5ADT6CIFFK67ET34ZBQ6PB4AQ4CP5ICRHNW6VBDT5YIVNIEUG52MNFIFONGFYXRR34WNCZVHOWI4Y; ipLoc-djd=53283-53347-58679-0; shshshfp=ffa5084b2e5ed7a267e8f9e0c1c0f7a1; __jda=122270672.15895467570321140053578.1589546757.1599378979.1599646796.15; __jdb=122270672.4.15895467570321140053578|15.1599646796; shshshsID=1c19f73e27dd3f1b8a74316029d23fb6_2_1599646812283");
+                //request.Host = "www.jd.com";//check in header
+                request.Headers.Add("Cookie", cookie);
                 //request.Headers.Add("Accept-Encoding", "gzip, deflate, br");
                 //request.Headers.Add("Accept","*/*");
                 request.Method = "Get";
