@@ -244,7 +244,7 @@ namespace P22.Course.Crawler
         private string FindPriceForOne(string sku)
         {
             string url = $"https://p.3.cn/prices/mgets?callback=jQuery7771421&type=1&area=53283_53347_0_0&skuIds="
-                         + sku
+                         + "J_"+sku
                          + $"&pdbp=0&pdtk=&pdpin=&pduid=15895467570321140053578&source=search_pc&_=1599965198653";
 
             string jsonPrice = HttpHelper.DownloadUrl(url);
