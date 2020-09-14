@@ -313,7 +313,7 @@ namespace P19.Course.AsyncThreadForm
                 //new thread without parameter
                 ThreadStart method1 = () => this.DoSomethingLong("method1 in newthread1");
                 Thread newthread1 = new Thread(method1);
-                newthread1.Priority = ThreadPriority.Lowest;//set priority, may not execute first or last.
+                newthread1.Priority = ThreadPriority.AboveNormal;//set priority, may not execute first or last.
                 newthread1.IsBackground = false;
 
                 //a new thread without parameter to compare the priority
@@ -326,11 +326,12 @@ namespace P19.Course.AsyncThreadForm
                 ParameterizedThreadStart method3 = o =>
                 {
                     ConsoleWriter.WriteLineYellow("method3 is started in ID: " + Thread.CurrentThread.ManagedThreadId.ToString("00"));
-                    Thread.Sleep(5);
+                    Thread.Sleep(50);
                     this.DoSomethingLong("method3 in newthread3 with param: " + o.ToString());
+                    Thread.Sleep(5000);
                 };
                 Thread newthread3 = new Thread(method3);
-                newthread3.Priority = ThreadPriority.AboveNormal;
+                newthread3.Priority = ThreadPriority.Lowest;
                 newthread3.IsBackground = false;
 
 
@@ -350,7 +351,9 @@ namespace P19.Course.AsyncThreadForm
                     Thread.Sleep(200);
                 }
                 //2 the thread(main) run this  will wait for newthread1 finish, can set max time of waiting.eg: newthread1.Join(5000);
-                newthread1.Join();//just wait for newthread1, even form is closed, newthread3 will continue,due to IsBackground.
+                //just wait for newthread1 (higher priority may finish early) , will freeze form. 
+                //then, when newthread1 is completed, even form is closed, newthread3 will continue,due to IsBackground.
+                newthread1.Join();
 
                 #endregion
 
