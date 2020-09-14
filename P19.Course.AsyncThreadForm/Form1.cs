@@ -308,52 +308,61 @@ namespace P19.Course.AsyncThreadForm
 
 
             {
-                #region some methods with Join
-                //ThreadStart method = () => this.DoSomethingLong("btnThread_Click");
-                //Thread newthread1 = new Thread(method); 
-                //newthread1.Priority = ThreadPriority.Lowest;//set priority, may not execute first or last.
+                #region ThreadStart with Join
 
-                ////a new thread to compare the priority
-                //ThreadStart method2 = () => { Console.WriteLine("thread with highest priority..."); };
-                //Thread newthread2 = new Thread(method2);
-                //newthread2.Priority = ThreadPriority.Highest;//normally it will execute in between of method 1.
+                //new thread without parameter
+                ThreadStart method1 = () => this.DoSomethingLong("method1 in newthread1");
+                Thread newthread1 = new Thread(method1);
+                newthread1.Priority = ThreadPriority.Lowest;//set priority, may not execute first or last.
+                newthread1.IsBackground = false;
 
-                //newthread1.Start();//start a thread to run the delegate 
-                //newthread2.Start();
+                //a new thread without parameter to compare the priority
+                ThreadStart method2 = () => { Console.WriteLine("method2 start by newthread2 with highest priority..."); };
+                Thread newthread2 = new Thread(method2);
+                newthread2.Priority = ThreadPriority.Highest;//normally it will execute in between of method 1.it will not guarantee first.
 
+
+                //a new thread with parameter
+                ParameterizedThreadStart method3 = o =>
+                {
+                    ConsoleWriter.WriteLineYellow("method3 is started in ID: " + Thread.CurrentThread.ManagedThreadId.ToString("00"));
+                    Thread.Sleep(5);
+                    this.DoSomethingLong("method3 in newthread3 with param: " + o.ToString());
+                };
+                Thread newthread3 = new Thread(method3);
+                newthread3.Priority = ThreadPriority.AboveNormal;
+                newthread3.IsBackground = false;
+
+
+                newthread1.Start();//start a thread to run the delegate 
+                newthread2.Start();
+                newthread3.Start(123);
 
                 //newthread.Suspend();//may not suspend immediately , deprecated
                 //newthread.Resume(); //deprecated
                 //newthread.Abort();  //rarely used
                 //newthread.ResetAbort();//rarely used
 
-                ////1 thread run this will wait newthread by checking the ThreadState
-                //while (newthread.ThreadState != ThreadState.Stopped)
-                //{
-                //    Thread.Sleep(200);
-                //}
-                //2 the thread run this  will wait for newthread finish,can set max time of waiting.
-                //newthread.Join(1000);
+                //1 thread run this will wait newthread by checking the ThreadState
+                while (newthread1.ThreadState != ThreadState.Stopped)
+                {
+                    Console.WriteLine("main thread check newthread1 is running....ID: "+ Thread.CurrentThread.ManagedThreadId.ToString("00"));
+                    Thread.Sleep(200);
+                }
+                //2 the thread(main) run this  will wait for newthread1 finish, can set max time of waiting.eg: newthread1.Join(5000);
+                newthread1.Join();//just wait for newthread1, even form is closed, newthread3 will continue,due to IsBackground.
 
                 #endregion
 
             }
             {
-                #region new thread with parameter
-                //ParameterizedThreadStart method = o => this.DoSomethingLong(o.ToString() + "btnThread_Click");
-                //Thread thread = new Thread(method);
-                //thread.Start(123);
-                #endregion 
-
-            }
-            {
                 #region background thread
-                    ThreadStart method = () => this.DoSomethingLong("btnThread_Click");
-                    Thread newthread = new Thread(method);
-                    newthread.Start();//start a thread to run the delegate 
+                    //ThreadStart method4 = () => this.DoSomethingLong("method4");
+                    //Thread newthread4 = new Thread(method4);
+                    //newthread4.Start();//start a thread to run the delegate 
 
-                    newthread.IsBackground = false;//if process stops, this thread will still running.
-                    //newthread.IsBackground = true;//if process stops, thread stops. 
+                    //newthread4.IsBackground = false;//if process stops, this thread will still running.
+                    ////newthread4.IsBackground = true;//if process stops, thread stops. 
                 #endregion
 
             }
