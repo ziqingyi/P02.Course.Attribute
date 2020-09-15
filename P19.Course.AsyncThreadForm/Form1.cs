@@ -381,25 +381,28 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnThread_CallBack_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("****************btnThread_CallBack_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-
+            ConsoleWriter.WriteLine($"****************btnThread_CallBack_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
 
             ThreadStart threadStart = () => this.DoSomethingLong("btnThread_CallBack_Click");
             Action actionCallBack = () =>
             {
                 Thread.Sleep(2000);
-                Console.WriteLine($"This is Callback in thread: {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                ConsoleWriter.WriteLineYellow($"This is Callback in thread: {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
             };
 
             this.ThreadWithCallBack(threadStart,actionCallBack);
 
 
 
-            Console.WriteLine("****************btnThread_CallBack_Click End, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnThread_CallBack_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
         }        
         
         private void ThreadWithCallBack(ThreadStart threadStart, Action actionCallback)
@@ -426,32 +429,39 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnThread_CallBack_Return_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("****************btnThread_CallBack_Return_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine($"****************btnThread_CallBack_Return_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
 
-            Func<long> funcNeedReturn = ()=> DoSomethingLongReturn("btnThread_CallBack_Return_Click");
-
-
-            Func<long> funcForNewThreadReturn = ThreadWithReturn(funcNeedReturn);//non-block,just get Func and thread. 
-            Console.WriteLine("do something else......"+ DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-            Console.WriteLine("do something else......");
-            Console.WriteLine("do something else......");
-            Console.WriteLine("do something else......");
-            Console.WriteLine("do something else......");
-            Console.WriteLine("do something else......");
-            Console.WriteLine("do something else......" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-
-            long iResult = funcForNewThreadReturn.Invoke();//block thread
-
-            
+            Func<long> funcNeedReturn = ()=>
+            {
+                ConsoleWriter.WriteLineYellow("start calculating....");
+                long re =DoSomethingLongReturn("btnThread_CallBack_Return_Click");
+                return re;
+            };
 
 
-            Console.WriteLine("****************btnThread_CallBack_Return_Click End, Result is {2} " +
-                              "Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"),
-                iResult);
+            Func<long> funcForNewThreadReturn = ThreadWithReturn(funcNeedReturn);//non-block,just get Func and new thread is running for calculation.
+            ConsoleWriter.WriteLine("do something else......"+ DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine("do something else......");
+            ConsoleWriter.WriteLine("do something else......");
+            Thread.Sleep(1000);//make main thread task running longer so new thread task can be started.
+            ConsoleWriter.WriteLine("do something else......");
+            ConsoleWriter.WriteLine("do something else......");
+            ConsoleWriter.WriteLine("do something else......");
+            ConsoleWriter.WriteLine("do something else......" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+            long iResult = funcForNewThreadReturn.Invoke();//block main thread, need to wait for calculation
+
+
+
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnThread_CallBack_Return_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"Result is {iResult}***************");
         }
 
         private Func<T> ThreadWithReturn<T>(Func<T> func)
@@ -467,10 +477,17 @@ namespace P19.Course.AsyncThreadForm
 
             Thread thread = new Thread(threadStart);
             thread.Start();
-            Console.WriteLine(" show the thread is start? ");
+
+            //return delegate, just a method. 
             return new Func<T>(()=>
             {
-                thread.Join();
+                //add check process, not necessary
+                if (thread.ThreadState == ThreadState.Running)
+                {
+                    ConsoleWriter.WriteLineYellow("ThreadWithReturn() 's new thread is running");
+                }
+
+                thread.Join();//thread running this will block and wait for result. 
                 return t;
             });
 
@@ -481,10 +498,13 @@ namespace P19.Course.AsyncThreadForm
             List<Thread> threads = new List<Thread>();
             for (int i = 0; i < 100; i++)
             {
+                Thread.Sleep(200);//wait for thread to start run, otherwise start 100 threads before anyone running.
                 if (threads.Count(t => t.ThreadState == ThreadState.Running) < 10)
                 {
                     Thread thread = new Thread(()=>{
-                        Console.WriteLine("a new thread with ID: "+Thread.CurrentThread.ManagedThreadId);
+                        ConsoleWriter.WriteLineGreen("a new thread with ID: "+Thread.CurrentThread.ManagedThreadId);
+                        Thread.Sleep(5000);
+                        ConsoleWriter.WriteLineGreen("thread finished ID: " + Thread.CurrentThread.ManagedThreadId);
                     });
 
                     thread.Start();
@@ -492,6 +512,7 @@ namespace P19.Course.AsyncThreadForm
                 }
                 else
                 {
+                    ConsoleWriter.WriteLineGreen("there are 10 threads running.....");
                     Thread.Sleep(200);
                 }
             }
