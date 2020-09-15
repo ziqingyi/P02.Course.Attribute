@@ -662,10 +662,14 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnTask_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("****************btnTask_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-            
+            ConsoleWriter.WriteLine($"****************btnTask_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+
+
+
             {
                 //// 3 ways to start task.
                 List<Task> allTask = new List<Task>();
@@ -681,7 +685,7 @@ namespace P19.Course.AsyncThreadForm
                     allTask.Add(task);
                 }
                 {
-                    TaskFactory taskFactory = Task.Factory;
+                    TaskFactory taskFactory = new TaskFactory();//Task.Factory;
                     Task task = taskFactory.StartNew(() => DoSomethingLong("btnTask_Click_taskFactory.StartNew()"));
 
                     allTask.Add(task);
@@ -702,17 +706,19 @@ namespace P19.Course.AsyncThreadForm
                     int k = i;
                     Task.Run(() =>
                     {
-                        Console.WriteLine($"This is {k} running" +
+                        ConsoleWriter.WriteLineYellow($"This is {k} running" +
                                           $"ThreadId ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                         Thread.Sleep(2000);
+                        ConsoleWriter.WriteLineYellow($"{k} is finished...");
                     });
                 }
             }
 
-            Console.WriteLine("****************btnTask_Click End, " +
-                              "Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnTask_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
         }
 
         private void btnTask_LimitNumOfTasks_Click(object sender, EventArgs e)
@@ -802,43 +808,47 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnTaskDelay_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("****************btnTask_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine($"****************btnTask_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+
 
             {
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
-                Console.WriteLine("before the sleep....");
+                ConsoleWriter.WriteLine("before the sleep....");
 
                 Thread.Sleep(2000);//windows freeze 
 
-                Console.WriteLine("after the sleep.....");
+                ConsoleWriter.WriteLine("after the sleep.....");
 
                 sw.Stop();
 
-                Console.WriteLine($" sleep takes {sw.ElapsedMilliseconds}");
+                ConsoleWriter.WriteLine($" sleep takes {sw.ElapsedMilliseconds}");
             }
             {
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
-                Console.WriteLine("before the delay...");
+                ConsoleWriter.WriteLine("before the delay...");
 
                 Task task = Task.Delay(2000).ContinueWith(t =>//new task will not freeze window
                 {
                     sw.Stop();
-                    Console.WriteLine($"Delay takes {sw.ElapsedMilliseconds}");
-                    Console.WriteLine($"this is ThreadId={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    ConsoleWriter.WriteLineYellow($"Delay takes {sw.ElapsedMilliseconds}");
+                    ConsoleWriter.WriteLineYellow($"this is ThreadId={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 });
 
-                Console.WriteLine("after the delay.....");
+                ConsoleWriter.WriteLine("after the delay.....");
 
             }
 
-            Console.WriteLine("****************btnTask_Click End, " +
-                              "Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnTask_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
 
         }
 
