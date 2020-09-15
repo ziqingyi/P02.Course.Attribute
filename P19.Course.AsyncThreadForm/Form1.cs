@@ -520,50 +520,62 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnThreadPool_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("****************btnThreadPool_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine($"****************btnThreadPool_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+
 
             //wait for new thread complete
-
             ManualResetEvent mre = new ManualResetEvent(false);
 
+
             //all thread pool threads are background thread, //if process stops, thread stops. 
+            //ManualResetEvent: false  -- close state ---Set() to Open ---become true ---WaitOne() pass
+            //                  true   -- Open state ---ReSet() to Close----become false ---WaitOne() must wait. 
             ThreadPool.QueueUserWorkItem(o =>
                 {
-                    this.DoSomethingLong("btnThreadPool_Click param: " + o.ToString());
+                    this.DoSomethingLong("btnThreadPool_Click with param: " + o.ToString());
                     mre.Set();// set mre
+                    //mre.Reset();
                 },
                 "state value");// state will pass to o
-            Console.WriteLine("Do something else...."+Thread.CurrentThread.ManagedThreadId);
-            Console.WriteLine("Do something else....");
-            Console.WriteLine("Do something else....");
+
+
+            ConsoleWriter.WriteLine("Do something else...."+Thread.CurrentThread.ManagedThreadId);
+            ConsoleWriter.WriteLine("Do something else....");
+            ConsoleWriter.WriteLine("Do something else....");
+
             mre.WaitOne();//wait for thread finish set() in the thread pool
 
 
+            ConsoleWriter.WriteLine("ThreadPool threads should finished....");
 
 
-            Console.WriteLine("****************btnThreadPool_Click End, " +
-                              "Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnThread_CallBack_Return_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
         }
 
         private void btnThreadPool_MaxMin_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("****************btnThreadPool_MaxMin_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-
+            ConsoleWriter.WriteLine($"****************btnThreadPool_MaxMin_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
 
 
 
             ThreadPool.GetMaxThreads(out int workerThreadsMax, out int completionPortThreadsMax);
-            Console.WriteLine($"The computer's max workerThreads = {workerThreadsMax} " +
+            ConsoleWriter.WriteLine($"The computer's max workerThreads = {workerThreadsMax} " +
                               $"max completion port threads = {completionPortThreadsMax}");
 
             ThreadPool.GetMinThreads(out int workerThreadsMin, out int completionPortThreadsMin);
-            Console.WriteLine($"The computer's min workerThreads = {workerThreadsMin} " +
+            ConsoleWriter.WriteLine($"The computer's min workerThreads = {workerThreadsMin} " +
                               $"min completion port threads = {completionPortThreadsMin}");
 
             //the ThreadPool Max and Min value is set for whole process, 
@@ -573,32 +585,43 @@ namespace P19.Course.AsyncThreadForm
 
             ThreadPool.SetMinThreads(3, 3);
 
+            ConsoleWriter.WriteLine("after set the max and min threads numbers");
+
 
             ThreadPool.GetMaxThreads(out int workerThreadsMax1, out int completionPortThreadsMax1);
-            Console.WriteLine($"The computer's max workerThreads = {workerThreadsMax1} " +
+            ConsoleWriter.WriteLine($"The computer's max workerThreads = {workerThreadsMax1} " +
                               $"max completion port threads = {completionPortThreadsMax1}");
 
             ThreadPool.GetMinThreads(out int workerThreadsMin1, out int completionPortThreadsMin1);
-            Console.WriteLine($"The computer's min workerThreads = {workerThreadsMin1} " +
+            ConsoleWriter.WriteLine($"The computer's min workerThreads = {workerThreadsMin1} " +
                               $"min completion port threads = {completionPortThreadsMin1}");
 
 
 
 
-
-            Console.WriteLine("****************btnThreadPool_MaxMin_Click End, " +
-                              "Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnThreadPool_MaxMin_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
         }
 
         private void btnThreadPoolLock_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("****************btnThreadPoolLock_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine($"****************btnThreadPoolLock_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+
+
+
 
             ThreadPool.SetMaxThreads(9, 9);
+            ThreadPool.GetMaxThreads(out int workerThreadsMax, out int completionPortThreadsMax);
+            ConsoleWriter.WriteLine($"The computer's max workerThreads = {workerThreadsMax} " +
+                                    $"max completion port threads = {completionPortThreadsMax}");
+
             ManualResetEvent mre = new ManualResetEvent(false);
 
             int numOfTheadNeedToOpen = 9;
@@ -606,16 +629,17 @@ namespace P19.Course.AsyncThreadForm
             {
                 int k = i;
 
+                //start new threads
                 ThreadPool.QueueUserWorkItem(t =>
                 {
-                    Console.WriteLine($"ThreadPool thread ID is: {Thread.CurrentThread.ManagedThreadId.ToString("00")} show k is {k}");
+                    ConsoleWriter.WriteLineYellow($"ThreadPool thread ID is: {Thread.CurrentThread.ManagedThreadId.ToString("00")} show thread no is {k}");
                     if (k == numOfTheadNeedToOpen)//if numOfTheadNeedToOpen > Max Threads in pool, mre will not execute Set(), then lock.
                     {
                         mre.Set();
                     }
                     else
                     {
-                        mre.WaitOne();
+                        mre.WaitOne();//it's better not to block thread in the thread pool, as cannot predict what will happen outside. 
                     }
                 });
 
@@ -623,14 +647,17 @@ namespace P19.Course.AsyncThreadForm
 
             if (mre.WaitOne())
             {
-                Console.WriteLine("all tasks completed ....");
+                ConsoleWriter.WriteLine("all tasks completed ....");
             }
 
 
-            Console.WriteLine("****************btnThreadPoolLock_Click End, " +
-                              "Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnThreadPoolLock_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
         }
 
         private void btnTask_Click(object sender, EventArgs e)
