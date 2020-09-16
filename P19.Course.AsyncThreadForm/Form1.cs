@@ -854,30 +854,34 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnTask_Teach_Proj_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(
-                @"****************btnTask_Teach_Proj_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+            ConsoleWriter.WriteLine($"****************btnTask_Teach_Proj_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+
+
             Teach("Professor Adrian", "lesson 1"); //no concurrency, must complete one by one
             Teach("Professor Adrian", "lesson 2");
 
-            Console.WriteLine(@"Now start a project...");
+            ConsoleWriter.WriteLine(@"Now start a project...");
 
             TaskFactory taskFactory = new TaskFactory();
             List<Task> taskList = new List<Task>();
             taskList.Add(taskFactory.StartNew(o =>coding(o.ToString(), " Portal "), "student1 async state Protal"));
             taskList.Add(taskFactory.StartNew(o =>coding("student2", " DBA "),"async state DBA" ));
-            taskList.Add(taskFactory.StartNew(()=>coding("student3","Backend")));
+            taskList.Add(taskFactory.StartNew(()=>coding("student3","Backend")  ));
 
 
             //Task.WaitAny(taskList.ToArray()); // if any task complete, do something using main thread. 
             //Console.WriteLine(@"Professor Adrian start to config environment");  // can use ContinueWhenAll
             Task continueTask = taskFactory.ContinueWhenAny(taskList.ToArray(), rArray =>
             {
-                Console.WriteLine("AsyncState is : "+rArray.AsyncState +" finish first, very good...");
-                
-                Console.WriteLine($"one of the Project is finished, current thread ID IS {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-                Console.WriteLine(@"Professor Adrian start to config environment ");
+                ConsoleWriter.WriteLineGreen("AsyncState is : "+rArray.AsyncState +" finish first, very good...");
+
+                ConsoleWriter.WriteLineGreen($"one of the Project is finished, current thread ID IS {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                ConsoleWriter.WriteLineGreen(@"Professor Adrian start to config environment ");
             });//ContinueWhenAny will pick a new thread from the threadpool, maybe the one of the previous thread, may not. But not main thread ID. 
 
             
@@ -891,12 +895,12 @@ namespace P19.Course.AsyncThreadForm
             //do something when all finish
             taskFactory.ContinueWhenAll(taskList.ToArray(), rArray =>
             {
-                Console.WriteLine($"Project is FINISHED, current thread ID is {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                ConsoleWriter.WriteLineGreen($"Project is FINISHED, current thread ID is {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
                 
                 //one way of get task result and then do something,but block main thread running the task
                 Task<int> res = Task.Run<int>(() => { return 1;} );
-                Console.WriteLine(res.Result); 
+                ConsoleWriter.WriteLineGreen(res.Result.ToString()); 
 
                 //another way of get task result and then do something, not block main thread running the task
                 Task toGrade = Task.Run<int>(() => 
@@ -906,24 +910,24 @@ namespace P19.Course.AsyncThreadForm
                     return r.Next(50, 100);
                 }).ContinueWith(tint =>
                     {
-                        int result = tint.Result; 
-                        Console.WriteLine(@"Professor Adrian start to review the project, Score is  "+result);
+                        int result = tint.Result;
+                        ConsoleWriter.WriteLineGreen(@"Professor Adrian start to review the project, Score is  "+result);
                     });
 
             });//ContinueWhenAny will pick a new thread from the threadpool, maybe the one of the previous thread, may not. 
 
 
 
-
-
-            Console.WriteLine(@"****************btnTask_Teach_Proj_Click End, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnTask_Teach_Proj_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
         }
 
         private void Teach(string name,string course)
         {
-            Console.WriteLine($"+++++++++++++Tutorial {course} Start by {name}  , Thread Id is: " +
+            ConsoleWriter.WriteLineYellow($"+++++++++++++Tutorial {course} Start by {name}  , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}++++++++++++");
             long lResult = 0;
@@ -932,14 +936,14 @@ namespace P19.Course.AsyncThreadForm
                 lResult += i;
             }
 
-            Console.WriteLine($"++++++++++++++Tutorial  {course} End by {name}  , Thread Id is: " +
+            ConsoleWriter.WriteLineYellow($"++++++++++++++Tutorial  {course} End by {name}  , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
                               $"result is : {lResult}+++++++++++");
         }
         private void coding(string name, string prjectName)
         {
-            Console.WriteLine($"+++++++++++++{name} is working on project {prjectName} , Thread Id is: " +
+            ConsoleWriter.WriteLineYellow($"+++++++++++++{name} is working on project {prjectName} , Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} ++++++++++++");
             long lResult = 0;
@@ -947,7 +951,7 @@ namespace P19.Course.AsyncThreadForm
             {
                 lResult += i;
             }
-            Console.WriteLine($"++++++++++++++{name} finish the project {prjectName}, Thread Id is: " +
+            ConsoleWriter.WriteLineYellow($"++++++++++++++{name} finish the project {prjectName}, Thread Id is: " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
                               $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
                               $"result is : {lResult}+++++++++++");
