@@ -906,13 +906,16 @@ namespace P19.Course.AsyncThreadForm
                 Task toGrade = Task.Run<int>(() => 
                 {
                     Thread.Sleep(2000);//will block the thread, will give a score
+                    string threadId = Thread.CurrentThread.ManagedThreadId.ToString("00");
+                    ConsoleWriter.WriteLineYellow($"in process of marking...in thread {threadId}");
                     Random r = new Random();
                     return r.Next(50, 100);
                 }).ContinueWith(tint =>
                     {
                         int result = tint.Result;
-                        ConsoleWriter.WriteLineGreen(@"Professor Adrian start to review the project, Score is  "+result);
-                    });
+                        string threadId = Thread.CurrentThread.ManagedThreadId.ToString("00");
+                        ConsoleWriter.WriteLineGreen($"Professor Adrian start to review the project in thread {threadId}, Score is  " + result);
+                    });//Task.Run(...).ContinueWith(...) will use new Thread ID in most cases for callback. 
 
             });//ContinueWhenAny will pick a new thread from the threadpool, maybe the one of the previous thread, may not. 
 
