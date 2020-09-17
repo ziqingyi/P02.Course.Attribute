@@ -117,8 +117,10 @@ namespace P19.Course.AsyncThreadForm
                 };
 
                 asyncresult = action.BeginInvoke("btnasyncadvanced_click", callback, "any object being passed in....");
-            }
 
+                ConsoleWriter.WriteLine(asyncresult.AsyncState.ToString() +"  "+asyncresult.IsCompleted.ToString());
+            }
+            
             ConsoleWriter.WriteLine("----------------------------------------------------------------------");
             ConsoleWriter.WriteLine($"****************btnAsyncAdvanced_Click End, Thread Id is:  " +
                               $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
