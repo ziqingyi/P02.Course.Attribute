@@ -723,43 +723,44 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnTask_LimitNumOfTasks_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("****************btnTask_LimitNumOfTasks_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+            ConsoleWriter.WriteLine($"****************btnTask_LimitNumOfTasks_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+
+
             HashSet<string> collectAllThreadId = new HashSet<string>();
 
-
             //limit num of tasks running.
-            List<int> list = new List<int>();
-            for (int i = 0; i < 1000; i++)
-            {
-                list.Add(i);
-            }
+            int TotalNumOfTask = 100;
             //complete 1000 tasks with 11 theads
             Action<int> action = i =>
             {
-                
-                Console.WriteLine($"action {i} start with thread id: {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+
+                ConsoleWriter.WriteLineYellow($"action {i} start with thread id: {Thread.CurrentThread.ManagedThreadId.ToString("00")} {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
                 Thread.Sleep(new Random(i).Next(100,300));
-                Console.WriteLine($"action {i} finish with thread id: {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                ConsoleWriter.WriteLineYellow($"action {i} finish with thread id: {Thread.CurrentThread.ManagedThreadId.ToString("00")} {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
                 collectAllThreadId.Add(Thread.CurrentThread.ManagedThreadId.ToString("00"));//collect thread ID
             };
+
             List<Task> taskList = new List<Task>();
 
-            foreach (var i in list)
+            for (int i =0;i<TotalNumOfTask;i++)
             {
-                int k = i;
+                ConsoleWriter.WriteLine("*****start a new task*****");
                 ////invoke a new thread, can also use a taskfactory.StartNew(), to pass state
                 taskList.Add(
                     Task.Run(
                         () => 
-                        action.Invoke(k)
+                        action.Invoke(i)
                         )
                     );
 
-                if (taskList.Count > 10)
+                if (taskList.Count > 10)//set max num of running tasks in the list. 
                 {
-                    Console.WriteLine("there are {0} tasks running in the list, just wait any to finish.",taskList.Count);
+                    ConsoleWriter.WriteLine($"there are {taskList.Count} tasks running in the list, just wait any to finish.");
                     
                     //task list is full, show all task id
                     StringBuilder sb = new StringBuilder();
@@ -769,14 +770,13 @@ namespace P19.Course.AsyncThreadForm
                         sb.Append(t.Id + ", ");
                     }
 
-                    Console.WriteLine(sb.ToString());
-
+                    ConsoleWriter.WriteLine(sb.ToString());
 
                     //wait any to complete
                     Task.WaitAny(taskList.ToArray());
                     //remove the completed tasks.
                     taskList = taskList.Where(t => t.Status != TaskStatus.RanToCompletion).ToList();
-                    Console.WriteLine("some tasks are finished, so now task list have {0} tasks.",taskList.Count);
+                    ConsoleWriter.WriteLine($"some tasks are finished, so now task list have {taskList.Count} tasks. {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
 
                     //now check task id again
                     StringBuilder sb2 = new StringBuilder();
@@ -786,22 +786,25 @@ namespace P19.Course.AsyncThreadForm
                         sb2.Append(t.Id + ", ");
                     }
 
-                    Console.WriteLine(sb2.ToString());
+                    ConsoleWriter.WriteLine(sb2.ToString() + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
 
                 }
             }
-            Task.WhenAll(taskList.ToArray());
+            Task.WaitAll(taskList.ToArray());
 
             //print out all thread id, may exceed 10 because the limitation is set to num of thread at a time. 
-            Console.WriteLine(collectAllThreadId.ToArray() +"    "+ collectAllThreadId.Count);
+            ConsoleWriter.WriteLine("Hashset: collectAllThreadId  has  "+ collectAllThreadId.Count +" thread ids");
             foreach (string s in collectAllThreadId.OrderBy(s=>s))
             {
-                Console.WriteLine("we use thread ids: "+s);
+                ConsoleWriter.WriteLine("we use thread ids: "+s);
             }
 
-            Console.WriteLine(@"****************btnTask_LimitNumOfTasks_Click End, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnTask_LimitNumOfTasks_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
+
         }
 
 
