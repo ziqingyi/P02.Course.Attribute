@@ -869,7 +869,8 @@ namespace P19.Course.AsyncThreadForm
 
             TaskFactory taskFactory = new TaskFactory();
             List<Task> taskList = new List<Task>();
-            taskList.Add(taskFactory.StartNew(o =>coding(o.ToString(), " Portal "), "student1 async state Protal"));
+
+            taskList.Add(taskFactory.StartNew( o =>coding(o.ToString(), " Portal "), "student1 async state Protal"));
             taskList.Add(taskFactory.StartNew(o =>coding("student2", " DBA "),"async state DBA" ));
             taskList.Add(taskFactory.StartNew(()=>coding("student3","Backend")  ));
 
@@ -900,7 +901,7 @@ namespace P19.Course.AsyncThreadForm
                 
                 //one way of get task result and then do something,but block main thread running the task
                 Task<int> res = Task.Run<int>(() => { return 1;} );
-                ConsoleWriter.WriteLineGreen(res.Result.ToString()); 
+                ConsoleWriter.WriteLineGreen("wait for result: "+res.Result.ToString()); 
 
                 //another way of get task result and then do something, not block main thread running the task
                 Task toGrade = Task.Run<int>(() => 
@@ -962,12 +963,15 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnParallel_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(@"****************btnParallel_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine($"****************btnParallel_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+
 
             //Parallel run multiple actions with multiple thread, 
-            //main thread will join in computation, eg. thread 01
+            //main thread will join in computation, eg. thread 01, so here Parallel will finish one and then start next one.
             //main thread will wait all tasks finish, similar to TaskWaitAll + main thread computation.
 
             //Parallel.Invoke()
@@ -977,29 +981,34 @@ namespace P19.Course.AsyncThreadForm
                 ()=>DoSomethingLong("btnParallel_Click_03"),
                 ()=>DoSomethingLong("btnParallel_Click_04"));
 
+            ConsoleWriter.WriteLine("------------------------set max to 3, Parallel.For()---------------------------------");
             //then set limit to num of parallel tasks at a time. 
             ParallelOptions options = new ParallelOptions();
             options.MaxDegreeOfParallelism = 3;
 
-            //Parallel.For()
-            Parallel.For(5,15,options,i=>DoSomethingLong($"btnParallel_Click_{i}"));
+            //Parallel.For(), main thead will be used
+            Parallel.For(5,10,options,i=>DoSomethingLong($"btnParallel_Click_{i}"));
 
-            //Parallel.ForEach
-            Parallel.ForEach(new int[] {16, 19}, i => DoSomethingLong($"btnParallel_Click_{i}"));
+            ConsoleWriter.WriteLine("------------------------Parallel.ForEach()--------------------------------");
+            //Parallel.ForEach() , main thead will be used
+            Parallel.ForEach(new int[] {11, 12}, i => DoSomethingLong($"btnParallel_Click_{i}"));
 
 
 
-
-            Console.WriteLine(@"****************btnParallel_Click End, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnParallel_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
         }
 
         private void btnParallel_no_block_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(@"****************btnParallel_no_block_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine($"****************btnParallel_no_block_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
 
 
             Action someParallelTasks = () =>
@@ -1011,11 +1020,13 @@ namespace P19.Course.AsyncThreadForm
 
             Task.Run(someParallelTasks);
 
-
-            Console.WriteLine(@"****************btnParallel_no_block_Click End, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnParallel_no_block_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
         }
+
 
         private void btnThreadCore_Exception_Click(object sender, EventArgs e)
         {
