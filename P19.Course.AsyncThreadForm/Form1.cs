@@ -662,6 +662,64 @@ namespace P19.Course.AsyncThreadForm
                                     $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
                                     $"***************");
         }
+        private void btnThreadPoolReturn_Click(object sender, EventArgs e)
+        {
+            ConsoleWriter.WriteLine($"****************btnThreadPoolReturn_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+
+
+
+            Func<long> t = ()=>DoSomethingLongReturn("btnThreadPoolReturn_Click");
+
+
+            Func<long> getReturn = ThreadPoolWithReturn(t);
+
+            long result = getReturn.Invoke();
+
+            ConsoleWriter.WriteLine("result is : " +result);
+
+
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnThreadPoolReturn_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
+        }
+
+        private Func<T> ThreadPoolWithReturn<T>(Func<T> func)
+        {
+            //use thread pool to start thread and get return
+            // use ManualResetEvent to check status
+
+            ManualResetEvent mre = new ManualResetEvent(false);
+
+            T t = default(T);
+            ThreadPool.QueueUserWorkItem(o =>
+            {
+                ConsoleWriter.WriteLineYellow("ThreadPoolWithReturn() is working in thread: "+ $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} ");
+                t = func.Invoke();
+                ConsoleWriter.WriteLineYellow("ThreadPoolWithReturn() is finish in thread: " + $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} ");
+                mre.Set();
+            });
+
+            Func<T> re = () =>
+            {
+                ConsoleWriter.WriteLine("ThreadPoolWithReturn() wait in thread: " + $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} ");
+                mre.WaitOne();
+                return t;
+            };
+
+            return re;
+        }
+
+
+
+
+
+
 
         private void btnTask_Click(object sender, EventArgs e)
         {
@@ -1389,6 +1447,8 @@ namespace P19.Course.AsyncThreadForm
         {
             Console.Clear();
         }
+
+
     }
 
     
