@@ -549,7 +549,7 @@ namespace P19.Course.AsyncThreadForm
             ConsoleWriter.WriteLine("Do something else....");
             ConsoleWriter.WriteLine("Do something else....");
 
-            mre.WaitOne();//wait for thread finish set() in the thread pool
+            ConsoleWriter.WriteLine(mre.WaitOne().ToString());//wait for thread finish set() in the thread pool
 
 
             ConsoleWriter.WriteLine("ThreadPool threads should finished....");
@@ -634,14 +634,15 @@ namespace P19.Course.AsyncThreadForm
                 //start new threads
                 ThreadPool.QueueUserWorkItem(t =>
                 {
-                    ConsoleWriter.WriteLineYellow($"ThreadPool thread ID is: {Thread.CurrentThread.ManagedThreadId.ToString("00")} show thread no is {k}");
+                    ConsoleWriter.WriteLineYellow($"ThreadPool thread ID is: {Thread.CurrentThread.ManagedThreadId.ToString("00")} show thread no is {k} start ");
                     if (k == numOfTheadNeedToOpen)//if numOfTheadNeedToOpen > Max Threads in pool, mre will not execute Set(), then lock.
                     {
                         mre.Set();
                     }
                     else
                     {
-                        mre.WaitOne();//it's better not to block thread in the thread pool, as cannot predict what will happen outside. 
+                        mre.WaitOne();//it's better not to block thread in the thread pool, as cannot predict what will happen outside.
+                        ConsoleWriter.WriteLineYellow($"ThreadPool thread ID is: {Thread.CurrentThread.ManagedThreadId.ToString("00")} show thread no is {k} end");
                     }
                 });
 
