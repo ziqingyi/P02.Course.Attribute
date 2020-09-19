@@ -762,17 +762,36 @@ namespace P19.Course.AsyncThreadForm
                 //in this case, we set to 8, which limiting the speed. The threads in the pool will be reused. 
                 ThreadPool.SetMaxThreads(8,8);
 
+                HashSet<string> ThreadIds = new HashSet<string>();
+                List<Task> tlist = new List<Task>();
+
+
                 for (int i = 0; i < 100; i++)
                 {
                     int k = i;
-                    Task.Run(() =>
+                    Task t =Task.Run(() =>
                     {
+                        string Id = Thread.CurrentThread.ManagedThreadId.ToString("00");
+                        ThreadIds.Add(Id);
                         ConsoleWriter.WriteLineYellow($"This is {k} running" +
-                                          $"ThreadId ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                                          $"{Id}");
                         Thread.Sleep(2000);
                         ConsoleWriter.WriteLineYellow($"{k} is finished...");
                     });
+                    tlist.Add(t);
                 }
+
+                Task.WaitAll(tlist.ToArray());
+
+                StringBuilder sb  = new StringBuilder();
+                sb.Append("all thread ids used : ");
+                foreach (string i in ThreadIds)
+                {
+                    sb.Append(i+", ");
+                }
+                ConsoleWriter.WriteLine(sb.ToString());
+
+
             }
 
             ConsoleWriter.WriteLine("----------------------------------------------------------------------");
