@@ -953,8 +953,8 @@ namespace P19.Course.AsyncThreadForm
             TaskFactory taskFactory = new TaskFactory();
             List<Task> taskList = new List<Task>();
 
-            taskList.Add(taskFactory.StartNew( o =>coding(o.ToString(), " Portal "), "student1 async state Protal"));
-            taskList.Add(taskFactory.StartNew(o =>coding("student2", " DBA "),"async state DBA" ));
+            taskList.Add(taskFactory.StartNew( o =>coding(o.ToString(), " Portal "), " async state student1 Protal"));
+            taskList.Add(taskFactory.StartNew(o =>coding("student2", " DBA "),"async state student2 DBA" ));
             taskList.Add(taskFactory.StartNew(()=>coding("student3","Backend")  ));
 
 
@@ -1113,9 +1113,14 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnThreadCore_Exception_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(@"****************btnThreadCore_Exception_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine($"****************btnThreadCore_Exception_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+
+
+
             //exception in one thread will only stop current thread, but not affect other threads.
             //so use waitall to catch the exceptions.
             //the best practice is to try catch(may have log) in the sub tasks(threads),
@@ -1129,19 +1134,19 @@ namespace P19.Course.AsyncThreadForm
                     taskList.Add(
                         Task.Run(() =>
                         {
-                            if (name.Equals("btnThreadCore_Exception_Click_10"))
+                            if (name.Equals("btnThreadCore_Exception_Click_97"))
                             {
-                                throw new Exception("btnThreadCore_Exception_Click_10 Exception...."+ Thread.CurrentThread.ManagedThreadId.ToString("00"));
+                                throw new Exception("btnThreadCore_Exception_Click_97 Exception...."+ Thread.CurrentThread.ManagedThreadId.ToString("00"));
                             }
-                            else if (name.Equals("btnThreadCore_Exception_Click_11"))
+                            else if (name.Equals("btnThreadCore_Exception_Click_99"))
                             {
-                                throw new Exception("btnThreadCore_Exception_Click_11 Exception...." + Thread.CurrentThread.ManagedThreadId.ToString("00"));
+                                throw new Exception("btnThreadCore_Exception_Click_99 Exception...." + Thread.CurrentThread.ManagedThreadId.ToString("00"));
                             }
-                            else if (name.Equals("btnThreadCore_Exception_Click_12"))
+                            else if (name.Equals("btnThreadCore_Exception_Click_98"))
                             {
-                                throw new Exception("btnThreadCore_Exception_Click_12 Exception...." + Thread.CurrentThread.ManagedThreadId.ToString("00"));
+                                throw new Exception("btnThreadCore_Exception_Click_98 Exception...." + Thread.CurrentThread.ManagedThreadId.ToString("00"));
                             }
-                            Console.WriteLine($"This is {name} success, Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                            ConsoleWriter.WriteLineYellow($"This is {name} success, Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
                         })
                     );
@@ -1152,25 +1157,29 @@ namespace P19.Course.AsyncThreadForm
             {
                 foreach (var exception in aex.InnerExceptions)
                 {
-                    Console.WriteLine(exception.Message);
+                    ConsoleWriter.WriteLine("AggregateException is : "+exception.Message);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                ConsoleWriter.WriteLine(ex.ToString());
             }
 
-            Console.WriteLine(@"****************btnThreadCore_Exception_Click End, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnThreadCore_Exception_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
         }
 
         private void btnThreadCore_CancellationTokenSource_Click(object sender, EventArgs e)
         {
+            ConsoleWriter.WriteLine($"****************btnThreadCore_CancellationTokenSource_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
 
-            Console.WriteLine(@"****************btnThreadCore_CancellationTokenSource_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
 
             try
             {
@@ -1186,13 +1195,14 @@ namespace P19.Course.AsyncThreadForm
                             {
                                 if (!cts.IsCancellationRequested)// check cancellation request
                                 {
-                                    Console.WriteLine($"This is {name} start, " +
+                                    ConsoleWriter.WriteLineYellow($"This is {name} start, " +
                                                       $"Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
                                     Thread.Sleep(new Random().Next(50, 100));
 
                                     if (name.Equals("btnThreadCore_Exception_Click_10"))
                                     {
+                                        //throw exception and cancel cts through Exception catch. Can also cts.Cancel() here directly. 
                                         throw new Exception("btnThreadCore_Exception_Click_10 Exception...." + Thread.CurrentThread.ManagedThreadId.ToString("00"));
                                     }
                                     else if (name.Equals("btnThreadCore_Exception_Click_11"))
@@ -1205,44 +1215,45 @@ namespace P19.Course.AsyncThreadForm
                                     }
 
                                     if (!cts.IsCancellationRequested) //check cancellation request
-                                    {
-                                        Console.WriteLine($"This is {name} success, Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                                    { 
+                                        ConsoleWriter.WriteLineYellow($"This is {name} end success, Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                                     }
                                     else
                                     {
-                                        Console.WriteLine($"This is {name} stops in middle, Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                                        ConsoleWriter.WriteLineYellow($"This is {name} stops in middle, Thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                                     }
                                 }
 
                             }
                             catch (Exception ex)
                             {
-                                Console.WriteLine(ex);
+                                ConsoleWriter.WriteLine("exception in tasks: "+ex.Message);
                                 cts.Cancel();// cancel() in  CancellationTokenSource
                                 throw;
                             }
 
-                        }, cts.Token) // show the cancelled tasks, these tasks did not execute
+                        }, cts.Token) // following tasks receive the cts cancel status, these tasks will not execute, just throw exception. 
                     );
                 }
-                Task.WaitAll(taskList.ToArray());//if not wait all, exception will not be catched. waitAny will not catch exception.
+                Task.WaitAll(taskList.ToArray());//if not wait all, exception will not be caught. waitAny will not catch exception.
             }
             catch (AggregateException aex)
             {
                 foreach (var exception in aex.InnerExceptions)
                 {
-                    Console.WriteLine(exception.Message);
+                    ConsoleWriter.WriteLine("AggregateException is : " + exception.Message);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                ConsoleWriter.WriteLine("Normal Exception is : " + ex.ToString());
             }
 
-
-            Console.WriteLine(@"****************btnThreadCore_CancellationTokenSource_Click End, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnThreadCore_CancellationTokenSource_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
         }
 
         private void btnThreadCore_Variable_Click(object sender, EventArgs e)
