@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P19.Course.AsyncThreadForm
+namespace P20.Course.AwaitAsyncLibrary
 {
     public static class ConsoleWriter
     {

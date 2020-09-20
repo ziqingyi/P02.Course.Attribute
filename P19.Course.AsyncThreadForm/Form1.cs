@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ThreadState = System.Threading.ThreadState;
+using P19.Course.ConsoleWriterProj;
 
 namespace P19.Course.AsyncThreadForm
 {

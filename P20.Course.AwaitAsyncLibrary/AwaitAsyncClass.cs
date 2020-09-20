@@ -1,4 +1,5 @@
-﻿using System;
+﻿using P19.Course.ConsoleWriterProj;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,22 +12,26 @@ namespace P20.Course.AwaitAsyncLibrary
     {
         public static void TestShow()
         {
-            Console.WriteLine($"TestShow() start thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            ConsoleWriter.WriteLine($"TestShow() start thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
             Test();
 
-            Console.WriteLine($"TestShow() end thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            ConsoleWriter.WriteLine($"TestShow() end thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
             Console.ReadLine();
         }
 
         private async static Task Test()
         {
-            Console.WriteLine($"async Test() method start thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-            
+            ConsoleWriter.WriteLine($"**************** async Test() method Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+
             {
                 #region normal case
 
-                //NoReturnNoAwait();
+                NoReturnNoAwait();
 
                 #endregion
             }
@@ -75,19 +80,19 @@ namespace P20.Course.AwaitAsyncLibrary
             {
                 #region Task with return value return Task
 
-                Console.WriteLine($"current async Test() test 4 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                //Console.WriteLine($"current async Test() test 4 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
-                // return a Task with return value
-                Task<int> getResultTask =  SumFactory();
-
-
-                // thread 1 continue do sth
-                Console.WriteLine($"current async Test() test 4 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                //// return a Task with return value
+                //Task<int> getResultTask =  SumFactory();
 
 
-                //thread 1 wait for the result,  getResultTask.Result is same to getResultTask.Wait()
-                Console.WriteLine($"current async Test() test 4 finish, result is {getResultTask.Result}" +
-                                  $" thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                //// thread 1 continue do sth
+                //Console.WriteLine($"current async Test() test 4 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+
+
+                ////thread 1 wait for the result,  getResultTask.Result is same to getResultTask.Wait()
+                //Console.WriteLine($"current async Test() test 4 finish, result is {getResultTask.Result}" +
+                //                  $" thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
                 #endregion
 
@@ -97,28 +102,36 @@ namespace P20.Course.AwaitAsyncLibrary
 
 
 
-
-
-            Console.WriteLine($"async Test() method end thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************async Test() End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
         }
 
         //if there is no await for async, it works like a normal method. 
         private static async void NoReturnNoAwait()
         {
-            Console.WriteLine(@"****************async NoReturnNoAwait() Start,  Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine($"**************** NoReturnNoAwait() Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+
 
             Task task = Task.Run(() =>
             {
-                Console.WriteLine($"NoReturnNoAwait() begin sleep, thread id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                ConsoleWriter.WriteLineYellow($"NoReturnNoAwait() begin sleep, thread id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 Thread.Sleep(3000);
-                Console.WriteLine($"NoReturnNoAwait() after sleep, thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                ConsoleWriter.WriteLineYellow($"NoReturnNoAwait() after sleep, thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
             });
 
-            Console.WriteLine(@"****************async NoReturnNoAwait() End after Task, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************NoReturnNoAwait() End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
         }
 
         //await task

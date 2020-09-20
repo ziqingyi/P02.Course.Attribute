@@ -54,5 +54,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\P19.Course.ConsoleWriterProj\P19.Course.ConsoleWriterProj.csproj">
+      <Project>{D3A0212F-158E-4E02-92B3-1AFFC4F16796}</Project>
+      <Name>P19.Course.ConsoleWriterProj</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
