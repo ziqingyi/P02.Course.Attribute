@@ -1151,7 +1151,7 @@ namespace P19.Course.AsyncThreadForm
                         })
                     );
                 }
-                Task.WaitAll(taskList.ToArray());//if not wait all, exception will not be catched. waitAny will not catch exception.
+                Task.WaitAll(taskList.ToArray());//if not wait all, exception will not be caught. waitAny will not catch exception.
             }
             catch (AggregateException aex)
             {
@@ -1258,23 +1258,29 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnThreadCore_Variable_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(@"****************btnThreadCore_Variable_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine($"****************btnThreadCore_Variable_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+
 
             for (int i = 0; i < 5; i++)
             {
                 int k = i; //show the different between i and k, i is shared. 
                 Task.Run(()=>
                 {
-                    Console.WriteLine($"this is btnThreadCore_Variable_Click_{i}_{k}, " +
+                    ConsoleWriter.WriteLineYellow($"this is btnThreadCore_Variable_Click_{i}_{k}, " +
                                       $"ThreadId ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 });
             }
 
-            Console.WriteLine(@"****************btnThreadCore_Variable_Click End, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnThreadCore_Variable_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
+
         }
 
         List<Task> waitList = new List<Task>();
@@ -1287,9 +1293,11 @@ namespace P19.Course.AsyncThreadForm
 
         private void btnThreadCore_ThreadSafety_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(@"****************btnThreadCore_Variable_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine($"****************btnThreadCore_Variable_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
 
             int numOfTasks = 10000;
 
@@ -1332,28 +1340,34 @@ namespace P19.Course.AsyncThreadForm
 
             Task.WaitAll(waitList.ToArray());//just wait all task complete
 
-            Console.WriteLine($"iNumSync = {iNumSync}, iNumAsync={iNumAsync}, IListSync.Count={iListSync.Count}");
+            ConsoleWriter.WriteLine($"iNumSync = {iNumSync}, iNumAsync={iNumAsync}, IListSync.Count={iListSync.Count}");
 
 
-            //2 ThreadSafety method two, use thread-safe collections. Performance better than lock.
+            //2 ThreadSafety method two, use thread-safe collections. Performance is good. Atomicity.
             //System.Collections.Concurrent.ConcurrentBag<int> cbag;
 
 
             //3 ThreadSafety method three, the best solution is to separate the tasks with each threads.
             //  one thread work in one task from begin to finish.Then combine task result together. Safe and high performance. 
 
-            Console.WriteLine(@"****************btnThreadCore_Variable_Click End, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnThreadCore_Variable_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
         }
 
         private void ThreadCore_LockThis_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(@"****************ThreadCore_LockThis_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine($"****************ThreadCore_LockThis_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
 
-            //main thread lock the same object with sub threads. 
+
+            // main thread lock the same object with sub threads. 
             // in this case, the DoTest() method lock this, which is same to task in ContinueWith
             // so two thread lock same object. 
             TestLock test = new TestLock();
@@ -1363,18 +1377,20 @@ namespace P19.Course.AsyncThreadForm
                 {
                     lock (test)
                     {
-                        Console.WriteLine("*******Begin**********");
+                        ConsoleWriter.WriteLineYellow("*******Begin**********");
                         Thread.Sleep(5000);
-                        Console.WriteLine("*******End**********");
+                        ConsoleWriter.WriteLineYellow("*******End**********");
                     }
                 }
                 );
             
             test.DoTestLockThis();
 
-            Console.WriteLine(@"****************ThreadCore_LockThis_Click End, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************ThreadCore_LockThis_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
         }
         class TestLock
         {
@@ -1425,23 +1441,16 @@ namespace P19.Course.AsyncThreadForm
         }
 
         private void btnThreadCore_LockStringNull_Click(object sender, EventArgs e)
-        { 
-            Console.WriteLine(@"****************ThreadCore_LockThis_Click Start, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-            string a = "abc";
-            string b = a;
-            Console.WriteLine(object.ReferenceEquals(a, b) + b); //true abc
-            a = "def";
-            Console.WriteLine(object.ReferenceEquals(a,b) + b);//false abc
-
-            int aa = 123;
-            int bb = aa;
-            aa = 456;
-            Console.WriteLine(aa + " " + bb);//123  456
+        {
+            ConsoleWriter.WriteLine($"****************btnThreadCore_LockStringNull_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
 
             //main thread lock the same object with sub threads. 
-            //all the strings are different references with the same value to a single string object.
+            //for string variables with same value,
+            //all the strings are different references with the same value(heap memory address), pointing to a single string object
             //This is because the ldstr IL instruction interns literal strings and reuses them
             //rather than allocate per ldstr.
             // so two thread lock same object.
@@ -1458,19 +1467,20 @@ namespace P19.Course.AsyncThreadForm
                 {
                     lock (LockString)
                     {
-                        Console.WriteLine("*******Begin**********");
+                        ConsoleWriter.WriteLineYellow("*******Begin**********");
                         Thread.Sleep(5000);
-                        Console.WriteLine("*******End**********");
+                        ConsoleWriter.WriteLineYellow("*******End**********");
                     }
                 }
             );
 
             test.DoTestLockString();
 
-            Console.WriteLine(@"****************ThreadCore_LockThis_Click End, Thread Id is: {0} Now:{1}***************",
-                Thread.CurrentThread.ManagedThreadId.ToString("00"),
-                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnThreadCore_LockStringNull_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -1479,6 +1489,42 @@ namespace P19.Course.AsyncThreadForm
         }
 
 
+        static string fourth = "Example";
+
+        private void btnStringAddr_Click(object sender, EventArgs e)
+        {
+            ConsoleWriter.WriteLine($"****************btnStringAddr_Click Start, Thread Id is: " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
+                                    $"***************");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+
+
+            string a = "abc";
+            string b = a;
+            string c = a;
+            ConsoleWriter.WriteLine(object.ReferenceEquals(a, b) + b); //true abc   , just copy a's address to b
+            a = "def";
+            ConsoleWriter.WriteLine(object.ReferenceEquals(a, b) + b);//false abc    , create a new space for a
+
+            ConsoleWriter.WriteLine(object.ReferenceEquals(b, c) + b);//true abc    , b and c still hold old address
+            int aa = 123;
+            int bb = aa;
+            aa = 456;
+            ConsoleWriter.WriteLine(aa + " " + bb);//  456   123
+
+
+            string third = "Example";
+            const string fifth = "Example";
+
+            ConsoleWriter.WriteLine("Example: " +object.ReferenceEquals(third, fourth) +" "+ object.ReferenceEquals(fourth, fifth) + " " + object.ReferenceEquals(third, fifth) );
+
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"****************btnStringAddr_Click End, Thread Id is:  " +
+                                    $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
+                                    $"***************");
+        }
     }
 
     
