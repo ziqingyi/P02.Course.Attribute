@@ -31,14 +31,14 @@ namespace P20.Course.AwaitAsyncLibrary
             {
                 #region normal case
 
-                NoReturnNoAwait();
+                //NoReturnNoAwait();
 
                 #endregion
             }
             {
                 #region test 2 ways of recall
-                //NoReturn();//1 await
-                ////NoReturnContinueWith();//2 ContinueWith
+                //NoReturnWithAwait();//1 await
+                ////NoReturnContinueWith();//2 ContinueWith, normally with new thread
                 //for (int i = 0; i < 10; i++)
                 //{
                 //    Thread.Sleep(300);//just to show main thread will continue do something. 
@@ -49,16 +49,17 @@ namespace P20.Course.AwaitAsyncLibrary
             {
                 #region test Wait() and await
 
-                //Task t = NoReturn_returnTask();
-                //Console.WriteLine($"current async Test() test 2 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-                ////t.Wait();//1 main thread wait for completion of t, following will be main thread running
+                //a async method, if there is no return value, the method can return Task.
+                Task t = NoReturn_returnTask();
+                ConsoleWriter.WriteLine($"current async NoReturn_returnTask() test 2 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                //t.Wait();//1 main thread wait for completion of t, following will be main thread running
 
-                //Console.WriteLine($"current async Test() test 2 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                ConsoleWriter.WriteLine($"current async NoReturn_returnTask() test 2 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
-                //await t;//2 main thread not wait for t(go out of method), a thread from threadpool with execute logic after await in the method.
-                //        //following part will be a call back if t is not finished. 
-                //        //if t completed before await, following will also be main thread running.
-                //Console.WriteLine($"current async Test() test 2 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                await t;//2 main thread not wait for t(go out of method), a thread from threadpool with execute logic after await in the method.
+                        //following part will be a call back if t is not finished. 
+                        //if t completed before await, following will also be main thread running.
+                ConsoleWriter.WriteLine($"current async NoReturn_returnTask() test 2 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
                 #endregion
             }
@@ -126,50 +127,50 @@ namespace P20.Course.AwaitAsyncLibrary
         }
 
         //await task
-        private static async void NoReturn()
+        private static async void NoReturnWithAwait()
         {
-            ConsoleWriter.WriteLine($"---------async NoReturn() start before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            ConsoleWriter.WriteLine($"---------async NoReturnWithAwait() start before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
             TaskFactory taskFactory = new TaskFactory();
             Task task = taskFactory.StartNew(
                 () =>
                 {
-                    ConsoleWriter.WriteLineYellow($"NoReturn()'s task Start, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    ConsoleWriter.WriteLineYellow($"NoReturnWithAwait()'s task Start, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                     Thread.Sleep(3000);
-                    ConsoleWriter.WriteLineYellow($"NoReturn()'s task End, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    ConsoleWriter.WriteLineYellow($"NoReturnWithAwait()'s task End, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 }
                 );
             await task;
 
-            //here, the thread id would be any thread, these logic may be executed by task's thread, maybe a new thread, maybe main(01) thread.
-            ConsoleWriter.WriteLine($"--------async NoReturn() end after await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            //here,the thread id would be any thread, these logic may be executed by task's thread, maybe a new thread, maybe main(01) thread.
+            //your case use thread 3, same to task.
+            ConsoleWriter.WriteLineGreen($"--------async NoReturnWithAwait() end after await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
         }
 
         private static async void NoReturnContinueWith()
         {
-            ConsoleWriter.WriteLine($"---------async NoReturn() start before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            ConsoleWriter.WriteLine($"---------async NoReturnContinueWith() start before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
             TaskFactory taskFactory = new TaskFactory();
             Task task = taskFactory.StartNew(
                 () =>
                 {
-                    ConsoleWriter.WriteLineYellow($"NoReturn()'s task Start, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    ConsoleWriter.WriteLineYellow($"NoReturnContinueWith()'s task Start, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                     Thread.Sleep(3000);
-                    ConsoleWriter.WriteLineYellow($"NoReturn()'s task End, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    ConsoleWriter.WriteLineYellow($"NoReturnContinueWith()'s task End, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 }
             );
-            //the thread may be a new thread id,maybe same to task's thread id. 
+            //the thread may be a new thread id,maybe same to task's thread id. in your case, it's new thread 4. task's thread is 3.
             _ = task.ContinueWith(t =>
                    {
-                       ConsoleWriter.WriteLineGreen($"---------async NoReturn end after await something, " + $"ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                       ConsoleWriter.WriteLineGreen($"async NoReturn end after await something, " + $"ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                    }
            );
 
-            
-            ConsoleWriter.WriteLine($"async NoReturn() End , ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            ConsoleWriter.WriteLine($"---------async NoReturnContinueWith() End , ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
         }
 
-        //await task,return task. after compilation, async will become stateMachine 
+        //a async method, if there is no return value, can return a task. after compilation, async will become stateMachine 
         private static async Task NoReturn_returnTask()
         {
             Console.WriteLine($"async NoReturn_returnTask() start running before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
@@ -177,15 +178,15 @@ namespace P20.Course.AwaitAsyncLibrary
             Task task = Task.Run(
                 () =>
                 {
-                    Console.WriteLine($"NoReturn_returnTask()'s task Start, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    ConsoleWriter.WriteLineYellow($"NoReturn_returnTask()'s task Start, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                     Thread.Sleep(3000);
-                    Console.WriteLine($"NoReturn_returnTask()'s task End, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    ConsoleWriter.WriteLineYellow($"NoReturn_returnTask()'s task End, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 }
             );
             await task;
 
             //here, the thread id would be any thread, these logic may be executed by task's thread, maybe a new thread, maybe main(01) thread.
-            Console.WriteLine($"async NoReturn_returnTask() end running after await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            ConsoleWriter.WriteLineGreen($"async NoReturn_returnTask() end running after await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
         }
         /// <summary>
         /// Task with return value, getting result must wait for the task.
