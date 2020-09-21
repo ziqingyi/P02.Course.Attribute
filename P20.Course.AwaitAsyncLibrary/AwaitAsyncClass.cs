@@ -31,13 +31,13 @@ namespace P20.Course.AwaitAsyncLibrary
             {
                 #region normal case
 
-                NoReturnNoAwait();
+                //NoReturnNoAwait();
 
                 #endregion
             }
             {
                 #region test 2 ways of recall
-                //NoReturn();//1 await
+                NoReturn();//1 await
                 ////NoReturnContinueWith();//2 ContinueWith
                 //for (int i = 0; i < 10; i++)
                 //{
@@ -137,44 +137,50 @@ namespace P20.Course.AwaitAsyncLibrary
         //await task
         private static async void NoReturn()
         {
-            Console.WriteLine($"async NoReturn() start before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-            
+            ConsoleWriter.WriteLine($"async NoReturn() start before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+
             TaskFactory taskFactory = new TaskFactory();
             Task task = taskFactory.StartNew(
                 () =>
                 {
-                    Console.WriteLine($"NoReturn()'s task Start, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    ConsoleWriter.WriteLineYellow($"NoReturn()'s task Start, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                     Thread.Sleep(3000);
-                    Console.WriteLine($"NoReturn()'s task End, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    ConsoleWriter.WriteLineYellow($"NoReturn()'s task End, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 }
                 );
             await task;
 
             //here, the thread id would be any thread, these logic may be executed by task's thread, maybe a new thread, maybe main(01) thread.
-            Console.WriteLine($"async NoReturn() end after await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"async NoReturn() end after await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
         }
 
         private static async void NoReturnContinueWith()
         {
-            Console.WriteLine($"async NoReturn() start before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            ConsoleWriter.WriteLine($"async NoReturn() start before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
 
             TaskFactory taskFactory = new TaskFactory();
             Task task = taskFactory.StartNew(
                 () =>
                 {
-                    Console.WriteLine($"NoReturn()'s task Start, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    ConsoleWriter.WriteLineYellow($"NoReturn()'s task Start, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                     Thread.Sleep(3000);
-                    Console.WriteLine($"NoReturn()'s task End, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    ConsoleWriter.WriteLineYellow($"NoReturn()'s task End, ThreadID= {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 }
             );
             //the thread may be a new thread id,maybe same to task's thread id. 
             _ = task.ContinueWith(t =>
                    {
-                       Console.WriteLine($"async NoReturn end after await something, " +
+                       ConsoleWriter.WriteLineGreen($"async NoReturn end after await something, " +
                                          $"ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
                    }
            );
+
+            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"async NoReturn() End , ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
         }
 
         //await task,return task. after compilation, async will become stateMachine 
