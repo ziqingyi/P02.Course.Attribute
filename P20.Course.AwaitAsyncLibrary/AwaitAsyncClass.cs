@@ -1,10 +1,12 @@
-﻿using P19.Course.ConsoleWriterProj;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using P19.Course.ConsoleWriterProj;
+
 
 namespace P20.Course.AwaitAsyncLibrary
 {
@@ -12,37 +14,35 @@ namespace P20.Course.AwaitAsyncLibrary
     {
         public static void TestShow()
         {
-            ConsoleWriter.WriteLine($"TestShow() start thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-
+            //ConsoleWriter.WriteLine($"***********TestShow() start thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}***************");
+           
             Test();
 
-            ConsoleWriter.WriteLine($"TestShow() end thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-            Console.ReadLine();
+            //ConsoleWriter.WriteLine($"***********TestShow() end thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}***************");
         }
 
         private async static Task Test()
         {
-            ConsoleWriter.WriteLine($"**************** async Test() method Start, Thread Id is: " +
+            ConsoleWriter.WriteLine($"******async Test() method Start, Thread Id is: " +
                                     $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
-                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
-                                    $"***************");
-            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" );
+            
 
             {
                 #region normal case
 
-                //NoReturnNoAwait();
+                NoReturnNoAwait();
 
                 #endregion
             }
             {
                 #region test 2 ways of recall
-                NoReturn();//1 await
+                //NoReturn();//1 await
                 ////NoReturnContinueWith();//2 ContinueWith
                 //for (int i = 0; i < 10; i++)
                 //{
                 //    Thread.Sleep(300);//just to show main thread will continue do something. 
-                //    Console.WriteLine($"current async Test()'s task 1 running, ThreadId={Thread.CurrentThread.ManagedThreadId.ToString("00")} i={i}");
+                //    ConsoleWriter.WriteLine($"current async Test()'s task 1 running, ThreadId={Thread.CurrentThread.ManagedThreadId.ToString("00")} i={i}");
                 //}
                 #endregion
             }
@@ -101,23 +101,17 @@ namespace P20.Course.AwaitAsyncLibrary
             }
 
 
-
-            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
-            ConsoleWriter.WriteLine($"****************async Test() End, Thread Id is:  " +
+            ConsoleWriter.WriteLine($"******async Test() End, Thread Id is:  " +
                                     $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
-                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
-                                    $"***************");
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} ");
         }
 
         //if there is no await for async, it works like a normal method. 
         private static async void NoReturnNoAwait()
         {
-            ConsoleWriter.WriteLine($"**************** NoReturnNoAwait() Start, Thread Id is: " +
+            ConsoleWriter.WriteLine($"---------- NoReturnNoAwait() Start, Thread Id is: " +
                                     $"{Thread.CurrentThread.ManagedThreadId.ToString("00")}" +
-                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}" +
-                                    $"***************");
-            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
-
+                                    $" {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
 
             Task task = Task.Run(() =>
             {
@@ -126,19 +120,15 @@ namespace P20.Course.AwaitAsyncLibrary
                 ConsoleWriter.WriteLineYellow($"NoReturnNoAwait() after sleep, thread Id = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
             });
 
-
-            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
-            ConsoleWriter.WriteLine($"****************NoReturnNoAwait() End, Thread Id is:  " +
+            ConsoleWriter.WriteLine($"----------NoReturnNoAwait() End, Thread Id is:  " +
                                     $"{Thread.CurrentThread.ManagedThreadId.ToString("00")} " +
-                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} " +
-                                    $"***************");
+                                    $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} ");
         }
 
         //await task
         private static async void NoReturn()
         {
-            ConsoleWriter.WriteLine($"async NoReturn() start before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"---------async NoReturn() start before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
             TaskFactory taskFactory = new TaskFactory();
             Task task = taskFactory.StartNew(
@@ -152,14 +142,12 @@ namespace P20.Course.AwaitAsyncLibrary
             await task;
 
             //here, the thread id would be any thread, these logic may be executed by task's thread, maybe a new thread, maybe main(01) thread.
-            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
-            ConsoleWriter.WriteLine($"async NoReturn() end after await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            ConsoleWriter.WriteLine($"--------async NoReturn() end after await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
         }
 
         private static async void NoReturnContinueWith()
         {
-            ConsoleWriter.WriteLine($"async NoReturn() start before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            ConsoleWriter.WriteLine($"---------async NoReturn() start before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
             TaskFactory taskFactory = new TaskFactory();
             Task task = taskFactory.StartNew(
@@ -173,13 +161,11 @@ namespace P20.Course.AwaitAsyncLibrary
             //the thread may be a new thread id,maybe same to task's thread id. 
             _ = task.ContinueWith(t =>
                    {
-                       ConsoleWriter.WriteLineGreen($"async NoReturn end after await something, " +
-                                         $"ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-
+                       ConsoleWriter.WriteLineGreen($"---------async NoReturn end after await something, " + $"ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                    }
            );
 
-            ConsoleWriter.WriteLine("----------------------------------------------------------------------");
+            
             ConsoleWriter.WriteLine($"async NoReturn() End , ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
         }
 

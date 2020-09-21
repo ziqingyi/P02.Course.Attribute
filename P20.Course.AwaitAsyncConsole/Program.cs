@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using P20.Course.AwaitAsyncLibrary;
+using P19.Course.ConsoleWriterProj;
 
 namespace P20.Course.AwaitAsyncConsole
 {
@@ -14,11 +15,13 @@ namespace P20.Course.AwaitAsyncConsole
             try
             {
                 Console.WriteLine("Main start to run......");
+                ConsoleWriter.WriteLine("****************************************************************");
 
                 AwaitAsyncClass.TestShow();
                 //AwaitAsyncILSpy.Show();
                 //AwaitAsyncILSpyWeb.Show();
 
+                ConsoleWriter.WriteLine("****************************************************************");
                 Console.WriteLine("Main finish running......");
                 Console.ReadKey();
             }
