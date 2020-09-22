@@ -42,7 +42,7 @@ namespace P20.Course.AwaitAsyncLibrary
                 //for (int i = 0; i < 10; i++)
                 //{
                 //    Thread.Sleep(300);//just to show main thread will continue do something. 
-                //    ConsoleWriter.WriteLine($"current async Test()'s task 1 running, ThreadId={Thread.CurrentThread.ManagedThreadId.ToString("00")} i={i}");
+                //    ConsoleWriter.WriteLine($"current async Test()'s task {i} running, ThreadId={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 //}
                 #endregion
             }
@@ -51,15 +51,15 @@ namespace P20.Course.AwaitAsyncLibrary
 
                 //a async method, if there is no return value, the method can return Task.
                 Task t = NoReturn_returnTask();
-                ConsoleWriter.WriteLine($"current async NoReturn_returnTask() test 2 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                ConsoleWriter.WriteLine($"test async NoReturn_returnTask() 1 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 //t.Wait();//1 main thread wait for completion of t, following will be main thread running
 
-                ConsoleWriter.WriteLine($"current async NoReturn_returnTask() test 2 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                ConsoleWriter.WriteLine($"test async NoReturn_returnTask() 2 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
                 await t;//2 main thread not wait for t(go out of method), a thread from threadpool with execute logic after await in the method.
-                        //following part will be a call back if t is not finished. 
-                        //if t completed before await, following will also be main thread running.
-                ConsoleWriter.WriteLine($"current async NoReturn_returnTask() test 2 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                //following part will be a call back if t is not finished. 
+                //if t completed before await, following will also be main thread running.
+                ConsoleWriter.WriteLineGreen($"test async NoReturn_returnTask() 3 running thread is ={Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
                 #endregion
             }
@@ -173,7 +173,7 @@ namespace P20.Course.AwaitAsyncLibrary
         //a async method, if there is no return value, can return a task. after compilation, async will become stateMachine 
         private static async Task NoReturn_returnTask()
         {
-            Console.WriteLine($"async NoReturn_returnTask() start running before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            ConsoleWriter.WriteLine($"async NoReturn_returnTask() start running before await something, ThreadID = {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
             Task task = Task.Run(
                 () =>
