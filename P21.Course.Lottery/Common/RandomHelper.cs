@@ -69,8 +69,8 @@ namespace P21.Course.Lottery.Common
                         break;
                 }
             } 
-
-
+            //if multithreads run at same time, it will use same time as seed, so it may generate same random num.
+            // so we create new seed.
             Random random = new Random(seed);
             // The inclusive lower bound of the random number returned.
             // The exclusive upper bound of the random number returned.
