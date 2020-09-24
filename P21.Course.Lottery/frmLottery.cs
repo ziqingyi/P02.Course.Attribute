@@ -125,6 +125,8 @@ namespace P21.Course.Lottery
                                              List<string> usedNumberList = this.GetUsedRedNumbers();
                                              if (!usedNumberList.Contains(sNumber))
                                              {
+                                                 //the thread who owns the Control's underlying window handle, will run this delegate
+                                                 //so below need to use main thread. if at the same time other method are using main thread, lock. 
                                                  this.Invoke(new Action(
                                                      () =>
                                                      {
