@@ -136,10 +136,8 @@ namespace P21.Course.Lottery
                                              }
                                          }
 
-
                                         //3 loop
-
-                                    }
+                                     }
                                  }
                                  catch (Exception ex)
                                  {
@@ -157,10 +155,25 @@ namespace P21.Course.Lottery
 
             }
 
+
+            //delay 5 seconds after start, then  user can stop it, using main to invoke. 
+            Task.Delay(5 * 1000).ContinueWith(
+                t => 
+                {
+                    this.Invoke(
+                        new Action(
+                        () =>
+                        { this.btnStop.Enabled = true; }
+                        )
+                    );
+                }
+                );
+
+            //when all task finished, do callback 
             Task.Factory.ContinueWhenAll(this.taskList.ToArray(), tArray =>
             {
-                //must use main thread to invoke operations to controls, otherwise lock. 
-                this.Invoke(new Action(()=>
+                //must use main thread to invoke operations to controls, otherwise freeze. 
+                this.Invoke(new Action(() =>
                     {
 
                         this.btnStart.Enabled = true;
@@ -169,28 +182,41 @@ namespace P21.Course.Lottery
 
                     })
                 );
- 
+
                 this.ShowResult();
 
             });
 
-            //delay 5 seconds after start, then  user can stop it, using main to invoke. 
-            Task.Delay(5 * 1000).ContinueWith(
-                t => 
-                { 
-                    this.Invoke(
-                        new Action(
-                        () => 
-                        { this.btnStop.Enabled = true; }
-                        )
-                    );
-                }
-                );
-
-        
-
-
         }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+
+            this.IsGoOn = false;
+
+            //wait for all tasks completed, must use another thread.
+            //if still use main thread execute below, program will be dead lock.
+            //because main thread will wait for tasks in list to complete,
+            //but threads updating the label need to wait for main thread to assign value. (they are at around lock or executing in the lock)
+
+            ////method 1
+            //this.btnStart.Enabled = true;
+            //this.btnStop.Enabled = false;
+            //this.btnStart.Text = "Start";
+            //Task.Run(() =>
+            //{
+            //    Task.WaitAll(taskList.ToArray());
+
+            //    ShowResult();
+            //});
+
+            ////method 2, add a call back function to btnStart_Click() 
+            //Task.Factory.ContinueWhenAll(this.taskList.ToArray(), tArray =>
+            //{
+            //    //ShowResult() and Enable buttons when everything finish
+            //});
+        }
+
 
         private static readonly object _Lock = new object();
         private List<string> GetUsedRedNumbers()
@@ -224,42 +250,6 @@ namespace P21.Course.Lottery
             return usedNumberList;
         }
 
-
-
-
-
-
-
-        private void btnStop_Click(object sender, EventArgs e)
-        {
-
-
-            this.IsGoOn = false;
-
-         
-
-            //wait for all tasks completed, must use another thread.
-            //if still use main thread execute below, program will be dead lock.
-            //because main thread will wait for tasks in list to complete,
-            //but threads updating the label need to wait for main thread to assign value. (they are at around lock or executing in the lock)
-   
-            ////method 1
-            //this.btnStart.Enabled = true;
-            //this.btnStop.Enabled = false;
-            //this.btnStart.Text = "Start";
-            //Task.Run(() =>
-            //{
-            //    Task.WaitAll(taskList.ToArray());
-
-            //    ShowResult();
-            //});
-
-            ////method 2, add a call back function to btnStart_Click() 
-            //Task.Factory.ContinueWhenAll(this.taskList.ToArray(), tArray =>
-            //{
-            //    //ShowResult() and Enable buttons when everything finish
-            //});
-        }
 
 
         private void ShowResult()
