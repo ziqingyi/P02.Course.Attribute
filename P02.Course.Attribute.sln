@@ -79,6 +79,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P23.Course.IOC.IBLL", "P23.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P23.Course.IOC.IDAL", "P23.Course.IOC.IDAL\P23.Course.IOC.IDAL.csproj", "{F70D9B70-F214-43B8-9E95-24EDC95D78A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P23.Course.IOC.Service", "P23.Course.IOC.Service\P23.Course.IOC.Service.csproj", "{AEF1CFA1-DFB3-422E-8106-2DA745BB6845}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P23.Course.IOC.ServiceInterface", "P23.Course.IOC.ServiceInterface\P23.Course.IOC.ServiceInterface.csproj", "{F1839E7C-1D2F-4751-9AD2-A9BA7D77A721}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -237,6 +241,14 @@ Global
 		{F70D9B70-F214-43B8-9E95-24EDC95D78A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F70D9B70-F214-43B8-9E95-24EDC95D78A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F70D9B70-F214-43B8-9E95-24EDC95D78A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEF1CFA1-DFB3-422E-8106-2DA745BB6845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEF1CFA1-DFB3-422E-8106-2DA745BB6845}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEF1CFA1-DFB3-422E-8106-2DA745BB6845}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEF1CFA1-DFB3-422E-8106-2DA745BB6845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1839E7C-1D2F-4751-9AD2-A9BA7D77A721}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1839E7C-1D2F-4751-9AD2-A9BA7D77A721}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1839E7C-1D2F-4751-9AD2-A9BA7D77A721}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1839E7C-1D2F-4751-9AD2-A9BA7D77A721}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
