@@ -10,10 +10,10 @@ namespace P23.Course.IOC.ServiceInterface
     {
         void Call();
 
-        IMicrophone IMicrophone { get; set; }
+        IMicrophone iMicrophone { get; set; }
 
-        IHeadphone IHeadphone { get; set; }
+        IHeadphone iHeadphone { get; set; }
 
-        IPower IPower { get; set; }
+        IPower iPower { get; set; }
     }
 }

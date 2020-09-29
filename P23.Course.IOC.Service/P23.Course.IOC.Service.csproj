@@ -41,7 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndroidPhone.cs" />
+    <Compile Include="IPhone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\P23.Course.IOC.IBLL\P23.Course.IOC.IBLL.csproj">
+      <Project>{13AFF91C-EC13-4066-B097-63C2E518C94A}</Project>
+      <Name>P23.Course.IOC.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P23.Course.IOC.ServiceInterface\P23.Course.IOC.ServiceInterface.csproj">
+      <Project>{F1839E7C-1D2F-4751-9AD2-A9BA7D77A721}</Project>
+      <Name>P23.Course.IOC.ServiceInterface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
