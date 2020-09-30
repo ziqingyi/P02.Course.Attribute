@@ -5,21 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P23.Course.IOC.Service
+namespace P23.Course.IOC.ServiceExtend
 {
-    public class IPhone: Itelephone
+    public class IPhonePRO : Itelephone
     {
-
         public IMicrophone iMicrophone { get; set; }
         public IHeadphone iHeadphone { get; set; }
         public IPower iPower { get; set; }
 
-        public IPhone()
+        public IPhonePRO()
         {
             Console.WriteLine("{0} construction method", this.GetType().Name);
         }
 
-        public IPhone(IHeadphone headphone)
+        public IPhonePRO(IHeadphone headphone)
         {
             this.iHeadphone = headphone;
             Console.WriteLine("{0} construction method with {1}", this.GetType().Name, headphone.GetType());
