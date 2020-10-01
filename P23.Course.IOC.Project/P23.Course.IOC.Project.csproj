@@ -76,6 +76,10 @@
       <Project>{F1839E7C-1D2F-4751-9AD2-A9BA7D77A721}</Project>
       <Name>P23.Course.IOC.ServiceInterface</Name>
     </ProjectReference>
+    <ProjectReference Include="..\P23.Course.IOC.Service\P23.Course.IOC.Service.csproj">
+      <Project>{AEF1CFA1-DFB3-422E-8106-2DA745BB6845}</Project>
+      <Name>P23.Course.IOC.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

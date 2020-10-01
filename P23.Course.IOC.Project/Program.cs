@@ -1,9 +1,11 @@
-﻿using P23.Course.IOC.ServiceInterface;
+﻿using P23.Course.IOC.Service;
+using P23.Course.IOC.ServiceInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unity;
 
 namespace P23.Course.IOC.Project
 {
@@ -24,8 +26,23 @@ namespace P23.Course.IOC.Project
                 #endregion
             }
 
+            {
+                #region create instance with container
+                IUnityContainer container = new UnityContainer();// 1 initialise container
+                container.RegisterType<Itelephone, AndroidPhone>(); //2 register interface and class
+                Itelephone androidPhone = container.Resolve<Itelephone>(); //3 get the class's instance 
+                  
 
-            Console.ReadKey();
+                #endregion
+              
+
+
+
+            }
+            
+
+
+        Console.ReadKey();
         }
     }
 }
