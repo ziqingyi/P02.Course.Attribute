@@ -17,7 +17,7 @@ namespace P23.Course.IOC.Project
             Assembly assembly = Assembly.Load(classMode.Split(',')[1]);//get the DLL name, or namespace
             Type type = assembly.GetType(classMode.Split(',')[0]);//get the class name
 
-            Itelephone re = (Itelephone)Activator.CreateInstance(type);
+            Itelephone re = (Itelephone)Activator.CreateInstance(type);//must have parameterless constructor 
             return re;
         }
 
