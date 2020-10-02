@@ -42,7 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidPhone.cs" />
+    <Compile Include="ApplePad.cs" />
+    <Compile Include="ApplePadChild.cs" />
+    <Compile Include="Headphone.cs" />
     <Compile Include="IPhone.cs" />
+    <Compile Include="IPhoneX.cs" />
+    <Compile Include="Microphone.cs" />
+    <Compile Include="Power.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

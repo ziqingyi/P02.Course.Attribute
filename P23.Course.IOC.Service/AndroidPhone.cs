@@ -21,11 +21,11 @@ namespace P23.Course.IOC.Service
         }
         public AndroidPhone(AbstractPad pad)
         {
-            Console.WriteLine("{0} construction method with {1}", this.GetType().Name, pad.GetType());
+            Console.WriteLine("{0} (AndroidPhone)construction method with {1}", this.GetType().Name, pad.GetType());
         }
         public AndroidPhone(IBaseBll baseBll)
         {
-            Console.WriteLine("{0} construction method with {1}", this.GetType().Name, baseBll.GetType());
+            Console.WriteLine("{0} (AndroidPhone)construction method with {1}", this.GetType().Name, baseBll.GetType());
         }
 
         public void Call()

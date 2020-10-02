@@ -72,6 +72,22 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\P23.Course.IOC.BLL\P23.Course.IOC.BLL.csproj">
+      <Project>{7A164496-5F8D-4685-934C-D98656CD117B}</Project>
+      <Name>P23.Course.IOC.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P23.Course.IOC.DAL\P23.Course.IOC.DAL.csproj">
+      <Project>{2A4D7801-1B49-48CE-96C3-07490933F1E1}</Project>
+      <Name>P23.Course.IOC.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P23.Course.IOC.IBLL\P23.Course.IOC.IBLL.csproj">
+      <Project>{13AFF91C-EC13-4066-B097-63C2E518C94A}</Project>
+      <Name>P23.Course.IOC.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P23.Course.IOC.IDAL\P23.Course.IOC.IDAL.csproj">
+      <Project>{F70D9B70-F214-43B8-9E95-24EDC95D78A1}</Project>
+      <Name>P23.Course.IOC.IDAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\P23.Course.IOC.ServiceInterface\P23.Course.IOC.ServiceInterface.csproj">
       <Project>{F1839E7C-1D2F-4751-9AD2-A9BA7D77A721}</Project>
       <Name>P23.Course.IOC.ServiceInterface</Name>

@@ -13,7 +13,7 @@ namespace P23.Course.IOC.Project
     {
         public static Itelephone CreatePhone()
         {
-            string classMode = ConfigurationManager.AppSettings["iPhoneType"];
+            string classMode = ConfigurationManager.AppSettings["IPhoneX"];
             Assembly assembly = Assembly.Load(classMode.Split(',')[1]);//get the DLL name, or namespace
             Type type = assembly.GetType(classMode.Split(',')[0]);//get the class name
 
