@@ -58,7 +58,7 @@ namespace P23.Course.IOC.Project
                 Console.WriteLine("---------------------create IPhone----------------------------");
                 IUnityContainer container = new UnityContainer();
                 container.RegisterType<Itelephone, IPhone>();
-               // container.RegisterType<IHeadphone, Headphone>();
+                container.RegisterType<IHeadphone, Headphone>();
                 container.RegisterType<IMicrophone, Microphone>();
                 container.RegisterType<IPower, Power>();
                 container.RegisterType<IBaseBll, BaseBll>();
