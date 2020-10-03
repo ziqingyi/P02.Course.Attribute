@@ -17,62 +17,70 @@ namespace P23.Course.IOC.Project
     {
         static void Main(string[] args)
         {
-            //Inversion of Control (IoC), Dependency Inversion Principle (DIP), Dependency Injection (DI)
+            try
             {
-                #region create type using reflection
-                Console.WriteLine("---------------------Object Factory----------------------------");
-                //do not need to refer Service project, just refer ServiceInterface is enough
-                //just update App.Config, then any class in new DLL which implement the ServiceInterface can be used.
+                //Inversion of Control (IoC), Dependency Inversion Principle (DIP), Dependency Injection (DI)
+                {
+                    #region create type using reflection
+                    Console.WriteLine("---------------------Object Factory----------------------------");
+                    //do not need to refer Service project, just refer ServiceInterface is enough
+                    //just update App.Config, then any class in new DLL which implement the ServiceInterface can be used.
 
-                Itelephone phone = ObjectFactory.CreatePhone(); //use IPhoneX with parameterless constructor
+                    Itelephone phone = ObjectFactory.CreatePhone(); //use IPhoneX with parameterless constructor
+                    #endregion
+                }
 
-                #endregion
+                {
+                    #region create instance with container
+                    Console.WriteLine("---------------------different ways of registering----------------------------");
+
+                    IUnityContainer container = new UnityContainer();// 1 initialise container
+                    container.RegisterType<Itelephone, AndroidPhone>(); //2 must register interface and class, must have parameterless ctor.
+                    Itelephone androidPhone = container.Resolve<Itelephone>(); //3 get the class's instance 
+
+                    container.RegisterType<AbstractPad, ApplePad>(); //2.1 register abstract class and root class
+                    AbstractPad padabs1 = container.Resolve<AbstractPad>();//create instance ApplePad
+
+                    container.RegisterType<AbstractPad, ApplePadChild>(); //2.2 register abstract class and sub class
+                    container.RegisterType<ApplePad, ApplePadChild>();// 2.3 register root class and sub-class
+
+                    AbstractPad padabs2 = container.Resolve<AbstractPad>(); // create instance ApplePadChild
+                    ApplePad pad = container.Resolve<ApplePad>();   //create instance ApplePadChild
+
+
+                    container.RegisterInstance<AbstractPad>(new ApplePad()); // 3 register abstract class to Instance
+                    AbstractPad applePad = container.Resolve<AbstractPad>(); //create instance ApplePad
+
+                    #endregion
+                }
+                {
+                    #region create IPhone without parameterless constructor, so must register interfaces
+
+                    Console.WriteLine("---------------------create IPhone----------------------------");
+                    IUnityContainer container = new UnityContainer();
+                    container.RegisterType<Itelephone, IPhone>();
+                    container.RegisterType<IHeadphone, Headphone>();
+                    container.RegisterType<IMicrophone, Microphone>();
+                    container.RegisterType<IPower, Power>();
+                    container.RegisterType<IBaseBll, BaseBll>();
+                    container.RegisterType<IBaseDAL, BaseDAL>();
+
+                    Itelephone Iphone = container.Resolve<Itelephone>();
+
+                    #endregion
+
+
+                }
+
+
+                Console.ReadKey();
             }
-
+            catch (Exception e)
             {
-                #region create instance with container
-                Console.WriteLine("---------------------different ways of registering----------------------------");
-
-                IUnityContainer container = new UnityContainer();// 1 initialise container
-                container.RegisterType<Itelephone, AndroidPhone>(); //2 must register interface and class, must have parameterless ctor.
-                Itelephone androidPhone = container.Resolve<Itelephone>(); //3 get the class's instance 
-
-                container.RegisterType<AbstractPad, ApplePad>(); //2.1 register abstract class and root class
-                AbstractPad padabs1 = container.Resolve<AbstractPad>();//create instance ApplePad
-
-                container.RegisterType<AbstractPad, ApplePadChild>(); //2.2 register abstract class and sub class
-                container.RegisterType<ApplePad, ApplePadChild>();// 2.3 register root class and sub-class
-
-                AbstractPad padabs2 = container.Resolve<AbstractPad>(); // create instance ApplePadChild
-                ApplePad pad = container.Resolve<ApplePad>();   //create instance ApplePadChild
-
-
-                container.RegisterInstance<AbstractPad>(new ApplePad()); // 3 register abstract class to Instance
-                AbstractPad applePad = container.Resolve<AbstractPad>(); //create instance ApplePad
-
-                #endregion
+                Console.WriteLine(e);
+                throw;
             }
-            {
-                #region create IPhone without parameterless constructor, so must register interfaces
-
-                Console.WriteLine("---------------------create IPhone----------------------------");
-                IUnityContainer container = new UnityContainer();
-                container.RegisterType<Itelephone, IPhone>();
-                container.RegisterType<IHeadphone, Headphone>();
-                container.RegisterType<IMicrophone, Microphone>();
-                container.RegisterType<IPower, Power>();
-                container.RegisterType<IBaseBll, BaseBll>();
-                container.RegisterType<IBaseDAL, BaseDAL>();
-
-                Itelephone Iphone = container.Resolve<Itelephone>();
-
-                #endregion
-
-
-            }
-
-
-        Console.ReadKey();
+         
         }
     }
 }
