@@ -85,6 +85,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P23.Course.IOC.ServiceInter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P23.Course.IOC.ServiceExtend", "P23.Course.IOC.ServiceExtend\P23.Course.IOC.ServiceExtend.csproj", "{F920C930-6CFF-441D-B8AE-F7DEE62DC85A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P23.Course.IOC.Framework", "P23.Course.IOC.Framework\P23.Course.IOC.Framework.csproj", "{733712DB-3196-4093-99AF-038B80A4066D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -255,6 +257,10 @@ Global
 		{F920C930-6CFF-441D-B8AE-F7DEE62DC85A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F920C930-6CFF-441D-B8AE-F7DEE62DC85A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F920C930-6CFF-441D-B8AE-F7DEE62DC85A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{733712DB-3196-4093-99AF-038B80A4066D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{733712DB-3196-4093-99AF-038B80A4066D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{733712DB-3196-4093-99AF-038B80A4066D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{733712DB-3196-4093-99AF-038B80A4066D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

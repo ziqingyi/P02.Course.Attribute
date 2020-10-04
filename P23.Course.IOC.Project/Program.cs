@@ -1,5 +1,6 @@
 ﻿using P23.Course.IOC.BLL;
 using P23.Course.IOC.DAL;
+using P23.Course.IOC.Framework.DIOC;
 using P23.Course.IOC.IBLL;
 using P23.Course.IOC.IDAL;
 using P23.Course.IOC.Service;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Unity;
 
@@ -68,9 +70,24 @@ namespace P23.Course.IOC.Project
                     Itelephone Iphone = container.Resolve<Itelephone>();
 
                     #endregion
-
-
                 }
+                {
+                    #region 
+
+                    IXContainer container = new XContainer();
+
+                    //register and create with reflection with constructor, with abstract/interface param
+                    container.RegisterType<AbstractPad, AndroidPad>();
+                    container.RegisterType<IPower,AndroidPower>();
+                    AbstractPad adnroidPad = container.Resolve<AbstractPad>();
+
+                    
+
+
+                    #endregion
+                }
+
+
 
 
                 Console.ReadKey();

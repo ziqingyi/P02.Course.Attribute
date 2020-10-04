@@ -80,6 +80,10 @@
       <Project>{2A4D7801-1B49-48CE-96C3-07490933F1E1}</Project>
       <Name>P23.Course.IOC.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\P23.Course.IOC.Framework\P23.Course.IOC.Framework.csproj">
+      <Project>{733712DB-3196-4093-99AF-038B80A4066D}</Project>
+      <Name>P23.Course.IOC.Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\P23.Course.IOC.IBLL\P23.Course.IOC.IBLL.csproj">
       <Project>{13AFF91C-EC13-4066-B097-63C2E518C94A}</Project>
       <Name>P23.Course.IOC.IBLL</Name>
