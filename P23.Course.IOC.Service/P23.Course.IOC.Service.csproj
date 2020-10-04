@@ -60,6 +60,7 @@
     <Compile Include="AndroidPad.cs" />
     <Compile Include="AndroidPhone.cs" />
     <Compile Include="AndroidPower.cs" />
+    <Compile Include="AppleDisplay.cs" />
     <Compile Include="ApplePad.cs" />
     <Compile Include="ApplePadChild.cs" />
     <Compile Include="Headphone.cs" />

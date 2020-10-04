@@ -73,20 +73,37 @@ namespace P23.Course.IOC.Project
                 }
                 {
                     #region 
-
+                    Console.WriteLine("---------------------create AndroidPad with abstract/interface----------------------------");
                     IXContainer container = new XContainer();
 
-                    //register and create with reflection with constructor, with abstract/interface param
+                    //register and create instance with reflection with constructor, with abstract/interface param,
+                    //one param, and param don't have other abstraction/
+                    //AndroidPad have two ctors with one labeled attr
                     container.RegisterType<AbstractPad, AndroidPad>();
                     container.RegisterType<IPower,AndroidPower>();
                     AbstractPad adnroidPad = container.Resolve<AbstractPad>();
 
-                    
-
+                    #endregion
+                }
+                {
+                    #region
+                    Console.WriteLine("---------------------create AndroidPad with abstract/interface----------------------------");
+                    //no attribute label, so will pick up the ctor with max of params
+                    //multi params and some param variable need param to be created. 
+                    IXContainer container = new XContainer();
+                    container.RegisterType<Itelephone,IPhone>();
+                    //then register all related params in the constructor's method
+                    container.RegisterType<IHeadphone, Headphone>();
+                    container.RegisterType<IMicrophone, Microphone>();
+                    container.RegisterType<IPower, Power>();
+                    container.RegisterType<IBaseBll, BaseBll>();
+                    container.RegisterType<IBaseDAL, BaseDAL>();
+                    container.RegisterType<IDisplay, AppleDisplay>();
+                    //container.RegisterInstance<String>("AU");
+                    Itelephone iphone = container.Resolve<Itelephone>();
 
                     #endregion
                 }
-
 
 
 

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractPad.cs" />
+    <Compile Include="IDisplay.cs" />
     <Compile Include="IHeadphone.cs" />
     <Compile Include="IMicrophone.cs" />
     <Compile Include="IPower.cs" />

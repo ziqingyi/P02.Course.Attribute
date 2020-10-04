@@ -15,7 +15,9 @@ namespace P23.Course.IOC.Service
         //[Dependency]
         public IHeadphone iHeadphone { get; set; }
         public IPower iPower { get; set; }
+        public IDisplay iDisplay { get; set; }
 
+        //public string country;
         //remove parameterless constructor, make it dependent on IHeadphone. 
         //public IPhone()
         //{
@@ -30,6 +32,14 @@ namespace P23.Course.IOC.Service
         {
             this.iHeadphone = headphone;
             Console.WriteLine("{0} construction method with {1}", this.GetType().Name, headphone.GetType());
+        }
+
+        public IPhone(IHeadphone headphone, IDisplay display)//, string state="AU"      in {3}   state
+        {
+            this.iHeadphone = headphone;
+            this.iDisplay = display;
+            //this.country = state;
+            Console.WriteLine("{0} construction method with {1}, {2} ", this.GetType().Name, headphone.GetType(), display.GetType());
         }
 
         [InjectionMethod]

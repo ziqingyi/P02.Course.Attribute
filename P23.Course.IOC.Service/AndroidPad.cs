@@ -23,6 +23,7 @@ namespace P23.Course.IOC.Service
             Console.WriteLine("{0} (AndroidPad)construction method with {1}", this.GetType().Name, power.GetType());
         }
 
+
         public override void Show()
         {
             Console.WriteLine($"This is {nameof(ApplePad)}");
