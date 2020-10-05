@@ -72,6 +72,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\P19.Course.ConsoleWriterProj\P19.Course.ConsoleWriterProj.csproj">
+      <Project>{d3a0212f-158e-4e02-92b3-1affc4f16796}</Project>
+      <Name>P19.Course.ConsoleWriterProj</Name>
+    </ProjectReference>
     <ProjectReference Include="..\P23.Course.IOC.BLL\P23.Course.IOC.BLL.csproj">
       <Project>{7A164496-5F8D-4685-934C-D98656CD117B}</Project>
       <Name>P23.Course.IOC.BLL</Name>

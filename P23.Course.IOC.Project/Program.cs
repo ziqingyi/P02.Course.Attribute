@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using P19.Course.ConsoleWriterProj;
 using Unity;
 using Unity.Lifetime;
 
@@ -114,25 +115,63 @@ namespace P23.Course.IOC.Project
                                    //Creates a new object of the requested type every time you call the Resolve or ResolveAll method.
                     container.RegisterType<AbstractPad, ApplePad>(new TransientLifetimeManager());//default
 
-                    AbstractPad pad1 = container.Resolve<AbstractPad>();
-                    AbstractPad pad2 = container.Resolve<AbstractPad>();
+                    AbstractPad pad11 = container.Resolve<AbstractPad>();
+                    AbstractPad pad12 = container.Resolve<AbstractPad>();
 
-                    bool ObjSame1 = object.ReferenceEquals(pad1, pad2);// false  create new instance every time.
+                    bool ObjSame1 = object.ReferenceEquals(pad11, pad12);// false  create new instance every time.
 
-
-                    //life cycle 2: Singleton Lifetime Manager
-                    //it's better to create singleton through container. 
+                    
+                    //life cycle 2: Singleton Lifetime Manager global.
+                    //it's better to create singleton through container than create singleton by yourself. 
                     //Singleton lifetime creates globally unique singleton.
                     //Any Unity container tree (parent and all the children) is guaranteed to have only one global singleton for the registered type.
-                    container.RegisterType<AbstractPad, ApplePad>(new SingletonLifetimeManager());//default
+                    container.RegisterType<AbstractPad, ApplePad>(new SingletonLifetimeManager());
 
-                    AbstractPad pad3 = container.Resolve<AbstractPad>();
-                    AbstractPad pad4 = container.Resolve<AbstractPad>();
+                    AbstractPad pad21 = container.Resolve<AbstractPad>();
+                    AbstractPad pad22 = container.Resolve<AbstractPad>();
 
-                    bool ObjSame2 = object.ReferenceEquals(pad3, pad4);// false  create new instance every time.
+                    bool ObjSame2 = object.ReferenceEquals(pad21, pad22);// true  using singleton instance 
 
 
+                            //if create new container, it will still create new instance. 
+                    IUnityContainer container2 = new UnityContainer();
+                    container2.RegisterType<AbstractPad, ApplePad>(new SingletonLifetimeManager());
+                    AbstractPad pad23 = container2.Resolve<AbstractPad>();
+                    bool ObjSame3 = object.ReferenceEquals(pad23, pad22);// false  create new instance 
 
+
+                    //life cycle 3: Singleton in different thread
+                    IUnityContainer container3 = new UnityContainer();
+                    container3.RegisterType<AbstractPad, ApplePad>(new PerThreadLifetimeManager());
+                    AbstractPad pad31=null;
+                    AbstractPad pad32=null;
+                    AbstractPad pad33;
+
+                    Action act1 = () =>
+                    {
+                        pad31 = container3.Resolve<AbstractPad>();
+                        ConsoleWriter.WriteLineYellow($"pad31 is created by Thread id = {Thread.CurrentThread.ManagedThreadId}");//id=3
+                    };
+                    IAsyncResult result1 = act1.BeginInvoke(null, null);
+
+
+                    Action act2 = () =>
+                    {
+                        pad32 = container3.Resolve<AbstractPad>();
+                        ConsoleWriter.WriteLineYellow($"pad32 is created by Thread id = {Thread.CurrentThread.ManagedThreadId}");//id=4
+                    };
+
+                    IAsyncResult result2 = act2.BeginInvoke(t =>
+                    {
+                        pad33 = container3.Resolve<AbstractPad>();
+                        ConsoleWriter.WriteLineGreen($"action2 BeginInvoke() with {t.AsyncState}");
+                        ConsoleWriter.WriteLineGreen($"pad33 is created by Thread id = {Thread.CurrentThread.ManagedThreadId}");
+                        ConsoleWriter.WriteLineGreen($"object.ReferenceEquals(pad32, pad33)={object.ReferenceEquals(pad32,pad33)}");//true
+                    }, "action2 finished state");//callback id =4
+
+                    act1.EndInvoke(result1);//EndInvoke wait for return value of the delegate(not IAsyncResult),  not wait for callback. 
+                    act2.EndInvoke(result2);
+                    ConsoleWriter.WriteLine($"object.ReferenceEquals(pad31, pad32)={object.ReferenceEquals(pad31, pad32)}");//false
 
                     #endregion
                 }
