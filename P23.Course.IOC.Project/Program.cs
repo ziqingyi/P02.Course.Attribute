@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Unity;
+using Unity.Lifetime;
 
 namespace P23.Course.IOC.Project
 {
@@ -73,7 +74,7 @@ namespace P23.Course.IOC.Project
                 }
                 {
                     #region 
-                    Console.WriteLine("---------------------create AndroidPad with abstract/interface----------------------------");
+                    Console.WriteLine("---------------------create AndroidPad with XContainer using abstract/interface----------------------------");
                     IXContainer container = new XContainer();
 
                     //register and create instance with reflection with constructor, with abstract/interface param,
@@ -87,7 +88,7 @@ namespace P23.Course.IOC.Project
                 }
                 {
                     #region
-                    Console.WriteLine("---------------------create AndroidPad with abstract/interface----------------------------");
+                    Console.WriteLine("---------------------create AndroidPad with XContainer using abstract/interface----------------------------");
                     //no attribute label, so will pick up the ctor with max of params
                     //multi params and some param variable need param to be created. 
                     IXContainer container = new XContainer();
@@ -104,7 +105,37 @@ namespace P23.Course.IOC.Project
 
                     #endregion
                 }
+                {
+                    #region create instance with IUnityContainer setting lifetime manager. 
 
+                    Console.WriteLine("---------------------create ApplePad with IUnityContainer setting lifetime manager----------------------------");
+                    IUnityContainer container = new UnityContainer();
+                    //life cycle 1: transient lifetime manager
+                                   //Creates a new object of the requested type every time you call the Resolve or ResolveAll method.
+                    container.RegisterType<AbstractPad, ApplePad>(new TransientLifetimeManager());//default
+
+                    AbstractPad pad1 = container.Resolve<AbstractPad>();
+                    AbstractPad pad2 = container.Resolve<AbstractPad>();
+
+                    bool ObjSame1 = object.ReferenceEquals(pad1, pad2);// false  create new instance every time.
+
+
+                    //life cycle 2: Singleton Lifetime Manager
+                    //it's better to create singleton through container. 
+                    //Singleton lifetime creates globally unique singleton.
+                    //Any Unity container tree (parent and all the children) is guaranteed to have only one global singleton for the registered type.
+                    container.RegisterType<AbstractPad, ApplePad>(new SingletonLifetimeManager());//default
+
+                    AbstractPad pad3 = container.Resolve<AbstractPad>();
+                    AbstractPad pad4 = container.Resolve<AbstractPad>();
+
+                    bool ObjSame2 = object.ReferenceEquals(pad3, pad4);// false  create new instance every time.
+
+
+
+
+                    #endregion
+                }
 
 
                 Console.ReadKey();
