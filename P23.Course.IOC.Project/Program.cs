@@ -25,7 +25,7 @@ namespace P23.Course.IOC.Project
             {
                 //Inversion of Control (IoC), Dependency Inversion Principle (DIP), Dependency Injection (DI)
                 {
-                    #region create type using reflection
+                    #region create type using factory and reflection
                     Console.WriteLine("---------------------Object Factory----------------------------");
                     //do not need to refer Service project, just refer ServiceInterface is enough
                     //just update App.Config, then any class in new DLL which implement the ServiceInterface can be used.
@@ -35,7 +35,7 @@ namespace P23.Course.IOC.Project
                 }
 
                 {
-                    #region create instance with container
+                    #region IUnityContainer create some instances with container
                     Console.WriteLine("---------------------different ways of registering----------------------------");
 
                     IUnityContainer container = new UnityContainer();// 1 initialise container
@@ -58,7 +58,7 @@ namespace P23.Course.IOC.Project
                     #endregion
                 }
                 {
-                    #region create IPhone without parameterless constructor, so must register interfaces
+                    #region IUnityContainer create IPhone with constructor having parameters, so must register interfaces
 
                     Console.WriteLine("---------------------create IPhone----------------------------");
                     IUnityContainer container = new UnityContainer();
@@ -74,8 +74,8 @@ namespace P23.Course.IOC.Project
                     #endregion
                 }
                 {
-                    #region 
-                    Console.WriteLine("---------------------create AndroidPad with XContainer using abstract/interface----------------------------");
+                    #region XContainer test:  create AndroidPad with one param
+                    Console.WriteLine("---------------------XContainer test:  create AndroidPad with one param using abstract/interface----------------------------");
                     IXContainer container = new XContainer();
 
                     //register and create instance with reflection with constructor, with abstract/interface param,
@@ -88,8 +88,8 @@ namespace P23.Course.IOC.Project
                     #endregion
                 }
                 {
-                    #region
-                    Console.WriteLine("---------------------create AndroidPad with XContainer using abstract/interface----------------------------");
+                    #region XContainer test: create IPhone with all related parameter
+                    Console.WriteLine("---------------------create AndroidPad with XContainer  with all related parameter using abstract/interface----------------------------");
                     //no attribute label, so will pick up the ctor with max of params
                     //multi params and some param variable need param to be created. 
                     IXContainer container = new XContainer();
@@ -107,7 +107,7 @@ namespace P23.Course.IOC.Project
                     #endregion
                 }
                 {
-                    #region create instance with IUnityContainer setting lifetime manager. 
+                    #region  IUnityContainer create ApplePad instance setting lifetime manager. 
 
                     Console.WriteLine("---------------------create ApplePad with IUnityContainer setting lifetime manager----------------------------");
                     IUnityContainer container = new UnityContainer();
@@ -177,8 +177,8 @@ namespace P23.Course.IOC.Project
                 }
 
                 {
-                     #region
-                     Console.WriteLine("---------------------create AndroidPad with XxContainer using abstract/interface, have lifetime------------");
+                    #region XxContainer test: create parameterless ApplePad with lifetime
+                    Console.WriteLine("---------------------create ApplePad with XxContainer using abstract/interface, have lifetime------------");
 
                     //no attribute label, so will pick up the ctor with max of params
                     //multi params and some param variable need param to be created. 
@@ -194,27 +194,63 @@ namespace P23.Course.IOC.Project
                     AbstractPad applePad4 = xxcontainer2.Resolve<AbstractPad>();
                     Console.WriteLine("applePad3 and applePad4 are same?  " + object.ReferenceEquals(applePad3, applePad4));
 
+                    // test creating three instances in different threads
+                    IXxContainer xxcontainer3 = new XxContainer();
+                    xxcontainer3.RegisterType<AbstractPad, ApplePad>(LifeTimeType.PerThread);
+                    AbstractPad applePad5 = null;
+                    AbstractPad applePad6 = null;
+                    AbstractPad applePad7 = null;
+                    
+                    Action act1 = () =>
+                    {
+                        applePad5 = xxcontainer3.Resolve<AbstractPad>();
+                        Console.WriteLine($"applePad5 is created by thread id = {Thread.CurrentThread.ManagedThreadId}");
+                    };
+                    IAsyncResult res1 = act1.BeginInvoke(null, null);
 
+                    Action act2 = () =>
+                    {
+                        applePad6 = xxcontainer3.Resolve<AbstractPad>();
+                        Console.WriteLine(
+                            $"applePad6 is created by thread id = {Thread.CurrentThread.ManagedThreadId}");
+                    };
+                    AsyncCallback actCallback = t =>
+                    {
+                        applePad7 = xxcontainer3.Resolve<AbstractPad>();
+                        Console.WriteLine($"applePad7 is created by thread id = {Thread.CurrentThread.ManagedThreadId} with t ={t.AsyncState}");
+                        Console.WriteLine("applePad6 and applePad7 are same?  " + object.ReferenceEquals(applePad6, applePad7));
+                    };
 
-                    //IXxContainer xxcontainer2 = new XxContainer();
+                    IAsyncResult res2 = act2.BeginInvoke(actCallback, "action2 finished, will call callback");
 
-                    //xxcontainer2.RegisterType<Itelephone, IPhone>(LifeTimeType.PerThread);
-                    ////then register all related params in the constructor's method
-                    //xxcontainer2.RegisterType<IHeadphone, Headphone>(LifeTimeType.PerThread);
-                    //xxcontainer2.RegisterType<IMicrophone, Microphone>(LifeTimeType.Transient);
-                    //xxcontainer2.RegisterType<IPower, Power>(LifeTimeType.Transient);
-                    //xxcontainer2.RegisterType<IBaseBll, BaseBll>();
-                    //xxcontainer2.RegisterType<IBaseDAL, BaseDAL>();
-                    //xxcontainer2.RegisterType<IDisplay, AppleDisplay>();
-                    ////container.RegisterInstance<String>("AU");
-                    //Itelephone iphone = xxcontainer2.Resolve<Itelephone>();
-
+                    act1.EndInvoke(res1);//wait act1 finish 
+                    act2.EndInvoke(res2);//wait act2 finish, not wait for callback, so print below before callback 
+                    Console.WriteLine("applePad5 and applePad6 are same?  " + object.ReferenceEquals(applePad5, applePad6));
 
 
                     #endregion
-
                 }
+                {
+                    #region XxContainer test: create  IPhone with parameters with lifetime: PerThread
+                    Console.WriteLine("---------------------XxContainer test: create  IPhone with parameters with lifetime: PerThread------------");
+                    //IXxContainer xxcontainer = new XxContainer();
 
+                    //xxcontainer.RegisterType<Itelephone, IPhone>(LifeTimeType.PerThread);
+                    ////then register all related params in the constructor's method
+                    //xxcontainer.RegisterType<IHeadphone, Headphone>(LifeTimeType.PerThread);
+                    //xxcontainer.RegisterType<IMicrophone, Microphone>(LifeTimeType.Transient);
+                    //xxcontainer.RegisterType<IPower, Power>(LifeTimeType.Transient);
+                    //xxcontainer.RegisterType<IBaseBll, BaseBll>();
+                    //xxcontainer.RegisterType<IBaseDAL, BaseDAL>();
+                    //xxcontainer.RegisterType<IDisplay, AppleDisplay>();
+                    ////container.RegisterInstance<String>("AU");
+                    //Itelephone iphone = xxcontainer.Resolve<Itelephone>();
+
+                    #endregion
+                }
+                {
+                 
+                }
 
 
 
