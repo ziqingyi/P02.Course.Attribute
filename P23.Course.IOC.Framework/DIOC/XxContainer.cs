@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,8 +57,26 @@ namespace P23.Course.IOC.Framework.DIOC
                     break;
 
                 case LifeTimeType.PerThread:
-                    result = (T)CreateObject(type);
+                {
+                    //use thread slot rather than thread id
+                    string key = type.FullName;
+                    object oValue = CallContext.GetData(key);
+                    if (oValue == null)
+                    {
+                        result = (T)this.CreateObject(type);
+                        CallContext.SetData(key,result);
+                    }
+                    else
+                    {
+                        result = (T) oValue;
+                    }
+                } 
                     break;
+                default:
+                    throw new Exception("wrong lifetime");
+
+
+
             }
             return result;
         }
@@ -72,7 +92,6 @@ namespace P23.Course.IOC.Framework.DIOC
             if (numOfCtorWithThisAttr > 0)
             {
                 ctor = ctorArray.FirstOrDefault(c => c.IsDefined(typeof(XInjectionConstructorAttribute), true));
-
             }
             else
             {
@@ -84,17 +103,56 @@ namespace P23.Course.IOC.Framework.DIOC
             foreach (ParameterInfo parameter in ctor.GetParameters())
             {
                 Type paraType = parameter.ParameterType;
-                Type targetType = xxContainerDictionary[paraType.FullName].TargetType;
+                RegisterInfo regInfo = xxContainerDictionary[paraType.FullName];
+                Type targetType = regInfo.TargetType;
 
                 //param may not have parameterless ctor, so must check ctors to create param
                 //paraList.Add(Activator.CreateInstance(targetType));
                 //loop termination criteria is when the Parameters are none, then target type could be create without params. 
-                object para = this.CreateObject(targetType);
+                object para = null;
+
+                #region create object based on different lifetime
+                {
+                    switch (regInfo.LifeTime)
+                    {
+                        case LifeTimeType.Transient:
+                            para = this.CreateObject(targetType);
+                            break;
+
+                        case LifeTimeType.Singletone:
+                        {
+                            if (this.TypeObjectDictionary.ContainsKey(targetType))
+                            {
+                                para = this.TypeObjectDictionary[targetType];
+                            }
+                        }
+                            break;
+                        case LifeTimeType.PerThread:
+                        {
+                            string key = targetType.FullName;
+                            object oValue = CallContext.GetData(key);
+                            if (oValue == null)
+                            {
+                                para = this.CreateObject(targetType);
+                                CallContext.SetData(key,para);
+                            }
+                            else
+                            {
+                                para = oValue;
+                            }
+                        }
+                            break;
+                        default:
+                            throw new Exception("wrong lifetime");
+
+                    }
+
+                }
+                #endregion
+
                 paraList.Add(para);
             }
             //then need to check fields and other methods...
-
-
 
 
             object t = (object)Activator.CreateInstance(type, paraList.ToArray());
