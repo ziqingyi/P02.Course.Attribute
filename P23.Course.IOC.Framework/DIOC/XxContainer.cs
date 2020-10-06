@@ -9,7 +9,12 @@ namespace P23.Course.IOC.Framework.DIOC
 {
     public class XxContainer:IXxContainer
     {
+        //xxContainerDictionary used for keep the type info, the type need to create instance. 
         private Dictionary<string, RegisterInfo> xxContainerDictionary = new Dictionary<string, RegisterInfo>();
+
+        //cache instance used for create singleton instance. 
+        private Dictionary<Type, object> TypeObjectDictionary = new Dictionary<Type, object>();
+
 
         public void RegisterType<TFrom, TTo>(LifeTimeType lifeTimeType = LifeTimeType.Transient)
         {
@@ -24,7 +29,36 @@ namespace P23.Course.IOC.Framework.DIOC
         {
             //Get the type need to be created. 
             Type type = xxContainerDictionary[typeof(T).FullName].TargetType;
-            return (T)CreateObject(type);
+
+            //get the RegisterInfo, containing the type info and lifetime info
+            RegisterInfo info = xxContainerDictionary[typeof(T).FullName];
+            
+            T result = default(T);
+
+            switch (info.LifeTime)
+            {
+                case LifeTimeType.Transient:
+                    result = (T) CreateObject(type);
+                    break;
+
+                case LifeTimeType.Singletone:
+                    if (this.TypeObjectDictionary.ContainsKey(type))
+                    {
+                        result = (T) this.TypeObjectDictionary[type];
+                    }
+                    else
+                    {
+                        result = (T) this.CreateObject(type);
+                        this.TypeObjectDictionary[type] = result;
+                    }
+
+                    break;
+
+                case LifeTimeType.PerThread:
+                    result = (T)CreateObject(type);
+                    break;
+            }
+            return result;
         }
 
         private object CreateObject(Type type)
