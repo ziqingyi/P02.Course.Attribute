@@ -103,7 +103,7 @@ namespace P19.Course.AsyncThreadForm
             ConsoleWriter.WriteLine("----------------------------------------------------------------------");
             
             {
-                //1 call back. callback will be called when the action finished,
+                //1 call back. callback will be called when the action finished in the same thread with action(delegate),
                 //        you can pass some parameters to callback
 
                 Action<string> action = this.DoSomethingLong;
@@ -114,7 +114,7 @@ namespace P19.Course.AsyncThreadForm
                 {
                     ConsoleWriter.WriteLineGreen($"IAsyncResult are passed to AsyncCallback func? {object.ReferenceEquals(ar, asyncresult)}");
                     ConsoleWriter.WriteLineGreen($"btnasyncadvanced_click computation finished, IAsyncResult state is " +
-                                      $"{ar.AsyncState} in thread {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                                      $"{ar.AsyncState} in thread {Thread.CurrentThread.ManagedThreadId.ToString("00")}");//same thread with delegate
                 };
 
                 asyncresult = action.BeginInvoke("btnasyncadvanced_click", callback, "any object being passed in....");

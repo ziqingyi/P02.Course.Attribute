@@ -140,13 +140,13 @@ namespace P23.Course.IOC.Project
                     bool ObjSame3 = object.ReferenceEquals(pad23, pad22);// false  create new instance 
 
 
-                    //life cycle 3: Singleton in different thread
+                    //life cycle 3: Singleton in different thread, in ORM, different thread need to have diff DBContext.same thread have same.
                     IUnityContainer container3 = new UnityContainer();
                     container3.RegisterType<AbstractPad, ApplePad>(new PerThreadLifetimeManager());
                     AbstractPad pad31=null;
                     AbstractPad pad32=null;
                     AbstractPad pad33;
-
+                                    //create first instance
                     Action act1 = () =>
                     {
                         pad31 = container3.Resolve<AbstractPad>();
@@ -154,13 +154,13 @@ namespace P23.Course.IOC.Project
                     };
                     IAsyncResult result1 = act1.BeginInvoke(null, null);
 
-
+                                   //create second instance
                     Action act2 = () =>
                     {
                         pad32 = container3.Resolve<AbstractPad>();
                         ConsoleWriter.WriteLineYellow($"pad32 is created by Thread id = {Thread.CurrentThread.ManagedThreadId}");//id=4
                     };
-
+                                  //callback create third instance
                     IAsyncResult result2 = act2.BeginInvoke(t =>
                     {
                         pad33 = container3.Resolve<AbstractPad>();
@@ -169,8 +169,8 @@ namespace P23.Course.IOC.Project
                         ConsoleWriter.WriteLineGreen($"object.ReferenceEquals(pad32, pad33)={object.ReferenceEquals(pad32,pad33)}");//true
                     }, "action2 finished state");//callback id =4
 
-                    act1.EndInvoke(result1);//EndInvoke wait for return value of the delegate(not IAsyncResult),  not wait for callback. 
-                    act2.EndInvoke(result2);
+                    act1.EndInvoke(result1);
+                    act2.EndInvoke(result2);//EndInvoke wait for return value of the delegate(not IAsyncResult),  not wait for callback, so print below first. 
                     ConsoleWriter.WriteLine($"object.ReferenceEquals(pad31, pad32)={object.ReferenceEquals(pad31, pad32)}");//false
 
                     #endregion

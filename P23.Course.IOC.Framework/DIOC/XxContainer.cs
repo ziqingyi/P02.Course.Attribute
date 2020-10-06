@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace P23.Course.IOC.Framework.DIOC
 {
-
-    /// <summary>
-    /// container   like factory
-    /// </summary>
-    public class XContainer : IXContainer
+    public class XxContainer:IXxContainer
     {
-        private Dictionary<string, Type> xContainerDictionary = new Dictionary<string, Type>();
+        private Dictionary<string, RegisterInfo> xxContainerDictionary = new Dictionary<string, RegisterInfo>();
 
-        public void RegisterType<TFrom, TTo>()
+        public void RegisterType<TFrom, TTo>(LifeTimeType lifeTimeType = LifeTimeType.Transient)
         {
-            xContainerDictionary.Add(typeof(TFrom).FullName, typeof(TTo));
+            xxContainerDictionary.Add(typeof(TFrom).FullName, new RegisterInfo()
+            {
+                TargetType = typeof(TTo),
+                LifeTime = lifeTimeType
+            });
         }
 
         public T Resolve<T>()
         {
             //Get the type need to be created. 
-            Type type = xContainerDictionary[typeof(T).FullName];
+            Type type = xxContainerDictionary[typeof(T).FullName].TargetType;
             return (T)CreateObject(type);
         }
 
@@ -50,7 +50,7 @@ namespace P23.Course.IOC.Framework.DIOC
             foreach (ParameterInfo parameter in ctor.GetParameters())
             {
                 Type paraType = parameter.ParameterType;
-                Type targetType = xContainerDictionary[paraType.FullName];
+                Type targetType = xxContainerDictionary[paraType.FullName].TargetType;
 
                 //param may not have parameterless ctor, so must check ctors to create param
                 //paraList.Add(Activator.CreateInstance(targetType));
@@ -66,6 +66,7 @@ namespace P23.Course.IOC.Framework.DIOC
             object t = (object)Activator.CreateInstance(type, paraList.ToArray());
             return t;
         }
+
 
     }
 }

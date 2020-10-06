@@ -41,8 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DIOC\IXContainer.cs" />
+    <Compile Include="DIOC\IXxContainer.cs" />
+    <Compile Include="DIOC\RegisterInfo.cs" />
     <Compile Include="DIOC\XContainer.cs" />
     <Compile Include="DIOC\XInjectionConstructorAttribute.cs" />
+    <Compile Include="DIOC\XxContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
