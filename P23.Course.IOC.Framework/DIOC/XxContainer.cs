@@ -125,10 +125,18 @@ namespace P23.Course.IOC.Framework.DIOC
                             {
                                 para = this.TypeObjectDictionary[targetType];
                             }
+                            else
+                            {
+                                para = this.CreateObject(targetType);
+                                //add() will have multi-thread issue, this assign value or override,
+                                //otherwise use if and lock
+                                this.TypeObjectDictionary[targetType] = para;
+                            }
                         }
                             break;
                         case LifeTimeType.PerThread:
                         {
+
                             string key = targetType.FullName;
                             object oValue = CallContext.GetData(key);
                             if (oValue == null)
