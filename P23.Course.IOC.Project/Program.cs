@@ -176,6 +176,47 @@ namespace P23.Course.IOC.Project
                     #endregion
                 }
 
+                {
+                     #region
+                     Console.WriteLine("---------------------create AndroidPad with XxContainer using abstract/interface, have lifetime------------");
+
+                    //no attribute label, so will pick up the ctor with max of params
+                    //multi params and some param variable need param to be created. 
+                    IXxContainer xxcontainer1 = new XxContainer();
+                    xxcontainer1.RegisterType<AbstractPad,ApplePad>(LifeTimeType.Transient);
+                    AbstractPad applePad1 = xxcontainer1.Resolve<AbstractPad>();
+                    AbstractPad applePad2 = xxcontainer1.Resolve<AbstractPad>();
+                    Console.WriteLine("applePad1 and applePad2 are same?  "+object.ReferenceEquals(applePad1,applePad2));
+
+                    IXxContainer xxcontainer2 = new XxContainer();
+                    xxcontainer2.RegisterType<AbstractPad, ApplePad>(LifeTimeType.Singletone);
+                    AbstractPad applePad3 = xxcontainer2.Resolve<AbstractPad>();
+                    AbstractPad applePad4 = xxcontainer2.Resolve<AbstractPad>();
+                    Console.WriteLine("applePad3 and applePad4 are same?  " + object.ReferenceEquals(applePad3, applePad4));
+
+
+
+                    //IXxContainer xxcontainer2 = new XxContainer();
+
+                    //xxcontainer2.RegisterType<Itelephone, IPhone>(LifeTimeType.PerThread);
+                    ////then register all related params in the constructor's method
+                    //xxcontainer2.RegisterType<IHeadphone, Headphone>(LifeTimeType.PerThread);
+                    //xxcontainer2.RegisterType<IMicrophone, Microphone>(LifeTimeType.Transient);
+                    //xxcontainer2.RegisterType<IPower, Power>(LifeTimeType.Transient);
+                    //xxcontainer2.RegisterType<IBaseBll, BaseBll>();
+                    //xxcontainer2.RegisterType<IBaseDAL, BaseDAL>();
+                    //xxcontainer2.RegisterType<IDisplay, AppleDisplay>();
+                    ////container.RegisterInstance<String>("AU");
+                    //Itelephone iphone = xxcontainer2.Resolve<Itelephone>();
+
+
+
+                    #endregion
+
+                }
+
+
+
 
                 Console.ReadKey();
             }
