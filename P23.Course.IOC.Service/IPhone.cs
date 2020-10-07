@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Unity;
 
@@ -31,7 +32,7 @@ namespace P23.Course.IOC.Service
         public IPhone(IHeadphone headphone)
         {
             this.iHeadphone = headphone;
-            Console.WriteLine("{0} construction method with {1}", this.GetType().Name, headphone.GetType());
+            Console.WriteLine("{0} construction method with {1} in thread: {2}", this.GetType().Name, headphone.GetType(), Thread.CurrentThread.ManagedThreadId);
         }
 
         public IPhone(IHeadphone headphone, IDisplay display)//, string state="AU"      in {3}   state
@@ -39,7 +40,7 @@ namespace P23.Course.IOC.Service
             this.iHeadphone = headphone;
             this.iDisplay = display;
             //this.country = state;
-            Console.WriteLine("{0} construction method with {1}, {2} ", this.GetType().Name, headphone.GetType(), display.GetType());
+            Console.WriteLine("{0} construction method with {1}, {2} in thread: {3}",this.GetType().Name, headphone.GetType(), display.GetType(), Thread.CurrentThread.ManagedThreadId);
         }
 
         [InjectionMethod]

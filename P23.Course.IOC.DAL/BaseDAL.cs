@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace P23.Course.IOC.DAL
@@ -11,7 +12,7 @@ namespace P23.Course.IOC.DAL
     {
         public BaseDAL()
         {
-            Console.WriteLine($"{nameof(BaseDAL)} is being constructed. ");
+            Console.WriteLine($"{nameof(BaseDAL)} is being constructed..in thread : " + Thread.CurrentThread.ManagedThreadId);
         }
 
         public void Add()

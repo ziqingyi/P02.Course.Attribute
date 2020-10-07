@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace P23.Course.IOC.BLL
@@ -14,7 +15,7 @@ namespace P23.Course.IOC.BLL
         private IBaseDAL _baseDal = null;
         public BaseBll(IBaseDAL baseDal)
         {
-            Console.WriteLine($"{nameof(BaseBll)} is being constructed...");
+            Console.WriteLine($"{nameof(BaseBll)} is being constructed...in thread : " + Thread.CurrentThread.ManagedThreadId);
             this._baseDal = baseDal;
         }
         public void DoSomething()

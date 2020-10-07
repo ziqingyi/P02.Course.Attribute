@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace P23.Course.IOC.Framework.DIOC
 {
@@ -17,6 +17,12 @@ namespace P23.Course.IOC.Framework.DIOC
         //cache instance used for create singleton instance. 
         private Dictionary<Type, object> TypeObjectDictionary = new Dictionary<Type, object>();
 
+        //cache thread ids in which the container works on
+        public HashSet<string> threadIds= new HashSet<string>();
+
+        //lock used in creating singleton
+        private static readonly object Singleton_Lock = new object();
+        private static readonly object Singleton_Lock_param = new object();
 
         public void RegisterType<TFrom, TTo>(LifeTimeType lifeTimeType = LifeTimeType.Transient)
         {
@@ -29,6 +35,7 @@ namespace P23.Course.IOC.Framework.DIOC
 
         public T Resolve<T>()
         {
+            threadIds.Add(Thread.CurrentThread.ManagedThreadId.ToString());
             //Get the type need to be created. 
             Type type = xxContainerDictionary[typeof(T).FullName].TargetType;
 
@@ -50,10 +57,15 @@ namespace P23.Course.IOC.Framework.DIOC
                     }
                     else
                     {
-                        result = (T) this.CreateObject(type);
-                        this.TypeObjectDictionary[type] = result;
+                        lock (Singleton_Lock)
+                        {
+                            if (!this.TypeObjectDictionary.ContainsKey(type))
+                            { 
+                                result = (T) this.CreateObject(type);
+                                this.TypeObjectDictionary.Add(type,result);
+                            }
+                        }
                     }
-
                     break;
 
                 case LifeTimeType.PerThread:
@@ -119,6 +131,8 @@ namespace P23.Course.IOC.Framework.DIOC
                             para = this.CreateObject(targetType);
                             break;
 
+                        //dictionary.add() will have multi-thread issue, if there is same key then throw error, 
+                        //dictionary[key]="value" will assign value or override existing value, so no error pop out. best way is to use if check twice and lock
                         case LifeTimeType.Singletone:
                         {
                             if (this.TypeObjectDictionary.ContainsKey(targetType))
@@ -127,16 +141,19 @@ namespace P23.Course.IOC.Framework.DIOC
                             }
                             else
                             {
-                                para = this.CreateObject(targetType);
-                                //add() will have multi-thread issue, this assign value or override,
-                                //otherwise use if and lock
-                                this.TypeObjectDictionary[targetType] = para;
+                                lock (Singleton_Lock_param)
+                                {
+                                    if (!this.TypeObjectDictionary.ContainsKey(targetType))
+                                    {
+                                        para = this.CreateObject(targetType);
+                                        this.TypeObjectDictionary.Add(targetType,para);
+                                    }
+                                }
                             }
                         }
                             break;
                         case LifeTimeType.PerThread:
                         {
-
                             string key = targetType.FullName;
                             object oValue = CallContext.GetData(key);
                             if (oValue == null)

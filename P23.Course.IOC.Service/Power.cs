@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using P23.Course.IOC.IBLL;
 using P23.Course.IOC.ServiceInterface;
@@ -12,7 +13,7 @@ namespace P23.Course.IOC.Service
     {
         public Power(IBaseBll baseBll)
         {
-            Console.WriteLine("Power is being constructed...");
+            Console.WriteLine("Power is being constructed...in thread : "+Thread.CurrentThread.ManagedThreadId);
         }
 
 

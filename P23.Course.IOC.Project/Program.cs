@@ -141,6 +141,7 @@ namespace P23.Course.IOC.Project
 
 
                     //life cycle 3: Singleton in different thread, in ORM, different thread need to have diff DBContext.same thread have same.
+                    ManualResetEvent mre = new ManualResetEvent(false);
                     IUnityContainer container3 = new UnityContainer();
                     container3.RegisterType<AbstractPad, ApplePad>(new PerThreadLifetimeManager());
                     AbstractPad pad31=null;
@@ -167,12 +168,14 @@ namespace P23.Course.IOC.Project
                         ConsoleWriter.WriteLineGreen($"action2 BeginInvoke() with {t.AsyncState}");
                         ConsoleWriter.WriteLineGreen($"pad33 is created by Thread id = {Thread.CurrentThread.ManagedThreadId}");
                         ConsoleWriter.WriteLineGreen($"object.ReferenceEquals(pad32, pad33)={object.ReferenceEquals(pad32,pad33)}");//true
+                        mre.Set();
                     }, "action2 finished state");//callback id =4
 
                     act1.EndInvoke(result1);
                     act2.EndInvoke(result2);//EndInvoke wait for return value of the delegate(not IAsyncResult),  not wait for callback, so print below first. 
                     ConsoleWriter.WriteLine($"object.ReferenceEquals(pad31, pad32)={object.ReferenceEquals(pad31, pad32)}");//false
 
+                    Console.WriteLine("mre is set? " + mre.WaitOne());
                     #endregion
                 }
 
@@ -195,6 +198,8 @@ namespace P23.Course.IOC.Project
                     Console.WriteLine("applePad3 and applePad4 are same?  " + object.ReferenceEquals(applePad3, applePad4));
 
                     // test creating three instances in different threads
+                    ManualResetEvent mre = new ManualResetEvent(false);
+
                     IXxContainer xxcontainer3 = new XxContainer();
                     xxcontainer3.RegisterType<AbstractPad, ApplePad>(LifeTimeType.PerThread);
                     AbstractPad applePad5 = null;
@@ -204,21 +209,22 @@ namespace P23.Course.IOC.Project
                     Action act1 = () =>
                     {
                         applePad5 = xxcontainer3.Resolve<AbstractPad>();
-                        Console.WriteLine($"applePad5 is created by thread id = {Thread.CurrentThread.ManagedThreadId}");
+                        ConsoleWriter.WriteLineYellow($"applePad5 is created by thread id = {Thread.CurrentThread.ManagedThreadId}");
                     };
                     IAsyncResult res1 = act1.BeginInvoke(null, null);
 
                     Action act2 = () =>
                     {
                         applePad6 = xxcontainer3.Resolve<AbstractPad>();
-                        Console.WriteLine(
+                        ConsoleWriter.WriteLine(
                             $"applePad6 is created by thread id = {Thread.CurrentThread.ManagedThreadId}");
                     };
                     AsyncCallback actCallback = t =>
                     {
                         applePad7 = xxcontainer3.Resolve<AbstractPad>();
-                        Console.WriteLine($"applePad7 is created by thread id = {Thread.CurrentThread.ManagedThreadId} with t ={t.AsyncState}");
-                        Console.WriteLine("applePad6 and applePad7 are same?  " + object.ReferenceEquals(applePad6, applePad7));
+                        ConsoleWriter.WriteLineGreen($"applePad7 is created by thread id = {Thread.CurrentThread.ManagedThreadId} with t ={t.AsyncState}");
+                        ConsoleWriter.WriteLineGreen("applePad6 and applePad7 are same?  " + object.ReferenceEquals(applePad6, applePad7));
+                        mre.Set();
                     };
 
                     IAsyncResult res2 = act2.BeginInvoke(actCallback, "action2 finished, will call callback");
@@ -227,24 +233,58 @@ namespace P23.Course.IOC.Project
                     act2.EndInvoke(res2);//wait act2 finish, not wait for callback, so print below before callback 
                     Console.WriteLine("applePad5 and applePad6 are same?  " + object.ReferenceEquals(applePad5, applePad6));
 
-
+                    Console.WriteLine("mre is set? "+ mre.WaitOne());
                     #endregion
                 }
                 {
                     #region XxContainer test: create  IPhone with parameters with lifetime: PerThread
                     Console.WriteLine("---------------------XxContainer test: create  IPhone with parameters with lifetime: PerThread------------");
-                    //IXxContainer xxcontainer = new XxContainer();
+                    IXxContainer xxcontainer = new XxContainer();
 
-                    //xxcontainer.RegisterType<Itelephone, IPhone>(LifeTimeType.PerThread);
-                    ////then register all related params in the constructor's method
-                    //xxcontainer.RegisterType<IHeadphone, Headphone>(LifeTimeType.PerThread);
-                    //xxcontainer.RegisterType<IMicrophone, Microphone>(LifeTimeType.Transient);
-                    //xxcontainer.RegisterType<IPower, Power>(LifeTimeType.Transient);
-                    //xxcontainer.RegisterType<IBaseBll, BaseBll>();
-                    //xxcontainer.RegisterType<IBaseDAL, BaseDAL>();
-                    //xxcontainer.RegisterType<IDisplay, AppleDisplay>();
-                    ////container.RegisterInstance<String>("AU");
-                    //Itelephone iphone = xxcontainer.Resolve<Itelephone>();
+                    xxcontainer.RegisterType<Itelephone, IPhone>(LifeTimeType.PerThread);
+                    //then register all related params in the constructor's method
+                    xxcontainer.RegisterType<IHeadphone, Headphone>(LifeTimeType.Transient);
+                    xxcontainer.RegisterType<IMicrophone, Microphone>(LifeTimeType.Singletone);
+                    xxcontainer.RegisterType<IPower, Power>(LifeTimeType.Singletone);
+                    xxcontainer.RegisterType<IBaseBll, BaseBll>();//since power is singleton, so bll and dal will not be created twice. 
+                    xxcontainer.RegisterType<IBaseDAL, BaseDAL>();//since power is singleton, so bll and dal will not be created twice. 
+                    xxcontainer.RegisterType<IDisplay, AppleDisplay>();
+
+                    // test creating three instances in different threads
+                    ManualResetEvent mre = new ManualResetEvent(false);
+
+                    Itelephone iphone1 = null;
+                    Itelephone iphone2 = null;
+                    Itelephone iphone3 = null;
+
+                    Action act1 = () =>
+                    {
+                        iphone1 = xxcontainer.Resolve<Itelephone>();
+                        ConsoleWriter.WriteLineYellow($"iphone1 is created by thread id = {Thread.CurrentThread.ManagedThreadId}");
+                    };
+                    IAsyncResult res1 = act1.BeginInvoke(null, null);
+
+                    Action act2 = () =>
+                    {
+                        iphone2 = xxcontainer.Resolve<Itelephone>();
+                        ConsoleWriter.WriteLine(
+                            $"iphone2 is created by thread id = {Thread.CurrentThread.ManagedThreadId}");
+                    };
+                    AsyncCallback actCallback = t =>
+                    {
+                        iphone3 = xxcontainer.Resolve<Itelephone>();
+                        ConsoleWriter.WriteLineGreen($"iphone3 is created by thread id = {Thread.CurrentThread.ManagedThreadId} with t ={t.AsyncState}");
+                        ConsoleWriter.WriteLineGreen("iphone2 and iphone3 are same?  " + object.ReferenceEquals(iphone2, iphone3));
+                        mre.Set();
+                    };
+
+                    IAsyncResult res2 = act2.BeginInvoke(actCallback, "action2 finished, called callback");
+
+                    act1.EndInvoke(res1);//wait act1 finish 
+                    act2.EndInvoke(res2);//wait act2 finish, not wait for callback, so print below before callback 
+                    Console.WriteLine("iphone1 and iphone2 are same?  " + object.ReferenceEquals(iphone1, iphone2));
+
+                    Console.WriteLine("mre is set? " + mre.WaitOne());
 
                     #endregion
                 }
