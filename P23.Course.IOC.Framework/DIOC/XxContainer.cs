@@ -64,6 +64,10 @@ namespace P23.Course.IOC.Framework.DIOC
                                 result = (T) this.CreateObject(type);
                                 this.TypeObjectDictionary.Add(type,result);
                             }
+                            else
+                            {
+                                result = (T)this.TypeObjectDictionary[type];
+                            }
                         }
                     }
                     break;
@@ -147,6 +151,10 @@ namespace P23.Course.IOC.Framework.DIOC
                                     {
                                         para = this.CreateObject(targetType);
                                         this.TypeObjectDictionary.Add(targetType,para);
+                                    }
+                                    else
+                                    {
+                                        para = this.TypeObjectDictionary[targetType];
                                     }
                                 }
                             }
