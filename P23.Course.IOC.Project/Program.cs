@@ -92,7 +92,7 @@ namespace P23.Course.IOC.Project
                 }
                 {
                     #region XContainer test: create IPhone with all related parameter
-                    Console.WriteLine("---------------------create AndroidPad with XContainer  with all related parameter using abstract/interface----------------------------");
+                    Console.WriteLine("---------------------create IPhone with XContainer  with all related parameter using abstract/interface----------------------------");
                     //no attribute label, so will pick up the ctor with max of params
                     //multi params and some param variable need param to be created. 
                     IXContainer container = new XContainer();
@@ -308,6 +308,9 @@ namespace P23.Course.IOC.Project
 
                     Itelephone android = container.Resolve<Itelephone>("Android");
                     android.Call();
+
+                    IHeadphone earpod = container.Resolve<IHeadphone>("earpod");
+                    earpod.playmusic();
 
 
                     #endregion

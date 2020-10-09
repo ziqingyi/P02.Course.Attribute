@@ -12,7 +12,7 @@ namespace P23.Course.IOC.Service
     {
         public AppleDisplay()
         {
-            Console.WriteLine("AppleDisplay is being constructed.....in thread : " + Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine($"AppleDisplay is being constructed.....in thread : " + Thread.CurrentThread.ManagedThreadId);
         }
 
         public void ShowRetina(string msg)

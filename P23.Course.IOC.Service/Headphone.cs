@@ -14,6 +14,9 @@ namespace P23.Course.IOC.Service
         {
             Console.WriteLine("Headphone is being constructed.....in thread : " + Thread.CurrentThread.ManagedThreadId);
         }
-
+        public void playmusic()
+        {
+            Console.WriteLine($"normal headphone is playing music");
+        }
     }
 }

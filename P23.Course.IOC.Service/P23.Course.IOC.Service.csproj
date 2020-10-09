@@ -63,6 +63,7 @@
     <Compile Include="AppleDisplay.cs" />
     <Compile Include="ApplePad.cs" />
     <Compile Include="ApplePadChild.cs" />
+    <Compile Include="ApplePod.cs" />
     <Compile Include="Headphone.cs" />
     <Compile Include="IPhone.cs" />
     <Compile Include="IPhoneX.cs" />
