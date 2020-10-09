@@ -7,10 +7,13 @@ using P23.Course.IOC.Service;
 using P23.Course.IOC.ServiceInterface;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Practices.Unity.Configuration;
 using P19.Course.ConsoleWriterProj;
 using Unity;
 using Unity.Lifetime;
@@ -289,7 +292,24 @@ namespace P23.Course.IOC.Project
                     #endregion
                 }
                 {
-                 
+                    #region container with config, remove all details
+                    ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap();
+                    fileMap.ExeConfigFilename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "CfgFiles\\Unity.Config");
+                    Configuration configuration =
+                        ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+                    UnityConfigurationSection section = (UnityConfigurationSection)configuration.GetSection(UnityConfigurationSection.SectionName);
+
+                    IUnityContainer container = new UnityContainer();
+                    section.Configure(container, "testContainer1");
+
+                    Itelephone iphone = container.Resolve<Itelephone>();
+                    iphone.Call();
+
+                    Itelephone android = container.Resolve<Itelephone>("Android");
+                    android.Call();
+
+
+                    #endregion
                 }
 
 
