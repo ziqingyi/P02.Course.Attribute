@@ -297,7 +297,8 @@ namespace P23.Course.IOC.Project
                     fileMap.ExeConfigFilename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "CfgFiles\\Unity.Config");
                     Configuration configuration =
                         ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
-                    UnityConfigurationSection section = (UnityConfigurationSection)configuration.GetSection(UnityConfigurationSection.SectionName);
+                    ConfigurationSection cs = configuration.GetSection(UnityConfigurationSection.SectionName);
+                    UnityConfigurationSection section = (UnityConfigurationSection) cs;
 
                     IUnityContainer container = new UnityContainer();
                     section.Configure(container, "testContainer1");
