@@ -297,7 +297,10 @@ namespace P23.Course.IOC.Project
                      *
                      * 2 resolution of parameter with specific value, eg.string, int32.
                      *
-                     * 3 generic, the interface and class should have ` 
+                     * 3 generic, the interface and class should have `
+                     *
+                     * 4 normally use one container and config file and shared by whole project, rather than config many times.
+                     *   eg.mvc is in global.
                      */
 
                     ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap();
