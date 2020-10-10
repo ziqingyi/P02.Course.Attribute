@@ -293,6 +293,13 @@ namespace P23.Course.IOC.Project
                 }
                 {
                     #region container with config, remove all details
+                    /* 1 one interface/abstract can map to multiple class, using alias to distinguish
+                     *
+                     * 2 resolution of parameter with specific value, eg.string, int32.
+                     *
+                     * 3 generic, the interface and class should have ` 
+                     */
+
                     ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap();
                     fileMap.ExeConfigFilename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "CfgFiles\\Unity.Config");
                     Configuration configuration =
@@ -312,6 +319,8 @@ namespace P23.Course.IOC.Project
                     IHeadphone earpod = container.Resolve<IHeadphone>("earpod");
                     earpod.playmusic();
 
+                    IDBContext<IPhone> dbContext = container.Resolve<DBContextDAL<IPhone>>();
+                    dbContext.DoNothing();
 
                     #endregion
                 }
