@@ -43,7 +43,9 @@ namespace P23.Course.IOC.Service
             Console.WriteLine("{0} construction method with {1}, {2} in thread: {3}",this.GetType().Name, headphone.GetType(), display.GetType(), Thread.CurrentThread.ManagedThreadId);
         }
 
-        [InjectionMethod]
+        // tell the Unity container which method should be used for dependency injection
+        // configures the container to call a method as part of buildup.
+        [InjectionMethod] 
         public void Call()
         {
             Console.WriteLine("{0} is calling....", this.GetType().Name);

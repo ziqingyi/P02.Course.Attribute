@@ -292,7 +292,8 @@ namespace P23.Course.IOC.Project
                     #endregion
                 }
                 {
-                    #region container with config, remove all details
+                    #region container with config, remove all instance initialization details in main program
+                    Console.WriteLine("---------------------container with config------------");
                     /* 1 one interface/abstract can map to multiple class, using alias to distinguish
                      *
                      * 2 resolution of parameter with specific value, eg.string, int32.
@@ -305,8 +306,7 @@ namespace P23.Course.IOC.Project
 
                     ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap();
                     fileMap.ExeConfigFilename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "CfgFiles\\Unity.Config");
-                    Configuration configuration =
-                        ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+                    Configuration configuration = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
                     ConfigurationSection cs = configuration.GetSection(UnityConfigurationSection.SectionName);
                     UnityConfigurationSection section = (UnityConfigurationSection) cs;
 
@@ -324,6 +324,23 @@ namespace P23.Course.IOC.Project
 
                     IDBContext<IPhone> dbContext = container.Resolve<DBContextDAL<IPhone>>();
                     dbContext.DoNothing();
+
+                    #endregion
+                }
+                {
+                    #region container with config with AOP
+                    Console.WriteLine("---------------------container with config with AOP------------");
+                    ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap();
+                    fileMap.ExeConfigFilename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "CfgFiles\\UnityAOP.Config");
+                    Configuration configuration = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+                    ConfigurationSection cs = configuration.GetSection(UnityConfigurationSection.SectionName);
+                    UnityConfigurationSection section = (UnityConfigurationSection) cs;
+
+                    IUnityContainer container = new UnityContainer();
+                    section.Configure(container, "testContainer1");
+
+                    Itelephone iphone = container.Resolve<Itelephone>();
+                    iphone.Call();
 
                     #endregion
                 }
