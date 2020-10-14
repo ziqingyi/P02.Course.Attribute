@@ -54,9 +54,14 @@ GO
  Phantom reads:occurs when, in the course of a transaction, new rows are added or removed by another transaction to the records being read.(a special case of Non-repeatable reads)
  
  */
+ /*
+ SET LOCK_TIMEOUT 2000
 
+ set the value of the SET LOCK_TIMEOUT to 2000 milliseconds. 
+ This query will wait for 2 seconds to another query to release the lock
+ if set to -1, the query has to wait for infinite time for the lock to be released on another query.
 
-
+ */
 
 
 
