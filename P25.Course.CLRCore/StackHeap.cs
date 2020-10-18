@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,13 +71,57 @@ namespace P25.Course.CLRCore
             }
             {
                 //boxing and unboxing
-                  
+                int i = 3;
+                object oValue = i;
+                int k = (int)oValue;
+            }
+            {
+                //string memory 
+                string s1 = "ss";
+                string s2 = "tt";
+
+                s2 = "ss";
+
+                bool result1 = object.ReferenceEquals(s1,s2);//share same space
+
+                s2 = "ss2";//allocate new space for s2, s1 will not be changed. 
+                //the String Is Immutable,is read-only.
+                //the space size of string is determined when creating it. (not like int, the size is fixed.)
+                /*
+                    Reason 1 - Array Data structure
+                    Since array is used to store string values, CLR needs to create new array each and every time when string is changed due to array fixed size limitations.
+
+                    Reason 2 - Security
+
+                    Many parameters are represented as String in network connections, database connection, URLs, usernames/passwords etc. 
+                    If string is immutable, these will be altered and may leads to serious issues.
+
+                    Reason 3 - Synchronization and concurrency
+
+                    Making String immutable automatically makes them thread safe thereby solving the synchronization issues.
+
+                    Reason 4 - Caching
+
+                    When Compiler optimizes your String objects, there are two objects having same value (x="Siva", and y="Siva") and 
+                    you need only one string object (for both x and y, these two will point to the same object). We call this concept as string interning.
+
+                    Reason 5 - Class loading
+
+                    String is used as argument for class loading. If mutable, it could result in the wrong class being loaded.
+                 */
+
+
+                Console.WriteLine(s1);
+
+            }
+            {
+
+
+
 
 
 
             }
-
-
 
 
 
