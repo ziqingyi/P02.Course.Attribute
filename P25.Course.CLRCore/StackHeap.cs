@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -76,6 +77,40 @@ namespace P25.Course.CLRCore
                 int k = (int)oValue;
             }
             {
+                ReferenceTypeClass referenceTypeClassInstance = new ReferenceTypeClass();
+                referenceTypeClassInstance.Method();
+
+                ValueTypeStruct valueTypeStructInstance = new ValueTypeStruct();
+                valueTypeStructInstance.Method();
+            }
+            {
+
+                ReferencePoint referencePoint = new ReferencePoint(3);//reference type
+                Console.WriteLine(referencePoint.x);// x is 3, it's on heap
+
+                ReferencePoint referencePoint2 = referencePoint;  //pass ref to another point
+                Console.WriteLine(referencePoint2.x);//3
+
+                referencePoint2.x = 123;
+                Console.WriteLine(referencePoint.x);//123     //referencePoint.x is updated
+                Console.WriteLine(referencePoint2.x);//123      
+
+
+                ValuePoint valuePoint = new ValuePoint();  //value type, struct always have parameterless ctor. 
+                valuePoint.x = 3;
+                Console.WriteLine(valuePoint.x);//3
+
+                ValuePoint valuePoint2 = valuePoint;  //pass ref to another point
+                Console.WriteLine(valuePoint2.x);//3
+
+                valuePoint2.x = 234;
+
+                Console.WriteLine(valuePoint.x);//3
+                Console.WriteLine(valuePoint2.x);//234
+
+
+            }
+            {
                 //string memory 
                 string s1 = "ss";
                 string s2 = "tt";
@@ -127,75 +162,19 @@ namespace P25.Course.CLRCore
                     String is used as argument for class loading. If mutable, it could result in the wrong class being loaded.
                  */
 
-
-
-            }
-            {
-                //Garbage Collection 
-
-                /* Managed objects and UnManaged objects.
-
-                Managed objects are created, managed and under scope of CLR, pure .NET code managed by runtime, 
-                Anything that lies within .NET scope and under .NET framework classes such as string, int, bool variables are referred to as managed code.
-                eg. reference types.
-
-                UnManaged objects are created outside the control of .NET libraries and are not managed by CLR, 
-                example of such unmanaged code is COM objects, file streams, connection objects, Interop objects. (Basically, third party libraries that are referred in .NET code.)
-                eg. using(SqlConnection conn), the resource is disposed manually, which means the objects are unManaged. 
-                */
-
-                /* reachable and unreachable objects. unreachable ones will be free up. 
-
-                When the garbage collector performs a collection, it releases the memory for objects that are no longer being used by the application.
-                 
-                It determines which objects are no longer being used by examining the application's roots. 
-                
-                An application's roots include static fields, local variables and parameters on a thread's stack, and CPU registers. 
-                
-                Each root either refers to an object on the managed heap or is set to null. 
-                
-                The garbage collector has access to the list of active roots that the just-in-time (JIT) compiler and the runtime maintain. 
-                
-                Using this list, the garbage collector creates a graph that contains all the objects that are reachable from the roots.
-                
-                Objects that are not in the graph are unreachable from the application's roots. 
-                
-                The garbage collector considers unreachable objects garbage and releases the memory allocated for them. 
-                
-                */
-
             }
 
             {
-                //objects on heap: Memory allocation
+                StackTrace trace = new StackTrace();
 
-                /*
-                When you initialize a new process, the runtime reserves a contiguous region of address space for the process. 
-                
-                This reserved address space is called the managed heap. The managed heap maintains a pointer to the address where the next object in the heap will be allocated. 
-                
-                Initially, this pointer is set to the managed heap's base address. 
-                
-                All reference types are allocated on the managed heap. 
-                
-                When an application creates the first reference type, memory is allocated for the type at the base address of the managed heap. 
-                
-                When the application creates the next object, the garbage collector allocates memory for it in the address space immediately following the first object. 
-                
-                As long as address space is available, the garbage collector continues to allocate space for new objects in this manner.
-                
-                Allocating memory from the managed heap is faster than unmanaged memory allocation.
-                
-                Because the runtime allocates memory for an object by adding a value to a pointer, it's almost as fast as allocating memory from the stack. 
-                
-                In addition, because new objects that are allocated consecutively are stored contiguously in the managed heap, an application can access the objects quickly.
+                //get the class
+                Type type = trace.GetFrame(1).GetMethod().DeclaringType;//P25.Course.CLRCore.Program
 
+                //get the method
+                string method = trace.GetFrame(1).GetMethod().ToString(); //Void Main(System.String[])
 
-
-                */
             }
 
-            
 
 
 
@@ -225,9 +204,38 @@ namespace P25.Course.CLRCore
         }
     }
 
+    public class ReferenceTypeClass   // reference type
+    {
+        private int _valueTypeField;
+
+        public ReferenceTypeClass()
+        {
+            _valueTypeField = 0;
+        }
+
+        public void Method()
+        {
+            int valueTypeLocalVariable = 0;
+        }
+
+    }
+
+    public struct ValueTypeStruct  // value type
+    {
+        private object _referenceTypeField;
+
+        public ValueTypeStruct(int x)
+        {
+            _referenceTypeField = new object();
+        }
+
+        public void Method()
+        {
+            object referenceTypeLocalVariable = new object();
+        }
 
 
-
+    }
 
 
 
