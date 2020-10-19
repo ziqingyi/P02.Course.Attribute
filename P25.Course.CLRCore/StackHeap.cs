@@ -82,9 +82,26 @@ namespace P25.Course.CLRCore
 
                 s2 = "ss";
 
-                bool result1 = object.ReferenceEquals(s1,s2);//share same space
+                bool result1 = object.ReferenceEquals(s1,s2);//true, share same space
 
                 s2 = "ss2";//allocate new space for s2, s1 will not be changed. 
+                Console.WriteLine(s1);//still ss
+
+                //string combined by StringBuilder
+                string s3 = string.Format("s{0}", "s");
+                bool result3 = object.ReferenceEquals(s1, s3); //false
+
+                string half = "s";
+                string s4 = "s" + half;
+                bool result4 = object.ReferenceEquals(s1, s4);//false, store first then calculation. 
+
+
+                string s5 = "s" + "s";
+                bool result5 = object.ReferenceEquals(s1, s5);//true
+
+
+
+
                 //the String Is Immutable,is read-only.
                 //the space size of string is determined when creating it. (not like int, the size is fixed.)
                 /*
@@ -111,7 +128,6 @@ namespace P25.Course.CLRCore
                  */
 
 
-                Console.WriteLine(s1);
 
             }
             {
@@ -179,7 +195,7 @@ namespace P25.Course.CLRCore
                 */
             }
 
-
+            
 
 
 
