@@ -11,8 +11,8 @@ namespace P25.Course.CLRCore
         static void Main(string[] args)
         {
             Console.WriteLine("******************StackHeap****************");
-            StackHeap.Show();
-
+            //StackHeap.Show();
+            GCDemo.Show();
 
         }
     }
