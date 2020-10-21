@@ -164,6 +164,8 @@ namespace P25.Course.CLRCore
         And when a generation 2 GC happens, the whole heap is collected. For this reason, a generation 2 GC is also called a full GC. 
         This article refers to generation 2 GC instead of full GC, but the terms are interchangeable.
 
+        large objects are managed by list and may have fragmentation. 
+
      */
 
 
