@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace P25.Course.CLRCore
@@ -171,11 +172,27 @@ namespace P25.Course.CLRCore
 
     #endregion
 
-    #region     Destructors and the Dispose Pattern   --book
+    #region     Destructors and the Dispose Pattern
+    /*
+        The important things to know about destructors are the following:
+       • There can be only a single destructor per class.
+       • A destructor cannot have parameters.
+       • A destructor cannot have accessibility modifiers.
+       • A destructor has the same name as the class but is preceded by a tilde character
+       (pronounced “TIL-duh”).
+       • A destructor only acts on instances of classes; hence, there are no static destructors.
+       • You cannot call a destructor explicitly in your code. Instead, the system calls it during
+       the garbage collection process, when the garbage collector analyzes your code
+       and determines that there are no longer any possible paths through your code that
+       reference the object.
 
+        Don’t implement a destructor if you don’t need one. They can be expensive in terms
+       of performance.
+       • A destructor should only release external resources that the object owns.
+       • A destructor shouldn’t access other objects because you can’t assume that those
+       objects haven’t already been destroyed.
 
-
-
+    */
     #endregion
 
 
@@ -185,22 +202,27 @@ namespace P25.Course.CLRCore
         private static Student _student = new Student()
         {
             Id = 123,
-            Name = "studnet_1"
+            Name = "studnet_123",
+            Remark = "student 123 remark"
         };
 
         public static void Show()
         {
             {
+                #region reference scope and static field
+                Console.WriteLine("reference scope and static field test start....");
+
                 Student student = _student;
-                StuClass cls = new StuClass()
-                {
-                    ClassId = 1,
-                    ClassName = "Advanced Class"
-                };
-                student.stuclass = cls;
-                int i = 3;
+                    StuClass cls = new StuClass()
+                    {
+                        ClassId = 1,
+                        ClassName = "Advanced Class"
+                    };
+                    student.stuclass = cls;
+                    int i = 3;
 
-
+                    Console.WriteLine("reference scope and static field test end");
+                #endregion
             }
 
             {
@@ -209,23 +231,70 @@ namespace P25.Course.CLRCore
             }
 
             {
+                #region null to obj and GC
 
-                Student student = _student;
-                StuClass cls = new StuClass()
+                Console.WriteLine("null to obj and GC test start....");
+                Student student = new Student()
                 {
-                    ClassId = 1,
-                    ClassName = "Advanced Class"
+                    Id = 2,
+                    Name = "student2",
+                    Remark = "student 2 remark",
+                    stuclass = new StuClass()
+                    {
+                        ClassId = 2,
+                        ClassName = "Advanced Class 2"
+                    }
+
                 };
+
                 student = null;//null will not trigger garbage collection, object is still there. 
                 //generally speaking, setting variables to null to help the garbage collector is not recommended.
                 //If it is deemed necessary, then an unusual condition exists and it should be carefully documented in the code.
 
+                GC.Collect();
+                Console.WriteLine("null to obj and GC test finish");
 
+                #endregion
+            }
+            {
+                #region using (){}, free up space after scope
+
+                Console.WriteLine("using(){} test start......");
+                using (Student student = new Student()
+                {
+                    Id = 3,
+                    Name = "student3",
+                    Remark = "student 3 remark",
+                    stuclass = new StuClass()
+                    {
+                        ClassId = 3,
+                        ClassName = "Advanced Class 3"
+                    }
+                })
+                {
+                    Console.WriteLine("using(){} test finish");
+                }
+
+                #endregion
+            }
+            {
+                #region create 1000 class objects inside scope
+
+                Console.WriteLine("create 1000 class objects test start......");
+                for (int i = 0; i < 1000; i++)
+                {
+                    StuClass clsClass=new StuClass()
+                    {
+                        ClassId = 1000 + i, //distinguish with previous test cases
+                        ClassName = "Advanced Class "+i
+                    };
+                }
+                
                 GC.Collect();
 
+                Console.WriteLine("create 1000 class objects test end......");
+                #endregion
             }
-
-
 
         }
 
@@ -238,7 +307,8 @@ namespace P25.Course.CLRCore
 
         public virtual void Dispose()
         {
-            MyLog.Log($"execute dispose method in {this.GetType().Name}");
+            string tid = Thread.CurrentThread.ManagedThreadId.ToString();
+            MyLog.Log($"execute dispose method in {this.GetType().Name} (People) with Remark: {this.Remark} in thread: {tid}");
         }
     }
 
@@ -249,12 +319,14 @@ namespace P25.Course.CLRCore
 
         ~StuClass()
         {
-            MyLog.Log($"execute ~ method in {this.GetType().Name}");
+            string tid = Thread.CurrentThread.ManagedThreadId.ToString();
+            MyLog.Log($"execute ~ method in {this.GetType().Name} with id ={this.ClassId} in thread: {tid}");
         }
 
         public void Dispose()
         {
-            MyLog.Log($"execute dispose method in {this.GetType().Name}");
+            string tid = Thread.CurrentThread.ManagedThreadId.ToString();
+            MyLog.Log($"execute dispose method in {this.GetType().Name} with id ={this.ClassId} in thread: {tid}");
         }
     }
 
@@ -271,7 +343,8 @@ namespace P25.Course.CLRCore
 
         ~Student()
         {
-            MyLog.Log($"execute ~ method in {this.GetType().Name}");
+            string tid = Thread.CurrentThread.ManagedThreadId.ToString();
+            MyLog.Log($"execute ~ method in {this.GetType().Name} with id ={this.Id} in thread: {tid}");
         }
 
         public override void Dispose()
@@ -286,7 +359,8 @@ namespace P25.Course.CLRCore
             //finalizer must not be executed.
             GC.SuppressFinalize(this);
 
-            MyLog.Log($"execute dispose method in {this.GetType().Name}");
+            string tid = Thread.CurrentThread.ManagedThreadId.ToString();
+            MyLog.Log($"execute dispose method in {this.GetType().Name} with id ={this.Id} in thread: {tid}");
         }
 
 
