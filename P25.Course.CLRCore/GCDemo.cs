@@ -19,6 +19,10 @@ namespace P25.Course.CLRCore
        UnManaged objects are created outside the control of .NET libraries and are not managed by CLR, 
        example of such unmanaged code is COM objects, file streams, connection objects, Interop objects. (Basically, third party libraries that are referred in .NET code.)
        eg. using(SqlConnection conn), the resource is disposed manually, which means the objects are unManaged. 
+       in memory, there are some relevant info about these objects but not managed inside the memory.
+
+
+
        */
 
 
@@ -173,8 +177,19 @@ namespace P25.Course.CLRCore
     #endregion
 
     #region     Destructors and the Dispose Pattern
+
     /*
-        The important things to know about destructors are the following:
+     destructor is called by CLR , GC will use and take time to release memory of the unmanaged obj. 
+
+     obj.dispose()  : GC will not use it. normally developer need to use it to release some used unmanaged resources in the end. 
+                 (the obj itself may not be released)
+
+      destructor normally used to guarantee the release of unmanaged obj, in case developer forget to use dispose().
+      so in dispose(), we use GC.SuppressFinalize(this), not call the finalizer(destructor) again.
+
+     */
+    /*
+        The important things to know about destructor are the following:
        • There can be only a single destructor per class.
        • A destructor cannot have parameters.
        • A destructor cannot have accessibility modifiers.
@@ -257,7 +272,8 @@ namespace P25.Course.CLRCore
                 #endregion
             }
             {
-                #region using (){}, free up space after scope
+                #region using (){}, free up space after scope, using dispose() method. 
+                //using are complied to try{} finally(  //...call dispose() )
 
                 Console.WriteLine("using(){} test start......");
                 using (Student student = new Student()
@@ -355,8 +371,8 @@ namespace P25.Course.CLRCore
                 this.stuclass.Dispose();
             }
 
-            //Requests that the common language runtime not call the finalizer for the specified object.
-            //finalizer must not be executed.
+            //Requests that the common language runtime not call the finalizer(destructor) for the specified object.
+            //finalizer(destructor)  must not be executed.
             GC.SuppressFinalize(this);
 
             string tid = Thread.CurrentThread.ManagedThreadId.ToString();
