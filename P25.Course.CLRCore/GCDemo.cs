@@ -225,7 +225,7 @@ namespace P25.Course.CLRCore
         {
             {
                 #region reference scope and static field
-                Console.WriteLine("reference scope and static field test start....");
+                Console.WriteLine("reference scope and static field test start, test 1");
 
                 Student student = _student;
                     StuClass cls = new StuClass()
@@ -236,7 +236,7 @@ namespace P25.Course.CLRCore
                     student.stuclass = cls;
                     int i = 3;
 
-                    Console.WriteLine("reference scope and static field test end");
+                    Console.WriteLine("reference scope and static field test end....");
                 #endregion
             }
 
@@ -248,7 +248,7 @@ namespace P25.Course.CLRCore
             {
                 #region null to obj and GC
 
-                Console.WriteLine("null to obj and GC test start....");
+                Console.WriteLine("null to obj and GC test start, test 2");
                 Student student = new Student()
                 {
                     Id = 2,
@@ -267,7 +267,7 @@ namespace P25.Course.CLRCore
                 //If it is deemed necessary, then an unusual condition exists and it should be carefully documented in the code.
 
                 GC.Collect();
-                Console.WriteLine("null to obj and GC test finish");
+                Console.WriteLine("null to obj and GC test finish....");
 
                 #endregion
             }
@@ -275,7 +275,7 @@ namespace P25.Course.CLRCore
                 #region using (){}, free up space after scope, using dispose() method. 
                 //using are complied to try{} finally(  //...call dispose() )
 
-                Console.WriteLine("using(){} test start......");
+                Console.WriteLine("using(){} test start, test 3");
                 using (Student student = new Student()
                 {
                     Id = 3,
@@ -288,7 +288,7 @@ namespace P25.Course.CLRCore
                     }
                 })
                 {
-                    Console.WriteLine("using(){} test finish");
+                    Console.WriteLine("using(){} test finish....");
                 }
 
                 #endregion
@@ -296,12 +296,12 @@ namespace P25.Course.CLRCore
             {
                 #region create 1000 class objects inside scope
 
-                Console.WriteLine("create 1000 class objects test start......");
+                Console.WriteLine("create 1000 class objects test start, test 4");
                 for (int i = 0; i < 1000; i++)
                 {
                     StuClass clsClass=new StuClass()
                     {
-                        ClassId = 1000 + i, //distinguish with previous test cases
+                        ClassId = 1000 + i, //distinguish with previous test cases, all class id are after 1000. 
                         ClassName = "Advanced Class "+i
                     };
                 }
