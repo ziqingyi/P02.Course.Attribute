@@ -45,9 +45,20 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\P26.Course.BLL\P26.Course.BLL.csproj">
+      <Project>{D384B606-BEBC-43EC-9174-847EC3F4E901}</Project>
+      <Name>P26.Course.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P26.Course.Common\P26.Course.Common.csproj">
+      <Project>{EE21CED7-9901-4683-939D-FFBDE1BBB619}</Project>
+      <Name>P26.Course.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

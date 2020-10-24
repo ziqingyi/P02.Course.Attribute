@@ -214,6 +214,7 @@ namespace P25.Course.CLRCore
 
     public class GCDemo
     {
+        //static filed, will not GC when Class instance is in use.
         private static Student _student = new Student()
         {
             Id = 123,

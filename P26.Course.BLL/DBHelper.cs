@@ -21,7 +21,7 @@ namespace P26.Course.BLL
 
             List<T> tList = new List<T>();
 
-            for (int i = 0; i < index%3; i++)
+            for (int i = 0; i < index % 3; i++)
             {
                 tList.Add(default(T));
             }
