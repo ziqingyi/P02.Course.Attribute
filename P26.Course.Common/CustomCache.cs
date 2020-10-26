@@ -9,6 +9,8 @@ namespace P26.Course.Common
     public class CustomCache
     {
 
+        private static readonly object CustomCache_Lock = new object();
+
         //1 private: safe for data 
         //2 static: not be GC
         //3 dictionary is efficient. 
@@ -63,6 +65,37 @@ namespace P26.Course.Common
             }
             return t;
         }
+
+        //remove by condition
+        public static void RemoveCondition(Func<string, bool> func)
+        {
+            List<string> keyList = new List<string>();
+            lock (CustomCache_Lock)
+            {
+                //get all keys meets the requirements
+                foreach (string key in customCacheDictionary.Keys)
+                {
+                    if (func.Invoke(key))
+                    {
+                        keyList.Add(key);
+                    }
+                }
+
+                //remove items in the keys
+                keyList.ForEach(s => Remove(s));
+
+            }
+        }
+
+        public static void Remove(string key)
+        {
+            lock (CustomCache_Lock)
+            {
+                customCacheDictionary.Remove(key);
+            }
+        }
+
+
 
 
     }
