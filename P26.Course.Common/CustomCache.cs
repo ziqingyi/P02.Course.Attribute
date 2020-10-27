@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -28,37 +29,79 @@ namespace P26.Course.Common
             return keys;
         }
 
+        #region add new value to Cache Dictionary
+
+        //Add value with no expiry time
         public static void Add(string key, object oValue)
         {
-            if (!customCacheDictionary.ContainsKey(key))
-            { 
-                customCacheDictionary.Add(key,oValue);
-            }
-            else
+            lock (CustomCache_Lock)
             {
-                customCacheDictionary[key] = oValue;
+                //build DataModel with obsolete type
+                DataModel valueModel = new DataModel()
+                {
+                    Value = oValue,
+                    dataObsoleteType = ObsoleteType.Never
+                };
+
+                customCacheDictionary.Add(key, valueModel);
             }
-            
+
         }
+
+        //Add value with absolute expiry time
+        public static void Add(string key, object oValue, int timeOutInSeconds)
+        {
+            lock (CustomCache_Lock)
+            {
+                //build DataModel
+                DataModel valueModel = new DataModel()
+                {
+                    Value = oValue,
+                    dataObsoleteType = ObsoleteType.Absolutely,
+                    DeadLine = DateTime.Now.AddSeconds(timeOutInSeconds)
+                };
+
+                customCacheDictionary.Add(key, valueModel);
+            }
+
+
+        }
+        //Add value with relative expiry time
+        public static void Add(string key, object oValue, TimeSpan duration)
+        {
+            lock (CustomCache_Lock)
+            {
+                //build DataModel
+                DataModel valueModel = new DataModel()
+                {
+                    Value = oValue,
+                    dataObsoleteType = ObsoleteType.Relative,
+                    DeadLine = DateTime.Now.Add(duration),
+                    Duration = duration
+                };
+
+                customCacheDictionary.Add(key, valueModel);
+            }
+        }
+
+        #endregion
+
+
+        #region GET value 
 
         //GET value through key
         public static T Get<T>(string key)
         {
             if (Exists(key))
             {
-                T res = (T)customCacheDictionary[key];
+                DataModel model = (DataModel)customCacheDictionary[key];
+                T res = (T)(model.Value);
                 return res;
             }
             else
             {
                 return default(T);
             }
-        }
-
-        public static bool Exists(string key)
-        {
-            bool res = customCacheDictionary.ContainsKey(key);
-            return res;
         }
 
         //Get value with key and Func which can generate T. 
@@ -76,6 +119,52 @@ namespace P26.Course.Common
             }
             return t;
         }
+
+        #endregion
+
+
+        #region check Exists
+        
+        public static bool Exists(string key)
+        {
+
+            if (customCacheDictionary.ContainsKey(key))
+            {
+
+                DataModel model = (DataModel)customCacheDictionary[key];
+                if (model.dataObsoleteType == ObsoleteType.Never) //never expire
+                {
+                    return true;
+                }
+
+                if (model.DeadLine < DateTime.Now) // exceed the expiry time
+                {
+                    lock (CustomCache_Lock)
+                    {
+                        customCacheDictionary.Remove(key);
+                    }
+
+                    return false;
+                }
+
+                if (model.dataObsoleteType == ObsoleteType.Relative)//relative expiry
+                {
+                    model.DeadLine = DateTime.Now.Add(model.Duration);
+                    return true;
+                }
+
+            }
+        
+            return false;
+            
+        }       
+
+        #endregion
+
+
+
+
+        #region remove value
 
         //remove by condition
         public static void RemoveCondition(Func<string, bool> func)
@@ -106,8 +195,47 @@ namespace P26.Course.Common
             }
         }
 
+        public static void RemoveAll()
+        {
+            lock (CustomCache_Lock)
+            {
+                customCacheDictionary.Clear();
+            }
+        }
 
+        #endregion
+ 
 
 
     }
+
+
+    internal class DataModel
+    {
+        public object Value { get; set; }
+
+        public ObsoleteType dataObsoleteType { get; set; }
+
+        public DateTime DeadLine { get; set; }
+
+        public TimeSpan Duration { get; set; }
+
+
+        public event Action DataClearEvent;
+
+    }
+
+
+
+    public enum ObsoleteType
+    {
+        Never,
+        Absolutely,
+        Relative
+    }
+
+
+
+
+
 }
