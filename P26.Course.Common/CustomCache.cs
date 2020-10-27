@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,16 @@ namespace P26.Course.Common
         //3 dictionary is efficient. 
 
         private static Dictionary<string,object> customCacheDictionary = new Dictionary<string, object>();
+
+        public static List<string> GetAllKeys()
+        {
+            List<string> keys = new List<string>();
+            foreach (string key in customCacheDictionary.Keys)
+            {
+                keys.Add(key);
+            }
+            return keys;
+        }
 
         public static void Add(string key, object oValue)
         {

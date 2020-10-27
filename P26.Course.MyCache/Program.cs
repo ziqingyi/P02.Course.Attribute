@@ -12,7 +12,7 @@ namespace P26.Course.MyCache
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("***********************************************");
+            
             {
                 #region DBHelper query and cache
 
@@ -22,12 +22,15 @@ namespace P26.Course.MyCache
                 int param = 123;
                 string methodName =typeof(DBHelper)+"."+nameof(DBHelper.Query);
 
+                Console.WriteLine("******************method 1 : normal way without cache*****************************");
                 //method 1 : normal way without cache
                 for (int i = 0; i < 5; i++)
                 {
                     Console.WriteLine($"try to get {methodName} in seq: {i} at {DateTime.Now.ToString("yyyyMMdd HHmmss.fff")}");
                     List<TestClass> programList = DBHelper.Query<TestClass>(param);
                 }
+
+                Console.WriteLine("******************method 2 : cache to class CustomCache's static field, a dictionary. *****************************");
 
                 //method 2 : cache to class CustomCache's static field, a dictionary. 
                 for (int i = 0; i < 5; i++)
@@ -50,33 +53,54 @@ namespace P26.Course.MyCache
                     }
                 }
 
+                Console.WriteLine("********************method 3: using cache in DBHelper***************************");
                 //method 3: using cache in DBHelper, encapsulate check existing and generating instance logic inside. 
-                for (int i = 0; i < 5; i++)
+                int param2 = 222;
+                string methodName2 = typeof(DBHelper) + "." + nameof(DBHelper.Query);
+
+
+                for (int i = 0; i < 6; i++)
                 {
                     Console.WriteLine(
                         $"try to get {methodName} in seq: {i} at {DateTime.Now.ToString("yyyyMMdd HHmmss.fff")}");
                     List<TestClass> programList = null;
 
                     //build key based on T and param, so same T and param will be same result and can get from cache in the following.
-                    string key = $"{methodName}_Parameters_{param}";
+                    string key = $"{methodName2}_Parameters_{param2}";
 
                     programList = CustomCache.GetT<List<TestClass>>(key, () => DBHelper.Query<TestClass>(param));
 
 
                 }
 
+                #endregion
+            }
+            {
+                #region if updates in value happens, how to update cache? 
+
+                string KeyWillUpdate = "Menu_Permision";
+                List<string> menu = new List<string>(){"menu1", "menu2", "menu3", "menu4", "menu5" };
+
+                if (!CustomCache.Exists(KeyWillUpdate))
+                {
+                    CustomCache.Add(KeyWillUpdate,menu);
+                }
+                else
+                {
+                    menu = CustomCache.Get<List<string>>(KeyWillUpdate);
+                }
+
+                List<string> menu2 = new List<string>() { "menu1", "menu2", "menu3", "menu4", "menu5" , "menu5" };
+
+                //when value changes, remove by key name accordingly. 
+
+                CustomCache.RemoveCondition(s=>s.Contains("Menu_Permision"));
 
 
                 #endregion
-
-
-
-
-
             }
 
-
-
+         
 
         }
     }
