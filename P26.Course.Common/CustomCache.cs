@@ -4,6 +4,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace P26.Course.Common
@@ -16,8 +17,56 @@ namespace P26.Course.Common
         //1 private: safe for data 
         //2 static: not be GC
         //3 dictionary is efficient. 
-
         private static Dictionary<string,object> customCacheDictionary = new Dictionary<string, object>();
+
+        static CustomCache()
+        {
+
+            Action removeExpiredData = () =>
+            {
+                while (true)
+                {
+
+                    try
+                    {
+                        //list to store the keys need to be deleted. 
+                        List<string> keyList = new List<string>();
+
+                        lock (CustomCache_Lock)
+                        {
+                            foreach (string key in customCacheDictionary.Keys)
+                            {
+                                DataModel model = (DataModel) customCacheDictionary[key];
+
+                                //check whether key-value should be deleted. 
+                                if (model.dataObsoleteType != ObsoleteType.Never && model.DeadLine < DateTime.Now)
+                                {
+                                    keyList.Add(key);
+                                }
+                            }
+                            //note: remove method use lock as well, but in same thread, so will not lock
+                            //must remove outside of foreach, otherwise it will have issue when iterating. 
+                            keyList.ForEach(s=>Remove(s));
+                        }
+
+                        Thread.Sleep(1000);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+
+                }
+
+            };
+
+
+            Task.Run(removeExpiredData);
+        }
+
+
+
+
 
         public static List<string> GetAllKeys()
         {
