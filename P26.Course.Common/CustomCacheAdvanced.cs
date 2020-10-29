@@ -23,7 +23,7 @@ namespace P26.Course.Common
                 LockList.Add(new object());
             }
 
-            Action backgroundCheckUpdateDic= () =>
+            Action backgroundCheckUpdateAction= () =>
             {
                 while (true)
                 {
@@ -33,7 +33,7 @@ namespace P26.Course.Common
                         {
                             List<string> keyToDelList= new List<string>();
 
-                            lock (LockList[i])
+                            lock (LockList[i])//only lock one dictionary, lock fewer data when cleaning.
                             {
 
                                 foreach (string key in dictionaryList[i].Keys)
@@ -60,27 +60,37 @@ namespace P26.Course.Common
                     }
                     
                 }
-
             };
 
-
-
-
-
-
-
-
-
-
-
-
+            Task.Run(backgroundCheckUpdateAction);
         }
 
+        //put key-value to dictionary based on the hash of the key
+        public static void Add(string key, object oValue)
+        {
+            int hash = key.GetHashCode();
+            int index = hash % CPUNumer;
 
+            lock (LockList[index])
+            {
+                if (!dictionaryList[index].ContainsKey(key))
+                {
 
+                    dictionaryList[index].Add(key, oValue);
 
+                }
+            }
+        }
 
-
+        public static void Remove(string key)
+        {
+            int hash = key.GetHashCode();
+            int index = hash % CPUNumer;
+            lock (LockList[index])
+            {
+                dictionaryList[index].Remove(key);
+            }
+        }
 
     }
 }
