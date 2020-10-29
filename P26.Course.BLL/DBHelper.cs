@@ -14,7 +14,7 @@ namespace P26.Course.BLL
         {
             Console.WriteLine("This is {0} Query", typeof(DBHelper));
             long lResult = 0;
-            for (int i = index; i < 100000000; i++)
+            for (int i = index; i < 100_000_000; i++)
             {
                 lResult += i;
             }

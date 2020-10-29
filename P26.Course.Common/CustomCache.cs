@@ -45,7 +45,9 @@ namespace P26.Course.Common
                                 }
                             }
                             //note: remove method use lock as well, but in same thread, so will not lock
+
                             //must remove outside of foreach, otherwise it will have issue when iterating. 
+                            //for same reason, using lock in case other threads modify it.
                             keyList.ForEach(s=>Remove(s));
                         }
 
@@ -65,21 +67,7 @@ namespace P26.Course.Common
         }
 
 
-
-
-
-        public static List<string> GetAllKeys()
-        {
-            List<string> keys = new List<string>();
-            foreach (string key in customCacheDictionary.Keys)
-            {
-                keys.Add(key);
-            }
-            return keys;
-        }
-
         #region add new value to Cache Dictionary
-
         //Add value with no expiry time
         public static void Add(string key, object oValue)
         {
@@ -92,7 +80,12 @@ namespace P26.Course.Common
                     dataObsoleteType = ObsoleteType.Never
                 };
 
-                customCacheDictionary.Add(key, valueModel);
+                //if still not have this key(in case other threads already added)
+                if (!customCacheDictionary.ContainsKey(key))
+                {
+                    customCacheDictionary.Add(key, valueModel);
+                }
+                
             }
 
         }
@@ -157,23 +150,93 @@ namespace P26.Course.Common
         public static T GetT<T>(string key, Func<T> func)
         {
             T t = default(T);
-            if (!Exists(key))
+
+            lock (CustomCache_Lock)
             {
-                t = func.Invoke();
-                customCacheDictionary.Add(key,t);
+                //lock and then check exists and if not there, create one and add(this add method has lock).
+                if (!Exists(key))
+                {
+                    t = func.Invoke();
+                    Add(key, t);
+                }
+                else
+                {
+                    t = Get<T>(key);
+                }
             }
-            else
-            {
-                t = Get<T>(key);
-            }
+
+
             return t;
+        }
+
+        public static List<string> GetAllKeys()
+        {
+            List<string> keys = new List<string>();
+
+            lock (CustomCache_Lock)
+            {
+                //lock, in case other threads modify it. 
+                foreach (string key in customCacheDictionary.Keys)
+                {
+                    keys.Add(key);
+                }
+            }
+
+            return keys;
+        }
+
+
+        #endregion
+
+
+
+
+
+        #region remove value
+
+        //remove by condition
+        public static void RemoveCondition(Func<string, bool> func)
+        {
+            List<string> keyList = new List<string>();
+            lock (CustomCache_Lock)
+            {
+                //get all keys meets the requirements
+                foreach (string key in customCacheDictionary.Keys)
+                {
+                    if (func.Invoke(key))
+                    {
+                        keyList.Add(key);
+                    }
+                }
+
+                //remove items in the keys
+                keyList.ForEach(s => Remove(s));
+
+            }
+        }
+
+        public static void Remove(string key)
+        {
+            lock (CustomCache_Lock)
+            {
+                //if key is not null, remove will return true or false
+                customCacheDictionary.Remove(key);
+            }
+        }
+
+        public static void RemoveAll()
+        {
+            lock (CustomCache_Lock)
+            {
+                customCacheDictionary.Clear();
+            }
         }
 
         #endregion
 
 
         #region check Exists
-        
+
         public static bool Exists(string key)
         {
 
@@ -211,48 +274,6 @@ namespace P26.Course.Common
         #endregion
 
 
-
-
-        #region remove value
-
-        //remove by condition
-        public static void RemoveCondition(Func<string, bool> func)
-        {
-            List<string> keyList = new List<string>();
-            lock (CustomCache_Lock)
-            {
-                //get all keys meets the requirements
-                foreach (string key in customCacheDictionary.Keys)
-                {
-                    if (func.Invoke(key))
-                    {
-                        keyList.Add(key);
-                    }
-                }
-
-                //remove items in the keys
-                keyList.ForEach(s => Remove(s));
-
-            }
-        }
-
-        public static void Remove(string key)
-        {
-            lock (CustomCache_Lock)
-            {
-                customCacheDictionary.Remove(key);
-            }
-        }
-
-        public static void RemoveAll()
-        {
-            lock (CustomCache_Lock)
-            {
-                customCacheDictionary.Clear();
-            }
-        }
-
-        #endregion
  
 
 
