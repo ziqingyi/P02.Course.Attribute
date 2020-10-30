@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheManager.cs" />
     <Compile Include="CustomCache.cs" />
     <Compile Include="CustomCacheAdvanced.cs" />
     <Compile Include="ICache.cs" />
