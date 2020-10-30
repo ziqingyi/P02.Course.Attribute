@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace P26.Course.Common
 {
+    // use different dictionaries, lock fewer data, improve performance
     public class CustomCacheAdvanced
     {
         private static int CPUNumer = 0;
@@ -81,7 +82,7 @@ namespace P26.Course.Common
                 }
             }
         }
-
+        //remove by hash
         public static void Remove(string key)
         {
             int hash = key.GetHashCode();
