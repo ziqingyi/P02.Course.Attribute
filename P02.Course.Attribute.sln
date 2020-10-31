@@ -97,6 +97,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P26.Course.Common", "P26.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P26.Course.BLL", "P26.Course.BLL\P26.Course.BLL.csproj", "{D384B606-BEBC-43EC-9174-847EC3F4E901}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P27.Course.DataStructure", "P27.Course.DataStructure\P27.Course.DataStructure.csproj", "{640A6DD0-0C22-4167-8F64-DB91D70E3663}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -291,6 +293,10 @@ Global
 		{D384B606-BEBC-43EC-9174-847EC3F4E901}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D384B606-BEBC-43EC-9174-847EC3F4E901}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D384B606-BEBC-43EC-9174-847EC3F4E901}.Release|Any CPU.Build.0 = Release|Any CPU
+		{640A6DD0-0C22-4167-8F64-DB91D70E3663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{640A6DD0-0C22-4167-8F64-DB91D70E3663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{640A6DD0-0C22-4167-8F64-DB91D70E3663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{640A6DD0-0C22-4167-8F64-DB91D70E3663}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
