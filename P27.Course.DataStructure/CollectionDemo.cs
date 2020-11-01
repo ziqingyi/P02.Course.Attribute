@@ -29,7 +29,7 @@ namespace P27.Course.DataStructure
                 arrayList.Add(new int[]{1,2,3});
                 arrayList.Add(234);
 
-                arrayList.RemoveAt(3);
+                arrayList.RemoveAt(2);
                 arrayList.Remove(234);
 
             }
@@ -67,6 +67,65 @@ namespace P27.Course.DataStructure
             linkedList.Clear();
 
             #endregion
+
+            #region Queue  first in first out, log tasks can be put in queue.
+            Queue<string> Queuenumbers = new Queue<string>();
+            Queuenumbers.Enqueue("one");
+            Queuenumbers.Enqueue("one");
+            Queuenumbers.Enqueue("two");
+            Queuenumbers.Enqueue("three");
+            Queuenumbers.Enqueue("four");
+            Queuenumbers.Enqueue("four");
+            Queuenumbers.Enqueue("five");
+
+            foreach (string num in Queuenumbers)
+            {
+                Console.WriteLine(num);
+            }
+
+            Console.WriteLine($"Dequeuing '{Queuenumbers.Dequeue()}'");
+            Console.WriteLine($"Peek at next item to dequeue:{Queuenumbers.Peek()} ");
+            Console.WriteLine($"Dequeuing '{Queuenumbers.Dequeue()}'");
+
+            Queue<string> queueCopy = new Queue<string>(Queuenumbers);
+
+            Console.WriteLine($"queueCopy.Contains(\"four\") = {queueCopy.Contains("four")}");
+
+            queueCopy.Clear();
+
+            Console.WriteLine($"queueCopy.Count = {queueCopy.Count}");
+
+            #endregion
+
+            #region Stack    first in last out, used in Expression tree
+            Stack<string> stackNums = new Stack<string>();
+            stackNums.Push("one" );
+            stackNums.Push("two" );
+            stackNums.Push("three");
+            stackNums.Push("four");
+            stackNums.Push("five");
+
+            Console.WriteLine($"Pop '{stackNums.Pop()}'");
+            Console.WriteLine($"Peek at next item to dequeue: {stackNums.Peek()}");//获取不移除
+            Console.WriteLine($"Pop '{stackNums.Pop()}'");
+
+            Stack<string> stackCopy = new Stack<string>(stackNums);
+            Console.WriteLine($"stackCopy.Contains(\"four\") = {stackCopy.Contains("four")}");
+            stackCopy.Clear();
+            Console.WriteLine($"stackCopy.Count = {stackCopy.Count}");
+
+
+
+            #endregion
+
+
+
+
+
+
+
+
+
 
 
 

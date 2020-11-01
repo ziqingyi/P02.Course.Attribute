@@ -10,8 +10,7 @@ namespace P27.Course.DataStructure
     {
         static void Main(string[] args)
         {
-
-
+            CollectionDemo.Show();
 
         }
     }
