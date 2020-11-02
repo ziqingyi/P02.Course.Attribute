@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Iterator\Iiterator.cs" />
     <Compile Include="Iterator\KFCMenuIterator.cs" />
+    <Compile Include="Iterator\MacDonaldMenuIterator.cs" />
+    <Compile Include="Menu\MacDonaldMenu.cs" />
     <Compile Include="Menu\Food.cs" />
     <Compile Include="Menu\KFCMenu.cs" />
     <Compile Include="Program.cs" />

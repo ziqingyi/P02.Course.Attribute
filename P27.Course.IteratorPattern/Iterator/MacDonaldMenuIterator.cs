@@ -7,13 +7,13 @@ using P27.Course.IteratorPattern.Menu;
 
 namespace P27.Course.IteratorPattern.Iterator
 {
-    public class KFCMenuIterator : Iiterator<Food>
+    public class MacDonaldMenuIterator :Iiterator<Food>
     {
-        private Food[] _foodList = null;
+        private List<Food> _foodList = null;
 
-        public KFCMenuIterator(KFCMenu kfcMenu)
+        public MacDonaldMenuIterator(MacDonaldMenu macDonaldMenu)
         {
-            this._foodList = kfcMenu.GetFoods();
+            this._foodList = macDonaldMenu.Getfoods();
         }
 
         private int _currentIndex = -1;
@@ -27,10 +27,9 @@ namespace P27.Course.IteratorPattern.Iterator
             }
         }
 
-
         public bool MoveNext()
         {
-            bool hasSomeItemsLeft = this._foodList.Length > ++this._currentIndex;
+            bool hasSomeItemsLeft = this._foodList.Count > ++this._currentIndex;
             return hasSomeItemsLeft;
         }
 
@@ -38,7 +37,5 @@ namespace P27.Course.IteratorPattern.Iterator
         {
             this._currentIndex = -1;
         }
-
-
     }
 }
