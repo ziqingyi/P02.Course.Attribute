@@ -10,7 +10,49 @@ namespace P27.Course.DataStructure
     {
         static void Main(string[] args)
         {
-            CollectionDemo.Show();
+            try
+            {
+
+                {
+                    Console.WriteLine("***************Collection**************");
+                    CollectionDemo.Show();
+                }
+                {
+                    #region Yield Demo
+                    Console.WriteLine("*******************Yield Demo********************");
+                    YieldDemo yieldDemo = new YieldDemo();
+                    foreach (int intItem in yieldDemo.Power())
+                    {
+                        Console.WriteLine(intItem); //get one by one 
+                        if (intItem > 100)
+                        {
+                            Console.WriteLine(intItem + " is larger than 100");
+                            break;
+                        }
+                    }
+
+                    Console.WriteLine("----------------------");
+                    foreach (int intItem in yieldDemo.Common())
+                    {
+                        Console.WriteLine(intItem);  //get all
+                        if (intItem > 100)
+                        {
+                            Console.WriteLine(intItem + " is larger than 100");
+                            break;
+                        }
+                    }
+                    #endregion
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                
+            }
+
+            Console.ReadKey();
 
         }
     }
