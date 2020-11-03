@@ -15,7 +15,9 @@ namespace P27.Course.DataStructure
         {
             for (int i = 0; i < 10; i++)
             {
-                yield return this.Get(i);
+                int res = this.Get(i);
+                Console.WriteLine("Power result is " +res);
+                yield return res;
             }
         }
 

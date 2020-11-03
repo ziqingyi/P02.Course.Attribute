@@ -284,6 +284,7 @@ namespace P27.Course.DataStructure
 
             }
             {
+                Console.WriteLine("**************Where and AsQueryable*********************");
                 List<string> fruits =
                     new List<string> { "apple", "passion fruit", "banana", "mango",
                         "orange", "blueberry", "grape", "strawberry" };

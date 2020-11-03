@@ -15,7 +15,11 @@ namespace P27.Course.DataStructure
 
                 {
                     Console.WriteLine("***************Collection**************");
-                    CollectionDemo.Show();
+                    //CollectionDemo.Show();
+                }
+                {
+                    Console.WriteLine("***************Dynamic**************");
+                    DynamicDemo.Show();
                 }
                 {
                     #region Yield Demo
