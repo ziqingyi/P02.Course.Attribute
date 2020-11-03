@@ -33,7 +33,7 @@ namespace P27.Course.DataStructure
 
         public int Get(int num)
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             return num * DateTime.Now.Second;
         }
     }

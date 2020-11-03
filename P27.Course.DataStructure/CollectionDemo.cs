@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace P27.Course.DataStructure
 {
@@ -208,14 +210,100 @@ namespace P27.Course.DataStructure
 
             {
                 Console.WriteLine("**************Dictionary*********************");
+                Dictionary<int, string> dic = new Dictionary<int, string>();
+                dic.Add(1, "aaa");
+                dic.Add(5, "bbb");
+                dic.Add(3, "ccc");
+                dic.Add(2, "ddd");
+                dic.Add(4, "eee");
+                dic[4] = "fff";
+                //dic.Add(4, "ggg");  //error
+                foreach (var item in dic)
+                {
+                    Console.WriteLine($"Key:{item.Key}, Value:{item.Value}");
+                }
 
-
+                //sort by key
+                SortedDictionary<int, string> dic2 = new SortedDictionary<int, string>();
+                dic2.Add(1, "aaa");
+                dic2.Add(5, "bbb");
+                dic2.Add(3, "ccc");
+                dic2.Add(2, "ddd");
+                dic2.Add(4, "eee");
+                dic2[4] = "fff";
+                //dic.Add(4, "ggg");  //error
+                foreach (var item in dic2)
+                {
+                    Console.WriteLine($"Key:{item.Key}, Value:{item.Value}");
+                }
             }
+            {
+                Console.WriteLine("**************SortedList*********************");
+                // IDictionary, ICollection, IEnumerable, ICloneable
+                SortedList sortedList = new SortedList();
+                sortedList.Add("First", "Hello");
+                sortedList.Add("Second", "World");
+                sortedList.Add("Third", "!");
 
+                sortedList["Third"] = "~~";//
+                sortedList.Add("Fourth", "!");
+                //sortedList.Add("Fourth", "!");//duplicate key, error
+                sortedList["Fourth"] = "!!!";
 
+                IList keyList = sortedList.GetKeyList();
+                foreach (object o in keyList)
+                {
+                    Console.WriteLine(o.ToString());
+                }
+                IList valueList = sortedList.GetValueList();
+                foreach (object o in valueList)
+                {
+                    Console.WriteLine(o.ToString());
+                }
 
+                //Sets the capacity to the actual number of elements in a sortedList.
+                //optimize the memory cost.
+                sortedList.TrimToSize();
+
+                sortedList.Remove("Third");
+                sortedList.RemoveAt(0);
+                sortedList.Clear();
+            }
             #endregion
 
+            {
+                //ConcurrentQueue //a thread-safe first in-first out (FIFO) collection
+
+                //ConcurrentStack //Represents a thread-safe last in-first out (LIFO) collection
+
+                //ConcurrentBag //Represents a thread-safe, unordered collection of objects.
+
+                //ConcurrentDictionary //Represents a thread-safe collection of key/value pairs that can be accessed by multiple threads concurrently.
+
+                //BlockingCollection //Provides blocking and bounding capabilities for thread-safe collections that implement IProducerConsumerCollection
+
+            }
+            {
+                List<string> fruits =
+                    new List<string> { "apple", "passion fruit", "banana", "mango",
+                        "orange", "blueberry", "grape", "strawberry" };
+
+                IEnumerable<string> query = fruits.Where(fruit => fruit.Length < 6);
+
+                //yield, compare with search
+                foreach (string s in query)
+                {
+                    Console.WriteLine(s);
+                }
+
+                IQueryable<string> queryable = fruits.AsQueryable<string>().Where(s=>s.Length > 6);
+                //Expression tree, execute when iterate, EF Lazy Loading, Explicit Loading
+                foreach (string s in queryable)
+                {
+                    Console.WriteLine(s);
+                }
+
+            }
 
 
 
