@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using P27.Course.IteratorPattern.Iterator;
 
 
 namespace P27.Course.IteratorPattern.Menu
@@ -43,9 +44,8 @@ namespace P27.Course.IteratorPattern.Menu
 
         public Iiterator<Food> GetEnumerator()
         {
-
-
-
+            MacDonaldMenuIterator mdi = new MacDonaldMenuIterator(this);
+            return mdi;
         }
 
 
