@@ -15,6 +15,7 @@ namespace P28.Course.Redis.Init
         //client pool
         private static PooledRedisClientManager prcManager;
 
+        //static method, init pool redis client manager
         static RedisManager()
         {
             CreateManager();
@@ -35,7 +36,7 @@ namespace P28.Course.Redis.Init
             prcManager=new PooledRedisClientManager(ReadServerConStr,WriteServerConStr,rcmc);
         }
 
-
+        //get Client from pool redis client manager
         public static IRedisClient GetClient()
         {
             IRedisClient irc = prcManager.GetClient();
