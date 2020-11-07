@@ -8,6 +8,9 @@ using P28.Course.Redis.Init;
 
 namespace P28.Course.Redis.Interface
 {
+    /// <summary>
+    /// base class of Redis operation, implement IDisposable, mainly used for free up memory.
+    /// </summary>
     public abstract class RedisBase:IDisposable
     {
         public IRedisClient iClient { get; private set; }
