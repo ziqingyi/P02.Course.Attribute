@@ -72,6 +72,7 @@
     <Compile Include="Init\RedisManager.cs" />
     <Compile Include="Interface\RedisBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\RedisListService.cs" />
     <Compile Include="Service\RedisStringService.cs" />
   </ItemGroup>
   <ItemGroup>
