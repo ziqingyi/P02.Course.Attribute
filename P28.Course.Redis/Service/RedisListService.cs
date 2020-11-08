@@ -138,39 +138,128 @@ namespace P28.Course.Redis.Service
         /// <summary>
         /// remove a value from the end of the list of values. blocking time is sp.
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="sp"></param>
-        /// <returns></returns>
         public string BlockingPopItemFromList(string key, TimeSpan? sp)
         {
             string res =  base.iClient.BlockingPopItemFromList(key, sp);
             return res;
         }
-
+        /// <summary>
+        /// remove a value from multiple lists. 
+        /// </summary>
         public ItemRef BlockingPopItemFromLists(string[] keys, TimeSpan? sp)
         {
             ItemRef res = base.iClient.BlockingPopItemFromLists(keys, sp);
             return res;
         }
 
+        public string BlockingDequeueItemFromList(string key, TimeSpan? sp)
+        {
+            string res = base.iClient.BlockingDequeueItemFromList(key, sp);
+            return res;
+        }
 
-
-
-
-
-
-        
+        public ItemRef BlockingDequeueItemFromLists(string[] keys, TimeSpan? sp)
+        {
+            ItemRef itemref = base.iClient.BlockingDequeueItemFromLists(keys, sp);
+            return itemref;
+        }
+        /// <summary>
+        /// remove a value from the end of fromkey, add to the head of tokey value. return the value of being removed. 
+        /// </summary>
+        public string BlockingPopAndPushItemBetweenLists(string fromkey,string tokey, TimeSpan? sp)
+        {
+            string res = base.iClient.BlockingPopAndPushItemBetweenLists(fromkey, tokey, sp);
+            return res;
+        }
         #endregion
 
+        #region delete
 
+        public string PopItemFromList(string key)
+        {
+            IRedisSubscription sa = base.iClient.CreateSubscription();
+            return base.iClient.PopItemFromList(key);
+        }
 
+        public string DequeueItemFromList(string key)
+        {
+            string res = base.iClient.DequeueItemFromList(key);
+            return res;
+        }
 
+        public long RemoveItemFromList(string key, string value)
+        {
+            long res = base.iClient.RemoveItemFromList(key, value);
+            return res;
+        }
 
+        public string RemoveEndFromList(string key)
+        {
+            string res = base.iClient.RemoveEndFromList(key);
+            return res;
+        }
 
+        public string RemoveStartFromList(string key)
+        {
+            string res = base.iClient.RemoveStartFromList(key);
+            return res;
+        }
 
+        #endregion
 
+        #region other
+        /// <summary>
+        /// remove value from the end of a list and add to the head of another list, return the value.
+        /// </summary>
+        /// <param name="fromKey"></param>
+        /// <param name="toKey"></param>
+        /// <returns></returns>
+        public string PopAndPushItemBetweenLists(string fromKey, string toKey)
+        {
+            string value = base.iClient.PopAndPushItemBetweenLists(fromKey, toKey);
+            return value;
+        }
+        #endregion
 
+        #region subscription
 
+        public void Publish(string channel, string message)
+        {
+            base.iClient.PublishMessage(channel, message);
+        }
+
+        public void Subscribe(string channel, Action<string, string, IRedisSubscription> actionOnMessage)
+        {
+            IRedisSubscription subscription = base.iClient.CreateSubscription();
+            subscription.OnSubscribe = c =>
+            {
+                Console.WriteLine($"subscribe channel : {c}");
+                Console.WriteLine();
+            };
+
+            //cancel subscription
+            subscription.OnUnSubscribe = c =>
+            {
+                Console.WriteLine($"unsubscribe channel : {c}");
+                Console.WriteLine();
+            };
+
+            subscription.OnMessage += (c, s) =>
+            {
+                Console.WriteLine("On Message: ");
+                actionOnMessage(c, s, subscription);
+            };
+            Console.WriteLine($"start to monitor {channel}....");
+            subscription.SubscribeToChannels(channel);
+        }
+
+        public void UnSubscribeFromChannels(string channel)
+        {
+            IRedisSubscription subscription = base.iClient.CreateSubscription();
+            subscription.UnSubscribeFromChannels(channel);
+        }
+
+        #endregion
 
 
     }
