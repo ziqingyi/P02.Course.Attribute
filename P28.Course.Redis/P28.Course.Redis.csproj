@@ -76,6 +76,7 @@
     <Compile Include="Service\RedisListService.cs" />
     <Compile Include="Service\RedisSetService.cs" />
     <Compile Include="Service\RedisStringService.cs" />
+    <Compile Include="Service\RedisZSetService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
