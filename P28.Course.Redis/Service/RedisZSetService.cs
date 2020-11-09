@@ -198,16 +198,57 @@ namespace P28.Course.Redis.Service
             long res = base.iClient.RemoveRangeFromSortedSet(key, minRank, maxRank);
             return res;
         }
+        /// <summary>
+        /// delete keys with score scope
+        /// </summary>
+        public long RemoveRangeFromSortedSetByScore(string key, double fromscore, double toscore)
+        {
+            return base.iClient.RemoveRangeFromSortedSetByScore(key, fromscore, toscore);
+        }
 
-
-
-
-
+        /// <summary>
+        /// for key, delete values with largest score.
+        /// </summary>
+        public string PopItemWithHighestScoreFromSortedSet(string key)
+        {
+            string res = base.iClient.PopItemWithHighestScoreFromSortedSet(key);
+            return res;
+        }
+        /// <summary>
+        /// for key, remove items with lowest score.
+        /// </summary>
+        public string PopItemWithLowestScoreFromSortedSet(string key)
+        {
+            string res = base.iClient.PopItemWithLowestScoreFromSortedSet(key);
+            return res;
+        }
 
         #endregion
 
 
+        #region other
 
+        /// <summary>
+        /// check whether key has this value.
+        /// </summary>
+        public bool SortedSetContainsItem(string key, string value)
+        {
+            bool exists = base.iClient.SortedSetContainsItem(key, value);
+            return exists;
+        }
+        /// <summary>
+        /// add scoreBy to the value for the key. 
+        /// </summary>
+        public double IncrementItemInSortedSet(string key, string value, double scoreBy)
+        {
+            double addedResult = base.iClient.IncrementItemInSortedSet(key, value, scoreBy);
+            return addedResult;
+        }
+
+
+
+        
+        #endregion  
 
 
 
