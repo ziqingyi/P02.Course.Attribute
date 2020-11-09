@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -102,11 +103,110 @@ namespace P28.Course.Redis.Service
             long count = base.iClient.GetSortedSetCount(key);
             return count;
         }
+        /// <summary>
+        /// get key list,their scores are  from fromscore to toscore. from high to low. 
+        /// </summary>
+        public List<string> GetRangeFromSortedSetByHightestScore(string key, double fromscore, double toscore)
+        {
+            List<string> keyList = base.iClient.GetRangeFromSortedSetByHighestScore(key, fromscore, toscore);
+            return keyList;
+        }
+        /// <summary>
+        /// get key list, their scores are from fromscore to toscore. from low to high. 
+        /// </summary>
+        public List<string> GetRangeFromSortedSetByLowestScore(string key, double fromscore, double toscore)
+        {
+            List<string> keyList = base.iClient.GetRangeFromSortedSetByLowestScore(key, fromscore, toscore);
+            return keyList;
+        }
+
+        /// <summary>
+        /// get key list,with their scores are from fromscore to toscore. from  high to low. 
+        /// </summary>
+        public IDictionary<string, double> GetRangeWithScoresFromSortedSetByHighestScore(string key, double fromscore,
+            double toscore)
+        {
+            IDictionary<string, double> keyAndscore =
+                base.iClient.GetRangeWithScoresFromSortedSetByHighestScore(key, fromscore, toscore);
+            return keyAndscore;
+        }
+        /// <summary>
+        /// get key list,with their scores are from fromscore to toscore. from low to high. 
+        /// </summary>
+        public IDictionary<string, double> GetRangeWithScoresFromSortedSetByLowestScore(string key, double fromscore,
+            double toscore)
+        {
+            IDictionary<string, double> keyAndscore=
+                base.iClient.GetRangeWithScoresFromSortedSetByLowestScore(key, fromscore, toscore);
+            return keyAndscore;
+        }
+        /// <summary>
+        /// get key list,with index from  fromRank to toRank. 
+        /// </summary>
+        public List<string> GetRangeFromSortedSet(string key, int fromRank, int toRank)
+        {
+            List<string> keyList = base.iClient.GetRangeFromSortedSet(key, fromRank, toRank);
+            return keyList;
+        }
+        /// <summary>
+        /// get key list,with index from  fromRank to toRank. sorted desc
+        /// </summary>
+        public List<string> GetRangeFromSortedSetDesc(string key, int fromRank, int toRank)
+        {
+            List<string> keyList = base.iClient.GetRangeFromSortedSetDesc(key, fromRank, toRank);
+            return keyList;
+        }
+
+        /// <summary>
+        /// get key, score ,with index from  fromRank to toRank. 
+        /// </summary>
+        public IDictionary<string, double> GetRangeWithScoresFromSortedSet(string key, int fromRank, int toRank)
+        {
+            IDictionary<string, double> keyAndscore =
+                base.iClient.GetRangeWithScoresFromSortedSet(key, fromRank, toRank);
+            return keyAndscore;
+        }
+
+        /// <summary>
+        /// get key, score,with index from  fromRank to toRank. sorted desc. 
+        /// </summary>
+        public IDictionary<string, double> GetRangeWithScoresFromSortedSetDesc(string key, int fromRank, int toRank)
+        {
+            IDictionary<string, double> keyAndscore =
+                base.iClient.GetRangeWithScoresFromSortedSetDesc(key, fromRank, toRank);
+            return keyAndscore;
+        }
+
+        #endregion
+
+
+        #region delete
+
+        /// <summary>
+        /// delete the value of key
+        /// </summary>
+        public bool RemoveItemFromSortedSet(string key, string value)
+        {
+            bool delSuccess = base.iClient.RemoveItemFromSortedSet(key, value);
+            return delSuccess;
+        }
+        /// <summary>
+        /// remove keys with index from minRank to maxRank
+        /// </summary>
+        public long RemoveRangeFromSortedSet(string key, int minRank, int maxRank)
+        {
+            long res = base.iClient.RemoveRangeFromSortedSet(key, minRank, maxRank);
+            return res;
+        }
+
+
 
 
 
 
         #endregion
+
+
 
 
 
