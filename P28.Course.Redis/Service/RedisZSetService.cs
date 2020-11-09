@@ -244,11 +244,25 @@ namespace P28.Course.Redis.Service
             double addedResult = base.iClient.IncrementItemInSortedSet(key, value, scoreBy);
             return addedResult;
         }
+        /// <summary>
+        /// get the intersect from values of these keys, and then add to new key. 
+        /// </summary>
+        public long StoreIntersectFromSortedSets(string newkey, string[] keys)
+        {
+            long numOfdata = base.iClient.StoreIntersectFromSortedSets(newkey, keys);
+            return numOfdata;
+        }
 
+        /// <summary>
+        /// get the union of values of these keys, add to new key. 
+        /// </summary>
+        public long storeUnionFromSortedSets(string newkey, string[] keys)
+        {
+            long numOfdata = base.iClient.StoreUnionFromSortedSets(newkey, keys);
+            return numOfdata;
+        }
 
-
-        
-        #endregion  
+        #endregion
 
 
 
