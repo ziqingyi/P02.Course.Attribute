@@ -103,6 +103,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P27.Course.IteratorPattern"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P28.Course.Redis", "P28.Course.Redis\P28.Course.Redis.csproj", "{EB140FA6-4AE4-465F-BE75-24318F05A1D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P28.Coures.MyRedis", "P28.Coures.MyRedis\P28.Coures.MyRedis.csproj", "{24F07B07-D876-497C-A2CB-267074319B55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -309,6 +311,10 @@ Global
 		{EB140FA6-4AE4-465F-BE75-24318F05A1D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB140FA6-4AE4-465F-BE75-24318F05A1D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB140FA6-4AE4-465F-BE75-24318F05A1D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24F07B07-D876-497C-A2CB-267074319B55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24F07B07-D876-497C-A2CB-267074319B55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24F07B07-D876-497C-A2CB-267074319B55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24F07B07-D876-497C-A2CB-267074319B55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
