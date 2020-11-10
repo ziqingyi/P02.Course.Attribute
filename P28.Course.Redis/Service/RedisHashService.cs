@@ -66,7 +66,7 @@ namespace P28.Course.Redis.Service
         }
 
         /// <summary>
-        /// get all keys in the hash id
+        /// get all keys in the hash id( hashid  --- key--value)
         /// </summary>
         public List<string> GetHashKeys(string hashid)
         {
