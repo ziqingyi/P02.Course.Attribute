@@ -1,4 +1,5 @@
-﻿using System;
+﻿using P28.Course.Redis.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,8 +30,12 @@ namespace P28.Coures.MyRedis
             #region Redis String service
             { 
                 Console.WriteLine("*****************Redis String service************************");
-                
+                using (RedisStringService service = new RedisStringService())
+                {
+                    service.Set<string>("student1", "Tom Tom");
+                    Console.WriteLine(service.Get("student1"));
 
+                }
 
 
             }

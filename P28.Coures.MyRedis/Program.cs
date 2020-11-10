@@ -11,6 +11,13 @@ namespace P28.Coures.MyRedis
         static void Main(string[] args)
         {
 
+            try
+            {
+
+                {
+                    Console.WriteLine("****************ServiceStackTest***************");
+                    ServiceStackTest.Show();
+                }
 
 
 
@@ -19,7 +26,15 @@ namespace P28.Coures.MyRedis
 
 
 
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
 
+
+            Console.ReadKey();
 
         }
     }

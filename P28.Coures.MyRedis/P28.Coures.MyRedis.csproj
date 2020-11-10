@@ -51,5 +51,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\P28.Course.Redis\P28.Course.Redis.csproj">
+      <Project>{EB140FA6-4AE4-465F-BE75-24318F05A1D8}</Project>
+      <Name>P28.Course.Redis</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
