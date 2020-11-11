@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ServiceStack.Redis;
 
 namespace P28.Coures.MyRedis
 {
@@ -276,34 +278,108 @@ namespace P28.Coures.MyRedis
 
                     act.EndInvoke(act.BeginInvoke(null,null));
 
+
+
+                    service.FlushAll();
                 }
             }
             #endregion
-
-
 
 
             #region Publisher-Subscribers, one data source and multiple receivers. 
             {
                 Console.WriteLine("*****************Publisher-Subscribers************************");
+
+                Task.Run(() =>
+                {
+                    string id = Thread.CurrentThread.ManagedThreadId.ToString();
+
+                    using (RedisListService service = new RedisListService())
+                    {
+                        Action<string, string, IRedisSubscription> registerAction = (c, message, iRedisSubscription) =>
+                        {
+                            Console.WriteLine($"register {1} channel: {c} message: {message}, doing something else in thread {id}");
+                            if (message.Equals("exit"))
+                            {
+                                iRedisSubscription.UnSubscribeFromChannels("Eleven");
+                            }
+                        };
+
+                        service.Subscribe("Eleven", registerAction);
+                    }
+                });
+
+                Task.Run(() =>
+                {
+                    string id = Thread.CurrentThread.ManagedThreadId.ToString();
+                    using (RedisListService service = new RedisListService())
+                    {
+                        Action<string, string, IRedisSubscription> registerAction = (c, message, iRedisSubscription) =>
+                        {
+                            Console.WriteLine($"register {2} channel: {c} message: {message}, doing something else in thread {id}");
+                            if (message.Equals("exit"))
+                            {
+                                iRedisSubscription.UnSubscribeFromChannels("Eleven");
+                            }
+                        };
+
+                        service.Subscribe("Eleven", registerAction);
+                    }
+
+                });
+
+                Task.Run(() =>
+                {
+                    string id = Thread.CurrentThread.ManagedThreadId.ToString();
+                    using (RedisListService service = new RedisListService())
+                    {
+                        Action<string, string, IRedisSubscription> registerAction = (c, message, iRedisSubscription) =>
+                        {
+                            Console.WriteLine($"register {3} channel: {c} message: {message}, doing something else in thread {id}");
+                            if (message.Equals("exit"))
+                            {
+                                iRedisSubscription.UnSubscribeFromChannels("Twelve");
+                            }
+                        };
+
+                        service.Subscribe("Twelve", registerAction);
+                    }
+                });
+
                 using (RedisListService service = new RedisListService())
                 {
+                    
+                    service.Publish("Eleven", "Eleven_Message1");
+                    service.Publish("Eleven", "Eleven_Message2");
+                    service.Publish("Eleven", "Eleven_Message3");
+                    service.Publish("Eleven", "Eleven_Message4");
 
+                    service.Publish("Twelve", "Twelve_Message1");
+                    service.Publish("Twelve", "Twelve_Message2");
+                    service.Publish("Twelve", "Twelve_Message3");
+                    service.Publish("Twelve", "Twelve_Message4");
 
+                    Console.WriteLine("**********************************************");
 
+                    service.Publish("Eleven","exit");
 
+                    service.Publish("Eleven", "Eleven_Message5");
+                    service.Publish("Eleven", "Eleven_Message6");
+                    service.Publish("Eleven", "Eleven_Message7");
+                    service.Publish("Eleven", "Eleven_Message8");
 
-
-
-
-
-
-
+                    service.Publish("Twelve","exit");
+                    service.Publish("Twelve", "Twelve_Message5");
+                    service.Publish("Twelve", "Twelve_Message6");
+                    service.Publish("Twelve", "Twelve_Message7");
+                    service.Publish("Twelve", "Twelve_Message8");
 
                 }
+
+
             }
             #endregion
-
+            
         }
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using P28.Course.Redis.Interface;
 using ServiceStack.Redis;
@@ -230,26 +231,28 @@ namespace P28.Course.Redis.Service
 
         public void Subscribe(string channel, Action<string, string, IRedisSubscription> actionOnMessage)
         {
+            string id = Thread.CurrentThread.ManagedThreadId.ToString();
+
             IRedisSubscription subscription = base.iClient.CreateSubscription();
             subscription.OnSubscribe = c =>
             {
-                Console.WriteLine($"subscribe channel : {c}");
+                Console.WriteLine($"subscribe channel : {c} in thread {id}");
                 Console.WriteLine();
             };
 
             //cancel subscription
             subscription.OnUnSubscribe = c =>
             {
-                Console.WriteLine($"unsubscribe channel : {c}");
+                Console.WriteLine($"unsubscribe channel : {c} in thread {id}");
                 Console.WriteLine();
             };
 
             subscription.OnMessage += (c, s) =>
             {
-                Console.WriteLine("On Message: ");
+                Console.WriteLine($"Action On Message (in thread {id}): ");
                 actionOnMessage(c, s, subscription);
             };
-            Console.WriteLine($"start to monitor {channel}....");
+            Console.WriteLine($"start to monitor channel: {channel}  in thread {id}....");
             subscription.SubscribeToChannels(channel);
         }
 
