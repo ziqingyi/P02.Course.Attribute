@@ -16,10 +16,14 @@ namespace P28.Coures.MyRedis
 
                 {
                     Console.WriteLine("****************ServiceStackTest***************");
-                    ServiceStackTest.Show();
+                    //ServiceStackTest.Show();
                 }
 
+                {
+                    Console.WriteLine("****************Oversell test***************");
+                    OversellTest.Show();
 
+                }
 
 
 
