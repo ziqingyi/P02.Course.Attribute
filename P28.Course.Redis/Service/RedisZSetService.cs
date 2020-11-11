@@ -50,7 +50,7 @@ namespace P28.Course.Redis.Service
 
         #region Get
         /// <summary>
-        /// get all values of the key
+        /// get all values of the key, sort asc
         /// </summary>
         public List<string> GetAll(string key)
         {

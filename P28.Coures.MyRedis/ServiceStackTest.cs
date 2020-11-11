@@ -89,12 +89,40 @@ namespace P28.Coures.MyRedis
             #region Redis Set service
             {
                 Console.WriteLine("*****************Redis Set service************************");
+                using (RedisSetService service = new RedisSetService())
+                {
+                    service.FlushAll();
+                    service.Add("advanced", "111");
+                    service.Add("advanced", "112");
+                    service.Add("advanced", "113");
+                    service.Add("advanced", "114");
+                    service.Add("advanced", "115");
+                    service.Add("advanced", "115");
+                    service.Add("advanced", "113");
 
+                    HashSet<string> result = service.GetAllItemsFromSet("advanced");
 
+                    string random = service.GetRandomItemFromSet("advanced"); //random item
 
+                    long total = service.GetCount("advanced");
 
+                    service.RemoveItemFromSet("advanced","114");
+
+                    {
+                        service.Add("begin", "111");
+                        service.Add("begin", "112");
+                        service.Add("begin", "115");
+
+                        service.Add("end", "111");
+                        service.Add("end", "114");
+                        service.Add("end", "113");
+
+                        HashSet<string> res1 = service.GetIntersectFromSets("begin", "end");
+                        HashSet<string> res2 = service.GetDifferencesFromSet("begin", "end");
+                        HashSet<string> res3 = service.GetUnionFromSets("begin", "end");
+                    }
+                }
             }
-
             #endregion
 
 
@@ -102,8 +130,28 @@ namespace P28.Coures.MyRedis
             #region Redis ZSet service
             {
                 Console.WriteLine("*****************Redis ZSet service************************");
+                using (RedisZSetService service = new RedisZSetService())
+                {
+                    service.FlushAll();
+                    service.Add("advanced", "1");
+                    service.Add("advanced", "2");
+                    service.Add("advanced", "5");
+                    service.Add("advanced", "4");
+                    service.Add("advanced", "7");
+                    service.Add("advanced", "5");
+                    service.Add("advanced", "9");
 
+                    List<string> res1 = service.GetAll("advanced");
+                    List<string> res2 = service.GetAllDesc("advanced");
 
+                    service.AddItemToSortedSet("Sort", "stu1", 77);
+                    service.AddItemToSortedSet("Sort", "stu2", 99);
+                    service.AddItemToSortedSet("Sort", "stu3", 88);
+                    service.AddItemToSortedSet("Sort", "stu4", 80);
+                    service.AddItemToSortedSet("Sort", "stu5", 90);
+
+                    IDictionary<string, double> res3 = service.GetAllWithScoresFromSortedSet("Sort");
+                }
 
 
             }
@@ -115,25 +163,148 @@ namespace P28.Coures.MyRedis
             #region Redis List service
             {
                 Console.WriteLine("*****************Redis List service************************");
+                using (RedisListService service = new RedisListService())
+                {
+                    service.FlushAll();
+
+                    service.Add("article","story1");
+                    service.Add("article","story2");
+                    service.Add("article","story3");
+                    service.Add("article","story4");
+                    service.Add("article","story5");
+                    service.Add("article","story6");
+                    service.Add("article","story6");
 
 
+                    List<string> get1 = service.Get("article");//get 7 items, list have same value
+                    List<string> get2 = service.Get("article",0,3);
+
+                    service.FlushAll();
+
+                    service.Add("article", "story1");
+                    service.Add("article", "story2");
+                    service.Add("article", "story3");
+                    service.Add("article", "story4");
+                    service.Add("article", "story5");
+                    service.Add("article", "story6");
+                    service.Add("article", "story6");
+
+                    for (int i = 0; i < 6; i++)
+                    {
+                        Console.WriteLine(service.PopItemFromList("article"));//story6 is popped out, removed from list. 
+                        List<string> tempAll = service.Get("article");
+                    }
 
 
+                    //queue: producer and consumer, FIFO
+
+                    service.FlushAll();
+
+                    service.RPush("article", "story1");//at the end
+                    service.RPush("article", "story2");
+                    service.RPush("article", "story3");
+                    service.RPush("article", "story4");
+                    service.RPush("article", "story5");
+                    service.RPush("article", "story6");
+                    service.RPush("article", "story6");//row 1
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Console.WriteLine(service.PopItemFromList("article"));//pop out story1, FIFO
+                        List<string> tempAll = service.Get("article");
+                    }
+                }
             }
+            #endregion
 
+
+            #region Producer-Consumer problem  
+            {
+                Console.WriteLine("*****************Producer-Consumer problem ************************");
+                using (RedisListService service = new RedisListService())
+                {
+                    service.FlushAll();
+
+                    List<string> stringList = new List<string>();
+                    for (int i = 0; i < 10; i++)
+                    {
+                        stringList.Add(string.Format($"task number: {i}"));
+                    }
+
+                    service.Add("student","student_Add1");//after student_RPush1
+                    service.Add("student","student_Add2");
+                    service.Add("student","student_Add3");
+
+                    service.LPush("student", "student_LPush1");
+                    service.LPush("student", "student_LPush2");
+                    service.LPush("student", "student_LPush3");
+                    service.LPush("student", "student_LPush4");
+                    service.LPush("student", "student_LPush5");
+                    service.LPush("student", "student_LPush6");//last one
+
+                    service.RPush("student", "student_RPush1");
+                    service.RPush("student", "student_RPush2");
+                    service.RPush("student", "student_RPush3");
+                    service.RPush("student", "student_RPush4");
+                    service.RPush("student", "student_RPush5");
+                    service.RPush("student", "student_RPush6");//first one
+
+                    service.Add("task", stringList);
+
+                    Console.WriteLine(service.Count("student"));//15
+
+                    Console.WriteLine(service.Count("task"));//10
+
+                    Action act = new Action(() =>
+                    {
+                        while (true)
+                        {
+                            //add to 
+                            Console.WriteLine("*******Please type in: *******");
+                            string testTask = Console.ReadLine();
+                            if (testTask != "exit")
+                            {
+                                service.LPush("test", testTask);
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            
+                        }
+                    });
+
+                    act.EndInvoke(act.BeginInvoke(null,null));
+
+                }
+            }
+            #endregion
+
+
+
+
+            #region Publisher-Subscribers, one data source and multiple receivers. 
+            {
+                Console.WriteLine("*****************Publisher-Subscribers************************");
+                using (RedisListService service = new RedisListService())
+                {
+
+
+
+
+
+
+
+
+
+
+
+
+                }
+            }
             #endregion
 
         }
-
-
-
-
-
-
-
-
-
-
 
 
     }
