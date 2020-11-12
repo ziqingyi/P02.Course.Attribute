@@ -58,7 +58,21 @@ namespace P28.Coures.MyRedis
 
             }
 
+            //using redis hash
+            using (RedisHashService service = new RedisHashService())
+            {
+                string key = $"userinfo_{user.Id}";
+                service.FlushAll();
+                service.SetEntryInHash(key, "Name", user.Name);
+                service.SetEntryInHash(key, "Account", user.Account);
+                service.SetEntryInHash(key, "Password", user.Password);
+                service.SetEntryInHash(key, "Email", user.Email);
+                service.SetEntryInHash(key, "Address", user.Address);
+                service.SetEntryInHash(key, "QQ", user.QQ.ToString());
 
+                service.StoreAsHash<UserInfo>(user);//must have id
+                UserInfo ui = service.GetFromHash<UserInfo>(user.Id);
+            }
 
 
 
