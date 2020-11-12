@@ -21,8 +21,9 @@ namespace P28.Coures.MyRedis
 
                 {
                     Console.WriteLine("****************Oversell test***************");
-                    OversellTest.Show();
-
+                    //OversellTestRedis.Show();
+                    //OversellTestWrong.Show();
+                    OversellTestVolatile.Show();
                 }
 
 
