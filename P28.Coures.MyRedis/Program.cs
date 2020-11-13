@@ -19,7 +19,8 @@ namespace P28.Coures.MyRedis
                     //ServiceStackTest.Show();
                 }
                 {
-                    UserInfoTest.Show();
+                    Console.WriteLine("****************UserInfoTest***************");
+                    //UserInfoTest.Show();
                 }
                 {
                     Console.WriteLine("****************Oversell test***************");
@@ -27,7 +28,10 @@ namespace P28.Coures.MyRedis
                     //OversellTestWrong.Show();
                     //OversellTestVolatile.Show();
                 }
-
+                {
+                    Console.WriteLine("****************FriendManager***************");
+                    FriendManager.Show();
+                }
 
 
 

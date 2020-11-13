@@ -151,6 +151,9 @@ namespace P28.Coures.MyRedis
                     service.AddItemToSortedSet("Sort", "stu3", 88);
                     service.AddItemToSortedSet("Sort", "stu4", 80);
                     service.AddItemToSortedSet("Sort", "stu5", 90);
+                    //add multi with same store.
+                    service.AddRangeToSortedSet("Sort", new List<string>() {"Gstu1", "Gstu2", "Gstu3" },98);
+
 
                     IDictionary<string, double> res3 = service.GetAllWithScoresFromSortedSet("Sort");
                 }
