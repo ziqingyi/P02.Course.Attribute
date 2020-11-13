@@ -30,10 +30,13 @@ namespace P28.Coures.MyRedis
                 }
                 {
                     Console.WriteLine("****************FriendManager***************");
-                    FriendManager.Show();
+                    //FriendManager.Show();
                 }
 
-
+                {
+                    Console.WriteLine("****************RankManager***************");
+                    RankManager.Show();
+                }
 
 
 

@@ -83,6 +83,7 @@
     <Compile Include="OversellTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RankManager.cs" />
     <Compile Include="ServiceStackTest.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="UserInfoTest.cs" />
