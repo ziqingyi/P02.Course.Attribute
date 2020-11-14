@@ -35,10 +35,14 @@ namespace P28.Coures.MyRedis
 
                 {
                     Console.WriteLine("****************RankManager***************");
-                    RankManager.Show();
+                    //RankManager.Show();
                 }
 
 
+                {
+                    Console.WriteLine("****************BlogPageList***************");
+                    BlogPageList.Show();
+                }
 
             }
             catch (Exception e)

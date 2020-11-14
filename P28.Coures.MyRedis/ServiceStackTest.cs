@@ -182,21 +182,21 @@ namespace P28.Coures.MyRedis
 
 
                     List<string> get1 = service.Get("article");//get 7 items, list have same value
-                    List<string> get2 = service.Get("article",0,3);
+                    List<string> get2 = service.Get("article",0,3);//story 1,2,3,4
 
                     service.FlushAll();
 
-                    service.Add("article", "story1");
+                    service.Add("article", "story1");//begin, on left 
                     service.Add("article", "story2");
                     service.Add("article", "story3");
                     service.Add("article", "story4");
                     service.Add("article", "story5");
                     service.Add("article", "story6");
-                    service.Add("article", "story6");
+                    service.Add("article", "story6");// end, right
 
                     for (int i = 0; i < 6; i++)
                     {
-                        Console.WriteLine(service.PopItemFromList("article"));//story6 is popped out, removed from list. 
+                        Console.WriteLine(service.PopItemFromList("article"));//this is rpop. so story6 is popped out, removed from list. 
                         List<string> tempAll = service.Get("article");
                     }
 

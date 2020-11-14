@@ -79,6 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlogPageList.cs" />
     <Compile Include="FriendManager.cs" />
     <Compile Include="OversellTest.cs" />
     <Compile Include="Program.cs" />

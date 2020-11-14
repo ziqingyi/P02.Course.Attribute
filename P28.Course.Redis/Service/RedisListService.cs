@@ -220,6 +220,11 @@ namespace P28.Course.Redis.Service
             string value = base.iClient.PopAndPushItemBetweenLists(fromKey, toKey);
             return value;
         }
+
+        public void TrimList(string key, int start, int end)
+        {
+            base.iClient.TrimList(key,start,end);
+        }
         #endregion
 
         #region subscription
