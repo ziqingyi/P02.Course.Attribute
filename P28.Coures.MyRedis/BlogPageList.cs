@@ -24,14 +24,15 @@ namespace P28.Coures.MyRedis
 
 
                 //only keep latest few passage, remove the first few
-                service.TrimList("newBlog",0,100);
+                service.TrimList("newBlog",0,100);//max: 2^32
 
                 //paging, 20 per page
                 List<string> page1 =  service.Get("newBlog", 0, 20);
 
                 List<string> page2 = service.Get("newBlog", 21, 40);
 
-
+                //eg. only show first 7 pages, if user click 7, then calculate remaining num of pages.
+                //    because calculating total pages will take time. 
 
 
             }

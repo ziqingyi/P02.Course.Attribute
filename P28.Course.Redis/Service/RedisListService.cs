@@ -16,6 +16,9 @@ namespace P28.Course.Redis.Service
     /// the operations are simpler and potentially more efficient (for nodes other than first nodes)
     /// because there is no need to keep track of the previous node during traversal or no need to traverse the list to find the previous node,
     /// so that its link can be modified.
+    ///
+    ///if all string are less than 64 byte and num of element is less than 512, use ziplist to store. otherwise use linked list.
+    /// 
     /// </summary>
     public class RedisListService :RedisBase
     {

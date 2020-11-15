@@ -16,7 +16,7 @@ namespace P28.Coures.MyRedis
 
                 {
                     Console.WriteLine("****************ServiceStackTest***************");
-                    //ServiceStackTest.Show();
+                    ServiceStackTest.Show();
                 }
                 {
                     Console.WriteLine("****************UserInfoTest***************");
@@ -41,7 +41,7 @@ namespace P28.Coures.MyRedis
 
                 {
                     Console.WriteLine("****************BlogPageList***************");
-                    BlogPageList.Show();
+                    //BlogPageList.Show();
                 }
 
             }

@@ -172,51 +172,51 @@ namespace P28.Coures.MyRedis
                 {
                     service.FlushAll();
 
-                    service.Add("article","story1");
-                    service.Add("article","story2");
-                    service.Add("article","story3");
-                    service.Add("article","story4");
-                    service.Add("article","story5");
-                    service.Add("article","story6");
-                    service.Add("article","story6");
+                    service.Add("author1","story1");
+                    service.Add("author1","story2");
+                    service.Add("author1","story3");
+                    service.Add("author1","story4");
+                    service.Add("author1","story5");
+                    service.Add("author1","story6");
+                    service.Add("author1","story6");
 
 
-                    List<string> get1 = service.Get("article");//get 7 items, list have same value
-                    List<string> get2 = service.Get("article",0,3);//story 1,2,3,4
+                    List<string> get1 = service.Get("author1");//get 7 items, list have same value
+                    List<string> get2 = service.Get("author1", 0,3);//story 1,2,3,4
+                    string popAtEnd1 = service.PopItemFromList("author1");//pop from end, story6
 
-                    service.FlushAll();
-
-                    service.Add("article", "story1");//begin, on left 
-                    service.Add("article", "story2");
-                    service.Add("article", "story3");
-                    service.Add("article", "story4");
-                    service.Add("article", "story5");
-                    service.Add("article", "story6");
-                    service.Add("article", "story6");// end, right
+                    //lpush, like stack, FILO
+                    service.LPush("author2", "story1");//begin, on left, on top
+                    service.LPush("author2", "story2");
+                    service.LPush("author2", "story3");
+                    service.LPush("author2", "story4");
+                    service.LPush("author2", "story5");
+                    service.LPush("author2", "story6");
+                    service.LPush("author2", "story6");// end, right
 
                     for (int i = 0; i < 6; i++)
-                    {
-                        Console.WriteLine(service.PopItemFromList("article"));//this is rpop. so story6 is popped out, removed from list. 
-                        List<string> tempAll = service.Get("article");
+                    { 
+                        //this is lpop, pop out from end. so story6 is popped out, removed from list. 
+                        string popAtEnd2 = service.PopItemFromList("author2");
+                        Console.WriteLine(popAtEnd2);
+                        List<string> tempAll = service.Get("author2");
                     }
 
+                    //use rpush to simulate queue: producer and consumer, FIFO
 
-                    //queue: producer and consumer, FIFO
-
-                    service.FlushAll();
-
-                    service.RPush("article", "story1");//at the end
-                    service.RPush("article", "story2");
-                    service.RPush("article", "story3");
-                    service.RPush("article", "story4");
-                    service.RPush("article", "story5");
-                    service.RPush("article", "story6");
-                    service.RPush("article", "story6");//row 1
+                    service.RPush("author3", "story1");//at the end 
+                    service.RPush("author3", "story2");
+                    service.RPush("author3", "story3");
+                    service.RPush("author3", "story4");
+                    service.RPush("author3", "story5");
+                    service.RPush("author3", "story6");
+                    service.RPush("author3", "story6");//at the top
 
                     for (int i = 0; i < 5; i++)
                     {
-                        Console.WriteLine(service.PopItemFromList("article"));//pop out story1, FIFO
-                        List<string> tempAll = service.Get("article");
+                        string popAtEnd3 = service.PopItemFromList("author3");
+                        Console.WriteLine(popAtEnd3);//lpop out story1, FIFO
+                        List<string> tempAll = service.Get("author3");
                     }
                 }
             }
