@@ -269,7 +269,7 @@ namespace P28.Coures.MyRedis
                             string testTask = Console.ReadLine();
                             if (testTask != "exit")
                             {
-                                service.LPush("test", testTask);
+                                service.LPush("task", testTask);
                             }
                             else
                             {
