@@ -75,12 +75,6 @@
     <None Include="Connected Services\MyWebServiceTest\P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\MyWebServiceTest\P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\MyWebServiceTest\P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\MyWebServiceTest\P29.Course.SOA.UnitTestProject.MyWebServiceTest.UserInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

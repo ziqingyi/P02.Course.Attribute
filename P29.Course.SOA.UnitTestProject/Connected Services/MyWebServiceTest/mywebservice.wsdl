@@ -40,6 +40,14 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="CustomSoapHeader" type="tns:CustomSoapHeader" />
+      <s:complexType name="CustomSoapHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PassWord" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
       <s:element name="GetUserObjById">
         <s:complexType>
           <s:sequence>
@@ -127,17 +135,26 @@
   <wsdl:message name="GetNameByIdSoapOut">
     <wsdl:part name="parameters" element="tns:GetNameByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="GetNameByIdCustomSoapHeader">
+    <wsdl:part name="CustomSoapHeader" element="tns:CustomSoapHeader" />
+  </wsdl:message>
   <wsdl:message name="GetUserObjByIdSoapIn">
     <wsdl:part name="parameters" element="tns:GetUserObjById" />
   </wsdl:message>
   <wsdl:message name="GetUserObjByIdSoapOut">
     <wsdl:part name="parameters" element="tns:GetUserObjByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="GetUserObjByIdCustomSoapHeader">
+    <wsdl:part name="CustomSoapHeader" element="tns:CustomSoapHeader" />
+  </wsdl:message>
   <wsdl:message name="GetuserListSoapIn">
     <wsdl:part name="parameters" element="tns:GetuserList" />
   </wsdl:message>
   <wsdl:message name="GetuserListSoapOut">
     <wsdl:part name="parameters" element="tns:GetuserListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetuserListCustomSoapHeader">
+    <wsdl:part name="CustomSoapHeader" element="tns:CustomSoapHeader" />
   </wsdl:message>
   <wsdl:message name="PlusSoapIn">
     <wsdl:part name="parameters" element="tns:Plus" />
@@ -150,6 +167,9 @@
   </wsdl:message>
   <wsdl:message name="GetJsonInfoSoapOut">
     <wsdl:part name="parameters" element="tns:GetJsonInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJsonInfoCustomSoapHeader">
+    <wsdl:part name="CustomSoapHeader" element="tns:CustomSoapHeader" />
   </wsdl:message>
   <wsdl:portType name="MyWebServiceSoap">
     <wsdl:operation name="HelloWorld">
@@ -205,6 +225,7 @@
       <soap:operation soapAction="http://tempuri.org/GetNameById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
+        <soap:header message="tns:GetNameByIdCustomSoapHeader" part="CustomSoapHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -214,6 +235,7 @@
       <soap:operation soapAction="http://tempuri.org/GetUserObjById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
+        <soap:header message="tns:GetUserObjByIdCustomSoapHeader" part="CustomSoapHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -223,6 +245,7 @@
       <soap:operation soapAction="http://tempuri.org/GetuserList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
+        <soap:header message="tns:GetuserListCustomSoapHeader" part="CustomSoapHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -241,6 +264,7 @@
       <soap:operation soapAction="http://tempuri.org/GetJsonInfo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
+        <soap:header message="tns:GetJsonInfoCustomSoapHeader" part="CustomSoapHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -271,6 +295,7 @@
       <soap12:operation soapAction="http://tempuri.org/GetNameById" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
+        <soap12:header message="tns:GetNameByIdCustomSoapHeader" part="CustomSoapHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />
@@ -280,6 +305,7 @@
       <soap12:operation soapAction="http://tempuri.org/GetUserObjById" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
+        <soap12:header message="tns:GetUserObjByIdCustomSoapHeader" part="CustomSoapHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />
@@ -289,6 +315,7 @@
       <soap12:operation soapAction="http://tempuri.org/GetuserList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
+        <soap12:header message="tns:GetuserListCustomSoapHeader" part="CustomSoapHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />
@@ -307,6 +334,7 @@
       <soap12:operation soapAction="http://tempuri.org/GetJsonInfo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
+        <soap12:header message="tns:GetJsonInfoCustomSoapHeader" part="CustomSoapHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />

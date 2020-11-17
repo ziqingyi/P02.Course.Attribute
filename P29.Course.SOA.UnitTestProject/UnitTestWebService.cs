@@ -40,13 +40,18 @@ namespace P29.Course.SOA.UnitTestProject
             //this is http protocol, connection is a socket, so must free up. 
             using (MyWebServiceTest.MyWebServiceSoapClient client = new MyWebServiceSoapClient())
             {
+                MyWebServiceTest.CustomSoapHeader header = new MyWebServiceTest.CustomSoapHeader();
+
+                header.UserName = "Admin";
+                header.PassWord = "password123";
+
                 int iresult = client.Plus(1, 2);
 
-                MyWebServiceTest.UserInfo userInfo = client.GetUserObjById(1);
+                MyWebServiceTest.UserInfo userInfo = client.GetUserObjById(header, 1);
 
-                //MyWebServiceTest.UserInfo[] userlist = client.GetuserList();//if service reference is Array
+                MyWebServiceTest.UserInfo[] userlist = client.GetuserList(header);//if service reference is Array
 
-                List<MyWebServiceTest.UserInfo> userlist2 = client.GetuserList();//if service reference is List
+                //List<MyWebServiceTest.UserInfo> userlist2 = client.GetuserList(header);//if service reference is List
 
             }
         }
@@ -58,6 +63,11 @@ namespace P29.Course.SOA.UnitTestProject
             //this is http protocol, connection is a socket, so must free up. 
             using (MyWebServiceTest.MyWebServiceSoapClient client = new MyWebServiceSoapClient())
             {
+                MyWebServiceTest.CustomSoapHeader header = new MyWebServiceTest.CustomSoapHeader();
+
+                header.UserName = "Admin";
+                header.PassWord = "password123";
+
 
                 Assert.AreEqual(client.Plus(1, 2),3);
                 Assert.AreEqual(client.Plus(2, 2), 4);
@@ -67,11 +77,11 @@ namespace P29.Course.SOA.UnitTestProject
                 Assert.AreEqual(client.Plus(16,2), 3);// test error
 
 
-                MyWebServiceTest.UserInfo userInfo = client.GetUserObjById(1);
+                MyWebServiceTest.UserInfo userInfo = client.GetUserObjById(header,1);
 
-                //MyWebServiceTest.UserInfo[] userlist = client.GetuserList();//if service reference is Array
+                MyWebServiceTest.UserInfo[] userlist = client.GetuserList(header);//if service reference is Array
 
-                List<MyWebServiceTest.UserInfo> userlist2 = client.GetuserList();//if service reference is List
+                //List<MyWebServiceTest.UserInfo> userlist2 = client.GetuserList(header);//if service reference is List
 
             }
         }

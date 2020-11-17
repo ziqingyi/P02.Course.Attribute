@@ -9,72 +9,113 @@
 //------------------------------------------------------------------------------
 
 namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
-    using System.Runtime.Serialization;
-    using System;
     
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserInfo", Namespace="http://tempuri.org/")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MyWebServiceTest.MyWebServiceSoap")]
+    public interface MyWebServiceSoap {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string HelloWorld();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> HelloWorldAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorldWithAuth", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string HelloWorldWithAuth(string name_password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorldWithAuth", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> HelloWorldWithAuthAsync(string name_password);
+        
+        // CODEGEN: Generating message contract since message GetNameByIdRequest has headers
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetNameById", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdResponse GetNameById(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetNameById", ReplyAction="*")]
+        System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdResponse> GetNameByIdAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdRequest request);
+        
+        // CODEGEN: Generating message contract since message GetUserObjByIdRequest has headers
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetUserObjById", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdResponse GetUserObjById(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetUserObjById", ReplyAction="*")]
+        System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdResponse> GetUserObjByIdAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdRequest request);
+        
+        // CODEGEN: Generating message contract since message GetuserListRequest has headers
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetuserList", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListResponse GetuserList(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetuserList", ReplyAction="*")]
+        System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListResponse> GetuserListAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Plus", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        int Plus(int x, int y);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Plus", ReplyAction="*")]
+        System.Threading.Tasks.Task<int> PlusAsync(int x, int y);
+        
+        // CODEGEN: Generating message contract since message GetJsonInfoRequest has headers
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetJsonInfo", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoResponse GetJsonInfo(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetJsonInfo", ReplyAction="*")]
+        System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoResponse> GetJsonInfoAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoRequest request);
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
     [System.SerializableAttribute()]
-    public partial class UserInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class CustomSoapHeader : object, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        private string userNameField;
         
-        private int IdField;
+        private string passWordField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
+        private System.Xml.XmlAttribute[] anyAttrField;
         
-        private int AgeField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string UserName {
             get {
-                return this.extensionDataField;
+                return this.userNameField;
             }
             set {
-                this.extensionDataField = value;
+                this.userNameField = value;
+                this.RaisePropertyChanged("UserName");
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public int Id {
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string PassWord {
             get {
-                return this.IdField;
+                return this.passWordField;
             }
             set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
+                this.passWordField = value;
+                this.RaisePropertyChanged("PassWord");
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string Name {
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr {
             get {
-                return this.NameField;
+                return this.anyAttrField;
             }
             set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
-        public int Age {
-            get {
-                return this.AgeField;
-            }
-            set {
-                if ((this.AgeField.Equals(value) != true)) {
-                    this.AgeField = value;
-                    this.RaisePropertyChanged("Age");
-                }
+                this.anyAttrField = value;
+                this.RaisePropertyChanged("AnyAttr");
             }
         }
         
@@ -88,218 +129,83 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MyWebServiceTest.MyWebServiceSoap")]
-    public interface MyWebServiceSoap {
-        
-        // CODEGEN: Generating message contract since element name HelloWorldResult from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
-        P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldResponse HelloWorld(P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorld", ReplyAction="*")]
-        System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldResponse> HelloWorldAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldRequest request);
-        
-        // CODEGEN: Generating message contract since element name name_password from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorldWithAuth", ReplyAction="*")]
-        P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthResponse HelloWorldWithAuth(P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/HelloWorldWithAuth", ReplyAction="*")]
-        System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthResponse> HelloWorldWithAuthAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthRequest request);
-        
-        // CODEGEN: Generating message contract since element name GetNameByIdResult from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetNameById", ReplyAction="*")]
-        P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdResponse GetNameById(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetNameById", ReplyAction="*")]
-        System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdResponse> GetNameByIdAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdRequest request);
-        
-        // CODEGEN: Generating message contract since element name GetUserObjByIdResult from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetUserObjById", ReplyAction="*")]
-        P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdResponse GetUserObjById(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetUserObjById", ReplyAction="*")]
-        System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdResponse> GetUserObjByIdAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdRequest request);
-        
-        // CODEGEN: Generating message contract since element name GetuserListResult from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetuserList", ReplyAction="*")]
-        P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListResponse GetuserList(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetuserList", ReplyAction="*")]
-        System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListResponse> GetuserListAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Plus", ReplyAction="*")]
-        int Plus(int x, int y);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Plus", ReplyAction="*")]
-        System.Threading.Tasks.Task<int> PlusAsync(int x, int y);
-        
-        // CODEGEN: Generating message contract since element name name from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetJsonInfo", ReplyAction="*")]
-        P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoResponse GetJsonInfo(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetJsonInfo", ReplyAction="*")]
-        System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoResponse> GetJsonInfoAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoRequest request);
-    }
-    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class HelloWorldRequest {
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class UserInfo : object, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="HelloWorld", Namespace="http://tempuri.org/", Order=0)]
-        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldRequestBody Body;
+        private int idField;
         
-        public HelloWorldRequest() {
+        private string nameField;
+        
+        private int ageField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+                this.RaisePropertyChanged("Id");
+            }
         }
         
-        public HelloWorldRequest(P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldRequestBody Body) {
-            this.Body = Body;
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public int Age {
+            get {
+                return this.ageField;
+            }
+            set {
+                this.ageField = value;
+                this.RaisePropertyChanged("Age");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class HelloWorldRequestBody {
-        
-        public HelloWorldRequestBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class HelloWorldResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="HelloWorldResponse", Namespace="http://tempuri.org/", Order=0)]
-        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldResponseBody Body;
-        
-        public HelloWorldResponse() {
-        }
-        
-        public HelloWorldResponse(P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class HelloWorldResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string HelloWorldResult;
-        
-        public HelloWorldResponseBody() {
-        }
-        
-        public HelloWorldResponseBody(string HelloWorldResult) {
-            this.HelloWorldResult = HelloWorldResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class HelloWorldWithAuthRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="HelloWorldWithAuth", Namespace="http://tempuri.org/", Order=0)]
-        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthRequestBody Body;
-        
-        public HelloWorldWithAuthRequest() {
-        }
-        
-        public HelloWorldWithAuthRequest(P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class HelloWorldWithAuthRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string name_password;
-        
-        public HelloWorldWithAuthRequestBody() {
-        }
-        
-        public HelloWorldWithAuthRequestBody(string name_password) {
-            this.name_password = name_password;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class HelloWorldWithAuthResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="HelloWorldWithAuthResponse", Namespace="http://tempuri.org/", Order=0)]
-        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthResponseBody Body;
-        
-        public HelloWorldWithAuthResponse() {
-        }
-        
-        public HelloWorldWithAuthResponse(P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class HelloWorldWithAuthResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string HelloWorldWithAuthResult;
-        
-        public HelloWorldWithAuthResponseBody() {
-        }
-        
-        public HelloWorldWithAuthResponseBody(string HelloWorldWithAuthResult) {
-            this.HelloWorldWithAuthResult = HelloWorldWithAuthResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetNameById", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class GetNameByIdRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetNameById", Namespace="http://tempuri.org/", Order=0)]
-        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdRequestBody Body;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int id;
         
         public GetNameByIdRequest() {
         }
         
-        public GetNameByIdRequest(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetNameByIdRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public int id;
-        
-        public GetNameByIdRequestBody() {
-        }
-        
-        public GetNameByIdRequestBody(int id) {
+        public GetNameByIdRequest(P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader, int id) {
+            this.CustomSoapHeader = CustomSoapHeader;
             this.id = id;
         }
     }
@@ -307,33 +213,16 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetNameByIdResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class GetNameByIdResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetNameByIdResponse", Namespace="http://tempuri.org/", Order=0)]
-        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string GetNameByIdResult;
         
         public GetNameByIdResponse() {
         }
         
-        public GetNameByIdResponse(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetNameByIdResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string GetNameByIdResult;
-        
-        public GetNameByIdResponseBody() {
-        }
-        
-        public GetNameByIdResponseBody(string GetNameByIdResult) {
+        public GetNameByIdResponse(string GetNameByIdResult) {
             this.GetNameByIdResult = GetNameByIdResult;
         }
     }
@@ -341,33 +230,20 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetUserObjById", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class GetUserObjByIdRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserObjById", Namespace="http://tempuri.org/", Order=0)]
-        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdRequestBody Body;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int id;
         
         public GetUserObjByIdRequest() {
         }
         
-        public GetUserObjByIdRequest(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetUserObjByIdRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public int id;
-        
-        public GetUserObjByIdRequestBody() {
-        }
-        
-        public GetUserObjByIdRequestBody(int id) {
+        public GetUserObjByIdRequest(P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader, int id) {
+            this.CustomSoapHeader = CustomSoapHeader;
             this.id = id;
         }
     }
@@ -375,33 +251,16 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetUserObjByIdResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class GetUserObjByIdResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetUserObjByIdResponse", Namespace="http://tempuri.org/", Order=0)]
-        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.UserInfo GetUserObjByIdResult;
         
         public GetUserObjByIdResponse() {
         }
         
-        public GetUserObjByIdResponse(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetUserObjByIdResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.UserInfo GetUserObjByIdResult;
-        
-        public GetUserObjByIdResponseBody() {
-        }
-        
-        public GetUserObjByIdResponseBody(P29.Course.SOA.UnitTestProject.MyWebServiceTest.UserInfo GetUserObjByIdResult) {
+        public GetUserObjByIdResponse(P29.Course.SOA.UnitTestProject.MyWebServiceTest.UserInfo GetUserObjByIdResult) {
             this.GetUserObjByIdResult = GetUserObjByIdResult;
         }
     }
@@ -409,60 +268,33 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetuserList", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class GetuserListRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetuserList", Namespace="http://tempuri.org/", Order=0)]
-        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListRequestBody Body;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader;
         
         public GetuserListRequest() {
         }
         
-        public GetuserListRequest(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListRequestBody Body) {
-            this.Body = Body;
+        public GetuserListRequest(P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader) {
+            this.CustomSoapHeader = CustomSoapHeader;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class GetuserListRequestBody {
-        
-        public GetuserListRequestBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetuserListResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class GetuserListResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetuserListResponse", Namespace="http://tempuri.org/", Order=0)]
-        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.UserInfo[] GetuserListResult;
         
         public GetuserListResponse() {
         }
         
-        public GetuserListResponse(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetuserListResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public System.Collections.Generic.List<P29.Course.SOA.UnitTestProject.MyWebServiceTest.UserInfo> GetuserListResult;
-        
-        public GetuserListResponseBody() {
-        }
-        
-        public GetuserListResponseBody(System.Collections.Generic.List<P29.Course.SOA.UnitTestProject.MyWebServiceTest.UserInfo> GetuserListResult) {
+        public GetuserListResponse(P29.Course.SOA.UnitTestProject.MyWebServiceTest.UserInfo[] GetuserListResult) {
             this.GetuserListResult = GetuserListResult;
         }
     }
@@ -470,39 +302,26 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetJsonInfo", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class GetJsonInfoRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetJsonInfo", Namespace="http://tempuri.org/", Order=0)]
-        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoRequestBody Body;
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int id;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public string name;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public int age;
         
         public GetJsonInfoRequest() {
         }
         
-        public GetJsonInfoRequest(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetJsonInfoRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public int id;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public string name;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-        public int age;
-        
-        public GetJsonInfoRequestBody() {
-        }
-        
-        public GetJsonInfoRequestBody(int id, string name, int age) {
+        public GetJsonInfoRequest(P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader, int id, string name, int age) {
+            this.CustomSoapHeader = CustomSoapHeader;
             this.id = id;
             this.name = name;
             this.age = age;
@@ -512,33 +331,16 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetJsonInfoResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class GetJsonInfoResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetJsonInfoResponse", Namespace="http://tempuri.org/", Order=0)]
-        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string GetJsonInfoResult;
         
         public GetJsonInfoResponse() {
         }
         
-        public GetJsonInfoResponse(P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class GetJsonInfoResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string GetJsonInfoResult;
-        
-        public GetJsonInfoResponseBody() {
-        }
-        
-        public GetJsonInfoResponseBody(string GetJsonInfoResult) {
+        public GetJsonInfoResponse(string GetJsonInfoResult) {
             this.GetJsonInfoResult = GetJsonInfoResult;
         }
     }
@@ -570,52 +372,20 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
                 base(binding, remoteAddress) {
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldResponse P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap.HelloWorld(P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldRequest request) {
-            return base.Channel.HelloWorld(request);
-        }
-        
         public string HelloWorld() {
-            P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldRequest inValue = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldRequest();
-            inValue.Body = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldRequestBody();
-            P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldResponse retVal = ((P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap)(this)).HelloWorld(inValue);
-            return retVal.Body.HelloWorldResult;
+            return base.Channel.HelloWorld();
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldResponse> P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap.HelloWorldAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldRequest request) {
-            return base.Channel.HelloWorldAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldResponse> HelloWorldAsync() {
-            P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldRequest inValue = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldRequest();
-            inValue.Body = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldRequestBody();
-            return ((P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap)(this)).HelloWorldAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthResponse P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap.HelloWorldWithAuth(P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthRequest request) {
-            return base.Channel.HelloWorldWithAuth(request);
+        public System.Threading.Tasks.Task<string> HelloWorldAsync() {
+            return base.Channel.HelloWorldAsync();
         }
         
         public string HelloWorldWithAuth(string name_password) {
-            P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthRequest inValue = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthRequest();
-            inValue.Body = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthRequestBody();
-            inValue.Body.name_password = name_password;
-            P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthResponse retVal = ((P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap)(this)).HelloWorldWithAuth(inValue);
-            return retVal.Body.HelloWorldWithAuthResult;
+            return base.Channel.HelloWorldWithAuth(name_password);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthResponse> P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap.HelloWorldWithAuthAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthRequest request) {
-            return base.Channel.HelloWorldWithAuthAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthResponse> HelloWorldWithAuthAsync(string name_password) {
-            P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthRequest inValue = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthRequest();
-            inValue.Body = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.HelloWorldWithAuthRequestBody();
-            inValue.Body.name_password = name_password;
-            return ((P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap)(this)).HelloWorldWithAuthAsync(inValue);
+        public System.Threading.Tasks.Task<string> HelloWorldWithAuthAsync(string name_password) {
+            return base.Channel.HelloWorldWithAuthAsync(name_password);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -623,12 +393,12 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
             return base.Channel.GetNameById(request);
         }
         
-        public string GetNameById(int id) {
+        public string GetNameById(P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader, int id) {
             P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdRequest inValue = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdRequest();
-            inValue.Body = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdRequestBody();
-            inValue.Body.id = id;
+            inValue.CustomSoapHeader = CustomSoapHeader;
+            inValue.id = id;
             P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdResponse retVal = ((P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap)(this)).GetNameById(inValue);
-            return retVal.Body.GetNameByIdResult;
+            return retVal.GetNameByIdResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -636,10 +406,10 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
             return base.Channel.GetNameByIdAsync(request);
         }
         
-        public System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdResponse> GetNameByIdAsync(int id) {
+        public System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdResponse> GetNameByIdAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader, int id) {
             P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdRequest inValue = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdRequest();
-            inValue.Body = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetNameByIdRequestBody();
-            inValue.Body.id = id;
+            inValue.CustomSoapHeader = CustomSoapHeader;
+            inValue.id = id;
             return ((P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap)(this)).GetNameByIdAsync(inValue);
         }
         
@@ -648,12 +418,12 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
             return base.Channel.GetUserObjById(request);
         }
         
-        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.UserInfo GetUserObjById(int id) {
+        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.UserInfo GetUserObjById(P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader, int id) {
             P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdRequest inValue = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdRequest();
-            inValue.Body = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdRequestBody();
-            inValue.Body.id = id;
+            inValue.CustomSoapHeader = CustomSoapHeader;
+            inValue.id = id;
             P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdResponse retVal = ((P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap)(this)).GetUserObjById(inValue);
-            return retVal.Body.GetUserObjByIdResult;
+            return retVal.GetUserObjByIdResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -661,10 +431,10 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
             return base.Channel.GetUserObjByIdAsync(request);
         }
         
-        public System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdResponse> GetUserObjByIdAsync(int id) {
+        public System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdResponse> GetUserObjByIdAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader, int id) {
             P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdRequest inValue = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdRequest();
-            inValue.Body = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetUserObjByIdRequestBody();
-            inValue.Body.id = id;
+            inValue.CustomSoapHeader = CustomSoapHeader;
+            inValue.id = id;
             return ((P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap)(this)).GetUserObjByIdAsync(inValue);
         }
         
@@ -673,11 +443,11 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
             return base.Channel.GetuserList(request);
         }
         
-        public System.Collections.Generic.List<P29.Course.SOA.UnitTestProject.MyWebServiceTest.UserInfo> GetuserList() {
+        public P29.Course.SOA.UnitTestProject.MyWebServiceTest.UserInfo[] GetuserList(P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader) {
             P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListRequest inValue = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListRequest();
-            inValue.Body = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListRequestBody();
+            inValue.CustomSoapHeader = CustomSoapHeader;
             P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListResponse retVal = ((P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap)(this)).GetuserList(inValue);
-            return retVal.Body.GetuserListResult;
+            return retVal.GetuserListResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -685,9 +455,9 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
             return base.Channel.GetuserListAsync(request);
         }
         
-        public System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListResponse> GetuserListAsync() {
+        public System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListResponse> GetuserListAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader) {
             P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListRequest inValue = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListRequest();
-            inValue.Body = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetuserListRequestBody();
+            inValue.CustomSoapHeader = CustomSoapHeader;
             return ((P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap)(this)).GetuserListAsync(inValue);
         }
         
@@ -704,14 +474,14 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
             return base.Channel.GetJsonInfo(request);
         }
         
-        public string GetJsonInfo(int id, string name, int age) {
+        public string GetJsonInfo(P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader, int id, string name, int age) {
             P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoRequest inValue = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoRequest();
-            inValue.Body = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoRequestBody();
-            inValue.Body.id = id;
-            inValue.Body.name = name;
-            inValue.Body.age = age;
+            inValue.CustomSoapHeader = CustomSoapHeader;
+            inValue.id = id;
+            inValue.name = name;
+            inValue.age = age;
             P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoResponse retVal = ((P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap)(this)).GetJsonInfo(inValue);
-            return retVal.Body.GetJsonInfoResult;
+            return retVal.GetJsonInfoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -719,12 +489,12 @@ namespace P29.Course.SOA.UnitTestProject.MyWebServiceTest {
             return base.Channel.GetJsonInfoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoResponse> GetJsonInfoAsync(int id, string name, int age) {
+        public System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoResponse> GetJsonInfoAsync(P29.Course.SOA.UnitTestProject.MyWebServiceTest.CustomSoapHeader CustomSoapHeader, int id, string name, int age) {
             P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoRequest inValue = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoRequest();
-            inValue.Body = new P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoRequestBody();
-            inValue.Body.id = id;
-            inValue.Body.name = name;
-            inValue.Body.age = age;
+            inValue.CustomSoapHeader = CustomSoapHeader;
+            inValue.id = id;
+            inValue.name = name;
+            inValue.age = age;
             return ((P29.Course.SOA.UnitTestProject.MyWebServiceTest.MyWebServiceSoap)(this)).GetJsonInfoAsync(inValue);
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using System.Web.Services.Protocols;
 
 namespace P29.Course.SOA.Web.Remote
 {
@@ -56,6 +57,10 @@ namespace P29.Course.SOA.Web.Remote
             }
         };
 
+        public CustomSoapHeader soapHeaderProp 
+        { get; set; }
+
+
         [WebMethod]
         public string HelloWorld()
         {
@@ -73,6 +78,7 @@ namespace P29.Course.SOA.Web.Remote
         }
 
         [WebMethod]
+        [SoapHeader("soapHeaderProp")]
         public string GetNameById(int id)
         {
             string name="";
@@ -86,15 +92,28 @@ namespace P29.Course.SOA.Web.Remote
         }
 
         [WebMethod]
+        [SoapHeader("soapHeaderProp")]
         public UserInfo GetUserObjById(int id)
         {
+            if (!this.soapHeaderProp.Validate())
+            {
+                throw new SoapException("invalid identity", SoapException.ClientFaultCode);
+            }
+
             var u = userInfos.Where<UserInfo>(s => s.Id == id).FirstOrDefault();
             return (UserInfo)u;
         }
 
         [WebMethod]
+        [SoapHeader("soapHeaderProp")]
         public List<UserInfo> GetuserList()
         {
+
+            if (!this.soapHeaderProp.Validate())
+            {
+                throw new SoapException("invalid identity", SoapException.ClientFaultCode);
+            }
+
             return userInfos;
         }
 
@@ -107,6 +126,7 @@ namespace P29.Course.SOA.Web.Remote
             return x + y;
         }
         [WebMethod]
+        [SoapHeader("soapHeaderProp")]
         public string GetJsonInfo(int id, string name, int age)
         {
             string JsonSerialize = Newtonsoft.Json.JsonConvert.SerializeObject(new UserInfo()
