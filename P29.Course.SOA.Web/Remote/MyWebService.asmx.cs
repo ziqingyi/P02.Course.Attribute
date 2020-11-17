@@ -75,17 +75,21 @@ namespace P29.Course.SOA.Web.Remote
         [WebMethod]
         public string GetNameById(int id)
         {
-            UserInfo u = (UserInfo)userInfos.Where<UserInfo>(s => s.Id == id);
-            
-            return $"get name {u.Name} ";
+            string name="";
+            var temp = userInfos.Where<UserInfo>(s => s.Id == id).Take(1);
+            foreach (UserInfo userInfo in temp)
+            {
+                 UserInfo u = userInfo;
+                 name = u.Name;
+            }
+            return $"get name {name} ";
         }
 
         [WebMethod]
         public UserInfo GetUserObjById(int id)
         {
-            UserInfo u = (UserInfo)userInfos.Where<UserInfo>(s => s.Id == id);
-
-            return u;
+            var u = userInfos.Where<UserInfo>(s => s.Id == id).FirstOrDefault();
+            return (UserInfo)u;
         }
 
         [WebMethod]
@@ -102,7 +106,7 @@ namespace P29.Course.SOA.Web.Remote
         {
             return x + y;
         }
-
+        [WebMethod]
         public string GetJsonInfo(int id, string name, int age)
         {
             string JsonSerialize = Newtonsoft.Json.JsonConvert.SerializeObject(new UserInfo()
