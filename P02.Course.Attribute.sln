@@ -107,6 +107,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P28.Coures.MyRedis", "P28.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P28.Course.RedisBackService", "P28.Course.RedisBackService\P28.Course.RedisBackService.csproj", "{AE1BF774-EBD0-4F84-A2EA-60E63E385AF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P29.Course.SOA.Web", "P29.Course.SOA.Web\P29.Course.SOA.Web.csproj", "{EFC4A12A-08AE-4421-B73B-D8594CA555B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P29.Course.SOA.Project", "P29.Course.SOA.Project\P29.Course.SOA.Project.csproj", "{AD015C53-354D-4886-BACF-83A3AF758911}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -321,6 +325,14 @@ Global
 		{AE1BF774-EBD0-4F84-A2EA-60E63E385AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE1BF774-EBD0-4F84-A2EA-60E63E385AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE1BF774-EBD0-4F84-A2EA-60E63E385AF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFC4A12A-08AE-4421-B73B-D8594CA555B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFC4A12A-08AE-4421-B73B-D8594CA555B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFC4A12A-08AE-4421-B73B-D8594CA555B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFC4A12A-08AE-4421-B73B-D8594CA555B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD015C53-354D-4886-BACF-83A3AF758911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD015C53-354D-4886-BACF-83A3AF758911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD015C53-354D-4886-BACF-83A3AF758911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD015C53-354D-4886-BACF-83A3AF758911}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
