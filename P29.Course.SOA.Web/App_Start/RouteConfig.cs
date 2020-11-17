@@ -12,6 +12,7 @@ namespace P29.Course.SOA.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("Remote/{*pathInfo}");//ignore path beginning with Remote
 
             routes.MapRoute(
                 name: "Default",
