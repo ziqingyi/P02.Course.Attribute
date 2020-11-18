@@ -122,6 +122,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P30.Course.SOA.WCF.Model", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P30.Course.SOA.WCF.Interface", "P30.Course.SOA.WCF.Interface\P30.Course.SOA.WCF.Interface.csproj", "{3106789C-685F-413D-A0C8-AFA37A76EC6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P30.Course.SOA.WCF.Service", "P30.Course.SOA.WCF.Service\P30.Course.SOA.WCF.Service.csproj", "{C291512C-23AF-424C-BDF6-C2DB45A2C511}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -360,6 +362,10 @@ Global
 		{3106789C-685F-413D-A0C8-AFA37A76EC6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3106789C-685F-413D-A0C8-AFA37A76EC6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3106789C-685F-413D-A0C8-AFA37A76EC6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C291512C-23AF-424C-BDF6-C2DB45A2C511}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C291512C-23AF-424C-BDF6-C2DB45A2C511}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C291512C-23AF-424C-BDF6-C2DB45A2C511}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C291512C-23AF-424C-BDF6-C2DB45A2C511}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
