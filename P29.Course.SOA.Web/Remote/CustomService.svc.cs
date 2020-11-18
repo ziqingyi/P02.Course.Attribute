@@ -21,5 +21,26 @@ namespace P29.Course.SOA.Web.Remote
             return DateTime.Now.Year;
         }
 
+        //without attr, will not be available for external use. 
+        public int GetWithoutAttr()
+        {
+            return DateTime.Now.Year;
+        }
+
+        public UserInfo GetUser()
+        {
+            UserInfo u = new UserInfo()
+            {
+                Id = 1,
+                Name = "user1",
+                Age = 19,
+                Description = "student"
+            };
+
+            return u;
+        }
+
+
+
     }
 }

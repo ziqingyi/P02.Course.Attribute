@@ -18,6 +18,10 @@ namespace P29.Course.SOA.Web.Remote
         [OperationContract]
         int Get();
 
+        int GetWithoutAttr();
+
+        [OperationContract]
+        UserInfo GetUser();
 
     }
 }

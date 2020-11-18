@@ -23,6 +23,7 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="CustomService.xsd" MetadataType="Schema" ID="b3cabbac-268e-4506-9b30-48633b2f4e0a" SourceId="1" SourceUrl="https://localhost:44337/Remote/CustomService.svc?xsd=xsd0" />
+    <MetadataFile FileName="CustomService2.xsd" MetadataType="Schema" ID="cbc9d725-4b93-495a-9279-f252e0e39fee" SourceId="1" SourceUrl="https://localhost:44337/Remote/CustomService.svc?xsd=xsd2" />
     <MetadataFile FileName="CustomService.wsdl" MetadataType="Wsdl" ID="f4a2bdd9-04d5-420a-83d8-93d324c94efd" SourceId="1" SourceUrl="https://localhost:44337/Remote/CustomService.SVC?wsdl" />
     <MetadataFile FileName="CustomService1.xsd" MetadataType="Schema" ID="97473d10-1f07-48e7-8429-fd40bbe93a6b" SourceId="1" SourceUrl="https://localhost:44337/Remote/CustomService.svc?xsd=xsd1" />
   </Metadata>

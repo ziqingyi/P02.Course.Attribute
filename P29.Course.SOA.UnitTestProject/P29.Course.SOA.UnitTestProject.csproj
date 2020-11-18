@@ -75,6 +75,12 @@
     <None Include="Connected Services\MyWCFTest\CustomService1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\MyWCFTest\CustomService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MyWCFTest\P29.Course.SOA.UnitTestProject.MyWCFTest.UserInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\MyWebServiceTest\mywebservice.wsdl" />
     <None Include="Connected Services\MyWebServiceTest\P29.Course.SOA.UnitTestProject.MyWebServiceTest.GetJsonInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using P29.Course.SOA.UnitTestProject.MyWCFTest;
+using P29.Course.SOA.UnitTestProject.MyWebServiceTest;
+using UserInfo = P29.Course.SOA.UnitTestProject.MyWCFTest.UserInfo;
 
 namespace P29.Course.SOA.UnitTestProject
 {
@@ -13,7 +15,11 @@ namespace P29.Course.SOA.UnitTestProject
             using (MyWCFTest.CustomServiceClient client = new MyWCFTest.CustomServiceClient())
             {
                 client.DoWork();
-                int iresult = client.Get();
+                int iresult1 = client.Get();
+
+                UserInfo u = client.GetUser();
+
+
             }
 
         }

@@ -9,7 +9,70 @@
 //------------------------------------------------------------------------------
 
 namespace P29.Course.SOA.UnitTestProject.MyWCFTest {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserInfo", Namespace="http://schemas.datacontract.org/2004/07/P29.Course.SOA.Web.Remote")]
+    [System.SerializableAttribute()]
+    public partial class UserInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int AgeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Age {
+            get {
+                return this.AgeField;
+            }
+            set {
+                if ((this.AgeField.Equals(value) != true)) {
+                    this.AgeField = value;
+                    this.RaisePropertyChanged("Age");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MyWCFTest.ICustomService")]
@@ -26,6 +89,12 @@ namespace P29.Course.SOA.UnitTestProject.MyWCFTest {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomService/Get", ReplyAction="http://tempuri.org/ICustomService/GetResponse")]
         System.Threading.Tasks.Task<int> GetAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomService/GetUser", ReplyAction="http://tempuri.org/ICustomService/GetUserResponse")]
+        P29.Course.SOA.UnitTestProject.MyWCFTest.UserInfo GetUser();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICustomService/GetUser", ReplyAction="http://tempuri.org/ICustomService/GetUserResponse")]
+        System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWCFTest.UserInfo> GetUserAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +138,14 @@ namespace P29.Course.SOA.UnitTestProject.MyWCFTest {
         
         public System.Threading.Tasks.Task<int> GetAsync() {
             return base.Channel.GetAsync();
+        }
+        
+        public P29.Course.SOA.UnitTestProject.MyWCFTest.UserInfo GetUser() {
+            return base.Channel.GetUser();
+        }
+        
+        public System.Threading.Tasks.Task<P29.Course.SOA.UnitTestProject.MyWCFTest.UserInfo> GetUserAsync() {
+            return base.Channel.GetUserAsync();
         }
     }
 }
