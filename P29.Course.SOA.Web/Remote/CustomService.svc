@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="P29.Course.SOA.Web.Remote.CustomService" CodeBehind="CustomService.svc.cs" %>

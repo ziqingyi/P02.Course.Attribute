@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="117c6ade-336d-430b-8950-2c952b3a01db" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://localhost:44337/Remote/CustomService.SVC?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CustomService.xsd" MetadataType="Schema" ID="b3cabbac-268e-4506-9b30-48633b2f4e0a" SourceId="1" SourceUrl="https://localhost:44337/Remote/CustomService.svc?xsd=xsd0" />
+    <MetadataFile FileName="CustomService.wsdl" MetadataType="Wsdl" ID="f4a2bdd9-04d5-420a-83d8-93d324c94efd" SourceId="1" SourceUrl="https://localhost:44337/Remote/CustomService.SVC?wsdl" />
+    <MetadataFile FileName="CustomService1.xsd" MetadataType="Schema" ID="97473d10-1f07-48e7-8429-fd40bbe93a6b" SourceId="1" SourceUrl="https://localhost:44337/Remote/CustomService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
