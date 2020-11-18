@@ -12,14 +12,23 @@ namespace P29.Course.SOA.UnitTestProject
         [TestMethod]
         public void TestMethod1()
         {
-            using (MyWCFTest.CustomServiceClient client = new MyWCFTest.CustomServiceClient())
+            //using (MyWCFTest.CustomServiceClient client = new MyWCFTest.CustomServiceClient())
+            //when network disconnected, using will not free connection probably. 
+            MyWCFTest.CustomServiceClient client = null;
+            try
             {
                 client.DoWork();
                 int iresult1 = client.Get();
-
                 UserInfo u = client.GetUser();
-
-
+                client.Close();
+            }
+            catch (Exception e)
+            {
+                if (client != null)
+                {
+                    client.Abort();
+                }
+                Console.WriteLine(e.Message);
             }
 
         }
