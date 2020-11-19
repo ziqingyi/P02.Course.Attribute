@@ -16,8 +16,8 @@ namespace P30.Course.SOA.WCF.Project
             //ServiceHost object
             List<ServiceHost> hosts = new List<ServiceHost>()
             {
-                new ServiceHost(typeof(MathService)),
-                new ServiceHost(typeof(CalculatorService))
+                new ServiceHost(typeof(MathService))//,
+               /// new ServiceHost(typeof(CalculatorService))
             };
 
             foreach (ServiceHost host in hosts)

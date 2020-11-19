@@ -52,6 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\MyConsoleWCFHttpTest\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\MyWCFTest\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -62,12 +67,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="UnitTestWCFHttp.cs" />
     <Compile Include="UnitTestWCF.cs" />
     <Compile Include="UnitTestWebService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Connected Services\MyConsoleWCFHttpTest\P29.Course.SOA.UnitTestProject.MyConsoleWCFHttpTest.WCFUser.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\MyConsoleWCFHttpTest\P30.Course.SOA.WCF.Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MyConsoleWCFHttpTest\service.wsdl" />
+    <None Include="Connected Services\MyConsoleWCFHttpTest\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\MyConsoleWCFHttpTest\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\MyWCFTest\CustomService.wsdl" />
     <None Include="Connected Services\MyWCFTest\CustomService.xsd">
       <SubType>Designer</SubType>
@@ -103,6 +122,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\MyConsoleWCFHttpTest\" />
     <WCFMetadataStorage Include="Connected Services\MyWCFTest\" />
     <WCFMetadataStorage Include="Connected Services\MyWebServiceTest\" />
   </ItemGroup>
@@ -129,6 +149,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\MyWCFTest\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MyConsoleWCFHttpTest\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MyConsoleWCFHttpTest\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\MyConsoleWCFHttpTest\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
