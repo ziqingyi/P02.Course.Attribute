@@ -22,5 +22,12 @@ namespace P30.Course.SOA.WCF.Interface
         [OperationContract]
         List<WCFUser> UserList();
 
+        /*
+         //must not be T. 
+         //server must know the type when publishing the service. 
+        //other programs may use this method using java, js.
+        [OperationContract]
+        List<T> TList<T>();
+        */
     }
 }
