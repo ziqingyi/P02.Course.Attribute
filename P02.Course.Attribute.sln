@@ -128,6 +128,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P30.Course.SOA.WCF.Project"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P30.Course.SOA.WCF.ConsoleTestWCFDuplexService", "P30.Course.SOA.WCF.ConsoleTestWCFDuplexService\P30.Course.SOA.WCF.ConsoleTestWCFDuplexService.csproj", "{D2070C6A-8E90-42F8-8EE1-774E1FD4BD32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P31.Course.SOA.WebTest", "P31.Course.SOA.WebTest\P31.Course.SOA.WebTest.csproj", "{830E6B82-A190-41FD-8210-315DC302DC38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P31.Course.SOA.WebAPI", "P31.Course.SOA.WebAPI\P31.Course.SOA.WebAPI.csproj", "{173A8FF0-1278-493D-B50E-31D75E4709AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -378,6 +382,14 @@ Global
 		{D2070C6A-8E90-42F8-8EE1-774E1FD4BD32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2070C6A-8E90-42F8-8EE1-774E1FD4BD32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2070C6A-8E90-42F8-8EE1-774E1FD4BD32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{830E6B82-A190-41FD-8210-315DC302DC38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{830E6B82-A190-41FD-8210-315DC302DC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{830E6B82-A190-41FD-8210-315DC302DC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{830E6B82-A190-41FD-8210-315DC302DC38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{173A8FF0-1278-493D-B50E-31D75E4709AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{173A8FF0-1278-493D-B50E-31D75E4709AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{173A8FF0-1278-493D-B50E-31D75E4709AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{173A8FF0-1278-493D-B50E-31D75E4709AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
