@@ -16,12 +16,14 @@ namespace P30.Course.SOA.WCF.Service
 
         public void Plus(int x, int y)
         {
+            string id = Thread.CurrentThread.ManagedThreadId.ToString();
+            System.Console.WriteLine($"start service: Plus.....x: {x} y:{y} in thread {id}");
             int result = x + y;
             Thread.Sleep(2000);
 
+
             ICallBack callBack = OperationContext.Current.GetCallbackChannel<ICallBack>();
             callBack.Show(x,y,result);
-
         }
 
 

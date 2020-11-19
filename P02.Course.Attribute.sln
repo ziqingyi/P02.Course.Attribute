@@ -126,6 +126,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P30.Course.SOA.WCF.Service"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P30.Course.SOA.WCF.Project", "P30.Course.SOA.WCF.Project\P30.Course.SOA.WCF.Project.csproj", "{753A6B4E-E1B8-4BE7-8CCF-B711087F08B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P30.Course.SOA.WCF.ConsoleTestWCFDuplexService", "P30.Course.SOA.WCF.ConsoleTestWCFDuplexService\P30.Course.SOA.WCF.ConsoleTestWCFDuplexService.csproj", "{D2070C6A-8E90-42F8-8EE1-774E1FD4BD32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -372,6 +374,10 @@ Global
 		{753A6B4E-E1B8-4BE7-8CCF-B711087F08B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{753A6B4E-E1B8-4BE7-8CCF-B711087F08B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{753A6B4E-E1B8-4BE7-8CCF-B711087F08B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2070C6A-8E90-42F8-8EE1-774E1FD4BD32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2070C6A-8E90-42F8-8EE1-774E1FD4BD32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2070C6A-8E90-42F8-8EE1-774E1FD4BD32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2070C6A-8E90-42F8-8EE1-774E1FD4BD32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
