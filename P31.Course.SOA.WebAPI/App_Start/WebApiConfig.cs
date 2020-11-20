@@ -16,7 +16,7 @@ namespace P31.Course.SOA.WebAPI
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/{controller}/{id}",//regex, api + controller + parameters.
                 defaults: new { id = RouteParameter.Optional }
             );
         }
