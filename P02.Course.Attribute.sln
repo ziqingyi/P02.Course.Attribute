@@ -132,6 +132,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P31.Course.SOA.WebTest", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P31.Course.SOA.WebAPI", "P31.Course.SOA.WebAPI\P31.Course.SOA.WebAPI.csproj", "{173A8FF0-1278-493D-B50E-31D75E4709AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P31.Course.SOA.Interface", "P31.Course.SOA.Interface\P31.Course.SOA.Interface.csproj", "{F1E1C948-CE5D-4F55-9EC8-FE483E6D3AE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P31.Course.SOA.Service", "P31.Course.SOA.Service\P31.Course.SOA.Service.csproj", "{8AA89F40-E70A-4752-B5DE-34C37AFB0497}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -390,6 +394,14 @@ Global
 		{173A8FF0-1278-493D-B50E-31D75E4709AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{173A8FF0-1278-493D-B50E-31D75E4709AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{173A8FF0-1278-493D-B50E-31D75E4709AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1E1C948-CE5D-4F55-9EC8-FE483E6D3AE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1E1C948-CE5D-4F55-9EC8-FE483E6D3AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1E1C948-CE5D-4F55-9EC8-FE483E6D3AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1E1C948-CE5D-4F55-9EC8-FE483E6D3AE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AA89F40-E70A-4752-B5DE-34C37AFB0497}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AA89F40-E70A-4752-B5DE-34C37AFB0497}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AA89F40-E70A-4752-B5DE-34C37AFB0497}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AA89F40-E70A-4752-B5DE-34C37AFB0497}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
