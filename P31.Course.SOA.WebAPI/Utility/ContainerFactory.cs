@@ -28,6 +28,12 @@ namespace P31.Course.SOA.WebAPI.Utility
              *
              * 4 normally use one container and config file and shared by whole project, rather than config many times.
              *   eg.mvc is in global.
+             *   (1) IOC + Config files
+             *   (2) controller should be updated to use container
+             *   (3) create UnityDependencyResolver and use it in the webapi by assign it to config.DependencyResolver
+             *
+             *
+             *
              */
 
             ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap();

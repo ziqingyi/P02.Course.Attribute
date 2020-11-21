@@ -13,17 +13,30 @@ namespace P31.Course.SOA.WebAPI.Controllers
 {
     public class IOCController : ApiController
     {
-        public object Get(int id)
+        private IUserService _userService = null;
+
+        public IOCController(IUserService userService)
         {
-            //old way
+            this._userService = userService;
+        }
+
+        public string Get(int id)
+        {
+            //// 1 old way
             //IUserService service = new UserService();
             //return service.Query(id);
 
-            //Container
-            IUserService service = ContainerFactory.Container.Resolve<IUserService>();
-            object res = service.Query(id);
-            return res;
+            ////2 Container
+            //IUserService service1 = ContainerFactory.Container.Resolve<IUserService>();
+            //object res1 = service1.Query(id);
+            //return res1;
 
+            //3 if use container, then all objects should be created with Container. 
+            object obj = this._userService.Query(id);
+            //must be able to serialize, otherwise will not be displayed in web browser. 
+            string SerializedObj = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+
+            return SerializedObj;
         }
 
 

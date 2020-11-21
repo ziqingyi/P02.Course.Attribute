@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using P31.Course.SOA.WebAPI.Utility;
 
 namespace P31.Course.SOA.WebAPI
 {
@@ -10,6 +11,7 @@ namespace P31.Course.SOA.WebAPI
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            config.DependencyResolver = new UnityDependencyResolver(ContainerFactory.Container);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
