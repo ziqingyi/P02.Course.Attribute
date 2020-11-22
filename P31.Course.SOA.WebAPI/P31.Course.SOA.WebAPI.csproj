@@ -178,6 +178,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IOCController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -345,7 +346,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -356,6 +356,10 @@
     <ProjectReference Include="..\P31.Course.SOA.Interface\P31.Course.SOA.Interface.csproj">
       <Project>{F1E1C948-CE5D-4F55-9EC8-FE483E6D3AE5}</Project>
       <Name>P31.Course.SOA.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P31.Course.SOA.Model\P31.Course.SOA.Model.csproj">
+      <Project>{b7406de2-b9ea-4550-b082-2f64338cfa81}</Project>
+      <Name>P31.Course.SOA.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\P31.Course.SOA.Service\P31.Course.SOA.Service.csproj">
       <Project>{8AA89F40-E70A-4752-B5DE-34C37AFB0497}</Project>
