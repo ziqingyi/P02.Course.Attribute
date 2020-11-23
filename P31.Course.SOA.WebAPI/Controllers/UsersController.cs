@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using P31.Course.SOA.Interface;
 using P31.Course.SOA.Model;
 
@@ -87,14 +88,14 @@ namespace P31.Course.SOA.WebAPI.Controllers
 
             return _usersList;
         }
-
+        //btnGet7
         [HttpGet]
         public IEnumerable<User> GetUserByModelSerialize(string userstring)
         {
             User user = JsonConvert.DeserializeObject<User>(userstring);
             return _usersList;
         }
-
+        //btnGet8
         public IEnumerable<User> GetUserByModelSerializeWithoutGet(string userstring)
         {
             User user = JsonConvert.DeserializeObject<User>(userstring);
@@ -108,6 +109,200 @@ namespace P31.Course.SOA.WebAPI.Controllers
         }
 
         #endregion
+
+
+        #region HttpPost
+
+        [HttpPost]
+        public User RegisterNone()
+        {
+            return _usersList.FirstOrDefault();
+        }
+
+        [HttpPost]
+        public User RegisterNoKey([FromBody] int id)
+        {
+            string idParam = HttpContext.Current.Request.Form["userId"];
+
+            var user = _usersList.FirstOrDefault(u => u.userId == id);
+            if (user == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return user;
+        }
+
+        [HttpPost]
+        public User Register([FromBody]int id)
+        {
+            string idParam = HttpContext.Current.Request.Form["id"];
+            User user = _usersList.FirstOrDefault(u => u.userId == id);
+
+            if (user == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            return user;
+        }
+
+        [HttpPost]
+        public User RegisterUser(User user)
+        {
+            string idParam = HttpContext.Current.Request.Form["userId"];
+            string nameParam = HttpContext.Current.Request.Form["userName"];
+            string emailParam = HttpContext.Current.Request.Form["userEmail"];
+
+            var stringContent = base.ControllerContext.Request.Content.ReadAsStringAsync().Result;
+            return user;
+        }
+
+
+        [HttpPost]
+        public string RegisterObject(JObject jData)
+        {
+            string idParam = HttpContext.Current.Request.Form["User[userId]"];
+            string nameParam = HttpContext.Current.Request.Form["User[userName]"];
+            string emailParam = HttpContext.Current.Request.Form["User[userEmail]"];
+            string infoParam = HttpContext.Current.Request.Form["info"];
+
+            dynamic json = jData;
+            JObject juser = json.User;
+            string info = json.Info;
+
+            var user = juser.ToObject<User>();
+
+            string result = string.Format("{0}_{1}_{2}_{3}", user.userId, user.userName, user.userEmail, info);
+            return result;
+        }
+
+
+        [HttpPost]
+        public string RegisterObjectDynamic(dynamic dynamicData)
+        {
+            string idParam = HttpContext.Current.Request.Form["User[userId]"];
+            string nameParam = HttpContext.Current.Request.Form["User[userName]"];
+            string emailParam = HttpContext.Current.Request.Form["User[userEmail]"];
+            string infoParam = HttpContext.Current.Request.Form["info"];
+
+            dynamic json = dynamicData;
+            JObject juser = json.User;
+            string info = json.Info;
+
+            User user = juser.ToObject<User>();
+            string result = string.Format("{0}_{1}_{2}_{3}", user.userId, user.userName, user.userEmail, info);
+            return result;
+        }
+
+        #endregion
+
+
+
+        #region HttpPut
+
+        [HttpPut]
+        public User RegisterNonPut()
+        {
+            User u = _usersList.FirstOrDefault();
+            return u;
+        }
+
+
+        [HttpPut]
+        public User RegisterNoKeyPut([FromBody]int id)
+        {
+            string idParam = HttpContext.Current.Request.Form["userId"];
+
+            User user = _usersList.FirstOrDefault(u => u.userId == id);
+            if (user == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return user;
+        }
+
+
+        [HttpPut]
+        public User RegisterPut([FromBody] int id)
+        {
+            string idParam = HttpContext.Current.Request.Form["userId"];
+
+            User user = _usersList.FirstOrDefault(u => u.userId == id);
+            if (user == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            return user;
+        }
+
+        [HttpPut]
+        public User RegisterUserPut(User user)
+        {
+            string idParam = HttpContext.Current.Request.Form["userId"];
+            string nameParam = HttpContext.Current.Request.Form["userName"];
+            string emailParam = HttpContext.Current.Request.Form["userEmail"];
+
+            string stringContent = base.ControllerContext.Request.Content.ReadAsStringAsync().Result;
+
+            return user;
+        }
+
+        [HttpPut]
+        public string RegisterObjectPut(JObject jData)
+        {
+            string idParam = HttpContext.Current.Request.Form["User[userId]"];
+            string nameParam = HttpContext.Current.Request.Form["User[userName]"];
+            string emailParam = HttpContext.Current.Request.Form["User[userEmail]"];
+            string infoParam = HttpContext.Current.Request.Form["info"];
+
+            dynamic json = jData;
+            JObject juser = json.User;
+            string info = json.Info;
+
+            User user = juser.ToObject<User>();
+
+            string result = string.Format("{0}_{1}_{2}_{3}", user.userId, user.userName, user.userEmail, info);
+            return result;
+        }
+
+        [HttpPut]
+        public string RegisterObjectDynamicPut(dynamic dynamicData)
+        {
+            string idParam = HttpContext.Current.Request.Form["User[userId]"];
+            string nameParam = HttpContext.Current.Request.Form["User[userName]"];
+            string emailParam = HttpContext.Current.Request.Form["User[userEmail]"];
+            string infoParam = HttpContext.Current.Request.Form["info"];
+
+            dynamic json = dynamicData;
+            JObject juser = json.User;
+            string info = json.Info;
+
+            User user = juser.ToObject<User>();
+
+            string result = string.Format("{0}_{1}_{2}_{3}", user.userId, user.userName, user.userEmail, info);
+            return result;
+        }
+
+
+
+
+
+
+
+
+        #endregion
+
+
+
+
+
+
+        #region HttpDelete
+
+        #endregion
+
+
 
 
 
