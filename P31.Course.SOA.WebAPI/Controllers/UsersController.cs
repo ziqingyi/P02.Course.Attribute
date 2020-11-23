@@ -40,7 +40,7 @@ namespace P31.Course.SOA.WebAPI.Controllers
         [HttpGet]
         public User GetUserByID(int id)
         {
-            string idParam = HttpContext.Current.Request.QueryString["id"];
+            string idParam = HttpContext.Current.Request.QueryString["userId"];
 
             User u = _usersList.FirstOrDefault(user => user.userId == id);
             if(u ==null)
@@ -61,16 +61,27 @@ namespace P31.Course.SOA.WebAPI.Controllers
         [HttpGet]
         public IEnumerable<User> GetUserByNameId(string username, int id)
         {
-            string idParam = HttpContext.Current.Request.QueryString["id"];
+            string idParam = HttpContext.Current.Request.QueryString["userId"];
             string userNameParam = HttpContext.Current.Request.QueryString["userName"];
 
             return _usersList.Where(p => string.Equals(p.userName, username, StringComparison.OrdinalIgnoreCase));
         }
 
+        //btnGet5
         [HttpGet]
-        public IEnumerable<User> GetUserByModel([FromUri]User user)
+        public IEnumerable<User> GetUserByModel(User user)
         {
-            string idParam = HttpContext.Current.Request.QueryString["id"];
+            string idParam = HttpContext.Current.Request.QueryString["userId"];
+            string userNameParam = HttpContext.Current.Request.QueryString["userName"];
+            string email = HttpContext.Current.Request.QueryString["email"];
+
+            return _usersList;
+        }
+        //btnGet6
+        [HttpGet]
+        public IEnumerable<User> GetUserByModelUri([FromUri]User user)
+        {
+            string idParam = HttpContext.Current.Request.QueryString["userId"];
             string userNameParam = HttpContext.Current.Request.QueryString["userName"];
             string email = HttpContext.Current.Request.QueryString["email"];
 
