@@ -119,17 +119,17 @@ namespace P31.Course.SOA.WebAPI.Controllers
 
 
         #region HttpPost
-        //btnPost1
+        //
         [HttpPost]
         public User RegisterNone()
         {
             return _usersList.FirstOrDefault();
         }
-        //btnPost2
+        //btnPost1
         [HttpPost]
         public User RegisterNoKey([FromBody] int id)
         {
-            string idParam = HttpContext.Current.Request.Form["userId"];
+            string idParam = HttpContext.Current.Request.Form["UserID"];
 
             var user = _usersList.FirstOrDefault(u => u.userId == id);
             if (user == null)
@@ -138,11 +138,11 @@ namespace P31.Course.SOA.WebAPI.Controllers
             }
             return user;
         }
-        //btnPost3
+        //btnPost2
         [HttpPost]
         public User Register([FromBody]int id)
         {
-            string idParam = HttpContext.Current.Request.Form["id"];
+            string idParam = HttpContext.Current.Request.Form["ID"];
             User user = _usersList.FirstOrDefault(u => u.userId == id);
 
             if (user == null)
@@ -152,11 +152,11 @@ namespace P31.Course.SOA.WebAPI.Controllers
 
             return user;
         }
-
+        //btnPost3
         [HttpPost]
         public User RegisterUser(User user)
         {
-            string idParam = HttpContext.Current.Request.Form["userId"];
+            string idParam = HttpContext.Current.Request.Form["UserID"];
             string nameParam = HttpContext.Current.Request.Form["userName"];
             string emailParam = HttpContext.Current.Request.Form["userEmail"];
 
