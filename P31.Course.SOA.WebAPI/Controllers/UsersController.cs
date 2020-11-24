@@ -23,11 +23,18 @@ namespace P31.Course.SOA.WebAPI.Controllers
             new User() {userId = 3, userName = "Batman", userEmail = "Batman@google.com"}
         };
 
-
         public UsersController(IUserService userService)
         {
             this._userService = userService;
         }
+
+
+        #region user log in
+
+
+        #endregion
+
+
 
         #region HttpGet
 
@@ -112,13 +119,13 @@ namespace P31.Course.SOA.WebAPI.Controllers
 
 
         #region HttpPost
-
+        //btnPost1
         [HttpPost]
         public User RegisterNone()
         {
             return _usersList.FirstOrDefault();
         }
-
+        //btnPost2
         [HttpPost]
         public User RegisterNoKey([FromBody] int id)
         {
@@ -131,7 +138,7 @@ namespace P31.Course.SOA.WebAPI.Controllers
             }
             return user;
         }
-
+        //btnPost3
         [HttpPost]
         public User Register([FromBody]int id)
         {
@@ -285,20 +292,74 @@ namespace P31.Course.SOA.WebAPI.Controllers
         }
 
 
-
-
-
-
-
-
         #endregion
 
 
-
-
-
-
         #region HttpDelete
+
+        [HttpDelete]
+        public User RegisterNoneDelete()
+        {
+            User u = _usersList.FirstOrDefault();
+            return u;
+        }
+
+        [HttpDelete]
+        public User RegisterNoKeyDelete([FromBody] int id)
+        {
+            string idParam = HttpContext.Current.Request.Form["userId"];
+            User user = _usersList.FirstOrDefault(u => u.userId == id);
+
+            if (user == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return user;
+        }
+
+        [HttpDelete]
+        public User RegisterDelete([FromBody] int id)
+        {
+            string idParam = HttpContext.Current.Request.Form["userId"];
+
+            User user = _usersList.FirstOrDefault(u => u.userId == id);
+            if (user == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+
+            return user;
+        }
+
+        [HttpDelete]
+        public User RegisterUserDelete(User user)
+        {
+            string idParam = HttpContext.Current.Request.Form["userId"];
+            string nameParam = HttpContext.Current.Request.Form["userName"];
+            string emailParam = HttpContext.Current.Request.Form["userEmail"];
+
+            string stringcontent = base.ControllerContext.Request.Content.ReadAsStringAsync().Result;
+            return user;
+        }
+
+        [HttpDelete]
+        public string RegisterObjectDynamicDelete(dynamic dynamicData)
+        {
+            string idParam = HttpContext.Current.Request.Form["User[userId]"];
+            string nameParam = HttpContext.Current.Request.Form["User[userName]"];
+            string emailParam = HttpContext.Current.Request.Form["info"];
+
+            dynamic json = dynamicData;
+            JObject juser = json.User;
+            string info = json.Info;
+            User user = juser.ToObject<User>();
+
+            string result = string.Format("{0}_{1}_{2}_{3}", user.userId, user.userName, user.userEmail, info);
+            return result;
+        }
+
+
+
 
         #endregion
 

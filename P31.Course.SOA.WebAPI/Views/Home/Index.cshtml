@@ -185,6 +185,7 @@
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -197,7 +198,7 @@
                         datatype: "json"
                     });
                 });
-                $("#btnPost2").on("click", function () {//key-value
+                $("#btnPost2").on("click", function () {//key-value, if put "id" as key, will not able to get value
                     $.ajax({
                         url: "/api/users/Register",
                         type: "post",
