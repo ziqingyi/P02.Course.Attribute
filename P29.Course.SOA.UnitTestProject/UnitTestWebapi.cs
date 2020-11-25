@@ -34,13 +34,18 @@ namespace P29.Course.SOA.UnitTestProject
         public void TestMethod()
         {
             var result1 = this.GetClient();
-
             var result2 = this.GetWebRequest();
 
             var result3 = this.PostClient();
+            var result4 = this.PostWebRequest();
 
+            var result5 = this.PutClient();
+            var result6 = this.PutWebRequest();
 
+            var result7 = this.DeleteClient();
+            var result8 = this.DeleteWebRequest();
 
+            Console.WriteLine();
         }
 
         #region HttpClient Get
