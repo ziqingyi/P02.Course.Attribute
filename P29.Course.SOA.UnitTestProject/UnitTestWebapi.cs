@@ -15,6 +15,7 @@ namespace P29.Course.SOA.UnitTestProject
     {
         private static HttpClient _httpClient = null;
 
+        //TCP may not free up immediately when high volume of request. so need singleton.  
         static HttpClientFactory()
         {
             _httpClient = new HttpClient(new HttpClientHandler());

@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Controllers;
+using System.Web.Security;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using P31.Course.SOA.Interface;
 using P31.Course.SOA.Model;
+using P31.Course.SOA.WebAPI.Utility.Filters;
 
 namespace P31.Course.SOA.WebAPI.Controllers
 {
     public class UsersController : ApiController
     {
         private IUserService _userService = null;
+
 
         private List<User> _usersList = new List<User>()
         {
@@ -30,6 +35,42 @@ namespace P31.Course.SOA.WebAPI.Controllers
 
 
         #region user log in
+        [HttpGet]
+        public string Login(string account, string password)
+        {
+            if ("Admin".Equals(account) && "password213".Equals(password))
+            {
+                string userData = string.Format("{0}&{1}", account, password);
+
+                FormsAuthenticationTicket ticketObject = new FormsAuthenticationTicket(
+                    0,
+                    account, 
+                    DateTime.Now,
+                    DateTime.Now.AddHours(1),
+                    true,
+                    userData,
+                    FormsAuthentication.FormsCookiePath
+                    );
+
+                var resultObj = new 
+                {
+                    Result = true,
+                    Ticket = FormsAuthentication.Encrypt(ticketObject)
+                };
+
+                string resultJson = JsonConvert.SerializeObject(resultObj);
+                return resultJson;
+            }
+            else
+            {
+                var resultObj = new {Result = false};
+
+                string resultJson = JsonConvert.SerializeObject(resultObj);
+
+                return resultJson;
+            }
+
+        }
 
 
         #endregion
@@ -59,6 +100,7 @@ namespace P31.Course.SOA.WebAPI.Controllers
         }
 
         [HttpGet]
+        [CustomBasicAuthorize]
         public IEnumerable<User> GetUserByName(string username)
         {
             string userNameParam = HttpContext.Current.Request.QueryString["userName"];
@@ -67,6 +109,7 @@ namespace P31.Course.SOA.WebAPI.Controllers
         }
 
         [HttpGet]
+        [CustomBasicAuthorize]
         public IEnumerable<User> GetUserByNameId(string username, int id)
         {
             string idParam = HttpContext.Current.Request.QueryString["userId"];
@@ -365,7 +408,20 @@ namespace P31.Course.SOA.WebAPI.Controllers
 
 
 
+        #region validation
 
+        //protected override void HandleUnauthorizedRequest(HttpActionContext actionContext)
+        //{
+        //    HttpResponseMessage challengeMessage = new HttpResponseMessage(HttpStatusCode.Unauthorized);//browser will check auth
+        //    challengeMessage.Headers.Add("WWW-Authenticate","Basic");
+
+        //    base.HandleUnauthorizedRequest(actionContext);
+
+        //}
+
+
+
+        #endregion
 
 
 

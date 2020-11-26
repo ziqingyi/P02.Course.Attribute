@@ -88,9 +88,9 @@
                     function () {
                         $.ajax({
                             url: "/api/users/GetUserByName", type: "get", data: { "username": "Superman" },
-                            //beforeSend: function (XHR) {
-                            //    XHR.setRequestHeader('Authorization', 'BasicAuth ' + ticket);
-                            //},
+                            beforeSend: function (XHR) {
+                                XHR.setRequestHeader('Authorization', 'BasicAuth ' + ticket);
+                            },
                             success: function (data) {
                                 alert(data);
                             },
