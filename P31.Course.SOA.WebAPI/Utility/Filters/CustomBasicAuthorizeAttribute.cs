@@ -20,6 +20,13 @@ namespace P31.Course.SOA.WebAPI.Utility.Filters
             var authorization = actionContext.Request.Headers.Authorization;//same to getting through array.
             //base.OnAuthorization(actionContext);
 
+            //check null and validate. 
+            if (authorization == null)
+            { 
+                throw new HttpResponseException(System.Net.HttpStatusCode.Unauthorized);
+            }
+
+
             if (this.ValidateTicket(authorization.Parameter))
             {
                 return;//continue
@@ -36,13 +43,24 @@ namespace P31.Course.SOA.WebAPI.Utility.Filters
 
         private bool ValidateTicket(string encryptTicket)
         {
-            string strTicket = FormsAuthentication.Decrypt(encryptTicket).UserData;
 
-            string CorrectUserData = string.Format("{0}&{1}", "Admin", "password213");
+            //if (string.IsNullOrWhiteSpace(encryptTicket))
+            //    return false;
+            try
+            {
+                string strTicket = FormsAuthentication.Decrypt(encryptTicket).UserData;
 
-            bool result = string.Equals(strTicket, CorrectUserData);
+                string CorrectUserData = string.Format("{0}&{1}", "Admin", "password213");
 
-            return result;
+                bool result = string.Equals(strTicket, CorrectUserData);
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
         }
 
     }
