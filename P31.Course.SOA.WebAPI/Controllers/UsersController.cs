@@ -16,6 +16,7 @@ using P31.Course.SOA.WebAPI.Utility.Filters;
 
 namespace P31.Course.SOA.WebAPI.Controllers
 {
+    [CustomBasicAuthorize] //if place on class,  works for whole controller.  
     public class UsersController : ApiController
     {
         private IUserService _userService = null;
@@ -36,6 +37,7 @@ namespace P31.Course.SOA.WebAPI.Controllers
 
         #region user log in
         [HttpGet]
+        [CustomAllowAnonymousAttribute]
         public string Login(string account, string password)
         {
             if ("Admin".Equals(account) && "password213".Equals(password))
@@ -100,7 +102,7 @@ namespace P31.Course.SOA.WebAPI.Controllers
         }
 
         [HttpGet]
-        [CustomBasicAuthorize]
+        //[CustomBasicAuthorize] //if place on method, only works for this method. 
         public IEnumerable<User> GetUserByName(string username)
         {
             string userNameParam = HttpContext.Current.Request.QueryString["userName"];

@@ -15,6 +15,21 @@ namespace P31.Course.SOA.WebAPI.Utility.Filters
 
         public override void OnAuthorization(HttpActionContext actionContext)
         {
+            //check the attributes
+            if (actionContext.ActionDescriptor.GetCustomAttributes<CustomAllowAnonymousAttribute>().
+                    FirstOrDefault() != null)
+            {
+                return;
+            }
+
+            if (actionContext.ActionDescriptor.ControllerDescriptor
+                .GetCustomAttributes<CustomAllowAnonymousAttribute>().FirstOrDefault()!= null)
+            {
+                return;
+            }
+
+
+
             //get auth info from header, then you can decrypt it and check info inside. 
             //actionContext.Request.Headers["Authorization"];
             var authorization = actionContext.Request.Headers.Authorization;//same to getting through array.

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using P31.Course.SOA.WebAPI.Utility;
+using P31.Course.SOA.WebAPI.Utility.Filters;
 
 namespace P31.Course.SOA.WebAPI
 {
@@ -15,6 +16,9 @@ namespace P31.Course.SOA.WebAPI
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            //filter for all controllers. so need some [AllowAnonymous] for some methods.  
+            //config.Filters.Add(new CustomBasicAuthorizeAttribute());
 
 
             // add a route similar to MVC
