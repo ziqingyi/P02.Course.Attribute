@@ -18,7 +18,7 @@ namespace P31.Course.SOA.WebAPI
             config.MapHttpAttributeRoutes();
 
             //filter for all controllers. so need some [AllowAnonymous] for some methods.  
-            //config.Filters.Add(new CustomBasicAuthorizeAttribute());
+            config.Filters.Add(new CustomBasicAuthorizeAttribute());
 
 
             // add a route similar to MVC

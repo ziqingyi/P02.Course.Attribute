@@ -34,6 +34,8 @@ namespace P29.Course.SOA.UnitTestProject
         [TestMethod]
         public void TestMethod()
         {
+            this.AuthorizationDemo();
+
             var result1 = this.GetClient();
             var result2 = this.GetWebRequest();
 
@@ -420,7 +422,36 @@ namespace P29.Course.SOA.UnitTestProject
 
         #endregion
 
+        #region after logging on and get ticket
 
+        private void AuthorizationDemo()
+        {
+            string ticket = "";
+            {
+                string loginUrl = "https://localhost:44355/api/users/Login?Account=Admin&Password=password213";
+                HttpClientHandler handler = new HttpClientHandler();
+
+                using (HttpClient http = new HttpClient(handler))
+                {
+                    HttpResponseMessage response = http.GetAsync(loginUrl).Result;
+                    Console.WriteLine("Status Code is: " + response.StatusCode);
+                    ticket = response.Content.ReadAsStringAsync().Result
+                        .Replace("\"{\\\"Result\\\":true,\\\"Ticket\\\":\\\"", "").Replace("\\\"}\"", "");
+
+                    //string ticket2 = JsonHelper
+
+                }
+
+
+
+            }
+
+
+        }
+        
+
+
+        #endregion
 
 
 
