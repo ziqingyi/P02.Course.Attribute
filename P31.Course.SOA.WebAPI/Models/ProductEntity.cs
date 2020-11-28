@@ -9,7 +9,7 @@ namespace P31.Course.SOA.WebAPI.Models
     public class ProductEntity:DbContext
     {
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Product> products { get; set; }
 
  
 

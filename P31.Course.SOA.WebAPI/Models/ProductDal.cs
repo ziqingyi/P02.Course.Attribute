@@ -14,7 +14,7 @@ namespace P31.Course.SOA.WebAPI.Models
         /// <returns></returns>
         public List<Product> GetAllProduct()
         {
-            List<Product> resList = entity.Products.ToList();
+            List<Product> resList = entity.products.ToList();
             return resList;
         }
 
