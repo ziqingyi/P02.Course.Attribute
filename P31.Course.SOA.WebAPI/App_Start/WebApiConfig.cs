@@ -17,8 +17,14 @@ namespace P31.Course.SOA.WebAPI
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            //filter for all controllers. so need some [AllowAnonymous] for some methods.  
-            config.Filters.Add(new CustomBasicAuthorizeAttribute());
+            //filter for all controllers. Exception: so need some [AllowAnonymous] for some methods.  
+            //config.Filters.Add(new CustomBasicAuthorizeAttribute());
+
+            //filter for all controllers. Exception catch. 
+            //but for web api, the filters only works when error happens inside the method, 
+            //        if the method is not hit, error will not be captured. 
+            config.Filters.Add(new CustomExceptionFilterAttribute());
+
 
 
             // add a route similar to MVC

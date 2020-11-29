@@ -217,6 +217,7 @@
     <Compile Include="Utility\ContainerFactory.cs" />
     <Compile Include="Utility\Filters\CustomAllowAnonymousAttribute.cs" />
     <Compile Include="Utility\Filters\CustomBasicAuthorizeAttribute.cs" />
+    <Compile Include="Utility\Filters\CustomExceptionFilterAttribute.cs" />
     <Compile Include="Utility\UnityDependencyResolver.cs" />
   </ItemGroup>
   <ItemGroup>
