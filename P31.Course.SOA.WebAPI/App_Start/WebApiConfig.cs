@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 using P31.Course.SOA.WebAPI.Utility;
 using P31.Course.SOA.WebAPI.Utility.Filters;
 
@@ -25,6 +26,8 @@ namespace P31.Course.SOA.WebAPI
             //        if the method is not hit, error will not be captured. 
             config.Filters.Add(new CustomExceptionFilterAttribute());
 
+            //replace exception handler class,will affect all program classes
+            config.Services.Replace(typeof(IExceptionHandler), new CustomExceptionHandler());
 
 
             // add a route similar to MVC
