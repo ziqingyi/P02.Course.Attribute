@@ -108,7 +108,7 @@ namespace P31.Course.SOA.WebAPI.Controllers
         //[CustomBasicAuthorize] //if place on method, only works for this method. 
         public IEnumerable<User> GetUserByName(string username)
         {
-            throw new Exception("23213131");
+            throw new Exception("23213131");//test exception
             string userNameParam = HttpContext.Current.Request.QueryString["userName"];
 
             return _usersList.Where(p => string.Equals(p.userName, username, StringComparison.OrdinalIgnoreCase));
@@ -116,6 +116,7 @@ namespace P31.Course.SOA.WebAPI.Controllers
 
         [HttpGet]
         [CustomBasicAuthorize]
+        [CustomActionFilter]
         public IEnumerable<User> GetUserByNameId(string username, int id)
         {
             string idParam = HttpContext.Current.Request.QueryString["userId"];

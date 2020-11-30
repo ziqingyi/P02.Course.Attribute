@@ -215,6 +215,7 @@
     <Compile Include="Models\ProductEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ContainerFactory.cs" />
+    <Compile Include="Utility\Filters\CustomActionFilterAttribute.cs" />
     <Compile Include="Utility\Filters\CustomAllowAnonymousAttribute.cs" />
     <Compile Include="Utility\Filters\CustomBasicAuthorizeAttribute.cs" />
     <Compile Include="Utility\Filters\CustomExceptionFilterAttribute.cs" />
