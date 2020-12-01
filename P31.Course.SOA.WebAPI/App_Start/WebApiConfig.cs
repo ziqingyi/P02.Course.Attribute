@@ -32,7 +32,7 @@ namespace P31.Course.SOA.WebAPI
 
 
 
-
+            //only one cors header can be added, otherwise error.
             config.EnableCors(new EnableCorsAttribute("*","*","*"));
 
 
