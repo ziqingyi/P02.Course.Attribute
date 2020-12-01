@@ -5,6 +5,7 @@ using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using P31.Course.SOA.WebAPI.Utility;
 using P31.Course.SOA.WebAPI.Utility.Filters;
+using System.Web.Http.Cors;
 
 namespace P31.Course.SOA.WebAPI
 {
@@ -28,6 +29,13 @@ namespace P31.Course.SOA.WebAPI
 
             //replace exception handler class,will affect all program classes
             config.Services.Replace(typeof(IExceptionHandler), new CustomExceptionHandler());
+
+
+
+
+            config.EnableCors(new EnableCorsAttribute("*","*","*"));
+
+
 
 
             // add a route similar to MVC
