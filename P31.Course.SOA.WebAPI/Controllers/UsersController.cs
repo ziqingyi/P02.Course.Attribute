@@ -93,7 +93,7 @@ namespace P31.Course.SOA.WebAPI.Controllers
         [CustomExceptionFilter]
         public User GetUserByID(int id)
         {
-            throw new Exception("23213131");
+            //throw new Exception("23213131");
             string idParam = HttpContext.Current.Request.QueryString["userId"];
 
             User u = _usersList.FirstOrDefault(user => user.userId == id);
@@ -108,14 +108,14 @@ namespace P31.Course.SOA.WebAPI.Controllers
         //[CustomBasicAuthorize] //if place on method, only works for this method. 
         public IEnumerable<User> GetUserByName(string username)
         {
-            throw new Exception("23213131");//test exception
+            //throw new Exception("23213131");//test exception
             string userNameParam = HttpContext.Current.Request.QueryString["userName"];
 
             return _usersList.Where(p => string.Equals(p.userName, username, StringComparison.OrdinalIgnoreCase));
         }
 
         [HttpGet]
-        [CustomBasicAuthorize]
+        //[CustomBasicAuthorize]
         [CustomActionFilter]
         public IEnumerable<User> GetUserByNameId(string username, int id)
         {
