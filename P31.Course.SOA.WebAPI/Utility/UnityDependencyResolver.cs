@@ -28,7 +28,8 @@ namespace P31.Course.SOA.WebAPI.Utility
         {
             try
             {
-                object o = ContainerFactory.Container.Resolve(serviceType);
+                //object o = ContainerFactory.Container.Resolve(serviceType);
+                object o = _unityContainer.Resolve(serviceType);
                 return o;
             }
             catch (Exception e)
@@ -40,7 +41,8 @@ namespace P31.Course.SOA.WebAPI.Utility
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            var res = ContainerFactory.Container.ResolveAll(serviceType);
+            //var res = ContainerFactory.Container.ResolveAll(serviceType);
+            var res = _unityContainer.ResolveAll(serviceType);
             return res;
         }
 
