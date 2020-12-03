@@ -266,6 +266,8 @@
     <Compile Include="Models\ProductDal.cs" />
     <Compile Include="Models\ProductEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\AOP\LogAfterBehavior.cs" />
+    <Compile Include="Utility\AOP\LogBeforeBehavior.cs" />
     <Compile Include="Utility\ContainerFactory.cs" />
     <Compile Include="Utility\Filters\CustomActionFilterAttribute.cs" />
     <Compile Include="Utility\Filters\CustomAllowAnonymousAttribute.cs" />
