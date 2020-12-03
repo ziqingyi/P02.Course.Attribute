@@ -38,11 +38,12 @@ namespace P31.Course.SOA.WebAPI
 
 
 
-            // add a route similar to MVC
+            //a route similar to MVC, use for testing calling webApi with front/back end,
+            //put first for mapping first
             config.Routes.MapHttpRoute(
-                name:"CustomApi",
-                routeTemplate:"api/{controller}/{action}/{id}",
-                defaults:new {id = RouteParameter.Optional});
+                name: "CustomApi",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional });
 
 
 
