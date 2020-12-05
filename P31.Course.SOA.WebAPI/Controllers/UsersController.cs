@@ -19,6 +19,7 @@ namespace P31.Course.SOA.WebAPI.Controllers
     //[CustomBasicAuthorize] //if place on class,  works for whole controller.  
     public class UsersController : ApiController
     {
+
         private IUserService _userService = null;
 
 
@@ -31,6 +32,8 @@ namespace P31.Course.SOA.WebAPI.Controllers
 
         public UsersController(IUserService userService)
         {
+            //create exception for testing CustomExceptionHandler 
+            //throw new Exception(" controller error");
             this._userService = userService;
         }
 
@@ -93,7 +96,7 @@ namespace P31.Course.SOA.WebAPI.Controllers
         [CustomExceptionFilter]
         public User GetUserByID(int id)
         {
-            //throw new Exception("23213131");
+            throw new Exception("23213131");
             string idParam = HttpContext.Current.Request.QueryString["userId"];
 
             User u = _usersList.FirstOrDefault(user => user.userId == id);
