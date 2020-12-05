@@ -12,7 +12,7 @@ namespace P31.Course.SOA.WebAPI.Utility.Filters
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
             Console.WriteLine("OnActionExecuting....");
-            base.OnActionExecuting(actionContext);
+            //base.OnActionExecuting(actionContext);
         }
 
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
