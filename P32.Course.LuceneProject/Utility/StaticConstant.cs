@@ -11,7 +11,7 @@ namespace P32.Course.LuceneProject.Utility
     {
         public static string IndexPath = ConfigurationManager.AppSettings["IndexPath"];
 
-        public static string TestIndexPath = ConfigurationManager.AppSettings["TestIndexPath"];
+        public static string TestIndexPath = AppDomain.CurrentDomain.BaseDirectory+"\\index\\";
 
         public static string ConnStr = ConfigurationManager.ConnectionStrings["mvc5"].ConnectionString;
     }

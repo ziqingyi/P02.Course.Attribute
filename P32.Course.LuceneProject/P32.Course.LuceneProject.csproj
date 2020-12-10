@@ -83,5 +83,8 @@
   <ItemGroup>
     <Content Include="CfgFiles\log4net.cfg.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Index\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
