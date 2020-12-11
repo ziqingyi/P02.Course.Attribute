@@ -10,6 +10,8 @@ using Lucene.Net.QueryParsers;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
 using P32.Course.LuceneProject.DataService;
+using P32.Course.LuceneProject.Lucene.Interface;
+using P32.Course.LuceneProject.Lucene.Service;
 using P32.Course.LuceneProject.Model;
 using P32.Course.LuceneProject.Utility;
 
@@ -143,9 +145,26 @@ namespace P32.Course.LuceneProject
         }
 
 
+        private static string AnalyzerKeyword(string keyword)
+        {
+            StringBuilder queryStringBuilder = new StringBuilder();
+            ILuceneAnalyze analyzer = new LuceneAnalyze();
 
 
 
+        }
+
+
+
+
+        #region some data
+        private static string[] TitleArray = new string[]
+        {
+            "314", "fafdaf", "computer","desktop"
+        };
+        
+
+        #endregion
 
 
     }

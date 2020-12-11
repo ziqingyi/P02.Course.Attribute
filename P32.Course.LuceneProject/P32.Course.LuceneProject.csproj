@@ -69,6 +69,8 @@
     <Compile Include="DataService\CommodityRepository.cs" />
     <Compile Include="DataService\SqlHelper.cs" />
     <Compile Include="LuceneTest.cs" />
+    <Compile Include="Lucene\Interface\ILuceneAnalyze.cs" />
+    <Compile Include="Lucene\Service\LuceneAnalyze.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\Commodity.cs" />
     <Compile Include="Program.cs" />
@@ -85,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Index\" />
+    <Folder Include="Lucene\Analyzer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
