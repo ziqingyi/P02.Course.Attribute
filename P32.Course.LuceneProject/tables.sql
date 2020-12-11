@@ -27,12 +27,14 @@ GO
 
 
 insert into Commodity(ProductId,CategoryId,title,Price,url,ImageUrl)
-values(3,2,'this is a book',77,'www.test.com','www.test.com'),
+values(1,2,'testbook mouse afdsss',77,'www.test.com','www.test.com'),
+       (2,2,'afdafdesk fafdsfds  screen',77,'www.test.com','www.test.com'),
+(3,2,'this is a book',77,'www.test.com','www.test.com'),
        (4,2,'.net book',77,'www.test.com','www.test.com'),
 	   (5,1,'java book',77,'www.test.com','www.test.com'),
 	   (6,2,'desk top flow aldflk',77,'www.test.com','www.test.com'),
 	   (7,5,'computer ddsfa screen',77,'www.test.com','www.test.com'),
-	   (9,2,'desk  computer sfadasf',77,'www.test.com','www.test.com'),
-	   (10,6,'bookafsda ffdfdf dsafdsabook',77,'www.test.com','www.test.com'),
-	   (11,2,'dfdafda desk afdasf',77,'www.test.com','www.test.com'),
-	   (12,1,'screen mouse safdbookafdsamouse',77,'www.test.com','www.test.com')
+	   (8,2,'desk  computer sfadasf',77,'www.test.com','www.test.com'),
+	   (9,6,'bookafsda ffdfdf dsafdsabook',77,'www.test.com','www.test.com'),
+	   (10,2,'dfdafda desk afdasf',77,'www.test.com','www.test.com'),
+	   (11,1,'screen mouse safdbookafdsamouse',77,'www.test.com','www.test.com')
