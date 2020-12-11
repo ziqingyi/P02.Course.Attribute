@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CfgFiles\log4net.cfg.xml" />
+    <Content Include="tables.sql" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Index\" />
