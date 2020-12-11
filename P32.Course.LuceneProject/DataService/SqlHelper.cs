@@ -17,7 +17,7 @@ namespace P32.Course.LuceneProject.DataService
 
         public static void ExecuteNonQuery(string sql)
         {
-            using (SqlConnection conn = new SqlConnection())
+            using (SqlConnection conn = new SqlConnection(ConnStr))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -28,7 +28,7 @@ namespace P32.Course.LuceneProject.DataService
 
         public static List<T> QueryList<T>(string sql) where T: new ()
         {
-            using (SqlConnection conn = new SqlConnection())
+            using (SqlConnection conn = new SqlConnection(ConnStr))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(sql,conn);

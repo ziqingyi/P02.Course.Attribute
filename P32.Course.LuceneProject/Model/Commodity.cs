@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P32.Course.LuceneProject.Model
 {
-    public class Commodity
+    public class Commodity: BaseModel
     {
         public long ProductId { get; set; }
         public int CategoryId { get; set; }
