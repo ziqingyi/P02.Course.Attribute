@@ -20,8 +20,10 @@ namespace P32.Course.LuceneProject
 
         public static void Show()
         {
+            //common used
             FSDirectory dir = FSDirectory.Open(StaticConstant.TestIndexPath);
             IndexSearcher searcher = new IndexSearcher(dir); // searcher
+
 
             Console.WriteLine("***************Search  1************************");
             {
@@ -42,10 +44,13 @@ namespace P32.Course.LuceneProject
             }
 
 
-            Console.WriteLine("***************Search  2************************");
+            
             QueryParser parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "title", new PanGuAnalyzer());
             {
+                Console.WriteLine("***************Search  2.1 ************************");
+
                 string keyword = "book computer desk ";
+
                 {
                     Query query = parser.Parse(keyword);
                     TopDocs docs = searcher.Search(query, null, 10000);
@@ -67,35 +72,34 @@ namespace P32.Course.LuceneProject
                     Console.WriteLine("total hits : {0}", docs.TotalHits);
                 }
 
+                Console.WriteLine("***************Search  2.2 ************************");
+                {
+                    Query query = parser.Parse(keyword);
+                    NumericRangeFilter<int> timeFilter = NumericRangeFilter.NewIntRange("id", 5, 10,true,true);//filter
+                    
+                    SortField sortPrice = new SortField("price", SortField.DOUBLE, false);
+                    //SortField sortTitle = new SortField("title", SortField.STRING, true);
+                    Sort sort = new Sort(sortPrice);
 
-
-
-
-
-
-
-
+                    TopDocs docs = searcher.Search(query, timeFilter, 10000, sort);
+                    int i = 0;
+                    foreach (ScoreDoc sd in docs.ScoreDocs)
+                    {
+                        if (i++ < 1000)
+                        {
+                            Document doc = searcher.Doc(sd.Doc);
+                            Console.WriteLine("---------------------------");
+                            Console.WriteLine("id={0}", doc.Get("id"));
+                            Console.WriteLine("title={0}", doc.Get("title"));
+                            Console.WriteLine("price={0}", doc.Get("price"));
+                            Console.WriteLine("url={0}", doc.Get("url"));
+                            Console.WriteLine("content={0}", doc.Get("content"));
+                        }
+                    }
+                    Console.WriteLine("-----------------------------------");
+                    Console.WriteLine("total hits : {0}", docs.TotalHits);
+                }
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         }
 
@@ -111,7 +115,7 @@ namespace P32.Course.LuceneProject
                     //for (int k = 0; k < 10; k++)
                     {
                         Document doc = new Document();
-                        doc.Add(new Field("id", commodity.Id.ToString(), Field.Store.YES,Field.Index.NOT_ANALYZED ));
+                        doc.Add(new NumericField("id",  Field.Store.YES,true).SetIntValue(commodity.Id) );
                         doc.Add(new Field("title", commodity.Title, Field.Store.YES, Field.Index.ANALYZED));
                         doc.Add(new Field("url", commodity.Url, Field.Store.NO, Field.Index.NOT_ANALYZED));
                         doc.Add(new Field("imageurl",commodity.ImageUrl, Field.Store.NO,Field.Index.NOT_ANALYZED));
