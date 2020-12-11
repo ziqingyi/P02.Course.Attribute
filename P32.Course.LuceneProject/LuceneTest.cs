@@ -14,6 +14,7 @@ using P32.Course.LuceneProject.Lucene.Interface;
 using P32.Course.LuceneProject.Lucene.Service;
 using P32.Course.LuceneProject.Model;
 using P32.Course.LuceneProject.Utility;
+using Version = Lucene.Net.Util.Version;
 
 namespace P32.Course.LuceneProject
 {
@@ -45,9 +46,7 @@ namespace P32.Course.LuceneProject
                 Console.WriteLine("total hits : {0}", docs.TotalHits);
             }
 
-
-            
-            QueryParser parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "title", new PanGuAnalyzer());
+            QueryParser parser = new QueryParser(Version.LUCENE_30, "title", new PanGuAnalyzer());
             {
                 Console.WriteLine("***************Search  2.1 ************************");
 
@@ -137,23 +136,36 @@ namespace P32.Course.LuceneProject
         }
 
 
+
+        private static string AnalyzerKeyword(string keyword)
+        {
+            StringBuilder queryStringBuilder = new StringBuilder();
+            ILuceneAnalyze analyzer = new LuceneAnalyze();
+            string[] words = analyzer.AnalyzerKey(keyword);
+            if (words.Length == 1)
+            {
+                queryStringBuilder.AppendFormat("{0}:{1}* ", "title", words[0]);
+            }
+            else
+            {
+                StringBuilder fieldQueryStringBuilder = new StringBuilder();
+                foreach (string word in words)
+                {
+                    queryStringBuilder.AppendFormat("{0}:{1}", "title", words);
+                }
+            }
+
+            string result = queryStringBuilder.ToString().TrimEnd();
+            Console.WriteLine(string.Format("AnalyzerKey will convert keyword={0} to {1}", keyword,result));
+            return result;
+        }
+
         private static List<Commodity> GetList()
         {
             CommodityRepository repository = new CommodityRepository();
             List<Commodity> commodityList = repository.QueryList(1, 1, 500);
             return commodityList;
         }
-
-
-        private static string AnalyzerKeyword(string keyword)
-        {
-            StringBuilder queryStringBuilder = new StringBuilder();
-            ILuceneAnalyze analyzer = new LuceneAnalyze();
-
-
-
-        }
-
 
 
 
