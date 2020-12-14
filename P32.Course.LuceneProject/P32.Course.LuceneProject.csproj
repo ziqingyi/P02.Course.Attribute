@@ -73,6 +73,7 @@
     <Compile Include="Lucene\Interface\ILuceneBulid.cs" />
     <Compile Include="Lucene\Interface\ILuceneQuery.cs" />
     <Compile Include="Lucene\Service\LuceneAnalyze.cs" />
+    <Compile Include="Lucene\Service\LuceneBuild.cs" />
     <Compile Include="Lucene\Service\LuceneQuery.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\Commodity.cs" />
