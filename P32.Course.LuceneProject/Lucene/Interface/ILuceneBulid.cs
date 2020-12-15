@@ -50,7 +50,7 @@ namespace P32.Course.LuceneProject.Lucene.Interface
         /// delete index in batch
         /// </summary>
         /// <param name="ci"></param>
-        void DeleteIndexMuti(Commodity ci);
+        void DeleteIndexMuti(List<Commodity> ci);
 
 
         /// <summary>

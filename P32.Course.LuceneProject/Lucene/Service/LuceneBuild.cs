@@ -346,7 +346,6 @@ namespace P32.Course.LuceneProject.Lucene.Service
 
         }
 
-        
 
         #endregion
     }
