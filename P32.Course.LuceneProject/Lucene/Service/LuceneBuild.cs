@@ -18,7 +18,7 @@ using LuceneIO = Lucene.Net.Store;
 
 namespace P32.Course.LuceneProject.Lucene.Service
 {
-    public class LuceneBuild: ILuceneBulid
+    public class LuceneBuild: ILuceneBuild
     {
         #region Identity
         private Logger logger = new Logger(typeof(LuceneBuild));

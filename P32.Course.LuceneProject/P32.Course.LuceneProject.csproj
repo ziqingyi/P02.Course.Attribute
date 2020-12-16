@@ -74,13 +74,15 @@
     <Compile Include="Lucene\AnalyzerCustom\CommaAnalyzer.cs" />
     <Compile Include="Lucene\AnalyzerCustom\CommaTokenizer.cs" />
     <Compile Include="Lucene\Interface\ILuceneAnalyze.cs" />
-    <Compile Include="Lucene\Interface\ILuceneBulid.cs" />
+    <Compile Include="Lucene\Interface\ILuceneBuild.cs" />
     <Compile Include="Lucene\Interface\ILuceneQuery.cs" />
     <Compile Include="Lucene\Service\LuceneAnalyze.cs" />
     <Compile Include="Lucene\Service\LuceneBuild.cs" />
     <Compile Include="Lucene\Service\LuceneQuery.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\Commodity.cs" />
+    <Compile Include="Processor\IndexBuilder.cs" />
+    <Compile Include="Processor\IndexBuilderPerThread.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Logger.cs" />

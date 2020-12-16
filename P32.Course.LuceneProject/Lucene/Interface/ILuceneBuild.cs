@@ -7,7 +7,7 @@ using P32.Course.LuceneProject.Model;
 
 namespace P32.Course.LuceneProject.Lucene.Interface
 {
-    public interface ILuceneBulid
+    public interface ILuceneBuild
     {
 
 
