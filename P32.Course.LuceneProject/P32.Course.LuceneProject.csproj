@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataService\CommodityLucene.cs" />
     <Compile Include="DataService\CommodityRepository.cs" />
     <Compile Include="DataService\SqlHelper.cs" />
     <Compile Include="LuceneTest.cs" />
