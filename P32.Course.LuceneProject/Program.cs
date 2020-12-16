@@ -25,7 +25,7 @@ namespace P32.Course.LuceneProject
 
 
             int total = 0;
-            string pricefilter = "[50,2000]";
+            string pricefilter = "[1,100]";
             string priceorderby = "price desc";
             List<Commodity> commoditylist = CommodityLucene.QueryCommodity(1, 30, out total, "book", null, pricefilter, priceorderby);
 

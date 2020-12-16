@@ -26,7 +26,7 @@ namespace P32.Course.LuceneProject.Processor
                 TaskFactory taskFactory = new TaskFactory();
                 CTS = new CancellationTokenSource();
 
-                for (int i = 0; i < 31; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     IndexBuilderPerThread thread = new IndexBuilderPerThread(i,i.ToString("000"), CTS);
                     PathSuffixList.Add(i.ToString("000"));

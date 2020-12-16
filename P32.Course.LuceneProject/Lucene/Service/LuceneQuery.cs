@@ -88,8 +88,7 @@ namespace P32.Course.LuceneProject.Lucene.Service
                 {
                     bool isContainStart = priceFilter.StartsWith("[");
                     bool isContainEnd = priceFilter.EndsWith("]");
-                    string[] floatArray = priceFilter.Replace("", "")
-                        .Replace("[", "")
+                    string[] floatArray = priceFilter.Replace("[", "")
                         .Replace("]", "")
                         .Replace("{", "")
                         .Replace("}", "")
@@ -155,10 +154,10 @@ namespace P32.Course.LuceneProject.Lucene.Service
             Commodity commodity = new Commodity();
             commodity.Id = int.Parse(doc.Get("id"));
             commodity.Title = doc.Get("title");
-            commodity.ProductId = long.Parse(doc.Get("productId"));
-            commodity.CategoryId = int.Parse(doc.Get("categoryId"));
-            commodity.ImageUrl = doc.Get("ImageUrl");
-            commodity.Price = decimal.Parse(doc.Get("Price"));
+            commodity.ProductId = long.Parse(doc.Get("productid"));
+            commodity.CategoryId = int.Parse(doc.Get("categoryid"));
+            commodity.ImageUrl = doc.Get("imageurl");
+            commodity.Price = decimal.Parse(doc.Get("price"));
             commodity.Url = doc.Get("url");
 
             return commodity;

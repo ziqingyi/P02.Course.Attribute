@@ -44,7 +44,7 @@ namespace P32.Course.LuceneProject.Processor
                 int pageIndex = 1;
                 while (!CTS.IsCancellationRequested)
                 {
-                    List<Commodity> commodityList = commodityRepository.QueryList(CurrentThreadNum, pageIndex, 1000);
+                    List<Commodity> commodityList = commodityRepository.QueryList(CurrentThreadNum, pageIndex, 4);
                     if (commodityList == null || commodityList.Count == 0)
                     {
                         break;
