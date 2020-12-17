@@ -21,7 +21,7 @@ namespace P32.Course.LuceneProject.Processor
         private CancellationTokenSource CTS = null;
 
         /// <summary>
-        /// fix temp variable issue, pass the param in ctor
+        /// fix temp variable issue in multi threading, so pass the param in ctor
         /// </summary>
         /// <param name="threadNum"></param>
         /// <param name="pathSuffix"></param>
@@ -32,7 +32,6 @@ namespace P32.Course.LuceneProject.Processor
             this.PathSuffix = pathSuffix;
             this.CTS = cts;
         }
-
         public void Process()
         {
             try
