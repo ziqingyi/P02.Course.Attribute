@@ -10,6 +10,10 @@ namespace P33.Course.CodeFirst
     {
         //code first from business logic
         //it will create new database with tables based on the classes. 
+
+        //deploy new program: 
+        //1 shut down program 2 run updates script in database 3 update program
+        //otherwise the database may be override by program code(code first, etc). 
         static void Main(string[] args)
         {
             try

@@ -50,7 +50,7 @@ namespace P33.Course.CodeFirst
 
 
 
-
+        //code first: can add data in OnModelCreating. 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //assign mapping to table name, map attribute name to table column
