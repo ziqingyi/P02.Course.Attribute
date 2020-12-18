@@ -18,6 +18,18 @@ namespace P33.Course.CodeFirstFromDB
                     context.Database.Log += s => Console.WriteLine($"current running sql: {s}");
 
 
+                    #region test mapping
+                    //mapping with attribute
+                    JDCommodity001 commodity001 = context.JD_Commodity_001.Find(5);
+
+                    //mapping when model is creating, configure with ToTable()
+                    JDCommodity002 commodity002 = context.JD_Commodity_002.Find(5);
+
+                    //mapping when model is creating, Configurations.Add()
+                    JDCommodity003 commodity003 = context.JD_Commodity_003.Find(5);
+
+                    #endregion
+
                     User user17 = context.Users.Find(17);
 
                     User user28 = context.Users.FirstOrDefault(u => u.Id == 28);
@@ -51,7 +63,6 @@ namespace P33.Course.CodeFirstFromDB
                     //remove
                     context.Users.Remove(userNew);
                     context.SaveChanges();
-
 
 
 

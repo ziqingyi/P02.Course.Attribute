@@ -15,8 +15,8 @@ namespace P33.Course.CodeFirstFromDB
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<JDCommodity001> JD_Commodity_001 { get; set; }
-        public virtual DbSet<JD_Commodity_002> JD_Commodity_002 { get; set; }
-        public virtual DbSet<JD_Commodity_003> JD_Commodity_003 { get; set; }
+        public virtual DbSet<JDCommodity002> JD_Commodity_002 { get; set; }
+        public virtual DbSet<JDCommodity003> JD_Commodity_003 { get; set; }
         public virtual DbSet<JD_Commodity_004> JD_Commodity_004 { get; set; }
         public virtual DbSet<JD_Commodity_005> JD_Commodity_005 { get; set; }
         public virtual DbSet<JD_Commodity_006> JD_Commodity_006 { get; set; }
@@ -48,8 +48,18 @@ namespace P33.Course.CodeFirstFromDB
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserMenuMapping> UserMenuMappings { get; set; }
 
+
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //assign mapping to table name, map attribute name to table column
+            modelBuilder.Entity<JDCommodity002>()
+                .ToTable("JD_Commodity_002")
+                .Property(c=>c.Text).HasColumnName("Title");
+
+            modelBuilder.Configurations.Add(new JDCommodity003Mapping());
+
             modelBuilder.Entity<Category>()
                 .Property(e => e.Code)
                 .IsUnicode(false);
@@ -70,19 +80,19 @@ namespace P33.Course.CodeFirstFromDB
                 .Property(e => e.ImageUrl)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<JD_Commodity_002>()
+            modelBuilder.Entity<JDCommodity002>()
                 .Property(e => e.Url)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<JD_Commodity_002>()
+            modelBuilder.Entity<JDCommodity002>()
                 .Property(e => e.ImageUrl)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<JD_Commodity_003>()
+            modelBuilder.Entity<JDCommodity003>()
                 .Property(e => e.Url)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<JD_Commodity_003>()
+            modelBuilder.Entity<JDCommodity003>()
                 .Property(e => e.ImageUrl)
                 .IsUnicode(false);
 

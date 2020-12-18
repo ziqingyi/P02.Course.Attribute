@@ -6,7 +6,7 @@ namespace P33.Course.CodeFirstFromDB
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class JD_Commodity_002
+    public partial class JDCommodity002
     {
         public int Id { get; set; }
 
@@ -15,7 +15,7 @@ namespace P33.Course.CodeFirstFromDB
         public int? CategoryId { get; set; }
 
         [StringLength(500)]
-        public string Title { get; set; }
+        public string Text { get; set; }
 
         public decimal? Price { get; set; }
 

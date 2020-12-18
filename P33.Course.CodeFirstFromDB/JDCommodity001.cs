@@ -6,7 +6,8 @@ namespace P33.Course.CodeFirstFromDB
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("JD_Commodity_001")]//using attributing mapping 
+    //using attributing mapping 
+    [Table("JD_Commodity_001")]
     public partial class JDCommodity001
     {
         public int Id { get; set; }
@@ -16,7 +17,8 @@ namespace P33.Course.CodeFirstFromDB
         public int? CategoryId { get; set; }
 
         [StringLength(500)]
-        public string Title { get; set; }
+        [Column("Title")]//use attribute mapping
+        public string Text { get; set; }
 
         public decimal? Price { get; set; }
 

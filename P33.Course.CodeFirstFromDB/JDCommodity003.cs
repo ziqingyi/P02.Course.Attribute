@@ -1,3 +1,5 @@
+using System.Data.Entity.ModelConfiguration;
+
 namespace P33.Course.CodeFirstFromDB
 {
     using System;
@@ -6,7 +8,7 @@ namespace P33.Course.CodeFirstFromDB
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class JD_Commodity_003
+    public partial class JDCommodity003
     {
         public int Id { get; set; }
 
@@ -15,7 +17,7 @@ namespace P33.Course.CodeFirstFromDB
         public int? CategoryId { get; set; }
 
         [StringLength(500)]
-        public string Title { get; set; }
+        public string Text { get; set; }
 
         public decimal? Price { get; set; }
 
@@ -25,4 +27,14 @@ namespace P33.Course.CodeFirstFromDB
         [StringLength(1000)]
         public string ImageUrl { get; set; }
     }
+
+    public class JDCommodity003Mapping : EntityTypeConfiguration<JDCommodity003>
+    {
+        public JDCommodity003Mapping()
+        {
+            this.ToTable("JD_Commodity_003");
+            this.Property(c => c.Text).HasColumnName("Title");
+        }
+    }
+
 }

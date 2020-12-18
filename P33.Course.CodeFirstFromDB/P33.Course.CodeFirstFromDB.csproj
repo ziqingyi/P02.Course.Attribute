@@ -56,8 +56,8 @@
     <Compile Include="CodeFirstModel.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="JDCommodity001.cs" />
-    <Compile Include="JD_Commodity_002.cs" />
-    <Compile Include="JD_Commodity_003.cs" />
+    <Compile Include="JDCommodity002.cs" />
+    <Compile Include="JDCommodity003.cs" />
     <Compile Include="JD_Commodity_004.cs" />
     <Compile Include="JD_Commodity_005.cs" />
     <Compile Include="JD_Commodity_006.cs" />
