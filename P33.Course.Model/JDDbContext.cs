@@ -12,6 +12,7 @@ namespace P33.Course.Model
         public JDDbContext()
             : base("name=JDDbContext")
         {
+            this.Database.Log += c => Console.WriteLine($"sql is: {c}");
         }
 
         public virtual DbSet<Category> Categories { get; set; }

@@ -12,14 +12,28 @@ namespace P33.Course.EFProject
     {
         static void Main(string[] args)
         {
-            //must reference EF in current project for implementation of disposing. 
-            //must add connection string from model,as JDDbContext will use current proj's config. 
-            using (JDDbContext context = new JDDbContext())
-            {
-                User user = context.Users.Find(2);
+            #region how to use EF project
+            ////must reference EF in current project for implementation of disposing. 
+            ////must add connection string from model,as JDDbContext will use current proj's config. 
+            //using (JDDbContext context = new JDDbContext())
+            //{
+            //    User user = context.Users.Find(2);
+            //}
+            #endregion
 
 
-            }
+            #region Query Test
+
+            Console.WriteLine("******************************");
+            EFQueryTest.Show();
+
+            #endregion
+
+
+
+
+
+
 
 
         }
