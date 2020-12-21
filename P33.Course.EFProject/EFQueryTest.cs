@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -144,7 +146,52 @@ namespace P33.Course.EFProject
             using (JDDbContext dbContext = new JDDbContext())
             {
 
+                {
+                    DbContextTransaction trans = null;
+                    try
+                    {
+                        trans = dbContext.Database.BeginTransaction();
+                        string sql = "Update [User] Set Name = 'Admin' where Id= @Id ";
+                        SqlParameter parameter = new SqlParameter("@Id",9 );
+                        dbContext.Database.ExecuteSqlCommand(sql, parameter);
+                        trans.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        if (trans != null)
+                            trans.Rollback();
+                        Console.WriteLine(ex);
+                        throw ex;
+                    }
+                    finally
+                    {
+                        trans.Dispose();
 
+                    }
+                }
+
+                {
+                    DbContextTransaction trans = null;
+                    try
+                    {
+                        trans = dbContext.Database.BeginTransaction();
+                        string sql = @"SELECT * FROM [User] WHERE Id=@Id";
+                        SqlParameter parameter = new SqlParameter("@Id",1);
+                        List<User> userList = dbContext.Database.SqlQuery<User>(sql, parameter).ToList();
+                        trans.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        if (trans != null)
+                            trans.Rollback();
+                        Console.WriteLine(ex);
+                        throw ex;
+                    }
+                    finally
+                    {
+                        trans.Dispose();
+                    }
+                }
 
             }
 
