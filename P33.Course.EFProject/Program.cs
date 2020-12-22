@@ -29,7 +29,12 @@ namespace P33.Course.EFProject
 
             #endregion
 
+            #region State Test
 
+            Console.WriteLine("******************************");
+            EFStateTest.Show();
+
+            #endregion
 
 
 
