@@ -33,9 +33,26 @@ namespace P33.Course.EFProject
 
             using (JDDbContext context = new JDDbContext())
             {
-                
+                Console.WriteLine("State is 1 : " + context.Entry<User>(userNew).State);//detached
+                userNew.Name = "fish fish";
+                context.SaveChanges(); // nothing happens
+                Console.WriteLine("State is 2 : " + context.Entry<User>(userNew).State);//detached
+
+                context.Users.Add(userNew);
+                Console.WriteLine("State is 3 : " + context.Entry<User>(userNew).State); //added 
+                context.SaveChanges();// add to database,userNew's id value will be updated from database
+                Console.WriteLine("State is 4 : " + context.Entry<User>(userNew).State);//unchanged
 
 
+                userNew.Name = "Octopus";
+                Console.WriteLine("State is 5 : " + context.Entry<User>(userNew).State);//modified
+                context.SaveChanges();// update to database, due to state. 
+                Console.WriteLine("State is 6 : " + context.Entry<User>(userNew).State);//unchanged
+
+                context.Users.Remove(userNew);
+                Console.WriteLine("State is 7 : " + context.Entry<User>(userNew).State);//deleted
+                context.SaveChanges();
+                Console.WriteLine("State is 8 : " + context.Entry<User>(userNew).State );//detached, remove from memory
 
 
             }

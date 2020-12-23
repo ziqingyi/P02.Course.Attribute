@@ -24,14 +24,14 @@ namespace P33.Course.EFProject
 
             #region Query Test
 
-            Console.WriteLine("******************************");
-            EFQueryTest.Show();
+            //Console.WriteLine("************EFQueryTest******************");
+            //EFQueryTest.Show();
 
             #endregion
 
             #region State Test
 
-            Console.WriteLine("******************************");
+            Console.WriteLine("*************EFStateTest*****************");
             EFStateTest.Show();
 
             #endregion
