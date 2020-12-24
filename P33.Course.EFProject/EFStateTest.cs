@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -54,8 +55,104 @@ namespace P33.Course.EFProject
                 context.SaveChanges();
                 Console.WriteLine("State is 8 : " + context.Entry<User>(userNew).State );//detached, remove from memory
 
+                {
+                    User user5 = context.Users.Find(5);
+                    user5.Name += "12";
+                    user5.State += 1;
+                    context.SaveChanges();
+                    Console.WriteLine("State is 9 : " + context.Entry<User>(userNew).State);
+                }
+            }
+
+            {
+                User user = null;
+                using (JDDbContext context = new JDDbContext())
+                {
+                    User user20 = context.Users.Find(20);
+                    Console.WriteLine("State is 1 : " +context.Entry(user20).State);//unchanged
+                    user = user20;
+
+                }
+
+                //EF monitor the object
+                //user update and submit, then pass object to EF, change State to EntityState.Modified
+                user.Name = "user20NewName";
+                using (JDDbContext context = new JDDbContext())
+                {
+                    context.Users.Attach(user);// make context monitor the object
+                    Console.WriteLine("State is 2 : " + context.Entry(user).State );//unchanged
+
+                    user.Name = "xxxxxxx";//update
+                    context.Entry(user).State = EntityState.Modified;//update all fields, otherwise only update one field
+                    Console.WriteLine("State is 3 : " + context.Entry(user).State );//modified
+
+
+                    context.SaveChanges();//update to database
+                    Console.WriteLine("State is 4 : " + context.Entry(user).State);//unchanged
+                }
+
+                using (JDDbContext context = new JDDbContext())
+                {
+                    User userUpdate = new User(){Id = 22};
+                    context.Users.Attach(userUpdate);
+
+                    Console.WriteLine("State is 5 : " + context.Entry(userUpdate).State);//unchanged
+                    userUpdate.Name = "xadfasd2222222222222222";
+                    Console.WriteLine("State is 6 : " + context.Entry(userUpdate).State);//modified
+
+                    //context.SaveChanges();//update to database, error, some fields value validation issue. 
+                    Console.WriteLine("State is 7 : " + context.Entry(user).State);//detached
+                }
+
+                using (JDDbContext context = new JDDbContext())
+                {
+                    User userupdate = context.Users.Find(user.Id);
+                    userupdate.Name = user.Name +"new";
+                    Console.WriteLine("State is 8 : " + context.Entry(user).State);//detached
+                    context.SaveChanges();
+                    Console.WriteLine("State is 9 : " + context.Entry(user).State);//detached
+                }
 
             }
+
+            {
+                Console.WriteLine("*********************************************");
+                using (JDDbContext context = new JDDbContext())
+                {
+                    //AsNoTracking():  not catch in DbContext. will faster, search only, no updates. 
+                    //List<User> userList = context.Users.Where(u => u.Id > 0).AsNoTracking().ToList();
+                    List<User> userList = context.Users.Where(u => u.Id > 10).ToList();
+
+                    Console.WriteLine("State is 9 : " + context.Entry<User>(userList[3]).State);//in memory: unchanged; noTracking(): detached
+
+                    Console.WriteLine("*********************************************");
+                    User user5 = context.Users.Find(30);
+
+                    Console.WriteLine("*********************************************");
+                    User user1 = context.Users.Find(30);//can find in cache if already searched before
+
+                    Console.WriteLine("*********************************************");
+                    User user2 = context.Users.FirstOrDefault(u => u.Id == 30);//linq will always go to database to search
+
+                    Console.WriteLine("*********************************************");
+                    User user3 = context.Users.Find(30);
+
+                    Console.WriteLine("*********************************************");
+                    User user4 = context.Users.FirstOrDefault(u => u.Id == 30);
+
+                }
+
+
+
+
+            }
+
+
+
+
+
+
+
 
 
 
