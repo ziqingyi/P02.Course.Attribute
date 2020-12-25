@@ -31,12 +31,16 @@ namespace P33.Course.EFProject
 
             #region State Test
 
-            Console.WriteLine("*************EFStateTest*****************");
-            EFStateTest.Show();
+            //Console.WriteLine("*************EFStateTest*****************");
+            //EFStateTest.Show();
 
             #endregion
 
+            #region Context Lifetime Test
 
+            ContextLifetimeTest.Show();
+
+            #endregion
 
 
 
