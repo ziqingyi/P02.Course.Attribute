@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextLifetimeTest.cs" />
+    <Compile Include="EFQueryAdvancedTest.cs" />
     <Compile Include="EFQueryTest.cs" />
     <Compile Include="EFStateTest.cs" />
     <Compile Include="Program.cs" />

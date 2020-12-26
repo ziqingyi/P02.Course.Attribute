@@ -38,11 +38,15 @@ namespace P33.Course.EFProject
 
             #region Context Lifetime Test
 
-            ContextLifetimeTest.Show();
+            //ContextLifetimeTest.Show();
 
             #endregion
 
+            #region Context Lifetime Test
 
+            EFQueryAdvancedTest.Show();
+
+            #endregion
 
 
         }
