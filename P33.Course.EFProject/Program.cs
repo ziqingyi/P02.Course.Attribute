@@ -42,7 +42,7 @@ namespace P33.Course.EFProject
 
             #endregion
 
-            #region Context Lifetime Test
+            #region IQueryable and IEnumerable Query Test
 
             EFQueryAdvancedTest.Show();
 
