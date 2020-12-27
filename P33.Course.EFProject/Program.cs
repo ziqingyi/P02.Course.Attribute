@@ -50,7 +50,8 @@ namespace P33.Course.EFProject
 
             #region Navigation Show
 
-            NavigationTest.ShowQuery();
+            //NavigationTest.ShowQuery();
+            NavigationTest.ShowInsert();
 
             #endregion
 

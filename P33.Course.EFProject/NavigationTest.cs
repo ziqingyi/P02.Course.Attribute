@@ -82,17 +82,72 @@ namespace P33.Course.EFProject
                     {
                         Console.WriteLine($"{m.Id}----{m.SysRoleId}----{m.SysMenuId}");
                     }
-
-
                 }
+            }
+        }
+
+        public static void ShowInsert()
+        {
+            using (JDDbContext dbContext = new JDDbContext())
+            {
+                #region company and user data
+                Company company = new Company()
+                {
+                    Name = "testCompany15",
+                    CreateTime = DateTime.Now,
+                    CreatorId = 1,
+                    LastModifierId = 0,
+                    LastModifyTime = DateTime.Now,
+                };
+                User userNew1 = new User()
+                {
+                    Account = "Admin",
+                    State = 0,
+                    CompanyId = company.Id,//new company's id, name
+                    CompanyName = company.Name,
+                    CreateTime = DateTime.Now,
+                    CreatorId = 1,
+                    Email = "57265177@qq.com",
+                    LastLoginTime = null,
+                    LastModifierId = 0,
+                    LastModifyTime = DateTime.Now,
+                    Mobile = "18664876671",
+                    Name = "min gong",
+                    Password = "12356789",
+                    UserType = 1
+                };
+                User userNew2 = new User()
+                {
+                    Account = "Admin",
+                    State = 0,
+                    CompanyId = company.Id,//new company's id, name
+                    CompanyName = company.Name,
+                    CreateTime = DateTime.Now,
+                    CreatorId = 1,
+                    Email = "57265177@qq.com",
+                    LastLoginTime = null,
+                    LastModifierId = 0,
+                    LastModifyTime = DateTime.Now,
+                    Mobile = "18664876671",
+                    Name = "dream1",
+                    Password = "12356789",
+                    UserType = 2
+                };
+                #endregion
+
+                dbContext.Set<Company>().Add(company);
+                dbContext.Set<User>().Add(userNew1);
+                dbContext.Set<User>().Add(userNew2);
+
+                //add successfully, even company don't exist before insert. 
+                //id increase automatically
+                dbContext.SaveChanges();
+                
 
             }
 
 
-
         }
-
-
 
 
 
