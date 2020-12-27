@@ -89,6 +89,9 @@
     <Compile Include="Models\JD_Commodity_029.cs" />
     <Compile Include="Models\JD_Commodity_030.cs" />
     <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\SysMenu.cs" />
+    <Compile Include="Models\SysRole.cs" />
+    <Compile Include="Models\SysRoleMenuMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserMenuMapping.cs" />

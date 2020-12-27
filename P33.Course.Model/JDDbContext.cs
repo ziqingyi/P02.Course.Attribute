@@ -50,6 +50,10 @@ namespace P33.Course.Model
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserMenuMapping> UserMenuMappings { get; set; }
+        public virtual DbSet<SysMenu> SysMenus { get; set; }
+        public virtual DbSet<SysRole> SysRoles { get; set; }
+        public virtual DbSet<SysRoleMenuMapping> SysRoleMenuMappings { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -303,6 +307,18 @@ namespace P33.Course.Model
 
             modelBuilder.Entity<JD_Commodity_030>()
                 .Property(e => e.ImageUrl)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SysMenu>()
+                .Property(e => e.Url)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SysMenu>()
+                .Property(e => e.Description)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SysMenu>()
+                .Property(e => e.SourcePath)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Menu>()

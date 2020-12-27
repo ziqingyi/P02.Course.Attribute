@@ -66,10 +66,45 @@ namespace P33.Course.EFProject
             }
 
 
+            //navigate without reference keys
+            using (JDDbContext dbContext = new JDDbContext())
+            {
+                var list = dbContext.Set<SysRoleMenuMapping>().Where(m => m.Id > 5);
+                foreach (var mapping in list)
+                {
+                    Console.WriteLine($"{mapping.Id}----{mapping.SysRoleId}----{mapping.SysMenuId}");
 
+                    Console.WriteLine(mapping.SysMenu.Text);
+
+                    Console.WriteLine(mapping.SysRole.Text);
+
+                    foreach (var m in mapping.SysMenu.SysRoleMenuMappingList)
+                    {
+                        Console.WriteLine($"{m.Id}----{m.SysRoleId}----{m.SysMenuId}");
+                    }
+
+
+                }
+
+            }
 
 
 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
