@@ -44,7 +44,13 @@ namespace P33.Course.EFProject
 
             #region IQueryable and IEnumerable Query Test
 
-            EFQueryAdvancedTest.Show();
+            //EFQueryAdvancedTest.Show();
+
+            #endregion
+
+            #region Navigation Show
+
+            NavigationTest.ShowQuery();
 
             #endregion
 

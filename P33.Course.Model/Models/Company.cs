@@ -21,5 +21,7 @@ namespace P33.Course.Model.Models
         public int? LastModifierId { get; set; }
 
         public DateTime? LastModifyTime { get; set; }
+
+        public virtual ICollection<User> Users { get; set; }
     }
 }

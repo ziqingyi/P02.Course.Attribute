@@ -27,7 +27,7 @@ namespace P33.Course.Model.Models
 
         [StringLength(30)]
         public string Mobile { get; set; }
-
+        [ForeignKey("Company")]
         public int? CompanyId { get; set; }
 
         [StringLength(500)]
@@ -46,5 +46,7 @@ namespace P33.Course.Model.Models
         public int? LastModifierId { get; set; }
 
         public DateTime? LastModifyTime { get; set; }
+
+        public virtual Company Company { get; set; }
     }
 }
