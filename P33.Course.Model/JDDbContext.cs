@@ -13,6 +13,7 @@ namespace P33.Course.Model
             : base("name=JDDbContext")
         {
             this.Database.Log += c => Console.WriteLine($"sql is: {c}");
+            System.Data.Entity.Database.SetInitializer<JDDbContext>(null);
         }
 
         public virtual DbSet<Category> Categories { get; set; }
@@ -47,6 +48,7 @@ namespace P33.Course.Model
         public virtual DbSet<JD_Commodity_028> JD_Commodity_028 { get; set; }
         public virtual DbSet<JD_Commodity_029> JD_Commodity_029 { get; set; }
         public virtual DbSet<JD_Commodity_030> JD_Commodity_030 { get; set; }
+        public virtual DbSet<SysLog> SysLogs { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserMenuMapping> UserMenuMappings { get; set; }

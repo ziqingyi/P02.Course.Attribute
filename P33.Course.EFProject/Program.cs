@@ -51,9 +51,14 @@ namespace P33.Course.EFProject
             #region Navigation Show
 
             //NavigationTest.ShowQuery();
-            NavigationTest.ShowInsert();
+            //NavigationTest.ShowInsertWithReferenceKey();
+            //NavigationTest.ShowInsertWithoutReferenceKey();
+            NavigationTest.ShowInsertWithTransactionMultipleDBContext();
 
             #endregion
+
+
+
 
 
         }
