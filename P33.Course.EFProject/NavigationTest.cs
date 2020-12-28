@@ -310,8 +310,82 @@ namespace P33.Course.EFProject
         }
 
 
+        public static void ShowDeleteWithReferenceKey()
+        {
+            //set up cascade delete in database's ref key first
+            //once company is deleted, the user will be deleted as well
+            //if no cascade delete and no Enforce foreign key, the users will still there. 
+            // if no cascade delete but enforce foreign key, delete company will cause error and roll back.
+            int id = 0;
+            using (JDDbContext dbContext = new JDDbContext())
+            {
+                Company company = new Company()
+                {
+                    Name = "testCompanyNewTemp",
+                    CreateTime = DateTime.Now,
+                    CreatorId = 1,
+                    LastModifierId = 0,
+                    LastModifyTime = DateTime.Now,
+                };
+                User userNew1 = new User()
+                {
+                    Account = "Admin",
+                    State = 0,
+                    CompanyId = company.Id,
+                    CompanyName = company.Name,
+                    CreateTime = DateTime.Now,
+                    CreatorId = 1,
+                    Email = "57265177@qq.com",
+                    LastLoginTime = null,
+                    LastModifierId = 0,
+                    LastModifyTime = DateTime.Now,
+                    Mobile = "18664876671",
+                    Name = "testUser5555",
+                    Password = "12356789",
+                    UserType = 1
+                };
+                User userNew2 = new User()
+                {
+                    Account = "Admin",
+                    State = 0,
+                    CompanyId = company.Id,
+                    CompanyName = company.Name,
+                    CreateTime = DateTime.Now,
+                    CreatorId = 1,
+                    Email = "57265177@qq.com",
+                    LastLoginTime = null,
+                    LastModifierId = 0,
+                    LastModifyTime = DateTime.Now,
+                    Mobile = "18664876671",
+                    Name = "TestUser6666",
+                    Password = "12356789",
+                    UserType = 2
+                };                
+                //must add company first, otherwise user will not get id
+                dbContext.Set<Company>().Add(company);
+                dbContext.Set<User>().Add(userNew1);
+                dbContext.Set<User>().Add(userNew2);
+
+                dbContext.SaveChanges();
+
+                id = company.Id;
+            }
+
+            using (JDDbContext dbContext = new JDDbContext())
+            {
+                Company company = dbContext.Companies.Find(id);
 
 
+                //
+                dbContext.Set<Company>().Remove(company);
+                dbContext.SaveChanges();
+            }
+
+
+
+
+
+        }
 
 
 
