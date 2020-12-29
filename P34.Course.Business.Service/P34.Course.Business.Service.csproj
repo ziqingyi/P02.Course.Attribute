@@ -42,6 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\P34.Course.Business.Interface\P34.Course.Business.Interface.csproj">
+      <Project>{A209E807-48D7-4AC8-B58E-48859ADEE460}</Project>
+      <Name>P34.Course.Business.Interface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
