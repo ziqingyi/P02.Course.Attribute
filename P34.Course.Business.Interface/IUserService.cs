@@ -6,15 +6,8 @@ using System.Threading.Tasks;
 
 namespace P34.Course.Business.Interface
 {
-    public interface IUserService
+    public interface IUserService :IBaseService
     {
-        void Query();
-
-        void Update();
-
-        void Delete();
-
-        void Add();
 
     }
 }

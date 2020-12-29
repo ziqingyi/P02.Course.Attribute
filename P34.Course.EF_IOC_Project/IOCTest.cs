@@ -20,6 +20,18 @@ namespace P34.Course.EF_IOC_Project
 
                 #endregion
 
+                #region structure
+
+                //do not put crud in each service, use super class.
+                //do not put crud in each interface, use base interface and implement it. 
+
+
+
+
+                #endregion
+
+
+
 
             }
 
