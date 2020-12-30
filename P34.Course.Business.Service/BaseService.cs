@@ -100,6 +100,7 @@ namespace P34.Course.Business.Service
 
             //t is placed into the context in the unchanged state, like reading from db. 
             this.Context.Set<T>().Attach(t);
+            //change state
             this.Context.Entry<T>(t).State = EntityState.Modified;
             this.Commit();
         }
@@ -118,7 +119,33 @@ namespace P34.Course.Business.Service
 
         #region Delete
 
+        //attach first, then remove
+        public void Delete<T>(T t) where T : class
+        {
+            if(t == null) throw new Exception("t is null");
+            this.Context.Set<T>().Attach(t);
+            this.Context.Set<T>().Remove(t);
+            this.Commit();
+        }
         
+        public void Delete<T>(int Id) where T: class
+        {
+            T t = this.Find<T>(Id);//can attach as well
+            if(t == null) throw new Exception("t is null");
+            this.Context.Set<T>().Remove(t);
+            this.Commit();
+        }
+
+        public void Delete<T>(IEnumerable<T> tList) where T : class
+        {
+            foreach (T t in tList)
+            {
+                this.Context.Set<T>().Attach(t);
+            }
+
+            this.Context.Set<T>().RemoveRange(tList);
+            this.Commit();
+        }
 
 
 
