@@ -72,8 +72,57 @@ namespace P34.Course.Business.Service
         }
         #endregion
 
+        #region Insert
+
+        public T Insert<T>(T t) where T : class
+        {
+            this.Context.Set<T>().Add(t);
+            //commit here, otherwise commit manually
+            this.Commit();
+            return t;
+        }
+
+        public IEnumerable<T> Insert<T>(IEnumerable<T> tList) where T : class
+        {
+            this.Context.Set<T>().AddRange(tList);
+            //commit multiple sql
+            this.Commit();
+            return tList;
+        }
+
+        #endregion
+
+        #region Update
+
+        public void Update<T>(T t) where T : class
+        {
+            if(t == null) throw new Exception("t is null");
+
+            //t is placed into the context in the unchanged state, like reading from db. 
+            this.Context.Set<T>().Attach(t);
+            this.Context.Entry<T>(t).State = EntityState.Modified;
+            this.Commit();
+        }
+
+        public void Update<T>(IEnumerable<T> tList) where T : class
+        {
+            foreach (T t in tList)
+            {
+                this.Context.Set<T>().Attach(t);
+                this.Context.Entry<T>(t).State = EntityState.Modified;
+            }
+            this.Commit();//save and state changed to UnChanged
+        }
+
+        #endregion
+
+        #region Delete
+
+        
 
 
+
+        #endregion
 
 
         #region other
