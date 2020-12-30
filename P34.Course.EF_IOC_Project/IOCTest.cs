@@ -48,9 +48,13 @@ namespace P34.Course.EF_IOC_Project
 
                 #endregion
 
-                #region 2 
+                #region 2 create new service class and interface for joing tables
+                //Single Service for each table is not enough for business logic.
+                using (IUserCompanyService iUserCompanyService = new UserCompanyService(new JDDbContext()))
+                {
+                    bool result = iUserCompanyService.RemoveCompanyAndUser(5);
+                }
 
-                
 
                 #endregion
 
