@@ -16,9 +16,7 @@ namespace P34.Course.EF_IOC_Project
         public static void Show()
         {
             {
-
-
-                #region structure
+                #region structure: access service which providing business logic
                 //1 must access service layer for data. not dbContext.Users.Find(1)
                 //2 do not put crud in each service, use super class with T.
                 //3 do not put crud in each interface, use base interface and implement it. 
@@ -35,13 +33,31 @@ namespace P34.Course.EF_IOC_Project
                     Company c = iCompanyService.Find<Company>(1);
                 }
 
+                #endregion
+            }
+            {
+                #region 1  join in different context error
+                ////error,different context, business logic should be in the service, not upper layer.
+                //using (IUserService iUserService = new UserService(new JDDbContext()))
+                //using (ICompanyService iCompanyService = new CompanyService(new JDDbContext()))
+                //{
+                //    var result = from u in iUserService.Set<User>()
+                //                 join c in iCompanyService.Set<Company>() on u.CompanyId equals c.Id
+                //                 where u.Id > 100
+                //                 select u;
 
                 #endregion
 
+                #region 2 
 
+                
 
+                #endregion
 
             }
+
+
+
 
 
 
