@@ -54,7 +54,19 @@ namespace P34.Course.EF_IOC_Project
                 {
                     bool result = iUserCompanyService.RemoveCompanyAndUser(5);
                 }
+                //sometimes UI layer need multiple service, but do not put join in upper layer. Join in service.
+                //Use TransactionScope for unit of work, it also works for different dbContext. 
 
+                //test unit of work class
+                UnitOfWork.Invoke(() =>
+                {
+                    using (IUserCompanyService iUserCompanyService = new UserCompanyService(new JDDbContext()))
+                    {
+                        //doing some operations
+                    }
+
+
+                });
 
                 #endregion
 
