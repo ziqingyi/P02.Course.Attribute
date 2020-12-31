@@ -66,13 +66,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContainerFactory.cs" />
     <Compile Include="IOCTestCase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="CfgFiles\Unity.Config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\P33.Course.Model\P33.Course.Model.csproj">
+      <Project>{7A8D76ED-A63F-476B-A607-B6ACEF6D49A7}</Project>
+      <Name>P33.Course.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P34.Course.Business.Interface\P34.Course.Business.Interface.csproj">
+      <Project>{A209E807-48D7-4AC8-B58E-48859ADEE460}</Project>
+      <Name>P34.Course.Business.Interface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
