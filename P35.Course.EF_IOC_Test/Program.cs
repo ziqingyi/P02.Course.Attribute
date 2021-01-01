@@ -10,7 +10,7 @@ namespace P35.Course.EF_IOC_Test
     {
         static void Main(string[] args)
         {
-            IOCTestCase.Show();
+            IOCTestCase.ShowIOCinNewProjStructure();
         }
     }
 }

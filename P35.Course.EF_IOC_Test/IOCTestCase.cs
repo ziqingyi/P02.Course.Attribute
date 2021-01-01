@@ -11,7 +11,7 @@ namespace P35.Course.EF_IOC_Test
 {
     public class IOCTestCase
     {
-        public static void Show()
+        public static void ShowIOCinNewProjStructure()
         {
             //since the reference to the service project is removed. 
             //you need to copy the UserCompanyService to this project's debug folder, 

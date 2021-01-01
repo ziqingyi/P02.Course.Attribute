@@ -10,8 +10,8 @@ namespace P34.Course.EF_IOC_Project
     {
         static void Main(string[] args)
         {
-
-            IOCTest.Show();
+            //no unity in this project, will use unity in next project without referencing Service Project. 
+            IOCTest.ShowNewProjStructure();
 
         }
     }

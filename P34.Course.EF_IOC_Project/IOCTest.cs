@@ -13,7 +13,7 @@ namespace P34.Course.EF_IOC_Project
 {
     class IOCTest
     {
-        public static void Show()
+        public static void ShowNewProjStructure()
         {
             {
                 #region structure: access service which providing business logic
