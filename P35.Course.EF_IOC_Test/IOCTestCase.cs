@@ -17,6 +17,7 @@ namespace P35.Course.EF_IOC_Test
             //you need to copy the UserCompanyService to this project's debug folder, 
             //need to compile the UserCompanyService project before copy. other wise error.
             //install ef and unity packages, config database connection strings.
+            //IOC and AOP classes should be in separate projects, shared. This is a test. 
             IUnityContainer container = ContainerFactory.GetContainer();
             using (IUserCompanyService iUserCompanyService = container.Resolve<IUserCompanyService>())
             {

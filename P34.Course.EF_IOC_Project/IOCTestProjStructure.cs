@@ -11,7 +11,7 @@ using P34.Course.Business.Service;
 
 namespace P34.Course.EF_IOC_Project
 {
-    class IOCTest
+    class IOCTestProjStructure
     {
         public static void ShowNewProjStructure()
         {
