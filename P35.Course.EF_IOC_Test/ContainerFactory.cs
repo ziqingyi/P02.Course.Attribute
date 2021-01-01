@@ -20,7 +20,7 @@ namespace P35.Course.EF_IOC_Test
             Configuration configuration = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
             UnityConfigurationSection section = (UnityConfigurationSection)configuration.GetSection(UnityConfigurationSection.SectionName);
             container = new UnityContainer();
-            section.Configure(container, "myccContainer");
+            section.Configure(container, "myContainer");
         }
 
         public static IUnityContainer GetContainer()
