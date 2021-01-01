@@ -20,5 +20,11 @@ namespace P34.Course.Business.Service
         {
             return true;
         }
+
+        public override void Dispose()
+        {
+            Console.WriteLine("dispose sth else");
+            base.Dispose();
+        }
     }
 }

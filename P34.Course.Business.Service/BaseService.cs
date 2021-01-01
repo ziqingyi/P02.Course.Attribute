@@ -183,7 +183,8 @@ namespace P34.Course.Business.Service
             }
         }
 
-        public void Dispose()
+        //use virtual for sub class overriding. because other services may dispose other objects
+        public virtual void Dispose()
         {
             if (this.Context != null)
             {
