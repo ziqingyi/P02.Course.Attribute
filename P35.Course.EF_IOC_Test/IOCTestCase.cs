@@ -20,7 +20,7 @@ namespace P35.Course.EF_IOC_Test
             IUnityContainer container = ContainerFactory.GetContainer();
             using (IUserCompanyService iUserCompanyService = container.Resolve<IUserCompanyService>())
             {
-                User u = iUserCompanyService.Find<User>(12);
+                User u = iUserCompanyService.Find<User>(2);
 
 
             }
