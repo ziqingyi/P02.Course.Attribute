@@ -160,6 +160,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P34.Course.EF_IOC_Project",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P35.Course.EF_IOC_Test", "P35.Course.EF_IOC_Test\P35.Course.EF_IOC_Test.csproj", "{7929309F-6213-4D24-AF47-6D87A76F177F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P36.Course.DispatcherProject", "P36.Course.DispatcherProject\P36.Course.DispatcherProject.csproj", "{6FBAB912-612D-4A28-955A-BB7141E87A0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P36.Course.DispatcherProject.QuartzNet", "P36.Course.DispatcherProject.QuartzNet\P36.Course.DispatcherProject.QuartzNet.csproj", "{98ED9B0C-5DA6-4EB3-BAFF-90A6C53A0256}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -474,6 +478,14 @@ Global
 		{7929309F-6213-4D24-AF47-6D87A76F177F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7929309F-6213-4D24-AF47-6D87A76F177F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7929309F-6213-4D24-AF47-6D87A76F177F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FBAB912-612D-4A28-955A-BB7141E87A0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FBAB912-612D-4A28-955A-BB7141E87A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FBAB912-612D-4A28-955A-BB7141E87A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FBAB912-612D-4A28-955A-BB7141E87A0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98ED9B0C-5DA6-4EB3-BAFF-90A6C53A0256}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98ED9B0C-5DA6-4EB3-BAFF-90A6C53A0256}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98ED9B0C-5DA6-4EB3-BAFF-90A6C53A0256}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98ED9B0C-5DA6-4EB3-BAFF-90A6C53A0256}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
