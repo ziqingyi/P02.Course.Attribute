@@ -21,6 +21,8 @@ namespace P36.Course.DispatcherProject.QuartzNet
         public async static Task Init()
         {
             #region scheduler
+
+            Console.WriteLine("init scheduler.....");
             StdSchedulerFactory factory = new StdSchedulerFactory();
             IScheduler scheduler = await factory.GetScheduler();
             await scheduler.Start();
@@ -40,10 +42,12 @@ namespace P36.Course.DispatcherProject.QuartzNet
                     .WithIdentity("testTrigger1", "group1")
                     .StartAt(new DateTimeOffset(DateTime.Now.AddSeconds(5)))
                     //.StartNow()
-                    .WithCronSchedule("0 0/1 * * * ?") //every minutes
+                    .WithCronSchedule("0/10 * * * * ?")//every 10 seconds //("0 0/1 * * * ?") //every minutes
                     .WithDescription("This is testjob's Trigger")
                     .Build();
                 await scheduler.ScheduleJob(jobDetail, trigger);
+
+                Console.WriteLine("scheduler job added successfully....");
             }
             #endregion
 

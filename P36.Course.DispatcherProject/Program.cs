@@ -16,15 +16,13 @@ namespace P36.Course.DispatcherProject
             {
                 DispatcherManager.Init().GetAwaiter().GetResult();
 
-
+                Console.ReadKey();
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-
-            Console.Read();
 
         }
     }

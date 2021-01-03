@@ -16,7 +16,7 @@ namespace P36.Course.DispatcherProject.QuartzNet.CustomJob
             {
                 Console.WriteLine();
                 Console.WriteLine("**********************************");
-                Console.WriteLine($"This is TestJob Construction in thread {0}, now is {1}", Thread.CurrentThread.ManagedThreadId,DateTime.Now);
+                Console.WriteLine("This is TestJob Construction in thread {0}, now is {1}", Thread.CurrentThread.ManagedThreadId,DateTime.Now);
                 Console.WriteLine("**********************************");
                 Console.WriteLine();
             });
