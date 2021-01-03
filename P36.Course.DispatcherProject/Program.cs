@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using P36.Course.DispatcherProject.QuartzNet;
 
 namespace P36.Course.DispatcherProject
 {
@@ -13,6 +14,9 @@ namespace P36.Course.DispatcherProject
 
             try
             {
+                DispatcherManager.Init().GetAwaiter().GetResult();
+
+
 
             }
             catch (Exception e)

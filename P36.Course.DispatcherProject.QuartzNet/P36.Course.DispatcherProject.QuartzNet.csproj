@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomJob\TestJob.cs" />
     <Compile Include="DispatcherManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,7 +74,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CustomJob\" />
     <Folder Include="CustomListener\" />
     <Folder Include="CustomLog\" />
   </ItemGroup>
