@@ -37,6 +37,13 @@ namespace P36.Course.DispatcherProject.QuartzNet
                     .WithDescription("This is test job")
                     .Build();
 
+                //pass values
+                jobDetail.JobDataMap.Add("student1","aaa");
+                jobDetail.JobDataMap.Add("student2","bbb");
+                jobDetail.JobDataMap.Add("student3","ccc");
+                jobDetail.JobDataMap.Add("Year1", DateTime.Now.Year);
+
+
                 //create trigger
                 ITrigger trigger = TriggerBuilder.Create()
                     .WithIdentity("testTrigger1", "group1")
@@ -45,7 +52,18 @@ namespace P36.Course.DispatcherProject.QuartzNet
                     .WithCronSchedule("0/10 * * * * ?")//every 10 seconds //("0 0/1 * * * ?") //every minutes
                     .WithDescription("This is testjob's Trigger")
                     .Build();
+
+                //pass values
+                trigger.JobDataMap.Add("student4", "aaa");
+                trigger.JobDataMap.Add("student5", "bbb");
+                trigger.JobDataMap.Add("student6", "ccc");
+                trigger.JobDataMap.Add("Year2", DateTime.Now.Year);
+
+
+                //add to scheduler
                 await scheduler.ScheduleJob(jobDetail, trigger);
+
+
 
                 Console.WriteLine("scheduler job added successfully....");
             }
