@@ -28,7 +28,7 @@ namespace P36.Course.DispatcherProject.QuartzNet
             await scheduler.Start();
             #endregion
 
-            #region IJob  and ITrigger
+            #region create IJob  and ITrigger
 
             {
                 //create job task
@@ -41,7 +41,7 @@ namespace P36.Course.DispatcherProject.QuartzNet
                 jobDetail.JobDataMap.Add("student1","aaa");
                 jobDetail.JobDataMap.Add("student2","bbb");
                 jobDetail.JobDataMap.Add("student3","ccc");
-                jobDetail.JobDataMap.Add("Year1", DateTime.Now.Year);
+                jobDetail.JobDataMap.Add("Year1", DateTime.Now.Year-1);
 
 
                 //create trigger
@@ -54,10 +54,10 @@ namespace P36.Course.DispatcherProject.QuartzNet
                     .Build();
 
                 //pass values
-                trigger.JobDataMap.Add("student4", "aaa");
-                trigger.JobDataMap.Add("student5", "bbb");
-                trigger.JobDataMap.Add("student6", "ccc");
-                trigger.JobDataMap.Add("Year2", DateTime.Now.Year);
+                trigger.JobDataMap.Add("student4", "ddd");
+                trigger.JobDataMap.Add("student5", "eee");
+                trigger.JobDataMap.Add("student6", "fff");
+                trigger.JobDataMap.Add("Year1", DateTime.Now.Year);
 
 
                 //add to scheduler

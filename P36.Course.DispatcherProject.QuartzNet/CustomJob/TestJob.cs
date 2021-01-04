@@ -29,16 +29,28 @@ namespace P36.Course.DispatcherProject.QuartzNet.CustomJob
                     Console.WriteLine("student1 is : "+ dataMap.Get("student1"));
                     Console.WriteLine("student2 is : " + dataMap.Get("student2"));
                     Console.WriteLine("student3 is : " + dataMap.Get("student3"));
-                    Console.WriteLine("Year1 is : " + dataMap.GetInt("Year"));//capital sensitive. 
+                    Console.WriteLine("Year1 is : " + dataMap.GetInt("Year1"));//capital sensitive. 
                 }
 
                 {
                     //get job dataMap details from Context's Trigger
                     JobDataMap dataMap = context.Trigger.JobDataMap;
+                    Console.WriteLine("student4 is : " + dataMap.Get("student4"));
+                    Console.WriteLine("student5 is : " + dataMap.Get("student5"));
+                    Console.WriteLine("student6 is : " + dataMap.Get("student6"));
+                    Console.WriteLine("Year1 is : " + dataMap.GetInt("Year1"));//capital sensitive. 
+                }
+
+                {
+                    //get job merged dataMap details from Context's Trigger
+                    JobDataMap dataMap = context.MergedJobDataMap;
                     Console.WriteLine("student1 is : " + dataMap.Get("student1"));
                     Console.WriteLine("student2 is : " + dataMap.Get("student2"));
                     Console.WriteLine("student3 is : " + dataMap.Get("student3"));
-                    Console.WriteLine("Year1 is : " + dataMap.GetInt("Year"));//capital sensitive. 
+                    Console.WriteLine("student4 is : " + dataMap.Get("student4"));
+                    Console.WriteLine("student5 is : " + dataMap.Get("student5"));
+                    Console.WriteLine("student6 is : " + dataMap.Get("student6"));
+                    Console.WriteLine("Year1 is : " + dataMap.GetInt("Year1"));//only get latest one
                 }
 
                 Console.WriteLine("This is TestJob Construction in thread {0}, now is {1}", Thread.CurrentThread.ManagedThreadId,DateTime.Now);
