@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomJob\TestJob.cs" />
+    <Compile Include="CustomJob\TestStatefulJob.cs" />
     <Compile Include="DispatcherManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

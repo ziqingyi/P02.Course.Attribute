@@ -14,10 +14,11 @@ namespace P36.Course.DispatcherProject
 
             try
             {
-                DispatcherManager.Init().GetAwaiter().GetResult();
+                //DispatcherManager.InitTestJob().GetAwaiter().GetResult();
+
+                DispatcherManager.InitTestStatefulJob().GetAwaiter().GetResult();
 
                 Console.ReadKey();
-
             }
             catch (Exception e)
             {

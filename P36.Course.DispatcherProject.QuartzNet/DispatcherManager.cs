@@ -18,18 +18,16 @@ namespace P36.Course.DispatcherProject.QuartzNet
         //      (2) IJob: task, which will be executed
         //      (3) ITrigger: properties needed to instantiate an actual Trigger.
 
-        public async static Task Init()
+        public async static Task InitTestJob()
         {
             #region scheduler
-
-            Console.WriteLine("init scheduler.....");
+            Console.WriteLine("init scheduler for testjob.....");
             StdSchedulerFactory factory = new StdSchedulerFactory();
             IScheduler scheduler = await factory.GetScheduler();
             await scheduler.Start();
             #endregion
 
             #region create IJob  and ITrigger
-
             {
                 //create job task
                IJobDetail jobDetail= JobBuilder.Create<TestJob>()
@@ -42,7 +40,6 @@ namespace P36.Course.DispatcherProject.QuartzNet
                 jobDetail.JobDataMap.Add("student2","bbb");
                 jobDetail.JobDataMap.Add("student3","ccc");
                 jobDetail.JobDataMap.Add("Year1", DateTime.Now.Year-1);
-
 
                 //create trigger
                 ITrigger trigger = TriggerBuilder.Create()
@@ -59,21 +56,62 @@ namespace P36.Course.DispatcherProject.QuartzNet
                 trigger.JobDataMap.Add("student6", "fff");
                 trigger.JobDataMap.Add("Year1", DateTime.Now.Year);
 
+                //add to scheduler
+                await scheduler.ScheduleJob(jobDetail, trigger);
+
+                Console.WriteLine("scheduler testjob added successfully....");
+            }
+            #endregion
+        }
+
+        public async static Task InitTestStatefulJob()
+        {
+            #region scheduler
+            Console.WriteLine("init scheduler for TestStatefulJob.....");
+            StdSchedulerFactory factory = new StdSchedulerFactory();
+            IScheduler scheduler = await factory.GetScheduler();
+            await scheduler.Start();
+            #endregion
+
+            #region create IJob  and ITrigger
+            {
+                //create job task
+                IJobDetail jobDetail = JobBuilder.Create<TestStatefulJob>()
+                    .WithIdentity("TestStatefulJob", "group1")
+                    .WithDescription("This is Test Stateful Job")
+                    .Build();
+
+                //pass values
+                jobDetail.JobDataMap.Add("student1", "aaa");
+                jobDetail.JobDataMap.Add("student2", "bbb");
+                jobDetail.JobDataMap.Add("student3", "ccc");
+                jobDetail.JobDataMap.Add("Year1", DateTime.Now.Year - 1);
+
+                //create trigger
+                ITrigger trigger = TriggerBuilder.Create()
+                    .WithIdentity("testTrigger1", "group1")
+                    .StartNow()
+                    .WithSimpleSchedule(x => 
+                        x.WithIntervalInSeconds(10)
+                        .WithRepeatCount(5)//limit time of repeat 
+                        //.RepeatForever()
+                        )
+                    .WithDescription("This is TestStatefulJob's Trigger")
+                    .Build();
+
+                //pass values
+                trigger.JobDataMap.Add("student4", "ddd");
+                trigger.JobDataMap.Add("student5", "eee");
+                trigger.JobDataMap.Add("student6", "fff");
+                trigger.JobDataMap.Add("Year1", DateTime.Now.Year);
 
                 //add to scheduler
                 await scheduler.ScheduleJob(jobDetail, trigger);
 
-
-
-                Console.WriteLine("scheduler job added successfully....");
+                Console.WriteLine("scheduler TestStatefulJob added successfully....");
             }
             #endregion
-
-
-
         }
-
-
 
 
 
