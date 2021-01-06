@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using P36.Course.DispatcherProject.QuartzNet.CustomJob;
+using P36.Course.DispatcherProject.QuartzNet.CustomListener;
 using Quartz;
 
 namespace P36.Course.DispatcherProject.QuartzNet
@@ -70,6 +71,7 @@ namespace P36.Course.DispatcherProject.QuartzNet
             Console.WriteLine("init scheduler for TestStatefulJob.....");
             StdSchedulerFactory factory = new StdSchedulerFactory();
             IScheduler scheduler = await factory.GetScheduler();
+            scheduler.ListenerManager.AddSchedulerListener(new CustomSchedulerListener());
             await scheduler.Start();
             #endregion
 

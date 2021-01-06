@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="CustomJob\TestJob.cs" />
     <Compile Include="CustomJob\TestStatefulJob.cs" />
+    <Compile Include="CustomListener\CustomSchedulerListener.cs" />
     <Compile Include="DispatcherManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,7 +76,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CustomListener\" />
     <Folder Include="CustomLog\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
