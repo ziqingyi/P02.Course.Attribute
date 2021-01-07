@@ -43,7 +43,7 @@ namespace P36.Course.DispatcherProject.QuartzNet.CustomJob
             await Task.Run(() =>
             {
                 Console.WriteLine();
-                Console.WriteLine("**********************************");
+                Console.WriteLine("**************TestJob Execute start********************");
 
                 {
                     //get job dataMap details from Context's JobDetail
@@ -77,7 +77,7 @@ namespace P36.Course.DispatcherProject.QuartzNet.CustomJob
                     Console.WriteLine("Year1 is : " + dataMap.GetInt("Year1"));//only get latest one
                 }
 
-                Console.WriteLine("This is TestJob Construction in thread {0}, now is {1}", Thread.CurrentThread.ManagedThreadId, DateTime.Now);
+                Console.WriteLine("This is TestJob Execute end in thread {0}, now is {1}", Thread.CurrentThread.ManagedThreadId, DateTime.Now);
                 Console.WriteLine("**********************************");
                 Console.WriteLine();
             });

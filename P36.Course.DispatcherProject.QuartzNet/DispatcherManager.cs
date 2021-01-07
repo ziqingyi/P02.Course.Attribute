@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using P19.Course.ConsoleWriterProj;
 using P36.Course.DispatcherProject.QuartzNet.CustomJob;
 using P36.Course.DispatcherProject.QuartzNet.CustomListener;
 using P36.Course.DispatcherProject.QuartzNet.CustomLog;
@@ -91,6 +92,7 @@ namespace P36.Course.DispatcherProject.QuartzNet
 
             #region create IJob  and ITrigger
             {
+                Console.WriteLine(" create IJob  and ITrigger for TestStatefulJob.....");
                 //create job task
                 IJobDetail jobDetail = JobBuilder.Create<TestStatefulJob>()
                     .WithIdentity("TestStatefulJob", "group1")
@@ -127,10 +129,34 @@ namespace P36.Course.DispatcherProject.QuartzNet
                 Console.WriteLine("scheduler TestStatefulJob added successfully....");
             }
             #endregion
+       
+
+
+            #region create IJob  and ITrigger
+            {
+                ConsoleWriter.WriteLineGreen(" create IJob  and ITrigger for GoodJob.....");
+                //create job task
+                IJobDetail jobDetail = JobBuilder.Create<GoodJob>()
+                    .WithIdentity("GoodJob", "groupGood")
+                    .WithDescription("This is GoodJob")
+                    .Build();
+
+                //create trigger
+                ITrigger trigger = TriggerBuilder.Create()
+                    .WithIdentity("GoodJobTrigger1", "groupGood")
+                    .StartAt(new DateTimeOffset(DateTime.Now.AddSeconds(10)))
+                    .WithCronSchedule("3/10 * * * * ?")//Every 10 seconds, start from 3
+                    .WithDescription("This is GoodJob's Trigger")
+                    .Build();
+
+
+                //add to scheduler
+                await scheduler.ScheduleJob(jobDetail, trigger);
+
+                ConsoleWriter.WriteLineGreen("scheduler GoodJob added successfully....");
+            }
+            #endregion
         }
-
-
-
 
 
 

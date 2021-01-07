@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomJob\GoodJob.cs" />
     <Compile Include="CustomJob\TestJob.cs" />
     <Compile Include="CustomJob\TestStatefulJob.cs" />
     <Compile Include="CustomListener\CustomJobListener.cs" />
