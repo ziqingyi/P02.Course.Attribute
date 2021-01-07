@@ -74,7 +74,7 @@ namespace P36.Course.DispatcherProject.QuartzNet
             
             // add listener to scheduler
             scheduler.ListenerManager.AddSchedulerListener(new CustomSchedulerListener());//scheduler listener
-
+            scheduler.ListenerManager.AddTriggerListener(new CustomTriggerListener());// trigger listener
             scheduler.ListenerManager.AddJobListener(new CustomJobListener());//job listener
 
             await scheduler.Start();

@@ -69,6 +69,7 @@
     <Compile Include="CustomJob\TestStatefulJob.cs" />
     <Compile Include="CustomListener\CustomJobListener.cs" />
     <Compile Include="CustomListener\CustomSchedulerListener.cs" />
+    <Compile Include="CustomListener\CustomTriggerListener.cs" />
     <Compile Include="DispatcherManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
