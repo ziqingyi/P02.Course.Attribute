@@ -70,6 +70,7 @@
     <Compile Include="CustomListener\CustomJobListener.cs" />
     <Compile Include="CustomListener\CustomSchedulerListener.cs" />
     <Compile Include="CustomListener\CustomTriggerListener.cs" />
+    <Compile Include="CustomLog\CustomConsoleLogProvider.cs" />
     <Compile Include="DispatcherManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,7 +79,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CustomLog\" />
+    <ProjectReference Include="..\P19.Course.ConsoleWriterProj\P19.Course.ConsoleWriterProj.csproj">
+      <Project>{d3a0212f-158e-4e02-92b3-1affc4f16796}</Project>
+      <Name>P19.Course.ConsoleWriterProj</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

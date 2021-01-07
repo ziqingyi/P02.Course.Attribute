@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using P36.Course.DispatcherProject.QuartzNet.CustomJob;
 using P36.Course.DispatcherProject.QuartzNet.CustomListener;
+using P36.Course.DispatcherProject.QuartzNet.CustomLog;
 using Quartz;
+using Quartz.Logging;
 
 namespace P36.Course.DispatcherProject.QuartzNet
 {
@@ -67,6 +69,13 @@ namespace P36.Course.DispatcherProject.QuartzNet
 
         public async static Task InitTestStatefulJob()
         {
+
+            #region custom log 
+
+            LogProvider.SetCurrentLogProvider(new CustomConsoleLogProvider());
+
+            #endregion
+
             #region scheduler
             Console.WriteLine("init scheduler for TestStatefulJob.....");
             StdSchedulerFactory factory = new StdSchedulerFactory();
