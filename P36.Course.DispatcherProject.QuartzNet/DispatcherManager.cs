@@ -71,7 +71,12 @@ namespace P36.Course.DispatcherProject.QuartzNet
             Console.WriteLine("init scheduler for TestStatefulJob.....");
             StdSchedulerFactory factory = new StdSchedulerFactory();
             IScheduler scheduler = await factory.GetScheduler();
-            scheduler.ListenerManager.AddSchedulerListener(new CustomSchedulerListener());
+            
+            // add listener to scheduler
+            scheduler.ListenerManager.AddSchedulerListener(new CustomSchedulerListener());//scheduler listener
+
+            scheduler.ListenerManager.AddJobListener(new CustomJobListener());//job listener
+
             await scheduler.Start();
             #endregion
 
