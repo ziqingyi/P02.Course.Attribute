@@ -32,8 +32,9 @@ namespace P36.Course.DispatcherProject.QuartzNet.CustomJob
         public static int ID = 0;
         public TestStatefulJob()
         {
+            Console.WriteLine();
             ID++;
-            Console.WriteLine($"new TestStatefulJob: {ID} is initialized");
+            Console.WriteLine($"******************new TestStatefulJob: {ID} is initialized****************");
         }
 
         private static object TempData = new object();//used for passing values or locking

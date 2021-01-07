@@ -10,10 +10,12 @@ namespace P36.Course.DispatcherProject.QuartzNet.CustomJob
 {
     public class TestJob: IJob
     {
-
+        public static int ID = 0;
         public TestJob()
         {
-            Console.WriteLine("new TestJob is initialized");
+            Console.WriteLine();
+            ID++;
+            Console.WriteLine($"******************new TestStatefulJob: {ID} is initialized****************");
         }
 
         public async Task Execute(IJobExecutionContext context)
