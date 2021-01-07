@@ -16,11 +16,11 @@ namespace P36.Course.DispatcherProject.QuartzNet.CustomJob
             await Task.Run(() =>
             {
                 Console.WriteLine();
-                Console.WriteLine("**************GoodJob Execute start in thread {0}, now is {1}", Thread.CurrentThread.ManagedThreadId, DateTime.Now);
+                ConsoleWriter.WriteLineGreen("**************GoodJob Execute start in thread {0}, now is {1}", Thread.CurrentThread.ManagedThreadId, DateTime.Now);
 
                 Thread.Sleep(1000);
 
-                Console.WriteLine("This is GoodJob Execute end in thread {0}, now is {1}", Thread.CurrentThread.ManagedThreadId, DateTime.Now);
+                ConsoleWriter.WriteLineGreen("This is GoodJob Execute end in thread {0}, now is {1}", Thread.CurrentThread.ManagedThreadId, DateTime.Now);
                 Console.WriteLine("**********************************");
                 Console.WriteLine();
             });

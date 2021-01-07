@@ -28,6 +28,15 @@ namespace P19.Course.ConsoleWriterProj
                 Console.ResetColor();
             }
         }
+        public static void WriteLineYellow(string format, object arg0, object arg1)
+        {
+            lock (_messageLock)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(format,  arg0,  arg1);
+                Console.ResetColor();
+            }
+        }
 
         public static void WriteLineGreen(string message)
         {
@@ -38,6 +47,36 @@ namespace P19.Course.ConsoleWriterProj
                 Console.ResetColor();
             }
         }
+        public static void WriteLineGreen(string format, object arg0, object arg1)
+        {
+            lock (_messageLock)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(format, arg0, arg1);
+                Console.ResetColor();
+            }
+        }
+
+
+        public static void WriteLineRed(string message)
+        {
+            lock (_messageLock)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(message);
+                Console.ResetColor();
+            }
+        }
+        public static void WriteLineRed(string format, object arg0, object arg1)
+        {
+            lock (_messageLock)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(format, arg0, arg1);
+                Console.ResetColor();
+            }
+        }
+
 
     }
 }
