@@ -164,6 +164,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P36.Course.DispatcherProjec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P36.Course.DispatcherProject.QuartzNet", "P36.Course.DispatcherProject.QuartzNet\P36.Course.DispatcherProject.QuartzNet.csproj", "{98ED9B0C-5DA6-4EB3-BAFF-90A6C53A0256}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P36.Course.DispatcherProject.Web", "P36.Course.DispatcherProject.Web\P36.Course.DispatcherProject.Web.csproj", "{CA83566C-93CC-4222-B8BC-2FEEADAA2835}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -486,6 +488,10 @@ Global
 		{98ED9B0C-5DA6-4EB3-BAFF-90A6C53A0256}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98ED9B0C-5DA6-4EB3-BAFF-90A6C53A0256}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98ED9B0C-5DA6-4EB3-BAFF-90A6C53A0256}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA83566C-93CC-4222-B8BC-2FEEADAA2835}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA83566C-93CC-4222-B8BC-2FEEADAA2835}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA83566C-93CC-4222-B8BC-2FEEADAA2835}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA83566C-93CC-4222-B8BC-2FEEADAA2835}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
