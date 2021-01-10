@@ -14,12 +14,12 @@ namespace P36.Course.DispatcherProject.QuartzNet
         public async static Task<IScheduler> BuildScheduler()
         {
             var properties = new NameValueCollection();
-            properties["quartz.scheduler.instanceName"] = "jobs monitoring system";
+            properties["quartz.scheduler.instanceName"] = "----------------jobs monitoring system-----------------";
 
             // thread pool setting
             properties["quartz.threadPool.type"] = "Quartz.Simpl.SimpleThreadPool, Quartz";
             properties["quartz.threadPool.threadCount"] = "5";
-            properties["quartz.threadPool.threadPriority"] = "Normal";
+            //properties["quartz.threadPool.threadPriority"] = "Normal";
 
             // exporter setting,  port is web.config SchedulerHost port number. 
             properties["quartz.scheduler.exporter.type"] = "Quartz.Simpl.RemotingSchedulerExporter, Quartz";

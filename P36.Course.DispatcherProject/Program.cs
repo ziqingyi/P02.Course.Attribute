@@ -16,7 +16,9 @@ namespace P36.Course.DispatcherProject
             {
                 //DispatcherManager.InitTestJob().GetAwaiter().GetResult();
 
-                DispatcherManager.InitTestStatefulJob().GetAwaiter().GetResult();
+                //DispatcherManager.InitTestStatefulJob().GetAwaiter().GetResult();
+
+                DispatcherManager.InitTestWebJob().GetAwaiter().GetResult();
 
                 Console.ReadKey();
             }
