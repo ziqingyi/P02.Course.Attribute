@@ -95,7 +95,7 @@ namespace P36.Course.DispatcherProject.QuartzNet
                 Console.WriteLine(" create IJob  and ITrigger for TestStatefulJob.....");
                 //create job task
                 IJobDetail jobDetail = JobBuilder.Create<TestStatefulJob>()
-                    .WithIdentity("TestStatefulJob", "group1")
+                    .WithIdentity("TestStatefulJob", "group1") //must be in same group with trigger
                     .WithDescription("This is Test Stateful Job")
                     .Build();
 

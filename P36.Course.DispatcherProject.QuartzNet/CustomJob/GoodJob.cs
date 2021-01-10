@@ -20,8 +20,7 @@ namespace P36.Course.DispatcherProject.QuartzNet.CustomJob
 
                 Thread.Sleep(1000);
 
-                ConsoleWriter.WriteLineGreen("This is GoodJob Execute end in thread {0}, now is {1}", Thread.CurrentThread.ManagedThreadId, DateTime.Now);
-                Console.WriteLine("**********************************");
+                ConsoleWriter.WriteLineGreen("*************This is GoodJob Execute end in thread {0}, now is {1}", Thread.CurrentThread.ManagedThreadId, DateTime.Now);
                 Console.WriteLine();
             });
 
