@@ -14,7 +14,7 @@ namespace P36.Course.DispatcherProject.QuartzNet.CustomLog
         {
             Logger newLogger = (logLevel, messageFunc, exception, formatParameters) =>
             {
-                if (logLevel > LogLevel.Info && messageFunc != null)
+                if (logLevel >= LogLevel.Info && messageFunc != null)
                 {
                     ConsoleWriter.WriteLineYellow($"[{ DateTime.Now.ToLongTimeString()}] [log level: {logLevel}]");
                     ConsoleWriter.WriteLineYellow($"         {messageFunc()} { string.Join(";", formatParameters.Select(p=>p==null? " ":p.ToString()))}");
