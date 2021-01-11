@@ -12,14 +12,13 @@ namespace P36.Course.DispatcherProject.QuartzNet.CustomLog
     {
         public Logger GetLogger(string name)
         {
-
             Logger newLogger = (logLevel, messageFunc, exception, formatParameters) =>
             {
                 if (logLevel > LogLevel.Info && messageFunc != null)
                 {
                     ConsoleWriter.WriteLineYellow($"[{ DateTime.Now.ToLongTimeString()}] [log level: {logLevel}]");
-                    ConsoleWriter.WriteLineYellow($"{messageFunc()} { string.Join(";", formatParameters.Select(p=>p==null? " ":p.ToString()))}");
-                    ConsoleWriter.WriteLineYellow($"  user defined log: {name}");
+                    ConsoleWriter.WriteLineYellow($"         {messageFunc()} { string.Join(";", formatParameters.Select(p=>p==null? " ":p.ToString()))}");
+                    ConsoleWriter.WriteLineYellow($"         user defined log: {name}");
                 }
                 return true;
             };
