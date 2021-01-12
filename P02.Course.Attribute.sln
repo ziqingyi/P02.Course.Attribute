@@ -166,6 +166,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P36.Course.DispatcherProjec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P36.Course.DispatcherProject.Web", "P36.Course.DispatcherProject.Web\P36.Course.DispatcherProject.Web.csproj", "{CA83566C-93CC-4222-B8BC-2FEEADAA2835}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P36.Course.DispatcherProject.WindowsService", "P36.Course.DispatcherProject.WindowsService\P36.Course.DispatcherProject.WindowsService.csproj", "{B816670A-FA47-4789-9F45-F947FCE61774}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -492,6 +494,10 @@ Global
 		{CA83566C-93CC-4222-B8BC-2FEEADAA2835}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA83566C-93CC-4222-B8BC-2FEEADAA2835}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA83566C-93CC-4222-B8BC-2FEEADAA2835}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B816670A-FA47-4789-9F45-F947FCE61774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B816670A-FA47-4789-9F45-F947FCE61774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B816670A-FA47-4789-9F45-F947FCE61774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B816670A-FA47-4789-9F45-F947FCE61774}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
