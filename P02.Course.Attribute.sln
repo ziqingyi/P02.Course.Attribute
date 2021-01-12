@@ -168,6 +168,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P36.Course.DispatcherProjec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P36.Course.DispatcherProject.WindowsService", "P36.Course.DispatcherProject.WindowsService\P36.Course.DispatcherProject.WindowsService.csproj", "{B816670A-FA47-4789-9F45-F947FCE61774}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P36.Course.DispatcherProject.Common", "P36.Course.DispatcherProject.Common\P36.Course.DispatcherProject.Common.csproj", "{D8FF8F07-ECB8-4927-B2DD-C0E889BEC09D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -498,6 +500,10 @@ Global
 		{B816670A-FA47-4789-9F45-F947FCE61774}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B816670A-FA47-4789-9F45-F947FCE61774}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B816670A-FA47-4789-9F45-F947FCE61774}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8FF8F07-ECB8-4927-B2DD-C0E889BEC09D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8FF8F07-ECB8-4927-B2DD-C0E889BEC09D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8FF8F07-ECB8-4927-B2DD-C0E889BEC09D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8FF8F07-ECB8-4927-B2DD-C0E889BEC09D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
