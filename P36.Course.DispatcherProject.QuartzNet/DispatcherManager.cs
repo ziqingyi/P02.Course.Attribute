@@ -10,6 +10,8 @@ using P36.Course.DispatcherProject.QuartzNet.CustomListener;
 using P36.Course.DispatcherProject.QuartzNet.CustomLog;
 using Quartz;
 using Quartz.Logging;
+using Quartz.Simpl;
+using Quartz.Xml;
 
 namespace P36.Course.DispatcherProject.QuartzNet
 {
@@ -253,7 +255,36 @@ namespace P36.Course.DispatcherProject.QuartzNet
         }
 
 
+        public async static Task InitTestXMLJob()
+        {
 
+            #region scheduler, use your ScheduleManager to init
+            Console.WriteLine("init scheduler for InitTestXMLJob.....");
+            //StdSchedulerFactory factory = new StdSchedulerFactory();
+            //IScheduler scheduler = await factory.GetScheduler();
+            IScheduler scheduler = await ScheduleManager.BuildScheduler();
+
+
+
+            // add listener to scheduler
+            scheduler.ListenerManager.AddSchedulerListener(new CustomSchedulerListener());//scheduler listener
+            scheduler.ListenerManager.AddTriggerListener(new CustomTriggerListener());// trigger listener
+            scheduler.ListenerManager.AddJobListener(new CustomJobListener());//job listener
+
+            await scheduler.Start();
+            #endregion
+
+
+
+            #region Use XML file to config IJob and Itriger
+
+            XMLSchedulingDataProcessor processor = new XMLSchedulingDataProcessor(new SimpleTypeLoadHelper());
+            await processor.ProcessFileAndScheduleJobs("~/CfgFiles/quartz_jobs.xml", scheduler);
+
+
+            #endregion
+
+        }
 
     }
 }

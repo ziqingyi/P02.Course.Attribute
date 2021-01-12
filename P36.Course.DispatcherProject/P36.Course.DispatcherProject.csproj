@@ -80,5 +80,10 @@
       <Name>P36.Course.DispatcherProject.QuartzNet</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="CfgFiles\quartz_jobs.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
