@@ -23,6 +23,8 @@ namespace P36.Course.DispatcherProject.WindowsService
         {
             this.logger.Info("This is OnStart..");
 
+
+
         }
 
         protected override void OnStop()

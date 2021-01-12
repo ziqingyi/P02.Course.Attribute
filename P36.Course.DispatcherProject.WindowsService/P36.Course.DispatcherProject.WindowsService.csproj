@@ -59,9 +59,11 @@
     </Compile>
     <Compile Include="Service1.cs">
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Service1.Designer.cs">
       <DependentUpon>Service1.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +76,7 @@
     <Content Include="CfgFiles\log4net.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\P36.Course.DispatcherProject.Common\P36.Course.DispatcherProject.Common.csproj">
