@@ -8,6 +8,7 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using P36.Course.DispatcherProject.Common;
+using P36.Course.DispatcherProject.QuartzNet;
 
 namespace P36.Course.DispatcherProject.WindowsService
 {
@@ -17,6 +18,11 @@ namespace P36.Course.DispatcherProject.WindowsService
         public MyService_1()
         {
             InitializeComponent();
+            this.logger.Info("This is my service 1 ctor start..");
+
+            DispatcherManager.InitTestXMLJob().GetAwaiter().GetResult();
+
+            this.logger.Info("This is my service 1 ctor End..");
         }
 
         protected override void OnStart(string[] args)

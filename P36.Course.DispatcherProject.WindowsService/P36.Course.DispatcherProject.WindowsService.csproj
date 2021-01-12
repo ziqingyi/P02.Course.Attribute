@@ -74,12 +74,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProjectInstaller.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ProjectInstaller.Designer.cs">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </Compile>
     <Compile Include="MyService_1.cs">
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -89,6 +83,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +105,10 @@
     <ProjectReference Include="..\P36.Course.DispatcherProject.Common\P36.Course.DispatcherProject.Common.csproj">
       <Project>{d8ff8f07-ecb8-4927-b2dd-c0e889bec09d}</Project>
       <Name>P36.Course.DispatcherProject.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P36.Course.DispatcherProject.QuartzNet\P36.Course.DispatcherProject.QuartzNet.csproj">
+      <Project>{98ed9b0c-5da6-4eb3-baff-90a6c53a0256}</Project>
+      <Name>P36.Course.DispatcherProject.QuartzNet</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
