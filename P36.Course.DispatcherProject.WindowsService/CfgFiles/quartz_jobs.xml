@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+
+  <processing-directives>
+    <overwrite-existing-data>true</overwrite-existing-data>
+  </processing-directives>
+  <schedule>
+    <job>
+      <name>GoodJob</name>
+      <group>groupGoodInXML</group>
+      <description>This is groupGoodInXML's GoodJob</description>
+      <job-type> P36.Course.DispatcherProject.QuartzNet.CustomJob.GoodJob,P36.Course.DispatcherProject.QuartzNet</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>GoodJobTrigger1</name>
+        <group>groupGoodInXML</group>
+        <job-name>GoodJob</job-name>
+        <job-group>groupGoodInXML</job-group>
+        <cron-expression>3/10 * * * * ?</cron-expression>
+      </cron>
+    </trigger>
+
+
+    <!--<job>
+      <name>UpdateInventoryJob</name>
+      <group>Update</group>
+      <description>update stock regularly</description>
+      <job-type>TopshelfAndQuartz.UpdateInventoryJob,TopshelfAndQuartz</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>UpdateInventoryTrigger</name>
+        <group>Update</group>
+        <job-name>UpdateInventoryJob</job-name>
+        <job-group>Update</job-group>
+        <cron-expression>0 0/1 * * * ?</cron-expression>
+      </cron>
+    </trigger>-->
+  </schedule>
+</job-scheduling-data>
