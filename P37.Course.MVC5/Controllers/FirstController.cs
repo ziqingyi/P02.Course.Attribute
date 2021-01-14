@@ -13,13 +13,10 @@ namespace P37.Course.MVC5.Controllers
         {
             return View();
         }
-        /// <summary>
-        ///https://localhost:44332/First/IndexId/3  id is directed by router. only id can do this way.
-        /// https://localhost:44332/First/IndexId?id=3 url address pass param. 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ViewResult IndexId(int id)
+
+        //https://localhost:44332/First/IndexId/3  id is directed by router. only id can do this way.
+        // https://localhost:44332/First/IndexId?id=3 url address pass param. 
+        public ViewResultBase IndexId(int id)
         {
             return View();
         }
@@ -28,6 +25,48 @@ namespace P37.Course.MVC5.Controllers
         {
             return View();
         }
+
+
+
+        #region return test
+        //the only way to pass is: https://localhost:44332/first/stringname?name=dfghf
+        public string StringName(string name)
+        {
+            return "This is " + name;
+        }
+        // https://localhost:44332/first/StringJson?name=dfghf
+        public string StringJson(string name)
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(
+                new
+                {
+                    Id = 123,
+                    Name = name
+                });
+        }
+
+        //https://localhost:44332/first/JsonResult?id=111&name=erwqr&remark=%22advanced%22
+        public JsonResult JsonResult(int id, string name, string remark)
+        {
+            return new JsonResult()
+                {
+                    Data = new
+                    {
+                        Id = id,
+                        Name = name,
+                        Remark = remark ?? "default remark"
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+        }
+
+
+        #endregion
+
+
+
+
+
 
     }
 }
