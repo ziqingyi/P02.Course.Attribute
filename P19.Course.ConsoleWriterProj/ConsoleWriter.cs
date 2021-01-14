@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace P19.Course.ConsoleWriterProj
@@ -9,6 +10,8 @@ namespace P19.Course.ConsoleWriterProj
     public static class ConsoleWriter
     {
         private static object _messageLock = new Object();
+
+        #region WriteLine
 
         public static void WriteLine(string message)
         {
@@ -19,6 +22,38 @@ namespace P19.Course.ConsoleWriterProj
             }
         }
 
+        public static void WriteLineAdv(string msg, bool appendTimeThread, ConsoleColor color)
+        {
+            lock (_messageLock)
+            {
+                Console.ForegroundColor = color;
+                //foreach (char c in msg.ToCharArray())
+                //{Console.Write($"{c}");}
+
+                if (appendTimeThread)
+                {
+                    msg += getThreadTime();
+                }
+                Console.WriteLine($"{msg}");
+                Console.ResetColor();
+            }
+        }
+
+        /// <summary>
+        ///append thread and time at the end of msg inside lock, get lock early and print early.
+        /// as thread execute early not necessarily get lock early. 
+        /// </summary>
+        /// <returns></returns>
+        private static string getThreadTime()
+        {
+            string threadId = Thread.CurrentThread.ManagedThreadId.ToString("00");
+            string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            return " In Thread: " + threadId + " Time: " + time;
+        }
+        #endregion
+
+
+        #region Yellow, Green, Red.  message or with two arg0
         public static void WriteLineYellow(string message)
         {
             lock (_messageLock)
@@ -76,6 +111,12 @@ namespace P19.Course.ConsoleWriterProj
                 Console.ResetColor();
             }
         }
+
+        #endregion
+
+
+
+
 
 
     }
