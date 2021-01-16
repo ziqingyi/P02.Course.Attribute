@@ -62,7 +62,7 @@ namespace P37.Course.MVC5.Controllers
         //    return View();
         //}
 
-        // GET: First
+        // GET: First,controller should just check user input and call service, not put business logic here.
         public ActionResult Index(int id = 3)
         {
             CurrentUser currentUser = this._UserList.FirstOrDefault(u=> u.Id == id)??this._UserList[0];
@@ -85,12 +85,12 @@ namespace P37.Course.MVC5.Controllers
 
             if (id <= 3)
             {
-                return View(this._UserList[2]);//@model --for strong typed object
+                return base.View(this._UserList[2]);//@model --for strong typed object
             }
 
             if (id < 10)
             {
-                return View("~/Views/First/Index1.cshtml");//return cshtml view only
+                return base.View("~/Views/First/Index1.cshtml");//return cshtml view only
             }
             else
             {
@@ -101,7 +101,7 @@ namespace P37.Course.MVC5.Controllers
 
         public ActionResult TempDataShow()
         {
-            return View();
+            return base.View();
         }
 
 
