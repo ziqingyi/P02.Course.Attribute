@@ -16,7 +16,7 @@ namespace P37.Course.MVC5.Controllers
             {
                 Id=1,
                 Name="User1",
-                Account="Administrator",
+                Account="User1Administrator",
                 Email="111111@qq.com",
                 LoginTime=DateTime.Now,
                 Password="123drd",
@@ -30,7 +30,7 @@ namespace P37.Course.MVC5.Controllers
             {
                 Id=2,
                 Name="User2",
-                Account="Administrator",
+                Account="User2Administrator",
                 Email="222222@qq.com",
                 LoginTime=DateTime.Now.AddMonths(-2),
                 Password="123ljlji",
@@ -44,7 +44,7 @@ namespace P37.Course.MVC5.Controllers
             {
                 Id=3,
                 Name="User3",
-                Account="Administrator",
+                Account="User3Administrator",
                 Email="33333@qq.com",
                 LoginTime=DateTime.Now.AddDays(-5),
                 Password="1ljkll56",
@@ -67,22 +67,47 @@ namespace P37.Course.MVC5.Controllers
         {
             CurrentUser currentUser = this._UserList.FirstOrDefault(u=> u.Id == id)??this._UserList[0];
 
-
+            #region ViewBag, ViewData, cannot be used between actions
             base.ViewBag.CurrentUserViewBag = this._UserList[1];//ViewBag is dynamic type
             base.ViewBag.TestProp = "view bag test prop value";//override by view data,because view data execute late
 
-
             base.ViewData["CurrentUserViewData"] = this._UserList[0];
-            base.ViewData["TestProp"] = "view data test prop value";
+            base.ViewData["TestProp"] = "view data test prop value";//ViewData ViewBag can override each other
 
+            #endregion
 
-            return View(this._UserList[2]);
-            //return View("~/Views/First/Index.cshtml");//return cshtml view only
+            #region TempData, stored in session can be used between actions, and will be deleted once used
+
+            base.TempData["CurrentUserTempData"] = currentUser; 
+            base.TempData["TestProp"] = "temp data test prop value";//will not override other test prop,stored independently
+            
+            #endregion
+
+            if (id <= 3)
+            {
+                return View(this._UserList[2]);//@model --for strong typed object
+            }
+
+            if (id < 10)
+            {
+                return View("~/Views/First/Index1.cshtml");//return cshtml view only
+            }
+            else
+            {
+                return base.RedirectToAction("TempDataShow");
+            }
+
+        }
+
+        public ActionResult TempDataShow()
+        {
+            return View();
         }
 
 
+
         //https://localhost:44332/First/IndexId/3  id is directed by router. only id can do this way.
-        // https://localhost:44332/First/IndexId?id=3 url address pass param. 
+        //https://localhost:44332/First/IndexId?id=3 url address pass param. 
         public ViewResultBase IndexId(int id)
         {
             return View();

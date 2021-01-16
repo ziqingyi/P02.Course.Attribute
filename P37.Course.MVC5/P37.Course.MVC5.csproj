@@ -168,6 +168,8 @@
     <Content Include="Views\First\Index.cshtml" />
     <Content Include="Views\First\IndexId.cshtml" />
     <Content Include="Views\First\IndexIdNull.cshtml" />
+    <Content Include="Views\First\TempDataShow.cshtml" />
+    <Content Include="Views\First\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
