@@ -1,7 +1,32 @@
-﻿
+﻿@using P37.Course.MVC5.Models;
+@model CurrentUser
 @{
     ViewBag.Title = "Index";
+    CurrentUser userData = (CurrentUser) ViewData["CurrentUserViewData"];
 }
 
 <h2>Index</h2>
+
+<h3>ViewBag.Title: @ViewBag.Title</h3>
+
+<h3>ViewBag.TestProp: @ViewBag.TestProp</h3>
+
+<h3>ViewBag.CurrentUserViewBag: @ViewBag.CurrentUserViewBag.Name</h3>
+
+
+
+<h3>ViewData.TestProp: @ViewData["TestProp"]</h3>
+
+<h3>ViewData.CurrentUserViewData get name:  @(((CurrentUser)ViewData["CurrentUserViewData"]).Name) </h3>
+
+<h3>ViewData.userData: @userData.Name  </h3>
+
+
+
+<h3>model.Name : @Model.Name</h3>
+
+@foreach (Data data in Model.Datas)
+{
+    <h5>@Model.Name company is : @data.Company</h5>
+}
 
