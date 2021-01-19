@@ -18,6 +18,7 @@ namespace P37.Course.MVC5.Controllers
         {
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff");
         }
+
         //http://localhost:2018/Second/time?year=2019&month=02&day=07
         //http://localhost:2018/Test/time?year=2019&month=02&day=07
         //http://localhost:2018/second/time_2019_02_07
@@ -25,6 +26,18 @@ namespace P37.Course.MVC5.Controllers
         {
             return $"date passed in: {year}-{month}-{day}";
         }
+
+
+        public ViewResult RazorExtend()
+        {
+            return View();
+        }
+
+
+
+
+
+
 
     }
 }
