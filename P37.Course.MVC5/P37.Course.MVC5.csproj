@@ -140,6 +140,10 @@
     <Content Include="Areas\System\Views\_ViewStart.cshtml" />
     <Content Include="Areas\System\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\System\Views\AreaHome\Index.cshtml" />
+    <Content Include="Areas\SystemPlugins\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\SystemPlugins\Views\AreaHome\Index.cshtml" />
+    <Content Include="Areas\SystemPlugins\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\SystemPlugins\Views\web.config" />
     <None Include="CfgFiles\log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
