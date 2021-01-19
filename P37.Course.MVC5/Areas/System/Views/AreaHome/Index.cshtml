@@ -1,7 +1,48 @@
 ﻿
 @{
+    //multiple lines
     ViewBag.Title = "AreaIndex";
 }
 
-<h2>My System Area Index</h2>
+<h2>My System Area Index  @ViewBag.Title </h2> @*single line, cannot have {}*@
 
+
+
+@{
+    int i = 3;
+
+    <p>1 html labels in side multi-line for front end labels</p>
+
+
+
+    @: 2 without html labels you can use this
+
+    <text>
+            3  Use text 
+    </text>
+}
+
+@*   <h3>   test error @{ViewBag.Title}    </h3>     *@
+
+
+
+<h2>below is testing looping</h2>
+
+@if (i > 2)
+{
+    <a href="www.google.com"> This is a link </a>
+}
+
+
+@for (int l = 0; l < 10; l++)
+{
+
+   <a href="www.google.com"> this is a link @l</a> <br>
+}
+
+
+<!---pass value in one request, different from Ajax-->
+<input id="hideTitle" type="hidden" value="@ViewBag.Title">
+<script>
+    alert(document.getElementById("hideTitle").value)
+</script>
