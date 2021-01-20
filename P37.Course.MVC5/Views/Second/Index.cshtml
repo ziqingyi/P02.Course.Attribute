@@ -13,10 +13,24 @@
     </script>
 }
 
-<br/>
+<br />
+
 
 <!--use partial page-->
 <p>same to ascx in webform</p>
+
+<p>Html.RenderPartial : insert a view at nominated location, return void, method should be in {}  </p>
+@{Html.RenderPartial("PartialPage", "this is Html.RenderPartial");}
+
+<br />
+<p> Html.Partial return string </p>
+@Html.Partial("PartialPage", "this is Html.Partial")
+
+
+
+<!--use Action page-->
+
+
 
 
 
