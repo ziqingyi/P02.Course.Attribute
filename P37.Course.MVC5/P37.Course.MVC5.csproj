@@ -191,6 +191,7 @@
     <Content Include="Views\First\Index1.cshtml" />
     <Content Include="Views\Second\Index.cshtml" />
     <Content Include="Views\Second\RazorExtend.cshtml" />
+    <Content Include="Views\Second\PartialPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
