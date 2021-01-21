@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using P37.Course.MVC5.Controllers.Utility;
+using P37.Course.MVC5.Utility;
 
 namespace P37.Course.MVC5
 {
@@ -18,6 +19,8 @@ namespace P37.Course.MVC5
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ControllerBuilder.Current.SetControllerFactory(new MyCustomControllerFactory());
 
             this.logger.Info("website start.....");
         }
