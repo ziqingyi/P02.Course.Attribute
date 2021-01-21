@@ -128,6 +128,7 @@
     <Compile Include="Controllers\FirstController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SecondController.cs" />
+    <Compile Include="Controllers\ThirdController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -193,6 +194,7 @@
     <Content Include="Views\Second\RazorExtend.cshtml" />
     <Content Include="Views\Second\PartialPage.cshtml" />
     <Content Include="Views\Second\ChildAction.cshtml" />
+    <Content Include="Views\Third\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
