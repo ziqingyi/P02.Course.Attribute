@@ -214,6 +214,18 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\P33.Course.Model\P33.Course.Model.csproj">
+      <Project>{7a8d76ed-a63f-476b-a607-b6acef6d49a7}</Project>
+      <Name>P33.Course.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P34.Course.Business.Interface\P34.Course.Business.Interface.csproj">
+      <Project>{a209e807-48d7-4ac8-b58e-48859adee460}</Project>
+      <Name>P34.Course.Business.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P34.Course.Business.Service\P34.Course.Business.Service.csproj">
+      <Project>{ba998282-be50-4881-b81b-40759e47a452}</Project>
+      <Name>P34.Course.Business.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\P37.Course.MVC5.Plugins\P37.Course.MVC5.Plugins.csproj">
       <Project>{e103ed0e-02fc-49f4-aeeb-07b8040a2609}</Project>
       <Name>P37.Course.MVC5.Plugins</Name>
