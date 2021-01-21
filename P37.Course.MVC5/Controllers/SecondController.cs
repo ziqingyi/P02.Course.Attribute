@@ -33,9 +33,12 @@ namespace P37.Course.MVC5.Controllers
             return View();
         }
 
-
-
-
+        [ChildActionOnly]//can only be referenced
+        public ViewResult ChildAction(string name)
+        {
+            base.ViewBag.Name = name;
+            return View();
+        }
 
 
 
