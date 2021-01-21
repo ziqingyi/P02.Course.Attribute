@@ -41,7 +41,8 @@ namespace P37.Course.MVC5
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "P37.Course.MVC5.Controllers", "P37.Course.MVC5.Plugins" }
                 );
         }
     }
