@@ -46,6 +46,8 @@ namespace P37.Course.MVC5.Controllers
             //2 the default controller factory will create singleton container with config files
             //3 container will be used to resolve different controller's  service based on config
             //4 if the controller need some service, it should get service from ctor parameters, container wil do that. 
+
+            //config IOC, container factory used in controller factory to resolve different controller instance
             IUserService service = this._iUserService;
 
             User user = service.Find<User>(2);
