@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Serialization;
 using P33.Course.Model;
 using P33.Course.Model.Models;
 using P34.Course.Business.Interface;
@@ -93,10 +94,50 @@ namespace P37.Course.MVC5.Controllers
         }
         #endregion
 
+        #region XmlResult
 
+        public XmlResult XmlResult()
+        {
+            MyXMLData d = new MyXMLData() {Id = 222, Name = "User XmlResult"};
+            return new XmlResult(d);
+        }
+
+        #endregion
 
 
 
 
     }
+
+        
+    public class XmlResult : ActionResult
+    {
+        private object _data = null;
+
+        public XmlResult(object data)
+        {
+            this._data = data;
+        }
+
+        public override void ExecuteResult(ControllerContext context)
+        {
+            context.HttpContext.Response.ContentType = "text/xml";
+
+            XmlSerializer xmlSerializer = new XmlSerializer(this._data.GetType());
+
+            //context.HttpContext.Response.Write(XmlSerializer);
+            //HttpResponseBase response = context.HttpContext.Response;
+            //response.Write(xmlSerializer.Serialize(this._data));
+
+            xmlSerializer.Serialize(context.HttpContext.Response.OutputStream, this._data);
+        }
+    }
+    [Serializable]
+    public class MyXMLData
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
+
 }
