@@ -7,6 +7,7 @@ using P33.Course.Model;
 using P33.Course.Model.Models;
 using P34.Course.Business.Interface;
 using P34.Course.Business.Service;
+using P37.Course.MVC5.Models;
 
 namespace P37.Course.MVC5.Controllers
 {
@@ -54,5 +55,48 @@ namespace P37.Course.MVC5.Controllers
 
             return View();
         }
+
+        #region JsonResult:  JsonResult : ActionResult, which is abstract class containing one method ExecuteResult(ControllerContext context)
+        //ExecuteResult(ControllerContext context) will be executed
+        public JsonResult Json()
+        {
+            return Json(new
+            {
+                Id = 123,
+                Name = "user Json"
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult JsonResult()
+        {
+            return new JsonResult()
+            {
+                Data = new
+                { 
+                    Id = 123, 
+                    Name = "user Json"
+                },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public void JsonVoid()
+        {
+            var result = Newtonsoft.Json.JsonConvert.SerializeObject(new
+            {
+                Id = 123,
+                Name = "user JsonVoid"
+            });
+
+            base.HttpContext.Response.ContentType = "application/json";
+            base.HttpContext.Response.Write(result);
+        }
+        #endregion
+
+
+
+
+
+
     }
 }
