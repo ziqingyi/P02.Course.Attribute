@@ -35,26 +35,39 @@ namespace P37.Course.MVC5.Controllers
 
 
 
-        // GET: Third
-        public ActionResult Index()
+        // GET: Third default view, return a user information
+        public ActionResult Index(int id=2)
         {
-            //bad way to integrate MVC, ORM
-            //JDDbContext context = new JDDbContext();
-            //IUserService service = new UserService(context);
+            User user1 = null;
+            User user2 = null;
+            User user3 = null;
 
+            //1 First way to get user is to use EF directly.
+            using (JDDbContext context = new JDDbContext())
+            {
+                user1 = context.Set<User>().Find(id);
+            }
 
-            //Good way: use IOC to create Controller.
-            //1 create default controller factory and set in controller builder in Global.asax.cs
-            //2 the default controller factory will create singleton container with config files
-            //3 container will be used to resolve different controller's  service based on config
-            //4 if the controller need some service, it should get service from ctor parameters, container wil do that. 
+            //2 Second way to get user is to use your service classes. 
+            using(JDDbContext context = new JDDbContext())
+            {
+                using (IUserService NewUserService = new UserService(context))
+                {
+                    user2 = NewUserService.Find<User>(id);
+                }
+            }
+            
+            //3 Third way is to use IOC to create Controller with your services class instance.
+            //(1) create default controller factory and set in controller builder in Global.asax.cs
+            //(2) the default controller factory will create singleton container with config files
+            //(3) container will be used to resolve different controller's  service based on config
+            //(4) if the controller need some service, it should get service from ctor parameters, container wil do that. 
 
             //config IOC, container factory used in controller factory to resolve different controller instance
             IUserService service = this._iUserService;
+            user3 = service.Find<User>(id);
 
-            User user = service.Find<User>(2);
-
-            return View();
+            return View(user3);
         }
 
         #region JsonResult:  JsonResult : ActionResult, which is abstract class containing one method ExecuteResult(ControllerContext context)
