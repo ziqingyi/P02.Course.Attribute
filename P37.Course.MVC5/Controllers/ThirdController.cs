@@ -29,6 +29,7 @@ namespace P37.Course.MVC5.Controllers
         /// <param name="userService"></param>
         /// <param name="companyService"></param>
         /// <param name="userCompanyService"></param>
+        [InjectionConstructor]//container will use this ctor
         public ThirdController(IUserService userService, ICompanyService companyService,
             IUserCompanyService userCompanyService)
         {
