@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,9 +10,12 @@ using P33.Course.Model.Models;
 using P34.Course.Business.Interface;
 using P34.Course.Business.Service;
 using P37.Course.MVC5.Models;
+using P37.Course.MVC5.Utility;
+using Unity;
 
 namespace P37.Course.MVC5.Controllers
 {
+    
     public class ThirdController : Controller
     {
         private IUserService _iUserService = null;
@@ -41,6 +45,7 @@ namespace P37.Course.MVC5.Controllers
             User user1 = null;
             User user2 = null;
             User user3 = null;
+            User user4 = null;
 
             //1 First way to get user is to use EF directly.
             using (JDDbContext context = new JDDbContext())
@@ -56,18 +61,27 @@ namespace P37.Course.MVC5.Controllers
                     user2 = NewUserService.Find<User>(id);
                 }
             }
-            
-            //3 Third way is to use IOC to create Controller with your services class instance.
+
+            //3 Third Way: User container to Resolve the service, Resolve the DbContext for EF as well.remember to  "using Unity" first;
+            using (IUserService userService = DIFactory.GetContainer().Resolve<IUserService>())
+            {
+                user3 = userService.Find<User>(id);
+            }
+
+            //4 Forth way is to use IOC to create Controller with your services class instance.
             //(1) create default controller factory and set in controller builder in Global.asax.cs
             //(2) the default controller factory will create singleton container with config files
             //(3) container will be used to resolve different controller's  service based on config
             //(4) if the controller need some service, it should get service from ctor parameters, container wil do that. 
 
             //config IOC, container factory used in controller factory to resolve different controller instance
-            IUserService service = this._iUserService;
-            user3 = service.Find<User>(id);
+            //all objects will be disposed after view(HTML) is generated. 
+            using (IUserService service = this._iUserService)
+            {
+                user4 = service.Find<User>(id);
+            }
 
-            return View(user3);
+            return View(user4);
         }
 
         #region JsonResult:  JsonResult : ActionResult, which is abstract class containing one method ExecuteResult(ControllerContext context)
