@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Unity.Interception.InterceptionBehaviors;
 using Unity.Interception.PolicyInjection.Pipeline;
 
-namespace P37.Course.MVC5.AOP
+namespace P37.Course.MVC5.Utility.AOP
 {
     public class LogAfterBehavior : IInterceptionBehavior
     {
