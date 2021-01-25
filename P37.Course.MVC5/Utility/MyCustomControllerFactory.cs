@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using P37.Course.MVC5.Controllers.Utility;
+using P37.Course.Web.Core;
 using Unity;
 
 namespace P37.Course.MVC5.Utility
