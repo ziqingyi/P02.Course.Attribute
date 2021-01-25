@@ -7,7 +7,7 @@ using System.Web;
 using Microsoft.Practices.Unity.Configuration;
 using Unity;
 
-namespace P37.Course.Web.Core
+namespace P37.Course.Web.Core.IOC
 {
     public class DIFactory
     {
