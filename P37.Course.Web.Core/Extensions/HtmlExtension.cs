@@ -5,7 +5,7 @@ using System.Security;
 using System.Web;
 using System.Web.Mvc;
 
-namespace P37.Course.MVC5.Utility
+namespace P37.Course.Web.Core
 {
     public static class HtmlExtension
     {

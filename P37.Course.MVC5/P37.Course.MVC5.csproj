@@ -166,7 +166,6 @@
     <Compile Include="Models\CurrentUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\DIFactory.cs" />
-    <Compile Include="Utility\HtmlExtension.cs" />
     <Compile Include="Utility\Logger.cs" />
     <Compile Include="Utility\MyCustomControllerFactory.cs" />
   </ItemGroup>
@@ -268,6 +267,10 @@
     <ProjectReference Include="..\P37.Course.MVC5.Plugins\P37.Course.MVC5.Plugins.csproj">
       <Project>{e103ed0e-02fc-49f4-aeeb-07b8040a2609}</Project>
       <Name>P37.Course.MVC5.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P37.Course.Web.Core\P37.Course.Web.Core.csproj">
+      <Project>{40f9c49f-3864-4dec-b1d8-f65ab8151e37}</Project>
+      <Name>P37.Course.Web.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
