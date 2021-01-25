@@ -155,6 +155,7 @@
     <Compile Include="Areas\System\Controllers\AreaHomeController.cs" />
     <Compile Include="Areas\System\SystemAreaRegistration.cs" />
     <Compile Include="Controllers\FirstController.cs" />
+    <Compile Include="Controllers\FourthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SecondController.cs" />
     <Compile Include="Controllers\ThirdController.cs" />
@@ -230,6 +231,7 @@
     <Content Include="Views\Second\PartialPage.cshtml" />
     <Content Include="Views\Second\ChildAction.cshtml" />
     <Content Include="Views\Third\Index.cshtml" />
+    <Content Include="Views\Fourth\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
