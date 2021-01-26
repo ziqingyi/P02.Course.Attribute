@@ -68,11 +68,14 @@ namespace P37.Course.MVC5.Controllers
             CurrentUser currentUser = this._UserList.FirstOrDefault(u=> u.Id == id)??this._UserList[0];
 
             #region ViewBag, ViewData, cannot be used between actions
+
             base.ViewBag.CurrentUserViewBag = this._UserList[1];//ViewBag is dynamic type
             base.ViewBag.TestProp = "view bag test prop value";//override by view data,because view data execute late
+            
 
             base.ViewData["CurrentUserViewData"] = this._UserList[0];
             base.ViewData["TestProp"] = "view data test prop value";//ViewData ViewBag can override each other
+            base.ViewData.Add(new KeyValuePair<string, object>("Id", id));
 
             #endregion
 
