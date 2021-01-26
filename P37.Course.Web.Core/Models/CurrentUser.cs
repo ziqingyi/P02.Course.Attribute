@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
-namespace P37.Course.MVC5.Models
+
+namespace P37.Course.Web.Core.Models
 {
     public class CurrentUser
     {

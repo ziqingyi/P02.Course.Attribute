@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using P37.Course.MVC5.Models;
+using P37.Course.Web.Core.Models;
 
 namespace P37.Course.MVC5.Controllers
 {
@@ -70,7 +70,8 @@ namespace P37.Course.MVC5.Controllers
             #region ViewBag, ViewData, cannot be used between actions
 
             base.ViewBag.CurrentUserViewBag = this._UserList[1];//ViewBag is dynamic type
-            base.ViewBag.TestProp = "view bag test prop value";//override by view data,because view data execute late
+             //override by view data,because view data execute late, they share same dictionary
+            base.ViewBag.TestProp = "view bag test prop value";
             
 
             base.ViewData["CurrentUserViewData"] = this._UserList[0];
