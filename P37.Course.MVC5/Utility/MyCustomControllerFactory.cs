@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -21,16 +22,24 @@ namespace P37.Course.MVC5.Utility
         private Logger logger = new Logger(typeof(MyCustomControllerFactory));
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
         {
-            this.logger.Info($"GetControllerInstance:  {controllerType.Name} is being constructed...");
+            if (controllerType != null)
+            {
+                this.logger.Info($"GetControllerInstance:  {controllerType.Name} is being constructed...");
 
-            //1 use container to create controller
-            IUnityContainer container = DIFactory.GetContainer();
-            IController controller = (IController)container.Resolve(controllerType);
-            return controller;
+                //1 use container to create controller
+                IUnityContainer container = DIFactory.GetContainer();
+                IController controller = (IController)container.Resolve(controllerType);
+                return controller;
 
-            //2 original way of creating controller
-            //return base.GetControllerInstance(requestContext, controllerType);
+                //2 original way of creating controller
+                //return base.GetControllerInstance(requestContext, controllerType);
+            }
+            else
+            {
+                return base.GetControllerInstance(requestContext, controllerType);
+            }
         }
+
 
     }
 }
