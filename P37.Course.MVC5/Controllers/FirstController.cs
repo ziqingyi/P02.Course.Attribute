@@ -102,14 +102,14 @@ namespace P37.Course.MVC5.Controllers
             }
             else
             {
-                return base.View("~/Views/First/IndexList.cshtml");
+                return base.View("~/Views/First/IndexList.cshtml",_UserList);
             }
 
         }
 
         public ActionResult TempDataShow()
         {
-            return base.View();
+            return base.View(_UserList);
         }
 
         public ViewResult IndexList()
