@@ -89,10 +89,10 @@ namespace P37.Course.MVC5.Controllers
 
             if (id <= 3)
             {
-                return base.View(this._UserList[2]);//@model --for strong typed object
+                return base.View(this._UserList[id-1]);//@model --for strong typed object
             }
 
-            if (id < 10)
+            if (id < 5) //access this will not use the TempData value, so TempData can still be accessed in redirection. 
             {
                 return base.View("~/Views/First/Index1.cshtml");//return cshtml view only
             }

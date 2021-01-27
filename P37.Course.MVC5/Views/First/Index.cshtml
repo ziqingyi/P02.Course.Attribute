@@ -11,6 +11,7 @@
 
 <h2>Index First!</h2>
 
+
 <h3>ViewBag.Title: @ViewBag.Title</h3>
 
 <h3>ViewBag.TestProp: @ViewBag.TestProp</h3>
@@ -19,16 +20,17 @@
 
 
 
-<h3>ViewData.TestProp: @ViewData["TestProp"]</h3>
+<h4>ViewData.TestProp: @ViewData["TestProp"]</h4>
 
-<h3>ViewData.CurrentUserViewData get name:  @(((CurrentUser)ViewData["CurrentUserViewData"]).Name) </h3>
+<h4>ViewData.CurrentUserViewData get name:  @(((CurrentUser)ViewData["CurrentUserViewData"]).Name) </h4>
 
-<h3>ViewData.userData get Account: @viewData.Account  </h3>
+<h4>ViewData.userData get Account: @viewData.Account  </h4>
 
-<h3>model.Name : @Model.Name</h3>
+<h4>ViewData.Id get Id: @viewData.Id</h4>
 
-<h3>ViewData.Id get Id: @viewData.Id</h3>
 
+
+<h5>model.Name : @Model.Name</h5>
 
 @foreach (Data data in Model.Datas)
 {
