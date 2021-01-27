@@ -96,9 +96,13 @@ namespace P37.Course.MVC5.Controllers
             {
                 return base.View("~/Views/First/Index1.cshtml");//return cshtml view only
             }
-            else
+            if(id < 10)
             {
                 return base.RedirectToAction("TempDataShow");
+            }
+            else
+            {
+                return base.View("~/Views/First/IndexList.cshtml");
             }
 
         }
@@ -108,6 +112,10 @@ namespace P37.Course.MVC5.Controllers
             return base.View();
         }
 
+        public ViewResult IndexList()
+        {
+            return base.View();
+        }
 
 
         //https://localhost:44332/First/IndexId/3  id is directed by router. only id can do this way.

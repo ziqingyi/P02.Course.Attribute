@@ -9,16 +9,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";@*add by default, you can assign null *@
 }
 
-<h2>Index First!</h2>
+<h1>Index First!</h1>
 
+<br>
 
-<h3>ViewBag.Title: @ViewBag.Title</h3>
+<h5>ViewBag.Title: @ViewBag.Title</h5>
 
-<h3>ViewBag.TestProp: @ViewBag.TestProp</h3>
+<h5>ViewBag.TestProp: @ViewBag.TestProp</h5>
 
-<h3>ViewBag.CurrentUserViewBag: @ViewBag.CurrentUserViewBag.Name</h3>
+<h5>ViewBag.CurrentUserViewBag: @ViewBag.CurrentUserViewBag.Name</h5>
 
-
+<br>
 
 <h4>ViewData.TestProp: @ViewData["TestProp"]</h4>
 
@@ -28,22 +29,22 @@
 
 <h4>ViewData.Id get Id: @viewData.Id</h4>
 
+<br>
 
-
-<h5>model.Name : @Model.Name</h5>
+<h3>model.Name : @Model.Name</h3>
 
 @foreach (Data data in Model.Datas)
 {
-    <h5>@Model.Name company is : @data.Company</h5>
+    <h3> the model: @Model.Name has company : @data.Company</h3>
 }
 
 
+<br>
 
+<h2>TempData.TestProp: @TempData["TestProp"]</h2>
 
-<h3>TempData.TestProp: @TempData["TestProp"]</h3>
+<h2>TempData.CurrentUserViewData get name:  @(((CurrentUser)TempData["CurrentUserTempData"]).Name) </h2>
 
-<h3>TempData.CurrentUserViewData get name:  @(((CurrentUser)TempData["CurrentUserTempData"]).Name) </h3>
-
-<h3>TempData.userData get Account: @tempData.Account  </h3>
+<h2>TempData.userData get Account: @tempData.Account  </h2>
 
 

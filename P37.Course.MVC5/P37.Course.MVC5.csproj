@@ -238,6 +238,7 @@
     <Content Include="Views\Second\ChildAction.cshtml" />
     <Content Include="Views\Third\Index.cshtml" />
     <Content Include="Views\Fourth\Index.cshtml" />
+    <Content Include="Views\First\IndexList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
