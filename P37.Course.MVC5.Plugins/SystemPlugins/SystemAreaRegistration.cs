@@ -8,6 +8,7 @@ namespace P37.Course.MVC5.Areas.System
         {
             get 
             {
+                //unique name
                 return "SystemPlugins";
             }
         }
