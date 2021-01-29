@@ -168,6 +168,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\MyArea\MyAreaAreaRegistration.cs" />
     <Compile Include="Areas\System\Controllers\AreaHomeController.cs" />
     <Compile Include="Areas\System\SystemAreaRegistration.cs" />
     <Compile Include="Controllers\FirstController.cs" />
@@ -191,6 +192,7 @@
     <Content Include="Areas\SystemPlugins\Views\AreaHome\Index.cshtml" />
     <Content Include="Areas\SystemPlugins\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\SystemPlugins\Views\web.config" />
+    <Content Include="Areas\MyArea\Views\web.config" />
     <None Include="CfgFiles\log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -252,6 +254,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\MyArea\Controllers\" />
+    <Folder Include="Areas\MyArea\Data\" />
+    <Folder Include="Areas\MyArea\Views\Shared\" />
     <Folder Include="Areas\System\Data\" />
   </ItemGroup>
   <ItemGroup>
