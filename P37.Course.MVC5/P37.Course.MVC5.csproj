@@ -194,6 +194,7 @@
     <Content Include="Areas\SystemPlugins\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\SystemPlugins\Views\web.config" />
     <Content Include="Areas\MyArea\Views\web.config" />
+    <Content Include="Areas\MyArea\Views\Home\Index.cshtml" />
     <None Include="CfgFiles\log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -256,7 +257,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\MyArea\Data\" />
-    <Folder Include="Areas\MyArea\Views\Home\" />
     <Folder Include="Areas\MyArea\Views\Shared\" />
     <Folder Include="Areas\System\Data\" />
   </ItemGroup>
