@@ -38,7 +38,9 @@ namespace P37.Course.MVC5
                 );
 
             //error when https://localhost:44332/home/index if no namespaces added,
-            //because it will load all class based on controller from all areas when registering
+            //because it will load all class based on base controller from all areas when registering
+            //so if the controller name and action are same in different areas, it will has error. 
+            //name spaces will make the route pick up from nominated namespaces if the controller names are same
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
