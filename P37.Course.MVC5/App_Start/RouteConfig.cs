@@ -37,12 +37,13 @@ namespace P37.Course.MVC5
                 constraints:new {year =@"\d{4}", month=@"\d{2}", day=@"\d{2}"}
                 );
 
-            //http://localhost:2018/Second/time?year=2019&month=02&day=07
+            //error when https://localhost:44332/home/index if no namespaces added,
+            //because it will load all class based on controller from all areas when registering
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new string[] { "P37.Course.MVC5.Controllers", "P37.Course.MVC5.Plugins" }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                ,namespaces: new string[] { "P37.Course.MVC5.Controllers", "P37.Course.MVC5.Plugins" }
                 );
         }
     }
