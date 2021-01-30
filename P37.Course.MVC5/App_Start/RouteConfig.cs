@@ -41,6 +41,8 @@ namespace P37.Course.MVC5
             //because it will load all class based on base controller from all areas when registering
             //so if the controller name and action are same in different areas, it will has error. 
             //name spaces will make the route pick up from nominated namespaces if the controller names are same
+
+            //https://localhost:44332/system/areahome/index area page must be accessed with area name
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
