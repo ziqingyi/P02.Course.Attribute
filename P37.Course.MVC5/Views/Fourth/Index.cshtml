@@ -1,7 +1,9 @@
 ﻿@using P33.Course.Model;
+@using P33.Course.Model.Models;
+@using P37.Course.Web.Core
 @using PagedList.Mvc;
 @using PagedList;
-
+@model IEnumerable<JD_Commodity_001>
 
 @{
     ViewBag.Title = "Index Fourth";
@@ -10,7 +12,61 @@
 <h2>Index Fourth</h2>
 
 
-
+@using (Html.BeginForm("Index", "Fourth"))
+{
+    <p>
+        Find by Condition:
+        @Html.TextBox("searchString", ViewBag.SearchString as string, new { @class = "form-control", @Style = "display:inline" })
+        @Html.TextBox("url", ViewBag.Url as string, new { @class = "form-control", @Style = "display:inline" })
+        @Html.Submit("Search")
+        @Html.ActionLink("CreateCommodity", "Create")
+    </p>
+    <div id="partialajaxlist">
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Topic</th>
+                <th>@Html.ActionLink("Price", "Index", new { orderBy = ViewBag.OrderBy, searchString = ViewBag.SearchString, page = 1 })</th>
+                <th>Url</th>
+                <th>Action</th>
+                <th>Picture</th>
+            </tr>
+            @* MVVM vue *@
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @*@item.Id*@
+                        @Html.DisplayFor(modelItem => item.Id)@*//strong type, can be used for display*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Url)
+                    </td>
+                    <td>
+                        <a href="/Fourth/Details/@item.Id">Details</a>|
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                        <a id="@item.Id" href="javascript:void(0);" onclick="ajaxDelete(this)">ajaxDelete</a>
+                    </td>
+                    @*<td>
+                            <img src="@item.ImageUrl" />
+                        </td>*@
+                </tr>
+            }
+        </table>
+        @Html.Br()
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @*@Html.PagedListPager(Model, pageIndex => Url.Action("Index",
+            new { pageIndex, searchString = ViewBag.SearchString,lastOrderBy = ViewBag.OrderBy}))*@
+        @Html.PagedListPager(Model, pageIndex => $"/Fourth/Index?pageIndex={pageIndex}&searchString={base.ViewBag.SearchString}&url={base.ViewBag.Url}")
+    </div>
+}
 
 
 
