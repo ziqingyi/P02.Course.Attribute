@@ -67,7 +67,7 @@ namespace P34.Course.Business.Service
                 DataList =  list.Skip( (pageIndex-1)* pageSize ).Take(pageSize).ToList(),
                 PageIndex = pageIndex,
                 PageSize = pageSize,
-                TotalCount = this.Context.Set<T>().Count(funcWhere)
+                TotalCount = list.Count()  // this.Context.Set<T>().Count(funcWhere)
             };
             return result;
         }
