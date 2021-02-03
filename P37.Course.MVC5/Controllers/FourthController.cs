@@ -24,7 +24,7 @@ namespace P37.Course.MVC5.Controllers
 
         // GET: Fourth
         private int pageSize = 20;
-        private int pageIndex = 1;
+        //private int pageIndex = 1;
         public ActionResult Index()
         {
             #region search condition
@@ -33,14 +33,14 @@ namespace P37.Course.MVC5.Controllers
             IQueryable<JD_Commodity_001> commodityList = this._commodityService.Query<JD_Commodity_001>(c => c.Id < 200);
             if (!string.IsNullOrEmpty(searchString))
             {
-                return IndexPaging(searchString);
+                return IndexPaging(searchString,1);
             }
             #endregion
 
             return View(commodityList);
         }
 
-        public ActionResult IndexPaging(string searchString)
+        public ActionResult IndexPaging(string searchString, int? pageIndex)
         {
             Expression<Func<JD_Commodity_001, bool>> funcWhere = null;
             if (!string.IsNullOrEmpty(searchString))
@@ -59,11 +59,13 @@ namespace P37.Course.MVC5.Controllers
                 #region paging and ranking
 
                 Expression<Func<JD_Commodity_001, int>> funcOrderby = c => c.Id;
+                int index = pageIndex??1;
+
 
                 PageResult<JD_Commodity_001> commodityPaging =
-                    this._commodityService.QueryPage(funcWhere, pageSize, pageIndex, funcOrderby, true);
+                    this._commodityService.QueryPage(funcWhere, pageSize, index, funcOrderby, true);
 
-                StaticPagedList<JD_Commodity_001> pageList = new StaticPagedList<JD_Commodity_001>(commodityPaging.DataList, pageIndex, pageSize, commodityPaging.TotalCount);
+                StaticPagedList<JD_Commodity_001> pageList = new StaticPagedList<JD_Commodity_001>(commodityPaging.DataList, index, pageSize, commodityPaging.TotalCount);
 
                 return View("~/Views/Fourth/IndexPaging.cshtml", pageList);
                 #endregion
