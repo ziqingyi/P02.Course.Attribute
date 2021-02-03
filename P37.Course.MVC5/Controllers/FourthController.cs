@@ -71,7 +71,7 @@ namespace P37.Course.MVC5.Controllers
             }
             else
             {
-                return View("~/Views/Fourth/Index.cshtml");
+                return Index();
             }
 
             
