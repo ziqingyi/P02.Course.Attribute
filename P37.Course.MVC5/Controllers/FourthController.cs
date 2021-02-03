@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
+using P05.Course.ExpressionSty.Extend;
 using P33.Course.Model.Models;
 using P34.Course.Business.Interface;
 using PagedList;
@@ -33,14 +34,14 @@ namespace P37.Course.MVC5.Controllers
             IQueryable<JD_Commodity_001> commodityList = this._commodityService.Query<JD_Commodity_001>(c => c.Id < 200);
             if (!string.IsNullOrEmpty(searchString))
             {
-                return IndexPaging(searchString,1);
+                return IndexPaging(searchString,"",1);
             }
             #endregion
 
             return View(commodityList);
         }
 
-        public ActionResult IndexPaging(string searchString, int? pageIndex)
+        public ActionResult IndexPaging(string searchString,string url, int? pageIndex)
         {
             Expression<Func<JD_Commodity_001, bool>> funcWhere = null;
             if (!string.IsNullOrEmpty(searchString))
@@ -48,6 +49,16 @@ namespace P37.Course.MVC5.Controllers
                 funcWhere = c => c.Title.Contains(searchString);
 
                 base.ViewBag.SearchString = searchString;
+
+                //P05.Course.ExpressionSty.Extend, combine the expression tree
+                //add filter for url column as well. 
+                if (!string.IsNullOrEmpty(url))
+                {
+                    funcWhere = funcWhere.And(c => c.Url.Contains(url));
+                    base.ViewBag.Url = url;
+                }
+
+
 
                 #region no paging and ranking
 

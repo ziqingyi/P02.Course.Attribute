@@ -276,6 +276,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\P02.Course.ExpressionSty\P05.Course.ExpressionSty.csproj">
+      <Project>{53d46f94-f96a-4d4c-a585-88a5222d58b0}</Project>
+      <Name>P05.Course.ExpressionSty</Name>
+    </ProjectReference>
     <ProjectReference Include="..\P33.Course.Model\P33.Course.Model.csproj">
       <Project>{7a8d76ed-a63f-476b-a607-b6acef6d49a7}</Project>
       <Name>P33.Course.Model</Name>
