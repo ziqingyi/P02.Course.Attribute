@@ -30,19 +30,31 @@ namespace P37.Course.MVC5.Controllers
             #region search condition
             string searchString = base.HttpContext.Request.Form["searchString"];
             Expression<Func<JD_Commodity_001, bool>> funcWhere = null;
-            IQueryable<JD_Commodity_001> commodityList = this._commodityService.Query<JD_Commodity_001>(c => c.Id < 2);
+            IQueryable<JD_Commodity_001> commodityList = this._commodityService.Query<JD_Commodity_001>(c => c.Id < 200);
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                return IndexPaging(searchString);
+            }
+            #endregion
+
+            return View(commodityList);
+        }
+
+        public ActionResult IndexPaging(string searchString)
+        {
+            Expression<Func<JD_Commodity_001, bool>> funcWhere = null;
             if (!string.IsNullOrEmpty(searchString))
             {
                 funcWhere = c => c.Title.Contains(searchString);
-               
+
                 base.ViewBag.SearchString = searchString;
 
                 #region no paging and ranking
 
                 //commodityList = this._commodityService.Query<JD_Commodity_001>(funcWhere);
-
+                //return View(commodityList);
                 #endregion
-                
+
 
                 #region paging and ranking
 
@@ -51,21 +63,21 @@ namespace P37.Course.MVC5.Controllers
                 PageResult<JD_Commodity_001> commodityPaging =
                     this._commodityService.QueryPage(funcWhere, pageSize, pageIndex, funcOrderby, true);
 
-                StaticPagedList<JD_Commodity_001> pageList = new StaticPagedList<JD_Commodity_001>( commodityPaging.DataList, pageIndex,pageSize,commodityPaging.TotalCount);
+                StaticPagedList<JD_Commodity_001> pageList = new StaticPagedList<JD_Commodity_001>(commodityPaging.DataList, pageIndex, pageSize, commodityPaging.TotalCount);
 
-                return View("~/Views/Fourth/IndexPaging.cshtml",pageList);
+                return View("~/Views/Fourth/IndexPaging.cshtml", pageList);
                 #endregion
 
             }
-            #endregion
+            else
+            {
+                return View("~/Views/Fourth/Index.cshtml");
+            }
 
-
-
-
-
-
-            return View(commodityList);
+            
         }
+
+
 
 
 
