@@ -91,6 +91,29 @@ namespace P37.Course.MVC5.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                throw new Exception("commodity id needed");
+            }
+            JD_Commodity_001 commodity = this._commodityService.Find<JD_Commodity_001>(id ?? -1);
+            if (commodity == null)
+            {
+                throw new Exception("Commodity Not Found");
+            }
+
+            return View(commodity);
+        }
+
+
+
+
+
+
+
+
 
 
 
