@@ -255,6 +255,7 @@
     <Content Include="Views\First\IndexList.cshtml" />
     <Content Include="Views\Fourth\Details.cshtml" />
     <Content Include="Views\Fourth\IndexPaging.cshtml" />
+    <Content Include="Views\Fourth\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,7 +16,8 @@ namespace P37.Course.MVC5.Controllers
     public class FourthController : Controller
     {
         private ICommodityService _commodityService = null;
-        public FourthController(ICommodityService commodityService)
+        private ICategoryService _categoryService = null;
+        public FourthController(ICommodityService commodityService, ICategoryService categoryService)
         {
             this._commodityService = commodityService;
         }
@@ -108,13 +109,31 @@ namespace P37.Course.MVC5.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                throw new Exception("commodity id needed");
+            }
+
+            JD_Commodity_001 commodity = this._commodityService.Find<JD_Commodity_001>(id ?? -1);
+            if (commodity == null)
+            {
+                throw new Exception("Commodity Not Found");
+            }
+            ViewBag.categoryList = BuildCategoryList();
+            return View(commodity);
+        }
+
+
+        private IEnumerable<SelectListItem> BuildCategoryList()
+        {
+            var categoryList = this.
 
 
 
-
-
-
-
+        }
 
 
 
