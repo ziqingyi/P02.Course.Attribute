@@ -20,6 +20,7 @@ namespace P37.Course.MVC5.Controllers
         public FourthController(ICommodityService commodityService, ICategoryService categoryService)
         {
             this._commodityService = commodityService;
+            this._categoryService = categoryService;
         }
 
 
@@ -129,10 +130,19 @@ namespace P37.Course.MVC5.Controllers
 
         private IEnumerable<SelectListItem> BuildCategoryList()
         {
-            var categoryList = this.
-
-
-
+            var categoryList = this._categoryService.GetChildList();
+            if (categoryList.Count() > 0)
+            {
+                return categoryList.Select(c => new SelectListItem()
+                {
+                    Text = c.Name,
+                    Value = string.Format("{0}_{1}", c.Id, c.Code)
+                });
+            }
+            else
+            {
+                return null;
+            }
         }
 
 
