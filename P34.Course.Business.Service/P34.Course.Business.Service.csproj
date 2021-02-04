@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseService.cs" />
+    <Compile Include="CategoryService.cs" />
     <Compile Include="CommodityService.cs" />
     <Compile Include="CompanyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +60,10 @@
     <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\P26.Course.Common\P26.Course.Common.csproj">
+      <Project>{EE21CED7-9901-4683-939D-FFBDE1BBB619}</Project>
+      <Name>P26.Course.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\P33.Course.Model\P33.Course.Model.csproj">
       <Project>{7a8d76ed-a63f-476b-a607-b6acef6d49a7}</Project>
       <Name>P33.Course.Model</Name>
