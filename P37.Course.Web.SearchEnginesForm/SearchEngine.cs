@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,6 +16,11 @@ namespace P37.Course.Web.SearchEnginesForm
 {
     public partial class SearchEngine : Form
     {
+
+        //[DllImport("kernel32.dll", SetLastError = true)]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //static extern bool AllocConsole();
+        //AllocConsole();
         public SearchEngine()
         {
             InitializeComponent();
@@ -29,6 +35,7 @@ namespace P37.Course.Web.SearchEnginesForm
         {
             try
             {
+               
                 Console.WriteLine("{0} id={1} Start to build Index", DateTime.Now, Thread.CurrentThread.ManagedThreadId);
                 this.btnStart.Enabled = false;
                 CTS = new CancellationTokenSource();

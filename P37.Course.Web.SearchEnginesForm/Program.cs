@@ -18,5 +18,6 @@ namespace P37.Course.Web.SearchEnginesForm
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new SearchEngine());
         }
+
     }
 }
