@@ -176,6 +176,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P37.Course.MVC5.Plugins", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P37.Course.Web.Core", "P37.Course.Web.Core\P37.Course.Web.Core.csproj", "{40F9C49F-3864-4DEC-B1D8-F65AB8151E37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P37.Course.Web.SearchEngines.SearchService", "P37.Course.Web.SearchEngines.SearchService\P37.Course.Web.SearchEngines.SearchService.csproj", "{D722221C-B793-49A6-B568-00234F59345C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -522,6 +524,10 @@ Global
 		{40F9C49F-3864-4DEC-B1D8-F65AB8151E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40F9C49F-3864-4DEC-B1D8-F65AB8151E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40F9C49F-3864-4DEC-B1D8-F65AB8151E37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D722221C-B793-49A6-B568-00234F59345C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D722221C-B793-49A6-B568-00234F59345C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D722221C-B793-49A6-B568-00234F59345C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D722221C-B793-49A6-B568-00234F59345C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
