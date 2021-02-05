@@ -44,6 +44,7 @@
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
@@ -67,11 +68,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AOP\Attribute\AfterLogHandlerAttribute.cs" />
+    <Compile Include="AOP\Attribute\ExceptionHandlerAttribute.cs" />
+    <Compile Include="AOP\Attribute\LogHandlerAttribute.cs" />
+    <Compile Include="AOP\Handler\AfterLogHandler.cs" />
+    <Compile Include="AOP\Handler\ExceptionHandler.cs" />
+    <Compile Include="AOP\Handler\LogHandler.cs" />
+    <Compile Include="AOP\ISearcherAOP.cs" />
+    <Compile Include="AOP\SearcherAOP.cs" />
+    <Compile Include="AOP\SearcherAOPFactory.cs" />
+    <Compile Include="ISearcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Searcher.cs" />
+    <Compile Include="WCFInit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\P32.Course.LuceneProject\P32.Course.LuceneProject.csproj">
+      <Project>{4eb6d8f8-6748-4e1b-a740-17a44798925a}</Project>
+      <Name>P32.Course.LuceneProject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P34.Course.Business.Interface\P34.Course.Business.Interface.csproj">
+      <Project>{A209E807-48D7-4AC8-B58E-48859ADEE460}</Project>
+      <Name>P34.Course.Business.Interface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
