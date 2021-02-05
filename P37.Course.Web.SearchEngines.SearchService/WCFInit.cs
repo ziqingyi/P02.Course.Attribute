@@ -18,15 +18,24 @@ namespace P37.Course.Web.SearchEngines.SearchService
                 new ServiceHost(typeof(Searcher))
             };
 
-
+            foreach (ServiceHost host in hostList)
+            {
+                host.Opened += (sender, e) => Console.WriteLine("{0} Begin!", host.Description);
+                host.Open();
+            }
 
         }
 
 
-
-
-
-
+        public static void Stop()
+        {
+            if (hostList != null)
+                foreach (ServiceHost host in hostList)
+                {
+                    Console.WriteLine("{0} Stop !", host.Description);
+                    host.Abort();
+                }
+        }
 
 
 
