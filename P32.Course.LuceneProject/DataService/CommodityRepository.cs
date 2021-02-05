@@ -42,7 +42,7 @@ namespace P32.Course.LuceneProject.DataService
 
             int StartId = pageSize * Math.Max(0, pageIndex - 1) + 1;
 
-            string sql = string.Format("SELECT top {1} * FROM Commodity WHERE ProductId >={0};", StartId, pageSize);
+            string sql = string.Format("SELECT top {1} * FROM JD_Commodity_001 WHERE ProductId >={0};", StartId, pageSize);
 
             List<Commodity> resultList = SqlHelper.QueryList<Commodity>(sql);
             return resultList;

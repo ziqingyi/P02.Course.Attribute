@@ -16,7 +16,7 @@ namespace P32.Course.LuceneProject.Processor
         private static List<string> PathSuffixList = new List<string>();
         private static CancellationTokenSource CTS = null;
 
-        public static void Build()
+        public static void Build(CancellationTokenSource cts = null)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace P32.Course.LuceneProject.Processor
 
                 List<Task> taskList = new List<Task>();
                 TaskFactory taskFactory = new TaskFactory();
-                CTS = new CancellationTokenSource();
+                CTS = cts??new CancellationTokenSource();
 
                 for (int i = 0; i < 3; i++)
                 {
