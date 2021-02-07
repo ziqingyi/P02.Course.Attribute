@@ -1,4 +1,5 @@
 ﻿using P34.Course.Business.Interface;
+using P37.Course.Web.SearchEngines.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
