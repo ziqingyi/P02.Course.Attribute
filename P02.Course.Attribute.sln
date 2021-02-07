@@ -182,6 +182,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P37.Course.Web.SearchEngine
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P37.Course.Web.SearchEngines.SearchServiceTCP", "P37.Course.Web.SearchEngines.SearchServiceTCP\P37.Course.Web.SearchEngines.SearchServiceTCP.csproj", "{D2C4C816-407A-4A15-8A89-0D251F03ACD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P37.Course.Web.SearchEngines.Interface", "P37.Course.Web.SearchEngines.Interface\P37.Course.Web.SearchEngines.Interface.csproj", "{7D04CE55-F689-4043-A094-F72270B78796}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -540,6 +542,10 @@ Global
 		{D2C4C816-407A-4A15-8A89-0D251F03ACD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2C4C816-407A-4A15-8A89-0D251F03ACD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2C4C816-407A-4A15-8A89-0D251F03ACD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D04CE55-F689-4043-A094-F72270B78796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D04CE55-F689-4043-A094-F72270B78796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D04CE55-F689-4043-A094-F72270B78796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D04CE55-F689-4043-A094-F72270B78796}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
