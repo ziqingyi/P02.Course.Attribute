@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace P37.Course.Web.SearchEngines.SearchService
 {
+    [ServiceContract]
     public interface ISearcher
     {
         /// <summary>
