@@ -256,6 +256,7 @@
     <Content Include="Views\Fourth\Details.cshtml" />
     <Content Include="Views\Fourth\IndexPaging.cshtml" />
     <Content Include="Views\Fourth\Edit.cshtml" />
+    <Content Include="Views\Fourth\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -300,6 +301,18 @@
     <ProjectReference Include="..\P37.Course.Web.Core\P37.Course.Web.Core.csproj">
       <Project>{40f9c49f-3864-4dec-b1d8-f65ab8151e37}</Project>
       <Name>P37.Course.Web.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P37.Course.Web.SearchEngines.Interface\P37.Course.Web.SearchEngines.Interface.csproj">
+      <Project>{7d04ce55-f689-4043-a094-f72270b78796}</Project>
+      <Name>P37.Course.Web.SearchEngines.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P37.Course.Web.SearchEngines.Model\P37.Course.Web.SearchEngines.Model.csproj">
+      <Project>{d39af421-ddd4-4fc8-8c09-2c04d8c59455}</Project>
+      <Name>P37.Course.Web.SearchEngines.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P37.Course.Web.SearchEngines.SearchServiceTCP\P37.Course.Web.SearchEngines.SearchServiceTCP.csproj">
+      <Project>{d2c4c816-407a-4a15-8a89-0d251f03acd5}</Project>
+      <Name>P37.Course.Web.SearchEngines.SearchServiceTCP</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

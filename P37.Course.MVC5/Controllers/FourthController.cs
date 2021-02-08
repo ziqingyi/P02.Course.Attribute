@@ -8,6 +8,8 @@ using Microsoft.Ajax.Utilities;
 using P05.Course.ExpressionSty.Extend;
 using P33.Course.Model.Models;
 using P34.Course.Business.Interface;
+using P37.Course.Web.SearchEngines.Interface;
+using P37.Course.Web.SearchEngines.Model;
 using PagedList;
 using Expression = System.Linq.Expressions.Expression;
 
@@ -17,10 +19,13 @@ namespace P37.Course.MVC5.Controllers
     {
         private ICommodityService _commodityService = null;
         private ICategoryService _categoryService = null;
-        public FourthController(ICommodityService commodityService, ICategoryService categoryService)
+        private ISearchService _searchService = null;
+        public FourthController(ICommodityService commodityService, 
+            ICategoryService categoryService, ISearchService searchService)
         {
             this._commodityService = commodityService;
             this._categoryService = categoryService;
+            this._searchService = searchService;
         }
 
 
@@ -91,6 +96,16 @@ namespace P37.Course.MVC5.Controllers
 
             
         }
+
+        //for using service in other proj, copy system.serviceModel in app.config to Web.config in MVC proj(not Views folder)
+        public ActionResult Search()
+        {
+            PageResult<CommodityModel> result = this._searchService.QueryCommodityPage(1, 20, "3", null, "", "");
+
+            return View();
+        }
+
+
 
 
         [HttpGet]

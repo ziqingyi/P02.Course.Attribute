@@ -15,6 +15,11 @@ namespace P37.Course.Web.SearchEngines.SearchServiceTCP
     //support paging search
     //CommodityModel is used for deserialize the search result, not sure how it is used. so create a class in search engine. 
     //CommodityModel is defined by the WCF service returned value's data structure. 
+
+
+    //if you want to use this service in MVC5, you must copy system.serviceModel in app.config to Web.config in MVC proj(not Views folder)
+
+
     public class SearchService: ISearchService
     {
         public PageResult<CommodityModel> QueryCommodityPage(int pageIndex, int pageSize, string keyword,
