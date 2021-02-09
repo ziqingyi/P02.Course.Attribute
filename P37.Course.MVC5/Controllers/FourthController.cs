@@ -119,6 +119,18 @@ namespace P37.Course.MVC5.Controllers
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
         #endregion
 
 
@@ -225,6 +237,22 @@ namespace P37.Course.MVC5.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+        [HttpPost]
+        public JsonResult AjaxDelete(int id)
+        {
+            this._commodityService.Delete<JD_Commodity_001>(id);
+            AjaxResult ajaxResult = new AjaxResult()
+            {
+                Result = DoResult.Success,
+                PromptMsg = "delete successfully"
+            };
+            return Json(ajaxResult);
+        }
+
+
+
 
 
         #endregion

@@ -68,10 +68,45 @@
     </div>
 }
 
+@section scriptsXXX{
+    <script TYPE="text/javascript">
+        $(document).ready(function() {
+            //new ajax request, load twice
+            var listData = '@ViewBag.ListData';
+            }
+        )
+
+        function ajaxDelete(obj) {
+            $.ajax({
+                type:"POST",
+                url: '/Third/AjaxDelete',
+                data: {id: obj.id},
+                datatype:"text",
+                success: function(data) {
+                    if (data.CanPlayTypeResult == 1) {
+                        alert("delete successfully " + obj.id + " refresh page manually")
+                    }
+                    else if (data.CanPlayTypeResult == 2) {
+                        alert("log on overtime, log in again");
+                        location.href = "/home/login";
+                    } else {
+                        alert(data.PromptMsg);
+                    }
+                },
+
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
 
 
+                }
+
+            );
+        }
 
 
+    </script>
+}
 
 
 
