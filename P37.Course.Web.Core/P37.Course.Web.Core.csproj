@@ -94,6 +94,7 @@
     <Compile Include="AOP\LogBeforeBehavior.cs" />
     <Compile Include="Extensions\HtmlExtension.cs" />
     <Compile Include="IOC\DIFactory.cs" />
+    <Compile Include="Models\AjaxResult.cs" />
     <Compile Include="Models\CurrentUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

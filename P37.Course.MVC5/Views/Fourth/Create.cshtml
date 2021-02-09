@@ -59,3 +59,47 @@
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
+
+
+@section scriptsXXX{
+    @Scripts.Render("~bundles/jqueryval")
+    <script type ="text/javascript">
+        $(function() {
+            var i = 0;
+            $("form").submit(
+                function() {
+                    i++;
+                    $.ajax({
+                        url: '/Fourth/AjaxCreate',
+                        type: 'post',
+                        dataType:'json',
+                        data: $("form").serializeArray(),
+                        success: function(data) {
+                            if (data.Result == 1) {
+                                alert("add successfully");
+                            }
+                            else if (data.Result == 2) {
+                                alert("login overtime, please re-login");
+                                location.href = "/home/login";
+                            }
+                            else {
+                                alert(data.PromptMsg);
+                            }
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            alert(errorThrown);
+                        }
+
+                        }
+                    );
+
+                    return false;//avoid ajax submit and form submit together. 
+                }
+
+            );
+        });
+    </script>
+}
+
+
+

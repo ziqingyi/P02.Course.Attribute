@@ -8,6 +8,7 @@ using Microsoft.Ajax.Utilities;
 using P05.Course.ExpressionSty.Extend;
 using P33.Course.Model.Models;
 using P34.Course.Business.Interface;
+using P37.Course.Web.Core.Models;
 using P37.Course.Web.SearchEngines.Interface;
 using P37.Course.Web.SearchEngines.Model;
 using PagedList;
@@ -148,6 +149,19 @@ namespace P37.Course.MVC5.Controllers
             {
                 throw new Exception("ModelState is not correct ");
             }
+        }
+
+        [HttpPost]
+        public ActionResult AjaxCreate([Bind(Include = "ProductId, CategoryId, Title, Price, Url, ImageUrl")]
+            JD_Commodity_001 commodity)
+        {
+            JD_Commodity_001 newCommodity = this._commodityService.Insert(commodity);
+            AjaxResult ajaxResult = new AjaxResult()
+            {
+                Result = DoResult.Success,
+                PromptMsg = "Insert Successfully"
+            };
+            return Json(ajaxResult);
         }
 
 
