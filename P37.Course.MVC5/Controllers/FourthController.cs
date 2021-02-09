@@ -17,6 +17,8 @@ namespace P37.Course.MVC5.Controllers
 {
     public class FourthController : Controller
     {
+        #region Identity
+
         private ICommodityService _commodityService = null;
         private ICategoryService _categoryService = null;
         private ISearchService _searchService = null;
@@ -27,12 +29,14 @@ namespace P37.Course.MVC5.Controllers
             this._categoryService = categoryService;
             this._searchService = searchService;
         }
+        #endregion
 
 
+        #region Index :  Search in EF 
 
         // GET: Fourth
         private int pageSize = 20;
-        //private int pageIndex = 1;
+        //private int pageIndex = 1; no post/get label, so handle both
         public ActionResult Index()
         {
             #region search condition
@@ -48,6 +52,7 @@ namespace P37.Course.MVC5.Controllers
             return View(commodityList);
         }
 
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult IndexPaging(string searchString,string url, int? pageIndex)
         {
             Expression<Func<JD_Commodity_001, bool>> funcWhere = null;
@@ -64,8 +69,6 @@ namespace P37.Course.MVC5.Controllers
                     funcWhere = funcWhere.And(c => c.Url.Contains(url));
                     base.ViewBag.Url = url;
                 }
-
-
 
                 #region no paging and ranking
 
@@ -94,8 +97,17 @@ namespace P37.Course.MVC5.Controllers
                 return Index();
             }
 
-            
         }
+
+        #endregion
+
+
+
+
+
+
+
+        #region Lucene Search
 
         //for using service in other proj, copy system.serviceModel in app.config to Web.config in MVC proj(not Views folder)
         public ActionResult Search()
@@ -106,7 +118,44 @@ namespace P37.Course.MVC5.Controllers
         }
 
 
+        #endregion
 
+
+
+        #region Create
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            ViewBag.categoryList = BuildCategoryList();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]//Represents an attribute that is used to prevent forgery of a request. Key should be same. 
+        public ActionResult Create([Bind(Include = "ProductId, CategoryId, Title, Price, Url, ImageUrl")]JD_Commodity_001 commodity)
+        {
+            //Bind limited fields from frontend, otherwise some fields may be updated by front end users. 
+            string title1 = this.HttpContext.Request.Params["title"];
+            string title2 = this.HttpContext.Request.QueryString["title"];
+            string title3 = this.HttpContext.Request.Form["title"];
+            if (ModelState.IsValid)
+            {
+                JD_Commodity_001 newCommodity = this._commodityService.Insert(commodity);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                throw new Exception("ModelState is not correct ");
+            }
+        }
+
+
+        #endregion
+
+
+
+        #region Details, Edit and Delte
 
         [HttpGet]
         public ActionResult Details(int? id)
@@ -123,7 +172,6 @@ namespace P37.Course.MVC5.Controllers
 
             return View(commodity);
         }
-
 
         [HttpGet]
         public ActionResult Edit(int? id)
@@ -165,6 +213,12 @@ namespace P37.Course.MVC5.Controllers
         }
 
 
+        #endregion
+
+
+
+
+        #region Private Method
         private IEnumerable<SelectListItem> BuildCategoryList()
         {
             var categoryList = this._categoryService.GetChildList();
@@ -180,7 +234,10 @@ namespace P37.Course.MVC5.Controllers
             {
                 return null;
             }
-        }
+        }      
+
+        #endregion
+
 
 
 
