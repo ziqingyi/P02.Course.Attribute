@@ -143,6 +143,28 @@ namespace P37.Course.MVC5.Controllers
         }
 
 
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                throw  new Exception("Not Found");
+            }
+
+            JD_Commodity_001 commodity = this._commodityService.Find<JD_Commodity_001>(id ?? -1);
+
+            if (commodity == null)
+            {
+                throw new Exception("Not Found");
+            }
+            else
+            {
+                this._commodityService.Delete(commodity);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
         private IEnumerable<SelectListItem> BuildCategoryList()
         {
             var categoryList = this._categoryService.GetChildList();
