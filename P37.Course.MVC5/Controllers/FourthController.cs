@@ -118,18 +118,42 @@ namespace P37.Course.MVC5.Controllers
             return View();
         }
 
+        public ActionResult SearchIndex()
+        {
+            ViewBag.FirstCategory = BuildCategoryList(this._categoryService.CacheAllCategory().Where(c =>c.CategoryLevel == 1));
+            ViewBag.SecondCategory = BuildCategoryList(null);
+            ViewBag.ThirdCategory = BuildCategoryList(null);
+            return View();
+        }
 
 
+        [ChildActionOnly]
+        public ActionResult SearchPartialList(string searchString, int pageIndex = 1, int firstCategory = -1,
+            int secondCategory = -1, int thirdCategory = -1)
+        {
+            int id = thirdCategory == -1
+                ? secondCategory == -1 ? firstCategory == -1 ? -1 : firstCategory : secondCategory
+                : thirdCategory;
+            if (id == -1 && string.IsNullOrWhiteSpace(searchString))
+            {
+                searchString = "1";
+            }
 
+            List<int> categoryIdList = null;
+            if (id != -1)
+            {
+                Category category = this._categoryService.CacheAllCategory().FirstOrDefault(c => c.Id == id);
+                if (category != null)
+                    categoryIdList = this._categoryService.CacheAllCategory()
+                        .Where(c => (c.ParentCode.StartsWith(category.Code) || c.Id == category.Id))
+                        .Select(c => c.Id).ToList();
+            }
 
+            PageResult<CommodityModel> remoteCommodityList = this._searchService.QueryCommodityPage(pageIndex, pageSize, searchString, categoryIdList, null, null);
+            StaticPagedList<CommodityModel> pageList = new StaticPagedList<CommodityModel>(remoteCommodityList.DataList, pageIndex, pageSize, remoteCommodityList.TotalCount);
 
-
-
-
-
-
-
-
+            return View(pageList);
+        }
 
         #endregion
 
@@ -261,6 +285,37 @@ namespace P37.Course.MVC5.Controllers
 
 
         #region Private Method
+
+        private IEnumerable<SelectListItem> BuildCategoryList(IEnumerable<Category> categoryList)
+        {
+            List<SelectListItem> selectList = new List<SelectListItem>()
+            {
+                new SelectListItem()
+                {
+                    Selected = true,
+                    Text = "--Please Select--",
+                    Value="-1"
+                }
+            };
+            if (categoryList != null && categoryList.Count() > 0)
+            {
+                selectList.AddRange(
+                    categoryList.Select(c => new SelectListItem()
+                    {
+                        Selected = false,
+                        Text = c.Name,
+                        Value = c.Id.ToString()
+                    })
+                );
+            }
+            return selectList;
+        }
+
+
+
+
+
+
         private IEnumerable<SelectListItem> BuildCategoryList()
         {
             var categoryList = this._categoryService.GetChildList();
