@@ -128,7 +128,7 @@ namespace P37.Course.MVC5.Controllers
         }
 
 
-        [ChildActionOnly]
+        //[ChildActionOnly]//ajax is independent request, so this method should be accessible outside. 
         public ActionResult SearchPartialList(string searchString, int pageIndex = 1, int firstCategory = -1,
             int secondCategory = -1, int thirdCategory = -1)
         {
@@ -277,10 +277,33 @@ namespace P37.Course.MVC5.Controllers
         }
 
 
+        #endregion
 
 
+        #region Ajax request
+        public JsonResult CategoryDropdown(int id = -1)
+        {
+            Category category = this._categoryService.CacheAllCategory().FirstOrDefault(c => c.Id == id);
+            AjaxResult ajaxResult = new AjaxResult();
+            if (category != null)
+            {
+                var categoryList = this._categoryService.CacheAllCategory()
+                    .Where(c => c.ParentCode.Equals(category.Code));
+
+                ajaxResult.RetValue = BuildCategoryList(categoryList);
+                ajaxResult.Result = DoResult.Success;
+            }
+            else
+            {
+                ajaxResult.Result = DoResult.Failed;
+                ajaxResult.PromptMsg = "Search category failed";
+            }
+
+            return Json(ajaxResult);
+        }
 
         #endregion
+
 
 
 
@@ -311,10 +334,6 @@ namespace P37.Course.MVC5.Controllers
             }
             return selectList;
         }
-
-
-
-
 
 
         private IEnumerable<SelectListItem> BuildCategoryList()
