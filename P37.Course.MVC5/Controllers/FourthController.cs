@@ -113,7 +113,8 @@ namespace P37.Course.MVC5.Controllers
         //for using service in other proj, copy system.serviceModel in app.config to Web.config in MVC proj(not Views folder)
         public ActionResult Search()
         {
-            PageResult<CommodityModel> result = this._searchService.QueryCommodityPage(1, 20, "3", null, "", "");
+            //key word should not be a number eg.3
+            PageResult<CommodityModel> result = this._searchService.QueryCommodityPage(1, 20, "book", null, "", "");
 
             return View();
         }
