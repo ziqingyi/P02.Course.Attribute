@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Serialization;
 using Microsoft.Ajax.Utilities;
 using P05.Course.ExpressionSty.Extend;
 using P33.Course.Model.Models;
@@ -101,10 +102,6 @@ namespace P37.Course.MVC5.Controllers
         }
 
         #endregion
-
-
-
-
 
 
 
@@ -305,9 +302,6 @@ namespace P37.Course.MVC5.Controllers
         #endregion
 
 
-
-
-
         #region Private Method
 
         private IEnumerable<SelectListItem> BuildCategoryList(IEnumerable<Category> categoryList)
@@ -351,12 +345,144 @@ namespace P37.Course.MVC5.Controllers
             {
                 return null;
             }
-        }      
+        }
+
+        #endregion
+
+
+
+        #region test return
+        //content type is application/json
+        public JsonResult JsonResultIn()
+        {
+            return Json(new AjaxResult()
+            {
+                Result = DoResult.Success,
+                DebugMessage =  "this is JsonResult"
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public NewtonJsonResult JsonResultNewton()
+        {
+            return new NewtonJsonResult(new AjaxResult()
+            {
+                Result = DoResult.Success,
+                DebugMessage = "this is Newton JsonResult"
+            });
+        }
+
+        //content type is empty. so return default format HTML 
+        //string don't have ExecuteResult method, so framework will pass it to stream for browser automatically. 
+        public string JsonResultString()
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(new AjaxResult()
+            {
+                Result = DoResult.Success,
+                DebugMessage = "this iss Json Result String"
+            });
+        }
+
+        public void JsonResultVoid()
+        {
+            string res = Newtonsoft.Json.JsonConvert.SerializeObject(new AjaxResult()
+            {
+                Result = DoResult.Success,
+                DebugMessage = "this is Json Result Void"
+            });
+            HttpResponseBase response = base.HttpContext.Response;
+            response.ContentType = "application/json";
+            response.Write(res);
+        }
+
+        public XmlResult XmlResult()
+        {
+
+            return new XmlResult(new AjaxResult()
+            {
+                Result = DoResult.Success,
+                DebugMessage = "This is Xml Result"
+            });
+
+        }
+
+
 
         #endregion
 
 
 
 
+
     }
 }
+
+
+
+
+public class NewtonJsonResult : ActionResult
+{
+    private object _data = null;
+
+    public NewtonJsonResult(object data)
+    {
+        this._data = data;
+    }
+
+    public override void ExecuteResult(ControllerContext context)
+    {
+        HttpResponseBase response = context.HttpContext.Response;
+        response.ContentType = "application/json";
+        response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(this._data));
+    }
+
+}
+
+public class XmlResult : ActionResult
+{
+    private object _data = null;
+    public XmlResult(object data)
+    {
+        this._data = data;
+    }
+
+    public override void ExecuteResult(ControllerContext context)
+    {
+        HttpResponseBase response = context.HttpContext.Response;
+        response.ContentType = "application/xml";
+        
+        XmlSerializer serializer = new XmlSerializer(_data.GetType());
+        serializer.Serialize(response.Output, _data);
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
