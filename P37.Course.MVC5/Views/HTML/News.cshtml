@@ -12,11 +12,98 @@
 </head>
 <body>
 <div>
-    <h1>News Page </h1>
+    <h5>News Page and form</h5>
+    
+
+    
+    <form action="register.aspx" method="post">
+        <table border="1" width="500px">
+            <tr>
+                <th colspan="2">Register</th>
+            </tr>
+
+            <tr>
+                <td>User Name: </td>
+                <td><input type="text" name="group1" id="uniqueId1" width="20"></td>
+            </tr>
+            <tr>
+                <td>Password: </td>
+                <td><input type="password" name="group1" id="uniqueId2" width="20"></td>
+            </tr>
+
+            <tr>
+                <td>Sex: </td>
+                <td>
+                    Male<input type="radio" name="sex" id="uniqueId3" value="Male" />
+                    Female<input type="radio" name="sex" id="uniqueId4" value="Female" />
+                    hide<input type="radio" name="sex" id="uniqueId5" value="hide" checked="checked" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>Hobby: </td>
+                <td>
+                    Football<input type="checkbox" name="sex" id="uniqueId6" value="Football" checked="checked" />
+                    Basketball<input type="checkbox" name="sex" id="uniqueId7" value="Basketball" />
+                    SoccerBall<input type="checkbox" name="sex" id="uniqueId8" value="SoccerBall" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>City: </td>
+                <td>
+                    <select name="city">
+                        <option selected="selected">---select---</option>
+                        <option value="1001">Rockdale</option>
+                        <option value="1002">Rosebery</option>
+                        <option value="1003">Mascot</option>
+                    </select>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>notes:</td>
+                <td>
+                    <textarea name="remark" rows="10" cols="20">
+
+
+
+                    </textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td>picture: </td>
+                <td>
+                    <input type="file" name="fImage">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    simple button<input type="button" value="submit1" />
+                </td>   
+                <td>  
+                    submit button<input type="submit" value="submit2"/>
+                </td>
+                <td>  
+                    reset button<input type="reset" value="reset"/>
+                </td>
+            </tr>
+            
+            
+            
+            
+
+        </table>
+    </form>
+    
+    
+    
     
     <p style="height: 2000px"></p>
-    
-    
+
     <a id="newsBottom">news bottom</a>
 </div>
 </body>
