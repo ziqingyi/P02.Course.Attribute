@@ -9,7 +9,7 @@ namespace P37.Course.MVC5.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        public ActionResult Login()
+        public ActionResult Main()
         {
             return View();
         }
