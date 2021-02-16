@@ -172,6 +172,7 @@
     <Compile Include="Areas\MyArea\MyAreaAreaRegistration.cs" />
     <Compile Include="Areas\System\Controllers\AreaHomeController.cs" />
     <Compile Include="Areas\System\SystemAreaRegistration.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\FirstController.cs" />
     <Compile Include="Controllers\FourthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -271,6 +272,7 @@
     <Folder Include="Areas\MyArea\Data\" />
     <Folder Include="Areas\MyArea\Views\Shared\" />
     <Folder Include="Areas\System\Data\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
