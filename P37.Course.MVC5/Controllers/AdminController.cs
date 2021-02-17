@@ -11,7 +11,13 @@ namespace P37.Course.MVC5.Controllers
         // GET: Admin
         public ActionResult Main()
         {
+            return new FilePathResult("~/Views/Admin/Main.html", "text/html");
+        }
+
+        public ActionResult Login()
+        {
             return View();
         }
+
     }
 }
