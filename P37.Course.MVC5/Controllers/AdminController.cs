@@ -23,6 +23,10 @@ namespace P37.Course.MVC5.Controllers
         {
             return View();
         }
+        public ActionResult Google()
+        {
+            return new FilePathResult("~/Views/Admin/Google.html", "text/html");
+        }
 
     }
 }
