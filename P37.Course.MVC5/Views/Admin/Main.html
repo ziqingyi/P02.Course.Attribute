@@ -3,18 +3,23 @@
 
 <html>
 <head>
-    <meta  content="width=device-width" />
+    <meta content="width=device-width" />
     <title>Main page</title>
 </head>
 
-    <frameset rows="20%,*,5%" frameborder="0">
-        <frame src="/StaticPages/head.html"  />
+<frameset rows="20%,*,30%" frameborder="10">
 
+    <frame src="/StaticPages/head.html"/>
 
-
-
-        <frame src="/StaticPages/foot.html"  />
-
+    
+    <frameset cols="20%,*,40%">
+        <frame src="/StaticPages/left.html" />
+        <frame src="/StaticPages/center.html" name="center"/>
+        <frame src="/StaticPages/right.html" name="right"/>
     </frameset>
+    
+    <frame src="/StaticPages/foot.html"/>
+
+</frameset>
 
 </html>
