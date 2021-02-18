@@ -1,0 +1,20 @@
+﻿
+@import url("/css/head.css");
+
+/*internal style >   id>class>label*/
+div {
+                           width: 200px;
+                           height: 200px;
+                           background-color: greenyellow;
+                           border: 1px solid;
+                       }
+
+.s1 {
+    color: aquamarine;
+    font-size: 20px;
+}
+
+#div1 {
+    background-color: red;
+}
+

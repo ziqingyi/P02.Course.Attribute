@@ -27,6 +27,9 @@ namespace P37.Course.MVC5.Controllers
         {
             return new FilePathResult("~/Views/Admin/testDIV.html", "text/html");
         }
-
+        public ActionResult testDIV2()
+        {
+            return new FilePathResult("~/Views/Admin/testDIV2.html", "text/html");
+        }
     }
 }
