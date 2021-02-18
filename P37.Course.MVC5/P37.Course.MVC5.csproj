@@ -233,7 +233,7 @@
     <Content Include="StaticPages\center.html" />
     <Content Include="StaticPages\left.html" />
     <Content Include="StaticPages\right.html" />
-    <Content Include="Views\Admin\Google.html" />
+    <Content Include="Views\Admin\testDIV.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -353,7 +353,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>8839</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44332/</IISUrl>
+          <IISUrl>https://localhost:44333/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

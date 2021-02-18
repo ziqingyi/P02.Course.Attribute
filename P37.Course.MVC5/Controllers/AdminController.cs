@@ -23,9 +23,9 @@ namespace P37.Course.MVC5.Controllers
         {
             return View();
         }
-        public ActionResult Google()
+        public ActionResult testDIV()
         {
-            return new FilePathResult("~/Views/Admin/Google.html", "text/html");
+            return new FilePathResult("~/Views/Admin/testDIV.html", "text/html");
         }
 
     }
