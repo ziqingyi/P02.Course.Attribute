@@ -12,12 +12,22 @@
     <script type="text/javascript">
         alert("script in script tag");
 
-        var sexValue1 =document.getElementById("uniqueId3");
+        var sexValue1 =document.getElementById("uniqueId3");//undefined
 
-        var sex =document.getElementsByName("sex");
+        //var sex = document.getElementsByName("sex");
 
         document.write("document write in script tag " + sexValue1 + typeof (sexValue1));
 
+        //execute when page compile finish.
+        window.onload = function() {//anonymous function
+            var sex = document.getElementById("uniqueId3");//show male
+            alert(sex.value);
+        }
+
+        function check() {
+            var ss = document.getElementById("uniqueId4");
+            alert(ss.value+"  this is js function in script");
+        }
 
     </script>
 </head>
@@ -39,7 +49,7 @@
             </tr>
             <tr>
                 <td>Password: </td>
-                <td><input type="password" name="group1" id="uniqueId2" width="20"></td>
+                <td><input type="password" name="group1" id="uniqueId2" width="20"onfocus="check();"></td>
             </tr>
 
             <tr>
