@@ -8,7 +8,18 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>News</title>
+    <title>News page</title>
+    <script type="text/javascript">
+        alert("script in script tag");
+
+        var sexValue1 =document.getElementById("uniqueId3");
+
+        var sex =document.getElementsByName("sex");
+
+        document.write("document write in script tag " + sexValue1 + typeof (sexValue1));
+
+
+    </script>
 </head>
 <body>
 <div>
@@ -24,7 +35,7 @@
 
             <tr>
                 <td>User Name: </td>
-                <td><input type="text" name="group1" id="uniqueId1" width="20"></td>
+                <td><input type="text" name="group1" id="uniqueId1" width="20" onclick="javascript:alert(' on click event in tag!!!');"></td>
             </tr>
             <tr>
                 <td>Password: </td>
