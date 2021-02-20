@@ -21,13 +21,40 @@
         //execute when page compile finish.
         window.onload = function() {//anonymous function
             var sex = document.getElementById("uniqueId3");//show male
-            alert(sex.value);
+            alert("page finish, uniqueId3 is "+sex.value);
         }
 
         function check() {
             var ss = document.getElementById("uniqueId4");
             alert(ss.value+"  this is js function in script");
         }
+        function promptWindow() {
+            var result = prompt("notice", "confirm or not");
+            alert(result);
+        }
+
+        function confirmFunction() {
+            var result = window.confirm("do you want to update? ");
+            alert("you select " + result);
+            if (result) {
+                alert("update successfully!!!");
+            } else {
+                window.alert("no update");
+            }
+        }
+
+        function closeTab() {
+            if (confirm("close this tab? ")) {
+                window.location.href = "about:blank";
+                window.close();
+            }
+        }
+
+        function OpenNewPage() {
+            window.open("/HTML/Index","adv","height=500,width=800");
+        }
+
+        setTimeout("confirmFunction();", 10000);
 
     </script>
 </head>
@@ -49,9 +76,12 @@
             </tr>
             <tr>
                 <td>Password: </td>
-                <td><input type="password" name="group1" id="uniqueId2" width="20"onfocus="check();"></td>
+                <td><input type="password" name="group1" id="uniqueId2" width="20" onfocus="check(); promptWindow();"></td>
             </tr>
-
+            <tr>
+                <td>Occupation: </td>
+                <td><input type="text" name="group1" id="uniqueId9" width="20" onfocus="confirmFunction();"></td>
+            </tr>
             <tr>
                 <td>Sex: </td>
                 <td>
@@ -104,23 +134,30 @@
             <tr>
                 <td>
                     simple button<input type="button" value="submit1" />
-                </td>   
-                <td>  
-                    submit button<input type="submit" value="submit2"/>
                 </td>
-                <td>  
-                    reset button<input type="reset" value="reset"/>
+                <td>
+                    submit button<input type="submit" value="submit2" />
+                </td>
+                <td>
+                    reset button<input type="reset" value="reset" />
                 </td>
             </tr>
-            
-            
-            
-            
+
+
+
+
 
         </table>
     </form>
-    
-    
+    <div>
+        <a href="#" onclick="return confirm('confirm?'); ">confirm 1</a>
+        <br />
+        <a href="#" onclick="confirmFunction();">confirm function</a>
+        <br />
+        <a href="#" onclick="OpenNewPage();">Open New Page</a>
+        <br />
+        <a href="#" onclick="closeTab();">close</a>
+    </div>
     
     
     <p style="height: 2000px"></p>
