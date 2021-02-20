@@ -21,7 +21,8 @@
         //execute when page compile finish.
         window.onload = function() {//anonymous function
             var sex = document.getElementById("uniqueId3");//show male
-            alert("page finish, uniqueId3 is "+sex.value);
+            alert("page finish, uniqueId3 is " + sex.value);
+            document.getElementById("divAd").style.display = "block";
         }
 
         function check() {
@@ -54,7 +55,16 @@
             window.open("/HTML/Index","adv","height=500,width=800");
         }
 
-        setTimeout("confirmFunction();", 10000);
+        setTimeout("confirmFunction();", 10000);//just delay 10 seconds
+
+        var IntMethod =setInterval("IntervalPassed()",5000);
+
+        function IntervalPassed() {
+            var result = window.confirm("some seconds passed, just alert");
+            if (result) {
+                window.clearInterval(IntMethod);
+            }
+        }
 
     </script>
 </head>
@@ -159,7 +169,9 @@
         <a href="#" onclick="closeTab();">close</a>
     </div>
     
-    
+    <div id="divAd" style="display:none">
+        <img src="/img/1.png">
+    </div>
     <p style="height: 2000px"></p>
 
     <a id="newsBottom">news bottom</a>
