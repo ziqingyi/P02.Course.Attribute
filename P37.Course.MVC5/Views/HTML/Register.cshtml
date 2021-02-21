@@ -71,12 +71,41 @@
             history.back();
         }
 
+        //validation
+        function checkReg() {
+            var username = document.getElementById("uniqueId1_name");
+            if (username.value == "") {
+                //alert("user name cannot be null");
+
+                var div = document.createElement("div");
+                div.innerHTML = "<h1>user name cannot be null</h1>";
+                document.getElementById("headerTopic").appendChild(div);
+
+                username.focus();
+                return false;
+            }
+            var hobbys = document.getElementsByName("hobby");
+            for (var i = 0; i < hobbys.length; i++) {
+                if (hobbys[i].checked) {
+                    alert(hobbys[i].value);
+                }
+            }
+
+
+
+            var numOfInput = document.getElementsByTagName("input");
+            alert("total: "+ numOfInput.length);
+
+            return false;
+        }
+
+
     </script>
 </head>
 <body>
 <div>
 
-    <h5>Register Page and form</h5>
+    <h5 id="headerTopic">Register Page and form</h5>
 
     <form action="register.aspx" method="post">
         <table border="1" width="500px">
@@ -86,7 +115,7 @@
 
             <tr>
                 <td>User Name: </td>
-                <td><input type="text" name="group1" id="uniqueId1" width="20" onclick="javascript:alert(' on click event in tag!!!');"></td>
+                <td><input type="text" name="group1" id="uniqueId1_name" width="20" onclick="javascript:alert(' on click event in tag!!!');"></td>
             </tr>
             <tr>
                 <td>Password: </td>
@@ -104,16 +133,14 @@
                     hide<input type="radio" name="sex" id="uniqueId5" value="hide" checked="checked"/>
                 </td>
             </tr>
-
             <tr>
                 <td>Hobby: </td>
                 <td>
-                    Football<input type="checkbox" name="sex" id="uniqueId6" value="Football" checked="checked"/>
-                    Basketball<input type="checkbox" name="sex" id="uniqueId7" value="Basketball"/>
-                    SoccerBall<input type="checkbox" name="sex" id="uniqueId8" value="SoccerBall"/>
+                    Football<input type="checkbox" name="hobby" id="uniqueId6" value="Football" checked="checked"/>
+                    Basketball<input type="checkbox" name="hobby" id="uniqueId7" value="Basketball"/>
+                    SoccerBall<input type="checkbox" name="hobby" id="uniqueId8" value="SoccerBall"/>
                 </td>
             </tr>
-
             <tr>
                 <td>City: </td>
                 <td>
@@ -125,42 +152,30 @@
                     </select>
                 </td>
             </tr>
-
-
             <tr>
                 <td>notes:</td>
                 <td>
                     <textarea name="remark" rows="10" cols="20">
-
-
-
                     </textarea>
                 </td>
             </tr>
-
             <tr>
                 <td>picture: </td>
                 <td>
                     <input type="file" name="fImage">
                 </td>
             </tr>
-
             <tr>
                 <td>
                     simple button<input type="button" value="submit1"/>
                 </td>
                 <td>
-                    submit button<input type="submit" value="submit2"/>
+                    submit button<input type="submit" value="submit2" onclick="return checkReg();"/>
                 </td>
                 <td>
                     reset button<input type="reset" value="reset"/>
                 </td>
             </tr>
-
-
-
-
-
         </table>
     </form>
     <div>
@@ -172,8 +187,7 @@
         <br/>
         <a href="#" onclick="closeTab();">close</a>
         <br/>
-        <input type="button" value="return" onclick="back();"/> 
-        
+        <input type="button" value="return" onclick="back();"/>
     </div>
 
     <div id="divAd" style="display: none">
