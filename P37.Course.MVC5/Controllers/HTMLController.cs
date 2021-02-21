@@ -14,7 +14,7 @@ namespace P37.Course.MVC5.Controllers
             return View();
         }
 
-        public ActionResult News()
+        public ActionResult Register()
         {
             return View();
         }

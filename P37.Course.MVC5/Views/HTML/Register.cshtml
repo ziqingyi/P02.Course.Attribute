@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>News page</title>
+    <title>Register page</title>
     <script type="text/javascript">
         alert("script in script tag");
 
@@ -70,10 +70,9 @@
 </head>
 <body>
 <div>
-    <h5>News Page and form</h5>
-    
 
-    
+    <h5>Register Page and form</h5>
+
     <form action="register.aspx" method="post">
         <table border="1" width="500px">
             <tr>
@@ -86,7 +85,7 @@
             </tr>
             <tr>
                 <td>Password: </td>
-                <td><input type="password" name="group1" id="uniqueId2" width="20" onfocus="check(); promptWindow();"></td>
+                <td><input type="password" name="group1" id="uniqueId2" width="20" onfocus="check();promptWindow();"></td>
             </tr>
             <tr>
                 <td>Occupation: </td>
@@ -95,18 +94,18 @@
             <tr>
                 <td>Sex: </td>
                 <td>
-                    Male<input type="radio" name="sex" id="uniqueId3" value="Male" />
-                    Female<input type="radio" name="sex" id="uniqueId4" value="Female" />
-                    hide<input type="radio" name="sex" id="uniqueId5" value="hide" checked="checked" />
+                    Male<input type="radio" name="sex" id="uniqueId3" value="Male"/>
+                    Female<input type="radio" name="sex" id="uniqueId4" value="Female"/>
+                    hide<input type="radio" name="sex" id="uniqueId5" value="hide" checked="checked"/>
                 </td>
             </tr>
 
             <tr>
                 <td>Hobby: </td>
                 <td>
-                    Football<input type="checkbox" name="sex" id="uniqueId6" value="Football" checked="checked" />
-                    Basketball<input type="checkbox" name="sex" id="uniqueId7" value="Basketball" />
-                    SoccerBall<input type="checkbox" name="sex" id="uniqueId8" value="SoccerBall" />
+                    Football<input type="checkbox" name="sex" id="uniqueId6" value="Football" checked="checked"/>
+                    Basketball<input type="checkbox" name="sex" id="uniqueId7" value="Basketball"/>
+                    SoccerBall<input type="checkbox" name="sex" id="uniqueId8" value="SoccerBall"/>
                 </td>
             </tr>
 
@@ -143,13 +142,13 @@
 
             <tr>
                 <td>
-                    simple button<input type="button" value="submit1" />
+                    simple button<input type="button" value="submit1"/>
                 </td>
                 <td>
-                    submit button<input type="submit" value="submit2" />
+                    submit button<input type="submit" value="submit2"/>
                 </td>
                 <td>
-                    reset button<input type="reset" value="reset" />
+                    reset button<input type="reset" value="reset"/>
                 </td>
             </tr>
 
@@ -161,20 +160,20 @@
     </form>
     <div>
         <a href="#" onclick="return confirm('confirm?'); ">confirm 1</a>
-        <br />
+        <br/>
         <a href="#" onclick="confirmFunction();">confirm function</a>
-        <br />
+        <br/>
         <a href="#" onclick="OpenNewPage();">Open New Page</a>
-        <br />
+        <br/>
         <a href="#" onclick="closeTab();">close</a>
     </div>
-    
-    <div id="divAd" style="display:none">
+
+    <div id="divAd" style="display: none">
         <img src="/img/1.png">
     </div>
     <p style="height: 2000px"></p>
 
-    <a id="newsBottom">news bottom</a>
+    <a id="pageBottom">page bottom</a>
 </div>
 </body>
 </html>
