@@ -18,12 +18,12 @@
 
         document.write("document write in script tag " + sexValue1 + typeof (sexValue1));
 
-        //execute when page compile finish.
-        window.onload = function() {//anonymous function
-            var sex = document.getElementById("uniqueId3");//show male
-            alert("page finish, uniqueId3 is " + sex.value);
-            document.getElementById("divAd").style.display = "block";
-        }
+        ////execute when page compile finish.comment out for now.
+        //window.onload = function() {//anonymous function
+        //    var sex = document.getElementById("uniqueId3");//show male
+        //    alert("page finish, uniqueId3 is " + sex.value);
+        //    document.getElementById("divAd").style.display = "block";
+        //}
 
         function check() {
             var ss = document.getElementById("uniqueId4");
@@ -52,18 +52,23 @@
         }
 
         function OpenNewPage() {
-            window.open("/HTML/Index","adv","height=500,width=800");
+            window.open("/HTML/Index", "adv", "height=500,width=800");
+            window.open("/HTML/Index");
         }
 
-        setTimeout("confirmFunction();", 10000);//just delay 10 seconds
+        //setTimeout("confirmFunction();", 10000);//just delay 10 seconds
 
-        var IntMethod =setInterval("IntervalPassed()",5000);
+        //var IntMethod =setInterval("IntervalPassed()",5000);
 
-        function IntervalPassed() {
-            var result = window.confirm("some seconds passed, just alert");
-            if (result) {
-                window.clearInterval(IntMethod);
-            }
+        //function IntervalPassed() {
+        //    var result = window.confirm("some seconds passed, just alert");
+        //    if (result) {
+        //        window.clearInterval(IntMethod);
+        //    }
+        //}
+
+        function back() {
+            history.back();
         }
 
     </script>
@@ -166,6 +171,9 @@
         <a href="#" onclick="OpenNewPage();">Open New Page</a>
         <br/>
         <a href="#" onclick="closeTab();">close</a>
+        <br/>
+        <input type="button" value="return" onclick="back();"/> 
+        
     </div>
 
     <div id="divAd" style="display: none">
