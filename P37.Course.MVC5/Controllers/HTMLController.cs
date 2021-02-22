@@ -19,5 +19,10 @@ namespace P37.Course.MVC5.Controllers
             return View();
         }
 
+        public ActionResult ImageList()
+        {
+            return new FilePathResult("~/Views/HTML/ImageList.html","text/html");
+        }
+
     }
 }

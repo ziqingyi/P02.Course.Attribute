@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>switching picture</title>
+    
+    <style type="text/css">
+        #div_button {
+            position: relative;
+            left: 500px;
+            bottom: 50px;
+        }
+        .btn1{background-color:red;}
+    
+    </style>
+    
+    <script type="text/javascript" src="/Scripts/jquery-3.4.1.min.js"></script>
+    
+    <script>
+        var arrays = ["/img/l1.png", "/img/l2.png", "/img/l3.png", "/img/l4.png", "/img/l5.png" ];
+
+        //document ready event: wait for the document to be fully loaded and then run the js
+        //method 1: $(document).ready(funcAtThePageLoaded); 
+        //method 2: $(document).ready(function() {});
+        //method 3: $(function () {})
+        //method 4:
+        $(funcAtThePageLoaded);
+
+        function funcAtThePageLoaded() {
+            for (var i = 0; i < arrays.length; i++) {
+                $("#div_banner").append("<img src='" + arrays[i] + "'/>");
+
+                $("#div_button").append("<input type='button' value='" + (i + 1) + "' />");
+            }
+
+            $("#div_banner img").hide();//hide all img under the id
+
+            $("#div_banner img").eq(0).show();//show first one
+
+            $("#div_button input[type='button']").eq(0).addClass("btn1");
+
+
+            $("#div_button input[type='button']").click(buttonClickFunc);
+
+
+        }
+
+        function buttonClickFunc() {
+            index = parseInt(this.value) - 1;
+            $("#div_banner img").hide().eq(index).show();
+
+            $(this).addClass("btn1").siblings().removeClass("btn1");
+        }
+
+
+
+    </script>
+
+</head>
+<body>
+    <div id="div_banner"></div>
+    <span id="div_button"></span>
+
+</body>
+</html>

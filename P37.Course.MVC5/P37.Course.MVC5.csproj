@@ -213,6 +213,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\1.png" />
     <Content Include="img\2iphone.png" />
+    <Content Include="img\l1.png" />
+    <Content Include="img\l2.png" />
+    <Content Include="img\l3.png" />
+    <Content Include="img\l4.png" />
+    <Content Include="img\l5.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="CfgFiles\Unity.Config">
@@ -237,6 +242,7 @@
     <Content Include="StaticPages\Test.html" />
     <Content Include="Views\Admin\testDIV2.html" />
     <Content Include="Views\Admin\testDIV.html" />
+    <Content Include="Views\HTML\ImageList.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
