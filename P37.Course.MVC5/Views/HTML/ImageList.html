@@ -46,11 +46,32 @@
         }
 
         function buttonClickFunc() {
-            index = parseInt(this.value) - 1;
+            var index = parseInt(this.value) - 1;
             $("#div_banner img").hide().eq(index).show();
 
             $(this).addClass("btn1").siblings().removeClass("btn1");
         }
+
+
+        //changing pictures every two seconds
+        var index = 1;
+        setInterval("changeImage()",2000);
+        function changeImage()
+        {
+            $("#div_banner img").hide().eq(index).show();
+            //add class for css style
+            $("#div_button input[type='button']").eq(index).addClass("btn1").siblings().removeClass("btn1");
+            index++;
+
+            if (index >= arrays.length) {
+                index = 0;
+            }
+
+        }
+
+
+
+
 
 
 
