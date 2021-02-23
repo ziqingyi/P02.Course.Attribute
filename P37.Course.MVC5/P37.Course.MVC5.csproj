@@ -243,6 +243,7 @@
     <Content Include="Views\Admin\testDIV2.html" />
     <Content Include="Views\Admin\testDIV.html" />
     <Content Include="Views\HTML\ImageList.html" />
+    <Content Include="Views\HTML\Selectors.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

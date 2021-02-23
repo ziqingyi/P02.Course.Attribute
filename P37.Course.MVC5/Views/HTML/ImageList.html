@@ -43,6 +43,11 @@
             $("#div_button input[type='button']").click(buttonClickFunc);
 
 
+            //visibility
+
+            $("#div_banner img:visible");//get visible images.
+
+
         }
 
         function buttonClickFunc() {
@@ -72,6 +77,14 @@
 
         function Stop() {
             clearInterval(timer); //stop interval
+
+            //hide and show by js
+            document.getElementById("div_banner").style.display = 'none';
+            document.getElementById("div_banner").style.display = 'block';
+
+            //hide and show by jquery
+            $("#div_banner").hide();
+            $("#div_banner").show();
         }
 
 
@@ -82,6 +95,9 @@
 <body>
     <div id="div_banner"></div>
     <span id="div_button"></span>
+    
+//hide in html
+<span style="display: none;"></span>
 
 </body>
 </html>

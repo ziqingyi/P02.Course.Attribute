@@ -24,5 +24,11 @@ namespace P37.Course.MVC5.Controllers
             return new FilePathResult("~/Views/HTML/ImageList.html","text/html");
         }
 
+
+        public ActionResult Selectors()
+        {
+            return new FilePathResult("~/Views/HTML/Selectors.html", "text/html");
+        }
+
     }
 }
