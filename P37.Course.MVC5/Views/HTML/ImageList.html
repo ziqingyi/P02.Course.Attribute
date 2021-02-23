@@ -55,7 +55,7 @@
 
         //changing pictures every two seconds
         var index = 1;
-        setInterval("changeImage()",2000);
+        var timer = setInterval("changeImage()", 2000);//var timer = setInterval(changeImage,2000); 
         function changeImage()
         {
             $("#div_banner img").hide().eq(index).show();
@@ -70,8 +70,9 @@
         }
 
 
-
-
+        function Stop() {
+            clearInterval(timer); //stop interval
+        }
 
 
 
