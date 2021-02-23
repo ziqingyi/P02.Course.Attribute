@@ -3,8 +3,23 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-</head>
-<body>
 
+    <script src="../../Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+
+            $("div:hidden").each(function() {
+                alert(this.tagName + " " + this.id + " " + this.innerHTML);
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="div1" style="display: none;"> 1 </div>
+    <div id="div2" style="display: none;"> 2 </div>
+    <div id="div3" style="display: none;"> 3 </div>
+    <div id="div4" > 4 </div>
 </body>
 </html>
