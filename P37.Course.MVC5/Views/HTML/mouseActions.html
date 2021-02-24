@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    
+    <style type="text/css">
+        #nav li {
+            display: inline;
+        }
+
+        .nav {
+            background-color: blue;
+        }
+
+    </style>
+
+    <script src="../../Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+        $(MouseFunc);
+
+        function MouseFunc() {
+
+            //same effect, method 1
+            //$("#nav li").mouseover(function() {
+            //    $(this).addClass("nav");
+            //});
+
+            //$("#nav li").mouseout(function() {
+            //    $(this).removeClass("nav");
+            //});
+
+
+            //method 2
+            $("#nav li").hover(function() {
+                    $(this).addClass("nav");
+                },
+                function() {
+                    $(this).removeClass("nav");
+                });
+
+
+        }
+
+
+
+
+
+    </script>
+
+</head>
+<body>
+      <div id="nav">
+          
+          <div><span> aaa </span><span> bbb </span><span> ccc </span>ddd</div>
+
+          <ul>
+              <li>news</li>
+              <li>fun</li>
+              <li>army</li>
+          </ul>
+
+      </div>
+</body>
+</html>

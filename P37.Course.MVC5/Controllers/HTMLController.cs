@@ -29,6 +29,9 @@ namespace P37.Course.MVC5.Controllers
         {
             return new FilePathResult("~/Views/HTML/Selectors.html", "text/html");
         }
-
+        public ActionResult MouseActions()
+        {
+            return new FilePathResult("~/Views/HTML/mouseActions.html", "text/html");
+        }
     }
 }
