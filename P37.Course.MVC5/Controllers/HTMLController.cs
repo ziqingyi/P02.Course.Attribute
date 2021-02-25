@@ -40,7 +40,10 @@ namespace P37.Course.MVC5.Controllers
         }
 
 
-
+        public ActionResult Detach()
+        {
+            return new FilePathResult("~/Views/HTML/Detach.html", "text/html");
+        }
 
 
 

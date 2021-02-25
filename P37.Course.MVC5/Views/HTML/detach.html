@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="../../Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+        $(bindFunction);
+
+        function bindFunction() {
+            var $div2 = $("#div2");
+            $div2.bind("click",
+                function () {
+                    alert("hit ");
+                });
+
+            $("#btnDelete").click(function() {
+                $div2.detach();//the click function still work if append back
+                $div2.remove();//the click function does not work if append back
+            });
+
+
+            $("#btnBack").click(function() {
+                $("#div1").append($div2);
+            });
+
+        }
+
+
+    </script>
+</head>
+<body>
+<input type="button" value="delete" id="btnDelete" />
+<input type="button" value="Back" id="btnBack" />
+<div id="div1">
+    <div id="div2"> first </div>
+    <div id="div3"> second </div>
+</div>
+
+</body>
+</html>
