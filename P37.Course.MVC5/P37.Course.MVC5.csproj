@@ -242,6 +242,7 @@
     <Content Include="StaticPages\Test.html" />
     <Content Include="Views\Admin\testDIV2.html" />
     <Content Include="Views\Admin\testDIV.html" />
+    <Content Include="Views\HTML\bindActions.html" />
     <Content Include="Views\HTML\ImageList.html" />
     <Content Include="Views\HTML\mouseActions.html" />
     <Content Include="Views\HTML\Selectors.html" />

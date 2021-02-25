@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <style>
+        .CusText {
+            background-color: lemonchiffon;
+        }
+    </style>
+    <script src="../../Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        $(testActionBind);
+
+        function testActionBind() {
+            $("input").focus(function() {
+                $(this).addClass("CusText");
+            });
+            $("input").blur(function() {
+                $(this).removeClass("CusText");
+            });
+
+            $("#btnSubmit").bind("click",
+                function() {
+                    alert("hit");
+                    $("#btnSubmit").unbind("click");
+                });
+
+            $("#user_name").val("default name");
+            $("#div1").append("<span>123</span>");
+            $("#div1").prepend("<span>456</span>");
+            $("#div2").text("345");//replace
+        }
+    </script>
+
+</head>
+<body>
+
+<form method="post" action="/html/Selectors">
+    user Name: <input type="text" name="username" id="user_name" value=""/><br/>
+    pass: <input type="password" name="password" id="password" value=""/>
+</form>
+    
+<input type="button" value="test button" id="btnSubmit"/>
+<span>456 </span>
+<br/>
+<div id="div1">
+    <span>123</span>
+</div>
+
+    <div id="div2">div2</div>
+
+</body>
+</html>

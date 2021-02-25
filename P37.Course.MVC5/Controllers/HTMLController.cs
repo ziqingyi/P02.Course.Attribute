@@ -33,5 +33,21 @@ namespace P37.Course.MVC5.Controllers
         {
             return new FilePathResult("~/Views/HTML/mouseActions.html", "text/html");
         }
+
+        public ActionResult BindActions()
+        {
+            return new FilePathResult("~/Views/HTML/bindActions.html", "text/html");
+        }
+
+
+
+
+
+
+
+
+
+
+
     }
 }
