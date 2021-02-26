@@ -177,6 +177,7 @@
     <Compile Include="Controllers\FourthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HTMLController.cs" />
+    <Compile Include="Controllers\MVCController.cs" />
     <Compile Include="Controllers\SecondController.cs" />
     <Compile Include="Controllers\ThirdController.cs" />
     <Compile Include="Global.asax.cs">
@@ -296,6 +297,7 @@
     <Folder Include="Areas\MyArea\Data\" />
     <Folder Include="Areas\MyArea\Views\Shared\" />
     <Folder Include="Areas\System\Data\" />
+    <Folder Include="Views\MVC\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
