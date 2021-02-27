@@ -198,9 +198,53 @@
     <Content Include="Areas\SystemPlugins\Views\web.config" />
     <Content Include="Areas\MyArea\Views\web.config" />
     <Content Include="Areas\MyArea\Views\Home\Index.cshtml" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-grid.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-grid.min.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-reboot.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-reboot.min.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-utilities.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-utilities.min.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap.min.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap.rtl.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap.rtl.min.css.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\js\bootstrap.bundle.js.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\js\bootstrap.bundle.min.js.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\js\bootstrap.esm.js.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\js\bootstrap.esm.min.js.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\js\bootstrap.js.map" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\js\bootstrap.min.js.map" />
     <None Include="CfgFiles\log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-grid.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-grid.min.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-grid.rtl.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-reboot.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-reboot.min.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-reboot.rtl.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-utilities.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-utilities.min.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-utilities.rtl.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap.min.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap.rtl.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\css\bootstrap.rtl.min.css" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\js\bootstrap.bundle.js" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\js\bootstrap.bundle.min.js" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\js\bootstrap.esm.js" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\js\bootstrap.esm.min.js" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\js\bootstrap.js" />
+    <Content Include="bootstrap\bootstrap-5.0.0-beta2-dist\js\bootstrap.min.js" />
     <Content Include="CfgFiles\link.txt" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -248,6 +292,7 @@
     <Content Include="Views\HTML\ImageList.html" />
     <Content Include="Views\HTML\mouseActions.html" />
     <Content Include="Views\HTML\Selectors.html" />
+    <Content Include="Views\MVC\IndexBootstrap.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -297,7 +342,6 @@
     <Folder Include="Areas\MyArea\Data\" />
     <Folder Include="Areas\MyArea\Views\Shared\" />
     <Folder Include="Areas\System\Data\" />
-    <Folder Include="Views\MVC\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

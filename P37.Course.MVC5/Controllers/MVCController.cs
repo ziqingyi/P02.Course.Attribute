@@ -9,9 +9,9 @@ namespace P37.Course.MVC5.Controllers
     public class MVCController : Controller
     {
         // GET: MVC
-        public ActionResult Index()
+        public ActionResult IndexBootstrap()
         {
-            return View();
+            return new FilePathResult("~/Views/MVC/IndexBootstrap.html", "text/html");//
         }
     }
 }
