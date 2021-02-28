@@ -23,7 +23,13 @@
         <p>adjust the window</p>
     </div>
     <div class="row">
-        <div class="col-sm-2">
+        <!--
+            The hidden-* and visible-* classes no longer exist in Bootstrap 4.
+        If you want to hide an element on specific tiers or breakpoints in Bootstrap 4,
+        use the d-* display classes accordingly.
+        https://getbootstrap.com/docs/4.0/utilities/display/
+        -->
+        <div class="col-sm-2 d-none d-sm-block">
             <h3>First column</h3>
             <p>narrow</p>
             <p>class is col-sm-2</p>

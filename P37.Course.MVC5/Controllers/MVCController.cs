@@ -13,5 +13,13 @@ namespace P37.Course.MVC5.Controllers
         {
             return new FilePathResult("~/Views/MVC/IndexBootstrap.html", "text/html");//
         }
+
+        public ActionResult Table()
+        {
+            return new FilePathResult("~/Views/MVC/table.html","text/html");
+        }
+
+
+
     }
 }
