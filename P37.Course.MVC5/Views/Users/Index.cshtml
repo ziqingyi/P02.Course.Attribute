@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+@using P37.Course.Web.Core.Models
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Users Index</title>
+</head>
+<body>
+<div>
+    user info: 
+    @{
+        CurrentUser user = null;
+        if (Session["users"] != null)
+        {
+            user = Session["users"] as CurrentUser;
+            @user.Id
+            @user.Account
+        }
+
+
+
+
+    }
+
+
+</div>
+</body>
+</html>

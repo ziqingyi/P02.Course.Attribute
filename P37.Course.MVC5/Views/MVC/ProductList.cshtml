@@ -2,7 +2,7 @@
 @{
     Layout = null;
 }
-
+@using P37.Course.Web.Core.Models
 <!DOCTYPE html>
 
 <html>
@@ -12,17 +12,27 @@
 </head>
 <body>
 
+user info: 
+@{
+    CurrentUser user = null;
+    if (Session["users"] != null)
+    {
+        user = Session["users"] as CurrentUser;
+        @user.Id
+        @user.Account
+    }
+}
 
-
-<a href="details/1001"> got to product  by details/1001  </a> 
+<br/>
+<a href="details/1001"> got to product by details/1001 </a>
 <br/>
 <a href="details?id=1002"> got to product by details?id=1002 </a>
 
 
-    <form method="post" action ="details">
-        product code: <input type="text" name="id"> <br/>
-        <input type="submit" value="submitValue">
-    </form>
+<form method="post" action="details">
+    product code: <input type="text" name="id"> <br/>
+    <input type="submit" value="submitValue">
+</form>
 
 </body>
 </html>

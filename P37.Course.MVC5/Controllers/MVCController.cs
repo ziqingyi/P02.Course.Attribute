@@ -40,6 +40,18 @@ namespace P37.Course.MVC5.Controllers
             //get param by post(hide)
 
 
+            //ViewData, ViewBag
+            ViewData["name1"] = "iphoneXS"; // pre-compile
+            ViewBag.name2 = "iphoneX";//dynamic type
+
+            //works in whole controller
+            TempData["name3"] = "used in this controller";
+
+            //cross controller
+            //1 session: shopping card, account log in
+
+
+
             return View();
         }
 

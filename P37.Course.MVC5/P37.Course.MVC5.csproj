@@ -180,6 +180,7 @@
     <Compile Include="Controllers\MVCController.cs" />
     <Compile Include="Controllers\SecondController.cs" />
     <Compile Include="Controllers\ThirdController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -340,6 +341,9 @@
     <Content Include="Views\MVC\Index.cshtml" />
     <Content Include="Views\MVC\details.cshtml" />
     <Content Include="Views\MVC\ProductList.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\Users\UsersLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
