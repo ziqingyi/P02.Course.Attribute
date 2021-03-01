@@ -27,8 +27,9 @@ namespace P37.Course.MVC5.Controllers
         public ActionResult Details()
         {
             //get values, request's get and post
-
-
+            string id1 = Request["id"]??ToString(); //get   post
+            string id2 = Request.QueryString["id"]; //get 
+            object id3 = RouteData.Values["id"]??ToString();//get route information
 
 
 
