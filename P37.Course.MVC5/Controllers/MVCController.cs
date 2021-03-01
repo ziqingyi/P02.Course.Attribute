@@ -26,12 +26,18 @@ namespace P37.Course.MVC5.Controllers
 
         public ActionResult Details()
         {
-            //get values, request's get and post
-            string id1 = Request["id"]??ToString(); //get   post
-            string id2 = Request.QueryString["id"]; //get 
+            //get param,by ? request's get and post//test with <a>, only get no post.
+            // looks for the key "id" only in the query string; 
+            string id1 = Request["id"]??ToString(); //get   post (data from address bar and form)
+
+            //looks for the key "id" in all of the HTTP request collections.
+            string id2 = Request.QueryString["id"]; //get  (data only from address bar)
+
+
+            //get param by route/ 
             object id3 = RouteData.Values["id"]??ToString();//get route information
 
-
+            //get param by post(hide)
 
 
             return View();
