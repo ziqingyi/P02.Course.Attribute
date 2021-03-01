@@ -19,6 +19,28 @@ namespace P37.Course.MVC5.Controllers
             return new FilePathResult("~/Views/MVC/table.html","text/html");
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Details()
+        {
+            //get values, request's get and post
+
+
+
+
+
+
+            return View();
+        }
+
+
+        public ActionResult ProductList()
+        {
+            return View();
+        }
 
 
     }
