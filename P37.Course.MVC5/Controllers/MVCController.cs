@@ -24,7 +24,7 @@ namespace P37.Course.MVC5.Controllers
             return View();
         }
 
-        public ActionResult Details()
+        public ActionResult Details(int id = 1)
         {
             //get param,by ? request's get and post//test with <a>, only get no post.
             // looks for the key "id" only in the query string; 

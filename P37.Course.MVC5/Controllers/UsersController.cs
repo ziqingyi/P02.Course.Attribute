@@ -34,7 +34,11 @@ namespace P37.Course.MVC5.Controllers
             return View();
         }
 
+        public ActionResult Register()
+        {
 
+            return View();
+        }
 
     }
 }

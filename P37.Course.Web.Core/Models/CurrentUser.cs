@@ -15,7 +15,10 @@ namespace P37.Course.Web.Core.Models
         [DataType(DataType.EmailAddress)]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
+        private bool State { get; set; }
+
         public DateTime LoginTime { get; set; }
+        public DateTime CreateTime { get; set; }
 
         public List<Data> Datas { get; set; }
     }
