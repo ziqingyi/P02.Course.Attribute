@@ -49,7 +49,19 @@ namespace P37.Course.MVC5.Controllers
 
             //cross controller
             //1 session: shopping card, account log in
+            Session.Timeout = 2;//set expiry time 
 
+            //Application: for whole program
+            if (HttpContext.Application["userCount"] == null)
+            {
+                HttpContext.Application["userCount"] = 1;
+            }
+            else
+            {
+                HttpContext.Application["userCount"] = (int)HttpContext.Application["userCount"] + 1;
+            }
+            //remove
+            //HttpContext.Application.Remove("userCount");
 
 
             return View();
