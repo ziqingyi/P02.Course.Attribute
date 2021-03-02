@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using P37.Course.Web.Core.Models
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
 </head>
 <body>
     <div>
-        user info:
+        <h3>user info: </h3>
         @{
             CurrentUser user = null;
             if (Session["users"] != null)

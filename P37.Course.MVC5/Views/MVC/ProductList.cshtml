@@ -12,14 +12,18 @@
 </head>
 <body>
 
-user info: 
+<h3>user info: </h3>
+
 @{
     CurrentUser user = null;
     if (Session["users"] != null)
     {
         user = Session["users"] as CurrentUser;
-        @user.Id
-        @user.Account
+        if (user != null)
+        {
+            <h3>user Id: @user.Id </h3>;
+            <h3>user Id: @user.Account</h3>;
+        }
     }
 }
 
