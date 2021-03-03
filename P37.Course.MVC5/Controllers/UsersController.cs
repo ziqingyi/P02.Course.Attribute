@@ -40,5 +40,17 @@ namespace P37.Course.MVC5.Controllers
             return View();
         }
 
+
+        public string CheckUserEmail(string email)
+        {
+            return "1";
+        }
+
+
+
+
+
+
+
     }
 }

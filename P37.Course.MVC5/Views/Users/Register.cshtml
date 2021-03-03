@@ -41,12 +41,50 @@
                     result = false;
                     //this.focus();
                     $("#op_account").css("color", "red").html("user account cannot be empty");
+
                 } else {
                     account.removeClass("input_error").addClass("input_success");
                     result = true;
                     $("#op_account").css("color", "greenyellow").html("success");
                 }
             });
+
+
+            $("#Email").blur(function () {
+                var email = $(this);
+
+                if (email.val() == "") {
+                    email.removeClass("input_success").addClass("input_error");
+                    result = false;
+                    //this.focus();
+                    $("#op_email").css("color", "red").html("Email cannot be empty");
+                    return;
+                }
+
+                $.ajax({
+                    url:"CheckUserEmail",
+                    data: { "Email": email.val()},
+                    type: "post",
+                    dataType: "text",
+                    success: function(data) {
+                        alert(data);
+                        if (data == "1") {
+                            email.removeClass("input_error").addClass("input_success");
+                            $("#op_email").css("color", "greenyellow").html("email is valid");
+                        }
+
+                    },
+                    error: function (msg) {
+                        alert(msg);
+                    }
+                });
+
+
+            });
+
+
+
+
 
             $("#btnSubmit").click(function () {
 
@@ -77,7 +115,11 @@
             <td><input type="password" name="Password" id="Pwd"></td>
             <td id="op_pwd"></td>
         </tr>
-
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" name="Email" id="Email"></td>
+            <td id="op_email"></td>
+        </tr>
         <tr>
             <td>State:</td>
             <td>
