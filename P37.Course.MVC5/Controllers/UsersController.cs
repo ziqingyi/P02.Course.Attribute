@@ -34,7 +34,7 @@ namespace P37.Course.MVC5.Controllers
             return View();
         }
 
-        public ActionResult Register()
+        public ActionResult Register(CurrentUser user)
         {
 
             return View();

@@ -21,34 +21,45 @@
         </tr>
         <tr>
             <td>Pass:</td>
-            <td><input type="password" name="Pwd" id="Pwd"></td>
+            <td><input type="password" name="Password" id="Pwd"></td>
             <td id="op_pwd"></td>
         </tr>
 
         <tr>
             <td>State:</td>
             <td>
-                0: <input type="radio" name="state" value="0"/>
-                1: <input type="radio" name="state" value="1"/>
+                0: <input type="radio" name="State" value="false" />
+                1: <input type="radio" name="State" value="true" />
             </td>
             <td></td>
         </tr>
-        
+        @*name must be same to the class's attribute, use for mapping*@
         <tr>
-            <td>Birthday:</td>
-            <td><input type="text" name="Birthday" id="Wdate" onClick="WdatePicker()"></td>
+            <td>CreateTime:</td>
+            <td><input type="text" name="CreateTime" id="Wdate" onClick="WdatePicker()"></td>
             <td></td>
         </tr>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+        <tr>
+            <td>Company ID:</td>
+            <td>
+                0: <input type="checkbox" name="Datas" value="0" />
+                1: <input type="checkbox" name="Datas" value="1" />
+                2: <input type="checkbox" name="Datas" value="2" />
+                3: <input type="checkbox" name="Datas" value="3" />
+            </td>
+            <td></td>
+        </tr>
+
+
+        <tr>
+            <td colspan="3">
+                <input type="submit" value="register" />
+            </td>
+        </tr>
+
+
 
 
     </table>
