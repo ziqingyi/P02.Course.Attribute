@@ -10,6 +10,59 @@
     <meta name="viewport" content="width=device-width" />
     <title>Register</title>
     <script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    
+    <style type="text/css">
+        .input_success {
+            background-color: lightgreen;
+        }
+        .input_error {
+            background-color: coral;
+        }
+    </style>
+    <script type="text/javascript">
+        $(loadFunction);
+
+        function loadFunction() {
+
+            var result = false;
+
+            $("#Account").focus(function () {
+
+              
+
+            });
+
+            $("#Account").blur(function() {
+                var account = $(this);
+
+                if (account.val() == "") {
+                    account.removeClass("input_success").addClass("input_error");
+                    result = false;
+                    //this.focus();
+                    $("#op_account").css("color", "red").html("user account cannot be empty");
+                } else {
+                    account.removeClass("input_error").addClass("input_success");
+                    result = true;
+                    $("#op_account").css("color", "greenyellow").html("success");
+                }
+            });
+
+            $("#btnSubmit").click(function () {
+
+                $("input[name='Datas']").each(function() {
+                    alert(this.checked);
+                });
+
+
+                return result;
+            });
+
+
+        }
+    
+    </script>
+
 </head>
 <body>
 <form action="Register" method="post">
@@ -55,7 +108,7 @@
 
         <tr>
             <td colspan="3">
-                <input type="submit" value="register" />
+                <input type="submit" value="register" id="btnSubmit" />
             </td>
         </tr>
 
