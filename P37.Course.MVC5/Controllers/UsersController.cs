@@ -37,6 +37,11 @@ namespace P37.Course.MVC5.Controllers
         public ActionResult Register(CurrentUser user)
         {
 
+            if (Request["state"] != null)
+            {
+                string state = Request["state"].ToString();
+            }
+
             return View();
         }
 
@@ -46,7 +51,22 @@ namespace P37.Course.MVC5.Controllers
             return "1";
         }
 
+        public ActionResult UserLogin(CurrentUser user)
+        {
+            if (user.Account == "user1" && user.Password == "dafd")
+            {
+                Session["user"] = user;
+                HttpCookie cookie = new HttpCookie("userstr");
+                cookie.Expires = DateTime.Now.AddMinutes(3);
+                Response.Cookies.Add(cookie);
+                return View("../Users/Index");
+            }
+            else
+            {
+                return View("../Users/Login");
+            }
 
+        }
 
 
 
