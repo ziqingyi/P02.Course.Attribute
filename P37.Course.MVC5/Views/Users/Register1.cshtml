@@ -1,0 +1,65 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register1</title>
+</head>
+<body>
+
+    
+<form action="Register2" method="post">
+    <table>
+        <tr>
+            <td>Account:</td>
+            <td><input type="text" name="Account" id="Account"></td>
+            <td> @Html.ValidationMessage("Account")  </td>
+            <td id="op_account"></td>
+        </tr>
+        <tr>
+            <td>Pass1:</td>
+            @*name should be same to the class's field*@
+            <td><input type="password" name="Password1" id="Pwd1"></td>
+            <td> @Html.ValidationMessage("Password1")  </td>
+            <td id="op_pwd1"></td>
+        </tr>
+        <tr>
+            <td>Pass2:</td>
+            <td><input type="password" name="Password2" id="Pwd2"></td>
+            <td id="op_pwd2"></td>
+        </tr>
+
+
+        @*name must be same to the class's field, use for mapping*@
+        <tr>
+            <td>Age:</td>
+            <td><input type="text" name="Age" id="AgeId"></td>
+            <td> @Html.ValidationMessage("Age")  </td>
+            <td></td>
+        </tr>
+
+
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" name="Email" id="EmailID"></td>
+            <td> @Html.ValidationMessage("Email")  </td>
+            <td id="op_email"></td>
+        </tr>
+
+        
+        <tr>
+            <td colspan="3">
+                <input type="submit" value="register" id="btnSubmit" />
+            </td>
+        </tr>
+
+    </table>
+</form>
+
+</body>
+</html>

@@ -36,14 +36,47 @@ namespace P37.Course.MVC5.Controllers
 
         public ActionResult Register(CurrentUser user)
         {
-
+            #region test area
             if (Request["state"] != null)
             {
                 string state = Request["state"].ToString();
             }
+            #endregion
+
 
             return View();
         }
+
+        public ActionResult Register1()
+        {
+
+
+
+            return View();
+        }
+
+
+        public ActionResult Register2(RegUser user)
+        {
+            #region test area
+            if (Request["state"] != null)
+            {
+                string state = Request["state"].ToString();
+            }
+            #endregion
+
+
+            //if all validation is passed, check in database
+            if (ModelState.IsValid)
+            {
+
+                //check passed, go to log in page
+                return View("Login");
+            }
+            //validation or check not passed, go to register. 
+            return View("Register1");
+        }
+
 
 
         public string CheckUserEmail(string email)
@@ -59,10 +92,13 @@ namespace P37.Course.MVC5.Controllers
                 HttpCookie cookie = new HttpCookie("userstr");
                 cookie.Expires = DateTime.Now.AddMinutes(3);
                 Response.Cookies.Add(cookie);
+
+                //go to index page to show user's info
                 return View("../Users/Index");
             }
             else
             {
+                //go back to log in page
                 return View("../Users/Login");
             }
 

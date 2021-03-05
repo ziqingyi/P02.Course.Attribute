@@ -368,6 +368,7 @@
     <Content Include="Views\Users\UsersLogin.cshtml" />
     <Content Include="Views\Shared\_advertisement.cshtml" />
     <Content Include="Views\Users\Register.cshtml" />
+    <Content Include="Views\Users\Register1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

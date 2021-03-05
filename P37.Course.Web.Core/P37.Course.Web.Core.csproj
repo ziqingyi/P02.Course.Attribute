@@ -96,6 +96,7 @@
     <Compile Include="IOC\DIFactory.cs" />
     <Compile Include="Models\AjaxResult.cs" />
     <Compile Include="Models\CurrentUser.cs" />
+    <Compile Include="Models\RegUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
