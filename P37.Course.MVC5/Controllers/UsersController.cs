@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using P37.Course.Web.Core.Models;
+using Newtonsoft.Json;
 
 namespace P37.Course.MVC5.Controllers
 {
@@ -49,7 +50,7 @@ namespace P37.Course.MVC5.Controllers
 
         public ActionResult Register1()
         {
-
+            
 
 
             return View();
@@ -108,6 +109,29 @@ namespace P37.Course.MVC5.Controllers
 
         }
 
+        //1 convert list/table to Json format manually
+        //2 use JsonConvert
+        //3 use JsonResult.Data
+        public string ListToJsonTest()
+        {
+            List<RegUser> list = new List<RegUser>(){
+                new RegUser(){Account = "user1", Password1 = "234234",Email = "dsafae@gmail.com"},
+                new RegUser(){Account = "user2", Password1 = "jij7778",Email = "dsfafd@gmail.com"}
+            };
+
+            string json = JsonConvert.SerializeObject(list);
+            return json;
+        }
+
+        public JsonResult GetAccounts(string account)
+        {
+            JsonResult jr = new JsonResult();
+            jr.Data = ListToJsonTest();
+            jr.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            
+            return jr;
+
+        }
 
 
 
