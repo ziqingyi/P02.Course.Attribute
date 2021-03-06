@@ -12,9 +12,9 @@
 </head>
 <body>
 
-    
-<form action="Register2" method="post">
-    <table>
+    @*action: if no controller name, it will find method in the same controller*@
+<form action="/users/Register2" method="post">
+    <table border="1">
         <tr>
             <td>Account:</td>
             <td><input type="text" name="Account" id="Account"></td>
@@ -53,12 +53,13 @@
 
         
         <tr>
-            <td colspan="3">
+            <td colspan="4">
                 <input type="submit" value="register" id="btnSubmit" />
             </td>
         </tr>
-
     </table>
+    @Html.ValidationMessage("myNotification");
+
 </form>
 
 </body>

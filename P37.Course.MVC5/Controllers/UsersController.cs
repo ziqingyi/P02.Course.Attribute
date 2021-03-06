@@ -67,12 +67,16 @@ namespace P37.Course.MVC5.Controllers
 
 
             //if all validation is passed, check in database
+            //ModelState is Gets the model state dictionary object
+            //         that contains the state of the model and of model-binding validation.
             if (ModelState.IsValid)
             {
 
                 //check passed, go to log in page
                 return View("Login");
             }
+
+            ModelState.AddModelError("myNotification", "front end check passed, this is back end check");
             //validation or check not passed, go to register. 
             return View("Register1");
         }

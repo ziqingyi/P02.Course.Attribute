@@ -27,7 +27,8 @@ namespace P37.Course.Web.Core.Models
         [Range(16,50,ErrorMessage = "{0} should be within {1} {2}")]
         public int Age { get; set; }
 
-        [RegularExpression("", ErrorMessage = " {0} format is not correct ")]
+        //attribute error may lead to the data binding issue. eg. no reg.
+        [RegularExpression(@"\w+@\w+.\w+", ErrorMessage = " {0} format is not correct ")]
         [Required(ErrorMessage = "Email ( {0}  ) cannot be empty")]
         public string Email { get; set; }
 
