@@ -259,6 +259,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\1.png" />
     <Content Include="img\2iphone.png" />
+    <Content Include="img\google.png" />
     <Content Include="img\l1.png" />
     <Content Include="img\l2.png" />
     <Content Include="img\l3.png" />

@@ -14,7 +14,7 @@ namespace P37.Course.Web.Core
         {
             try
             {
-                string home = "server=.;uid=sa;pwd=123;database=RPracticeDB";
+                string home = "data source=.;initial catalog=advanced7;integrated security=True;";
                 DBconnection = home;
             }
             catch (Exception e)

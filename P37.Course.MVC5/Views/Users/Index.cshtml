@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;//"~/Views/Shared/_Layout.cshtml";
 }
 @using P37.Course.Web.Core.Models
 <!DOCTYPE html>
@@ -9,27 +9,61 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Users Index</title>
+
+    <script type="text/javascript"  src="~/Scripts/jquery-3.4.1.min.js"></script>
+    
+    <script type="text/javascript">
+        $(myLoadFunction);
+
+
+        function myLoadFunction() {
+            $("#txtContent").keyup(
+                function() {
+                    $("#txtShowSearch").html(""+this.value+"");
+                }
+            );
+        };
+
+    </script>
+    
+
+
 </head>
 <body>
-    <div>
-        <h3>user log in info: </h3>
-        @{
-            CurrentUser user = null;
-            if (Session["users"] != null)
+<div>
+    <h5>user log in info: </h5>
+    @{
+        CurrentUser user = null;
+        if (Session["users"] != null)
+        {
+            user = Session["users"] as CurrentUser;
+            if (user != null)
             {
-                user = Session["users"] as CurrentUser;
-                if (user != null)
-                {
-                    <h3>user Id: @user.Id </h3>;
-                    <h3>user Id: @user.Account</h3>;
-                }
-
+                <h3>user Id: @user.Id </h3>;
+                <h3>user Id: @user.Account</h3>;
             }
-
-
         }
+    }
+    <h5>search: <span id="txtShowSearch"></span></h5>
+    
 
+</div>
 
+<div>
+
+    <div id="divLogo" style="text-align: center;">
+        <img src="~/img/google.png" style="width: 200px"/>
     </div>
+
+    <div style="text-align: center;">
+        <input type="text" id="txtContent" style="width: 300px">
+        <input type="button" value="Search"/>
+    </div>
+
+</div>
+
 </body>
+
+
+
 </html>

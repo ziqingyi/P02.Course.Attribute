@@ -21,13 +21,6 @@ namespace P37.Course.MVC5
                 defaults: new {controller ="Home", action="About", id = UrlParameter.Optional}
                 );
 
-            routes.MapRoute(
-                name: "Users",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Users", action = "Register1", id = UrlParameter.Optional }
-
-            );
-
 
             routes.MapRoute(
                 "product1",
