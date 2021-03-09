@@ -163,11 +163,13 @@ namespace P37.Course.MVC5.Controllers
         public List<CurrentUser> GetUserInfoByName(string username)
         {
             List<CurrentUser> list = new List<CurrentUser>();
-            string sql = @"SELECT  [Id],[Name],[Account] FROM [advanced7].[dbo].[User] where name like %@username%";
+            string sql = @"SELECT  [Id],[Name],[Account] 
+                            FROM [advanced7].[dbo].[User] 
+                            where [name] like @username";
             
             SqlParameter[] param =
             {
-                new SqlParameter("@username", username)
+                new SqlParameter("@username", ""+username+"%")
             };
 
             using (SqlDataReader reader = DBHelper.ExecuteReader(sql,param))
@@ -178,6 +180,7 @@ namespace P37.Course.MVC5.Controllers
                     user.Id = (int)reader["Id"];
                     user.Name = reader["Name"].ToString();
                     user.Account = reader["Account"].ToString();
+                    list.Add(user);
                 }
             }
             return list;

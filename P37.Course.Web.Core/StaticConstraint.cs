@@ -14,7 +14,8 @@ namespace P37.Course.Web.Core
         {
             try
             {
-                string home = "data source=.;initial catalog=advanced7;integrated security=True;";
+                // "server=.;uid=sa;pwd=123;database=advanced7"; 
+                string home = "data source=.;initial catalog=advanced7;Integrated Security=true;MultipleActiveResultSets=True;";
                 DBconnection = home;
             }
             catch (Exception e)

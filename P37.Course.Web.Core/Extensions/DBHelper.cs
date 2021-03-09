@@ -39,13 +39,11 @@ namespace P37.Course.Web.Core.Extensions
 
         public static SqlDataReader ExecuteReader(string sql, params SqlParameter[] paras)
         {
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                conn.Open();
-                SqlCommand command = new SqlCommand(sql, conn);
-                command.Parameters.AddRange(paras); 
-                return command.ExecuteReader();
-            }
+            SqlConnection conn = new SqlConnection(connStr);
+            conn.Open();
+            SqlCommand command = new SqlCommand(sql, conn);
+            command.Parameters.AddRange(paras);
+            return command.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
         //return a row
