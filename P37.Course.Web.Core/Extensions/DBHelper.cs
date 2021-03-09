@@ -41,9 +41,10 @@ namespace P37.Course.Web.Core.Extensions
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
+                conn.Open();
                 SqlCommand command = new SqlCommand(sql, conn);
                 command.Parameters.AddRange(paras); 
-                return command.ExecuteReader(CommandBehavior.CloseConnection);
+                return command.ExecuteReader();
             }
         }
 

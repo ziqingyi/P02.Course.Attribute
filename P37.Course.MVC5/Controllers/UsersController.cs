@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using P37.Course.Web.Core.Models;
 using Newtonsoft.Json;
+using P37.Course.Web.Core.Extensions;
 
 namespace P37.Course.MVC5.Controllers
 {
@@ -109,9 +111,23 @@ namespace P37.Course.MVC5.Controllers
 
         }
 
+        #region Json test
+
         //1 convert list/table to Json format manually
         //2 use JsonConvert
         //3 use JsonResult.Data
+        /*
+         * [{"UserId":0,"Account":"user1","Password1":"234234","Password2":null,"Age":0,"Email":"dsafae@gmail.com"},
+         * {"UserId":0,"Account":"user2","Password1":"jij7778","Password2":null,"Age":0,"Email":"dsfafd@gmail.com"}]
+         */
+        public JsonResult GetAccounts(string account)
+        {
+            JsonResult jr = new JsonResult();
+            jr.Data = ListToJsonTest();
+            jr.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            
+            return jr;
+        }
         public string ListToJsonTest()
         {
             List<RegUser> list = new List<RegUser>(){
@@ -123,15 +139,63 @@ namespace P37.Course.MVC5.Controllers
             return json;
         }
 
-        public JsonResult GetAccounts(string account)
-        {
-            JsonResult jr = new JsonResult();
-            jr.Data = ListToJsonTest();
-            jr.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            
-            return jr;
+        #endregion
 
+
+
+        #region Ajax search
+
+        public JsonResult GetUserNames(string username)
+        {
+            JsonResult jr= new JsonResult();
+            List<CurrentUser> list = GetUserInfoByName(username);
+            if (list.Count > 0)
+            {
+                jr.Data = list;// convert to json
+            }
+            else
+            {
+                jr.Data = "0";
+            }
+            return jr;
         }
+
+        public List<CurrentUser> GetUserInfoByName(string username)
+        {
+            List<CurrentUser> list = new List<CurrentUser>();
+            string sql = @"SELECT  [Id],[Name],[Account] FROM [advanced7].[dbo].[User] where name like %@username%";
+            
+            SqlParameter[] param =
+            {
+                new SqlParameter("@username", username)
+            };
+
+            using (SqlDataReader reader = DBHelper.ExecuteReader(sql,param))
+            {
+                while (reader.Read())
+                {
+                    CurrentUser user = new CurrentUser();
+                    user.Id = (int)reader["Id"];
+                    user.Name = reader["Name"].ToString();
+                    user.Account = reader["Account"].ToString();
+                }
+            }
+            return list;
+        }
+
+
+
+
+        #endregion
+
+
+
+
+
+
+
+
+
 
 
 

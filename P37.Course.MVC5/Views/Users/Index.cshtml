@@ -25,10 +25,40 @@
 
 
         function myLoadFunction() {
+
+            
             $("#txtContent").keyup(
-                function() {
-                    $("#txtShowSearch").html(""+this.value+"");
+                function () {
+
+                    //show input value in page
+                    $("#txtShowSearch").html("" + this.value + "");
+
+                    var username = $("#txtContent").val();
+
+                    //ajax with json parameter
+                    $.ajax({
+                        url:"/Users/GetUserNames",
+                        type: "post",//safe way to post,get is default but get can not upload files
+                        data: { "username": username },
+
+                        datatype: "json", // ajax will receive some data from backend and call the function 
+                        success: function(dataRec) {
+                            $("#txtShowSearchResult").html( dataRec );
+                        },
+                        error: function(msg) {
+                            alert("error information"+ msg);
+                        }
+                    });
+
+
                 }
+
+            
+    
+
+
+
+
             );
         };
 
@@ -38,24 +68,24 @@
 
 </head>
 <body>
-<div>
-    <h5>user log in info: </h5>
-    @{
-        CurrentUser user = null;
-        if (Session["users"] != null)
-        {
-            user = Session["users"] as CurrentUser;
-            if (user != null)
+    <div>
+        <h5>user log in info: </h5>
+        @{
+            CurrentUser user = null;
+            if (Session["users"] != null)
             {
-                <h3>user Id: @user.Id </h3>;
-                <h3>user Id: @user.Account</h3>;
+                user = Session["users"] as CurrentUser;
+                if (user != null)
+                {
+                    <h3>user Id: @user.Id </h3>;
+                    <h3>user Id: @user.Account</h3>;
+                }
             }
         }
-    }
-    <h5>search: <span id="txtShowSearch"></span></h5>
-    
+        <h5>search: <span id="txtShowSearch"></span></h5>
 
-</div>
+        <h5>search: <span id="txtShowSearchResult"></span></h5>
+    </div>
 
 <div>
 
@@ -67,10 +97,14 @@
         <input type="text" id="txtContent" style="width: 300px">
         <input type="button" value="Search" style="background-color: blue; color: white;" />
         
-        <ul>
+        @*<ul>
             <li>test1</li>
             <li>test2</li>
-        </ul>
+        </ul>*@
+        
+        <ul id="list"></ul>
+
+
     </div>
 
 </div>
