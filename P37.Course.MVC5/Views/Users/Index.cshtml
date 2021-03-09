@@ -9,7 +9,15 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Users Index</title>
+    
+    <style type="text/css">
 
+        div{ width: 450px;margin: auto;}
+        #divLogo{ margin-top: 80px;}
+        ul{ margin: 0px;padding: 0px;list-style-type: none;}
+        ul li{ cursor: pointer;}
+
+    </style>
     <script type="text/javascript"  src="~/Scripts/jquery-3.4.1.min.js"></script>
     
     <script type="text/javascript">
@@ -51,13 +59,18 @@
 
 <div>
 
-    <div id="divLogo" style="text-align: center;">
+    <div id="divLogo">
         <img src="~/img/google.png" style="width: 200px"/>
     </div>
 
-    <div style="text-align: center;">
+    <div id="divSearch">@*  style="text-align: center;"   all in center*@
         <input type="text" id="txtContent" style="width: 300px">
-        <input type="button" value="Search"/>
+        <input type="button" value="Search" style="background-color: blue; color: white;" />
+        
+        <ul>
+            <li>test1</li>
+            <li>test2</li>
+        </ul>
     </div>
 
 </div>
