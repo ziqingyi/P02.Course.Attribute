@@ -30,10 +30,19 @@
             $("#txtContent").keyup(
                 function () {
 
-                    //show input value in page
+                    //show input value in page, "this"  is the current object. 
                     $("#txtShowSearch").html("" + this.value + "");
 
+                    //get typed in content in search box
                     var username = $("#txtContent").val();
+
+                    //if there is no element to search, clear the list and return
+                    if (username == "") {
+
+                        clearSearchResult();
+                        return;
+                    }
+
 
                     //ajax with json parameter
                     $.ajax({
@@ -42,25 +51,41 @@
                         data: { "username": username },
 
                         datatype: "json", // ajax will receive some data from backend and call the function 
-                        success: function(dataRec) {
-                            $("#txtShowSearchResult").html( dataRec );
+                        success: function (dataRec) {
+
+                            clearSearchResult();
+
+                            //iterate each element and append to display area
+                            $.each(dataRec, function (i, item) {
+
+                                $("#txtShowSearchResult").append("ID: " + item.Id + " Name: " + item.Name + " Account: " + item.Account + ", ");
+
+                                $("#ullist").append("<li onclick='setValue(this)' >"+item.Name+"</li>");
+
+                            });
+
+
+
                         },
                         error: function(msg) {
                             alert("error information"+ msg);
                         }
                     });
-
-
                 }
-
-            
-    
-
-
-
-
             );
         };
+
+        function clearSearchResult() {
+            $("#txtShowSearchResult").html("");
+            $("#ullist").html("");
+        }
+
+        function setValue(obj) {
+            $("#txtContent").val(obj.innerText);//obj is javascript object, so use obj.innerText. jQuery: obj.text();
+            clearSearchResult();
+        }
+
+
 
     </script>
     
@@ -84,7 +109,7 @@
         }
         <h5>search: <span id="txtShowSearch"></span></h5>
 
-        <h5>search: <span id="txtShowSearchResult"></span></h5>
+        <h5>search result: <span id="txtShowSearchResult"></span></h5>
     </div>
 
 <div>
@@ -102,7 +127,7 @@
             <li>test2</li>
         </ul>*@
         
-        <ul id="list"></ul>
+        <ul id="ullist"></ul>
 
 
     </div>
