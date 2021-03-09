@@ -13,7 +13,7 @@ namespace P37.Course.MVC5
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            routes.IgnoreRoute("{*x}", new { x = @".*\.asmx(/.*)?" });
 
             routes.MapRoute(
                 name:"About",

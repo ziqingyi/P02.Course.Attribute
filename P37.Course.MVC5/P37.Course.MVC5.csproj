@@ -181,6 +181,10 @@
     <Compile Include="Controllers\SecondController.cs" />
     <Compile Include="Controllers\ThirdController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="ForecastService.asmx.cs">
+      <DependentUpon>ForecastService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -255,6 +259,7 @@
     <Content Include="css\index.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="ForecastService.asmx" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\1.png" />
@@ -265,6 +270,10 @@
     <Content Include="img\l3.png" />
     <Content Include="img\l4.png" />
     <Content Include="img\l5.png" />
+    <Content Include="img\w1.png" />
+    <Content Include="img\w2.png" />
+    <Content Include="img\w3.png" />
+    <Content Include="img\w4.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="CfgFiles\Unity.Config">
