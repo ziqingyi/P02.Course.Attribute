@@ -179,6 +179,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P37.Course.Web.SearchEngines.SearchService", "P37.Course.Web.SearchEngines.SearchService\P37.Course.Web.SearchEngines.SearchService.csproj", "{D722221C-B793-49A6-B568-00234F59345C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P37.Course.Web.SearchEnginesForm", "P37.Course.Web.SearchEnginesForm\P37.Course.Web.SearchEnginesForm.csproj", "{191CCC38-707E-4D45-8904-8BC76D16E697}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D8ADF924-104C-4188-9086-54717E906F24} = {D8ADF924-104C-4188-9086-54717E906F24}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P37.Course.Web.SearchEngines.SearchServiceTCP", "P37.Course.Web.SearchEngines.SearchServiceTCP\P37.Course.Web.SearchEngines.SearchServiceTCP.csproj", "{D2C4C816-407A-4A15-8A89-0D251F03ACD5}"
 EndProject

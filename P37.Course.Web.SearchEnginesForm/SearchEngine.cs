@@ -104,8 +104,24 @@ namespace P37.Course.Web.SearchEnginesForm
             }
         }
 
+
         #endregion
 
+        private static int count = 0;
+        private void btnWeather_Click(object sender, EventArgs e)
+        {
+            WeatherService.ForecastServiceSoapClient weatherService = new WeatherService.ForecastServiceSoapClient();
 
+            WeatherService.Weather[] weathers = weatherService.GetWeathers(1001);
+            if (weathers.Length > 0)
+            {
+                int index = count++ % weathers.Length;
+
+                this.lblLoc.Text = weathers[index].City;
+                this.picBox_weather.ImageLocation = weathers[index].Icon;
+            }
+
+
+        }
     }
 }
