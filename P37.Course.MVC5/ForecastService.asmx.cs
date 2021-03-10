@@ -41,7 +41,7 @@ namespace P37.Course.MVC5
                 {
                     City = "Rosebery", 
                     ShowDate = DateTime.Now.AddDays(1),
-                    Icon = "",
+                    Icon = "https://localhost:44333/img/w1.png",
                     Temperature = "20~25",
                     WindSpeed = "20 km/h",
                     Remark = "Clouds and sun"
@@ -50,7 +50,7 @@ namespace P37.Course.MVC5
                 {
                     City = "Mascot",
                     ShowDate = DateTime.Now.AddDays(1),
-                    Icon = "",
+                    Icon = "https://localhost:44333/img/w2.png",
                     Temperature = "26~30",
                     WindSpeed = "10 km/h",
                     Remark = "Sunny"
