@@ -178,6 +178,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HTMLController.cs" />
     <Compile Include="Controllers\MVCController.cs" />
+    <Compile Include="Controllers\PagingController.cs" />
     <Compile Include="Controllers\SecondController.cs" />
     <Compile Include="Controllers\ThirdController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -379,6 +380,7 @@
     <Content Include="Views\Shared\_advertisement.cshtml" />
     <Content Include="Views\Users\Register.cshtml" />
     <Content Include="Views\Users\Register1.cshtml" />
+    <Content Include="Views\Paging\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
