@@ -20,7 +20,7 @@ namespace P37.Course.Web.Core.Models
         public string Email { get; set; }
         public bool State { get; set; }
 
-        public DateTime LoginTime { get; set; }
+        public DateTime LastLoginTime { get; set; }
         public DateTime CreateTime { get; set; }
 
         public List<Data> Datas { get; set; }

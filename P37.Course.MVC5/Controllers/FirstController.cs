@@ -18,7 +18,7 @@ namespace P37.Course.MVC5.Controllers
                 Name="User1",
                 Account="User1Administrator",
                 Email="111111@qq.com",
-                LoginTime=DateTime.Now,
+                LastLoginTime=DateTime.Now,
                 Password="123drd",
                 Datas = new List<Data>()
                 {
@@ -32,7 +32,7 @@ namespace P37.Course.MVC5.Controllers
                 Name="User2",
                 Account="User2Administrator",
                 Email="222222@qq.com",
-                LoginTime=DateTime.Now.AddMonths(-2),
+                LastLoginTime=DateTime.Now.AddMonths(-2),
                 Password="123ljlji",
                 Datas = new List<Data>()
                 {
@@ -46,7 +46,7 @@ namespace P37.Course.MVC5.Controllers
                 Name="User3",
                 Account="User3Administrator",
                 Email="33333@qq.com",
-                LoginTime=DateTime.Now.AddDays(-5),
+                LastLoginTime=DateTime.Now.AddDays(-5),
                 Password="1ljkll56",
                 Datas = new List<Data>()
                 {
