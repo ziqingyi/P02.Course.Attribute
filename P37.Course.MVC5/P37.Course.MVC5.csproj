@@ -381,6 +381,7 @@
     <Content Include="Views\Users\Register.cshtml" />
     <Content Include="Views\Users\Register1.cshtml" />
     <Content Include="Views\Paging\Index.cshtml" />
+    <Content Include="Views\Paging\PagingUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -437,6 +438,10 @@
     <ProjectReference Include="..\P37.Course.Web.SearchEngines.SearchServiceTCP\P37.Course.Web.SearchEngines.SearchServiceTCP.csproj">
       <Project>{d2c4c816-407a-4a15-8a89-0d251f03acd5}</Project>
       <Name>P37.Course.Web.SearchEngines.SearchServiceTCP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P37.Course.Web.ServiceNonEF\P37.Course.Web.ServiceNonEF.csproj">
+      <Project>{ce706275-bdc4-42c3-8a85-b04dfd1b6492}</Project>
+      <Name>P37.Course.Web.ServiceNonEF</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

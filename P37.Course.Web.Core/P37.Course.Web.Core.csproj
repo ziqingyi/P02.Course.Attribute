@@ -92,11 +92,14 @@
   <ItemGroup>
     <Compile Include="AOP\LogAfterBehavior.cs" />
     <Compile Include="AOP\LogBeforeBehavior.cs" />
+    <Compile Include="Attributes\MappingClassAttribute.cs" />
+    <Compile Include="Extensions\DataAttributeExtend.cs" />
     <Compile Include="Extensions\DBHelper.cs" />
     <Compile Include="Extensions\HtmlExtension.cs" />
     <Compile Include="IOC\DIFactory.cs" />
     <Compile Include="Models\AjaxResult.cs" />
     <Compile Include="Models\CurrentUser.cs" />
+    <Compile Include="Models\Page.cs" />
     <Compile Include="Models\RegUser.cs" />
     <Compile Include="Models\Weather.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

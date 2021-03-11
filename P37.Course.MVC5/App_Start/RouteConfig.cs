@@ -34,6 +34,13 @@ namespace P37.Course.MVC5
                 new {controller = "MVC", action = "productlist", id = UrlParameter.Optional}
             );
 
+            routes.MapRoute(
+                name: "paging",
+                url: "{controller}/{action}/{pageSize}/{pageIndex}",
+                defaults: new {controller="Paging", action= "PagingUsers", pageSize = UrlParameter.Optional, pageIndex=UrlParameter.Optional }
+            );
+            
+
             //http://localhost:2018/Test/time?year=2019&month=02&day=07
             routes.MapRoute(
                 name: "Test",

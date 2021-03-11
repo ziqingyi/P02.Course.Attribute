@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using P37.Course.Web.Core.Attributes;
 
 
 namespace P37.Course.Web.Core.Models
 {
     //this is business model, not database model.
+    [MappingClass("User")]
     public class CurrentUser
     {
         public int Id { get; set; }
