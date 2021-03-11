@@ -10,7 +10,7 @@ namespace P37.Course.MVC5.Controllers
 {
     public class PagingController : Controller
     {
-        PagingService<CurrentUser> ps = new PagingService<CurrentUser>();
+        PagingService ps = new PagingService();
         // GET: Paging
         public ActionResult Index()
         {

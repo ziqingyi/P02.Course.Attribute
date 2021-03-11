@@ -10,7 +10,7 @@ using P37.Course.Web.Core.Extensions;
 
 namespace P37.Course.Web.ServiceNonEF
 {
-    public class PagingService<T>
+    public class PagingService
     {
 
         public Page<T> GetPages<T>(int pageIndex, int pageSize)
@@ -31,22 +31,26 @@ namespace P37.Course.Web.ServiceNonEF
 
         private int GetCount<T>()
         {
-            string className = typeof(T).ClassMapping();
+            object obj = Activator.CreateInstance(typeof(T));
+            string tableName = obj.ClassMapping();
             
-            string sql = "select count(1) from [User]";
+            string sql = "select count(1) from ["+ tableName + "]";
             int count = (int) DBHelper.ExecuteScalar(sql);
             return count;
         }
 
         private List<T> GetDataList<T>(int start, int end)
         {
+            
+            string tableName = Activator.CreateInstance(typeof(T)).ClassMapping();
+
             Type type = typeof(T);
             List<T> recList = new List<T>();
             string sql = @"
                 SELECT*
                 FROM(
                     select   row_number() over(order by id)  ng, *
-                    from[advanced7].[dbo].[User]
+                    from [" + tableName + @"]
                 ) x
                 where ng between @start and @end
             ";
