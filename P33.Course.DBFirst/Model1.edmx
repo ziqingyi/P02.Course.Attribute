@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="advanced7Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="advanced7Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -406,6 +406,98 @@
           <Property Name="LastModifierId" Type="int" />
           <Property Name="LastModifyTime" Type="datetime" />
         </EntityType>
+        <EntityType Name="SysLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="Introduction" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Detail" Type="nvarchar" MaxLength="4000" />
+          <Property Name="LogType" Type="tinyint" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="int" Nullable="false" />
+          <Property Name="LastModifyTime" Type="datetime" />
+          <Property Name="LastModifierId" Type="int" />
+        </EntityType>
+        <EntityType Name="SysMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="500" />
+          <Property Name="MenuLevel" Type="tinyint" Nullable="false" />
+          <Property Name="MenuType" Type="tinyint" Nullable="false" />
+          <Property Name="MenuIcon" Type="nvarchar" MaxLength="20" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="SourcePath" Type="varchar" MaxLength="1000" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatorId" Type="int" Nullable="false" />
+          <Property Name="LastModifyTime" Type="datetime" />
+          <Property Name="LastModifierId" Type="int" />
+        </EntityType>
+        <EntityType Name="SysRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateId" Type="int" Nullable="false" />
+          <Property Name="LastModifyTime" Type="datetime" />
+          <Property Name="LastModifierId" Type="int" />
+        </EntityType>
+        <EntityType Name="SysRoleMenuMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SysRoleId" Type="int" Nullable="false" />
+          <Property Name="SysMenuId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Mobile" Type="varchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="QQ" Type="bigint" />
+          <Property Name="WeChat" Type="varchar" MaxLength="50" />
+          <Property Name="Sex" Type="tinyint" />
+          <Property Name="LastLoginTime" Type="datetime" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateId" Type="int" Nullable="false" />
+          <Property Name="LastModifyTime" Type="datetime" />
+          <Property Name="LastModifyId" Type="int" />
+        </EntityType>
+        <EntityType Name="SysUserMenuMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SysUserId" Type="int" Nullable="false" />
+          <Property Name="SysMenuId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysUserRoleMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SysUserId" Type="int" Nullable="false" />
+          <Property Name="SysRoleId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -434,6 +526,30 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="MenuId" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Company_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="CreatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="advanced7ModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
@@ -468,11 +584,25 @@
           <EntitySet Name="JD_Commodity_029" EntityType="Self.JD_Commodity_029" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JD_Commodity_030" EntityType="Self.JD_Commodity_030" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysLog" EntityType="Self.SysLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysMenu" EntityType="Self.SysMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysRole" EntityType="Self.SysRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysRoleMenuMapping" EntityType="Self.SysRoleMenuMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysUser" EntityType="Self.SysUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysUserMenuMapping" EntityType="Self.SysUserMenuMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysUserRoleMapping" EntityType="Self.SysUserRoleMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMenuMapping" EntityType="Self.UserMenuMapping" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Company_User" Association="Self.FK_Company_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Company" Association="Self.FK_User_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="advanced7Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -498,6 +628,8 @@
           <Property Name="CreatorId" Type="Int32" Nullable="false" />
           <Property Name="LastModifierId" Type="Int32" />
           <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="advanced7Model.FK_Company_User" FromRole="Company" ToRole="User" />
+          <NavigationProperty Name="Users" Relationship="advanced7Model.FK_User_Company" FromRole="Company" ToRole="User" />
         </EntityType>
         <EntityType Name="JD_Commodity_001">
           <Key>
@@ -896,6 +1028,8 @@
           <Property Name="CreatorId" Type="Int32" Nullable="false" />
           <Property Name="LastModifierId" Type="Int32" />
           <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Companies" Relationship="advanced7Model.FK_Company_User" FromRole="User" ToRole="Company" />
+          <NavigationProperty Name="Company" Relationship="advanced7Model.FK_User_Company" FromRole="User" ToRole="Company" />
         </EntityType>
         <EntityType Name="UserMenuMapping">
           <Key>
@@ -941,7 +1075,138 @@
           <EntitySet Name="Menus" EntityType="Self.Menu" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserMenuMappings" EntityType="Self.UserMenuMapping" />
+          <EntitySet Name="SysLogs" EntityType="advanced7Model.SysLog" />
+          <EntitySet Name="SysMenus" EntityType="advanced7Model.SysMenu" />
+          <EntitySet Name="SysRoles" EntityType="advanced7Model.SysRole" />
+          <EntitySet Name="SysRoleMenuMappings" EntityType="advanced7Model.SysRoleMenuMapping" />
+          <EntitySet Name="SysUsers" EntityType="advanced7Model.SysUser" />
+          <EntitySet Name="SysUserMenuMappings" EntityType="advanced7Model.SysUserMenuMapping" />
+          <EntitySet Name="SysUserRoleMappings" EntityType="advanced7Model.SysUserRoleMapping" />
+          <AssociationSet Name="FK_Company_User" Association="advanced7Model.FK_Company_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Company" Association="advanced7Model.FK_User_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="SysLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="Introduction" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Detail" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="LogType" Type="Byte" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Int32" Nullable="false" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SysMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="MenuLevel" Type="Byte" Nullable="false" />
+          <Property Name="MenuType" Type="Byte" Nullable="false" />
+          <Property Name="MenuIcon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SourcePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorId" Type="Int32" Nullable="false" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SysRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateId" Type="Int32" Nullable="false" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SysRoleMenuMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SysRoleId" Type="Int32" Nullable="false" />
+          <Property Name="SysMenuId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="QQ" Type="Int64" />
+          <Property Name="WeChat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="Byte" />
+          <Property Name="LastLoginTime" Type="DateTime" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateId" Type="Int32" Nullable="false" />
+          <Property Name="LastModifyTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifyId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SysUserMenuMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SysUserId" Type="Int32" Nullable="false" />
+          <Property Name="SysMenuId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysUserRoleMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SysUserId" Type="Int32" Nullable="false" />
+          <Property Name="SysRoleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Company_User">
+          <End Type="advanced7Model.User" Role="User" Multiplicity="1" />
+          <End Type="advanced7Model.Company" Role="Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="CreatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Company">
+          <End Type="advanced7Model.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="advanced7Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1409,6 +1674,105 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysLogs">
+            <EntityTypeMapping TypeName="advanced7Model.SysLog">
+              <MappingFragment StoreEntitySet="SysLog">
+                <ScalarProperty Name="LastModifierId" ColumnName="LastModifierId" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="LogType" ColumnName="LogType" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysMenus">
+            <EntityTypeMapping TypeName="advanced7Model.SysMenu">
+              <MappingFragment StoreEntitySet="SysMenu">
+                <ScalarProperty Name="LastModifierId" ColumnName="LastModifierId" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="SourcePath" ColumnName="SourcePath" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
+                <ScalarProperty Name="MenuType" ColumnName="MenuType" />
+                <ScalarProperty Name="MenuLevel" ColumnName="MenuLevel" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysRoles">
+            <EntityTypeMapping TypeName="advanced7Model.SysRole">
+              <MappingFragment StoreEntitySet="SysRole">
+                <ScalarProperty Name="LastModifierId" ColumnName="LastModifierId" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysRoleMenuMappings">
+            <EntityTypeMapping TypeName="advanced7Model.SysRoleMenuMapping">
+              <MappingFragment StoreEntitySet="SysRoleMenuMapping">
+                <ScalarProperty Name="SysMenuId" ColumnName="SysMenuId" />
+                <ScalarProperty Name="SysRoleId" ColumnName="SysRoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysUsers">
+            <EntityTypeMapping TypeName="advanced7Model.SysUser">
+              <MappingFragment StoreEntitySet="SysUser">
+                <ScalarProperty Name="LastModifyId" ColumnName="LastModifyId" />
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="WeChat" ColumnName="WeChat" />
+                <ScalarProperty Name="QQ" ColumnName="QQ" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysUserMenuMappings">
+            <EntityTypeMapping TypeName="advanced7Model.SysUserMenuMapping">
+              <MappingFragment StoreEntitySet="SysUserMenuMapping">
+                <ScalarProperty Name="SysMenuId" ColumnName="SysMenuId" />
+                <ScalarProperty Name="SysUserId" ColumnName="SysUserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysUserRoleMappings">
+            <EntityTypeMapping TypeName="advanced7Model.SysUserRoleMapping">
+              <MappingFragment StoreEntitySet="SysUserRoleMapping">
+                <ScalarProperty Name="SysRoleId" ColumnName="SysRoleId" />
+                <ScalarProperty Name="SysUserId" ColumnName="SysUserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
