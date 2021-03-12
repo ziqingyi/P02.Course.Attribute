@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using P37.Course.Web.Core.Models;
 using Newtonsoft.Json;
-using P37.Course.Web.Core.Extensions;
+using P37.Course.Web.Core.DAL;
 
 namespace P37.Course.MVC5.Controllers
 {

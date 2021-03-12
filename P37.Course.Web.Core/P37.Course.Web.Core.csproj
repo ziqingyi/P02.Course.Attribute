@@ -94,7 +94,7 @@
     <Compile Include="AOP\LogBeforeBehavior.cs" />
     <Compile Include="Attributes\MappingClassAttribute.cs" />
     <Compile Include="Extensions\DataAttributeExtend.cs" />
-    <Compile Include="Extensions\DBHelper.cs" />
+    <Compile Include="DAL\DBHelper.cs" />
     <Compile Include="Extensions\HtmlExtension.cs" />
     <Compile Include="IOC\DIFactory.cs" />
     <Compile Include="Models\AjaxResult.cs" />
