@@ -24,6 +24,7 @@ namespace P37.Course.Web.Core.Models
 
         public List<T> DataList { get; set; }
 
+        public DateTime DataTime { get; set; }
 
         public Page()
         {

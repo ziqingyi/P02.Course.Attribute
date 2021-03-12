@@ -10,7 +10,8 @@ namespace P37.Course.MVC5.Controllers
 {
     public class PagingController : Controller
     {
-        PagingService ps = new PagingService();
+        private PagingService ps = new PagingService();
+
         // GET: Paging
         public ActionResult Index()
         {
@@ -20,12 +21,9 @@ namespace P37.Course.MVC5.Controllers
         public ActionResult PagingUsers(int pageIndex=1, int pageSize=10)
         {
 
-
-            
-            Page<CurrentUser> page = ps.GetPages<CurrentUser>(pageIndex, pageSize);
-
-
-            ViewBag.page = page;
+             Page<CurrentUser> userPage = ps.GetPages<CurrentUser>(pageIndex, pageSize);
+             ViewBag.page = userPage;
+             
 
             return View();
         }

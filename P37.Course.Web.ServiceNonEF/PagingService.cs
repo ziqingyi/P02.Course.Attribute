@@ -21,7 +21,7 @@ namespace P37.Course.Web.ServiceNonEF
 
             List<T> list = GetDataList<T>(start, end);
             Page<T> page = new Page<T>(pageIndex, pageSize, count, list);
-
+            page.DataTime = DateTime.Now;
             return page;
 
         }
