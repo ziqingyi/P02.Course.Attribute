@@ -20,7 +20,7 @@ namespace P37.Course.Web.ServiceNonEF
             int end = pageIndex * pageSize;
 
             List<T> list = GetDataList<T>(start, end);
-            Page<T> page = new Page<T>(pageIndex, pageSize, count, null);
+            Page<T> page = new Page<T>(pageIndex, pageSize, count, list);
 
             return page;
 

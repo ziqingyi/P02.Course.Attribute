@@ -36,7 +36,7 @@ namespace P37.Course.MVC5
 
             routes.MapRoute(
                 name: "paging",
-                url: "{controller}/{action}/{pageSize}/{pageIndex}",
+                url: "{controller}/{action}/{pageIndex}/{pageSize}",
                 defaults: new {controller="Paging", action= "PagingUsers", pageSize = UrlParameter.Optional, pageIndex=UrlParameter.Optional }
             );
             

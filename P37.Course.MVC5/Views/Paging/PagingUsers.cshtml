@@ -11,7 +11,34 @@
     <title>Paging Users</title>
 </head>
 <body>
-    <div> 
-    </div>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Account</th>
+            <th>Email</th>
+        </tr>
+
+
+        @{ var page = ViewBag.page;}
+        @foreach (var item in page.DataList)
+        {
+            <tr>
+                <th>@item.Id</th>
+                <th>@item.Name</th>
+                <th>@item.Account</th>
+                <th>@item.Email</th>
+            </tr>
+        }
+
+        @for (int i = 1; i <= page.PagesCount; i++)
+        {
+            <a href="/Paging/PagingUsers/@i">@i</a>
+        }
+
+
+    </table>
+
 </body>
 </html>

@@ -19,8 +19,11 @@ namespace P37.Course.MVC5.Controllers
 
         public ActionResult PagingUsers(int pageIndex=1, int pageSize=10)
         {
+
+
             
             Page<CurrentUser> page = ps.GetPages<CurrentUser>(pageIndex, pageSize);
+
 
             ViewBag.page = page;
 
