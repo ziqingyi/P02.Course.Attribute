@@ -12,23 +12,16 @@ namespace P33.Course.DBFirst
     using System;
     using System.Collections.Generic;
     
-    public partial class Company
+    public partial class SysLog
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Company()
-        {
-            this.Users = new HashSet<User>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string UserName { get; set; }
+        public string Introduction { get; set; }
+        public string Detail { get; set; }
+        public byte LogType { get; set; }
         public System.DateTime CreateTime { get; set; }
         public int CreatorId { get; set; }
-        public Nullable<int> LastModifierId { get; set; }
         public Nullable<System.DateTime> LastModifyTime { get; set; }
-    
-        public virtual User User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public Nullable<int> LastModifierId { get; set; }
     }
 }

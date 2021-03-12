@@ -12,23 +12,22 @@ namespace P33.Course.DBFirst
     using System;
     using System.Collections.Generic;
     
-    public partial class Company
+    public partial class SysMenu
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Company()
-        {
-            this.Users = new HashSet<User>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
+        public int ParentId { get; set; }
+        public string Text { get; set; }
+        public string Url { get; set; }
+        public byte MenuLevel { get; set; }
+        public byte MenuType { get; set; }
+        public string MenuIcon { get; set; }
+        public string Description { get; set; }
+        public string SourcePath { get; set; }
+        public int Sort { get; set; }
+        public byte Status { get; set; }
         public System.DateTime CreateTime { get; set; }
         public int CreatorId { get; set; }
-        public Nullable<int> LastModifierId { get; set; }
         public Nullable<System.DateTime> LastModifyTime { get; set; }
-    
-        public virtual User User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public Nullable<int> LastModifierId { get; set; }
     }
 }

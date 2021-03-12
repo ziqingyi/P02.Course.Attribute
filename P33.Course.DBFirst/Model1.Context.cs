@@ -60,5 +60,12 @@ namespace P33.Course.DBFirst
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserMenuMapping> UserMenuMappings { get; set; }
+        public virtual DbSet<SysLog> SysLogs { get; set; }
+        public virtual DbSet<SysMenu> SysMenus { get; set; }
+        public virtual DbSet<SysRole> SysRoles { get; set; }
+        public virtual DbSet<SysRoleMenuMapping> SysRoleMenuMappings { get; set; }
+        public virtual DbSet<SysUser> SysUsers { get; set; }
+        public virtual DbSet<SysUserMenuMapping> SysUserMenuMappings { get; set; }
+        public virtual DbSet<SysUserRoleMapping> SysUserRoleMappings { get; set; }
     }
 }
