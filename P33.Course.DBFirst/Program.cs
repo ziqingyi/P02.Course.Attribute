@@ -17,10 +17,12 @@ namespace P33.Course.DBFirst
                 {
                     context.Database.Log += s => Console.WriteLine($"current running sql: {s}");
 
-
+                    #region Search
                     User user17= context.Users.Find(17);
-
                     User user28 = context.Users.FirstOrDefault(u => u.Id == 28);
+                    #endregion
+
+                    #region Add
 
                     User userNew = new User()
                     {
@@ -40,17 +42,37 @@ namespace P33.Course.DBFirst
                         UserType = 1
                     };
 
-                    //add
-                    context.Users.Add(userNew);
-                    context.SaveChanges();//create a transaction and send query to db.
+                    //add by reference and save
+                    var addu = context.Users.Add(userNew);
+                    
+                    var AddRes = context.SaveChanges();//create a transaction and send query to db.
+
+
+                    #endregion
+
+
+
+                    #region update
 
                     //change, change in object will go to database
                     userNew.Name = "CodeMan";
+                    var objChangeRes = context.SaveChanges();
+                    
+                    #endregion
+
+
+
+                    #region Remove
+
+                    //1 remove by object reference
+                    //search and find the reference first
+                    User uToDelete = context.Users.Single(m => m.Id == userNew.Id);
+
+                    var remRes = context.Users.Remove(uToDelete);
                     context.SaveChanges();
 
-                    //remove
-                    context.Users.Remove(userNew);
-                    context.SaveChanges();
+
+                    #endregion
 
 
 
@@ -64,5 +86,8 @@ namespace P33.Course.DBFirst
             }
 
         }
+
+
+
     }
 }
