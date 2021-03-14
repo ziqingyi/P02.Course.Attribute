@@ -42,6 +42,21 @@ namespace P33.Course.DBFirst
                 {
                     Console.WriteLine("execute successfully ");
                 }
+
+
+
+                #region delete test case
+
+                int result2 = contextEntity.Database.ExecuteSqlCommand(@"delete from UserMenuMapping
+                where UserId = @UserId and MenuId = @MenuId", paras);
+                if (result2 > 0)
+                {
+                    Console.WriteLine("delete successfully ");
+                }
+                #endregion
+
+
+
             }
             
         }
