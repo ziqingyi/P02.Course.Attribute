@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +11,80 @@ namespace P33.Course.DBFirst
     {
         static void Main(string[] args)
         {
+            //5
+            ExecuteReader();
+
+            //4
+            ExecuteNonQuery();
+
+            //3
+            SearchInTables();
+
+            //2
             BatchTest();
 
+            //1
             CRUDtests();
+        }
+
+        public static void ExecuteNonQuery()
+        {
+            using (advanced7Entities contextEntity  = new advanced7Entities())
+            {
+                object[] paras =
+                {
+                    new SqlParameter("@UserId","197"),
+                    new SqlParameter("@MenuId","100"), 
+                };
+                int result = contextEntity.Database.ExecuteSqlCommand(@"insert into UserMenuMapping(UserId, MenuId)
+                values(@UserId, @MenuId)", paras);
+                if (result > 0)
+                {
+                    Console.WriteLine("execute successfully ");
+                }
+            }
             
         }
+
+        public static void ExecuteReader()
+        {
+            List<User> uList= null;
+            using (advanced7Entities contextEntity = new advanced7Entities())
+            {
+                 uList = contextEntity.Database
+                    .SqlQuery<User>("SELECT * FROM [advanced7].[dbo].[User]")
+                    .ToList();
+
+            }
+
+            if (uList.Count > 0)
+            {
+                Console.WriteLine(uList.Count);
+            }
+        }
+
+
+
+
+
+        public static void SearchInTables()
+        {
+            using (advanced7Entities contextEntity = new advanced7Entities())
+            {
+                var list = from a in contextEntity.Users
+                     join b in contextEntity.UserMenuMappings
+                        on a.Id equals b.UserId
+                          // where b.Id >0
+                    select new {a.Id, a.Name, b.MenuId};
+                int count = 0;
+                foreach (var item in list)
+                {
+                    count++;
+                    Console.WriteLine($"{count}   user Id:{item.Id}, user name:{item.Name}, menu id: {item.MenuId}");
+                }
+            }
+        }
+
 
         public static void BatchTest()
         {
@@ -37,23 +107,14 @@ namespace P33.Course.DBFirst
                 {
                     Console.WriteLine("update successfully");
                 }
-
-
                 #endregion
-
-
-
-
-
-
             }
-
-
         }
 
 
         public static void CRUDtests()
         {
+            //all with transactions, will roll back if error happens.
             try
             {
                 using (advanced7Entities context = new advanced7Entities())
