@@ -374,9 +374,9 @@
     <Content Include="Views\MVC\Index.cshtml" />
     <Content Include="Views\MVC\details.cshtml" />
     <Content Include="Views\MVC\ProductList.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Search.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
-    <Content Include="Views\Users\UsersLogin.cshtml" />
+    <Content Include="Views\Users\UsersCentre.cshtml" />
     <Content Include="Views\Shared\_advertisement.cshtml" />
     <Content Include="Views\Users\Register.cshtml" />
     <Content Include="Views\Users\Register1.cshtml" />

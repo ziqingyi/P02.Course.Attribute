@@ -12,12 +12,12 @@ namespace P37.Course.MVC5.Controllers
 {
     public class UsersController : Controller
     {
-        // GET: Users
-        public ActionResult Index()
+        #region User's Login and Users center page and Search page
+
+        public ActionResult Search()
         {
             return View();
         }
-
 
         public ActionResult Login()
         {
@@ -25,17 +25,41 @@ namespace P37.Course.MVC5.Controllers
         }
 
 
-
-        public ActionResult UsersLogin(string account, string pwd)
+        public ActionResult UsersCentre(string account, string pwd)
         {
             Session["users"] = new CurrentUser
             {
                 Id = 100, Account = account, Password = pwd
             };
 
-
             return View();
         }
+
+        public ActionResult UserLogin(CurrentUser user)
+        {
+            if (user.Account == "user1" && user.Password == "dafd")
+            {
+                Session["user"] = user;
+                HttpCookie cookie = new HttpCookie("userstr");
+                cookie.Expires = DateTime.Now.AddMinutes(3);
+                Response.Cookies.Add(cookie);
+
+                //go to index page to show user's info
+                return View("../Users/Search");
+            }
+            else
+            {
+                //go back to log in page
+                return View("../Users/Login");
+            }
+
+        }
+        #endregion
+
+
+
+
+        #region Register
 
         public ActionResult Register(CurrentUser user)
         {
@@ -52,12 +76,8 @@ namespace P37.Course.MVC5.Controllers
 
         public ActionResult Register1()
         {
-            
-
-
             return View();
         }
-
 
         public ActionResult Register2(RegUser user)
         {
@@ -84,32 +104,13 @@ namespace P37.Course.MVC5.Controllers
             return View("Register1");
         }
 
-
-
         public string CheckUserEmail(string email)
         {
             return "1";
         }
 
-        public ActionResult UserLogin(CurrentUser user)
-        {
-            if (user.Account == "user1" && user.Password == "dafd")
-            {
-                Session["user"] = user;
-                HttpCookie cookie = new HttpCookie("userstr");
-                cookie.Expires = DateTime.Now.AddMinutes(3);
-                Response.Cookies.Add(cookie);
+        #endregion
 
-                //go to index page to show user's info
-                return View("../Users/Index");
-            }
-            else
-            {
-                //go back to log in page
-                return View("../Users/Login");
-            }
-
-        }
 
         #region Json test
 
