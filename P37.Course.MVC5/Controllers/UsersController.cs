@@ -7,24 +7,27 @@ using System.Web.Mvc;
 using P37.Course.Web.Core.Models;
 using Newtonsoft.Json;
 using P37.Course.Web.Core.DAL;
+using P37.Course.Web.Core.Filters;
 
 namespace P37.Course.MVC5.Controllers
 {
+    //[UsersFilter]//every methods in the class need to pass the OnAuthorization method in the authorization attr check
     public class UsersController : Controller
     {
         #region User's Login and Users center page and Search page
 
+        [UsersFilter]
         public ActionResult Search()
         {
             return View();
         }
-
+        //[AllowAnonymous]//skip authorization
         public ActionResult Login()
         {
             return View();
         }
 
-
+        [UsersFilter]
         public ActionResult UsersCentre(string account, string pwd)
         {
             Session["users"] = new CurrentUser
@@ -34,9 +37,12 @@ namespace P37.Course.MVC5.Controllers
 
             return View();
         }
-
+        [AllowAnonymous]//skip all authorization
         public ActionResult UserLoginCheck(CurrentUser user)
         {
+            //internal object: Request, Response, Application, Session, Server
+            
+
             if (user.Account == "user1" && user.Password == "dafd")
             {
                 Session["CurUser"] = user;
