@@ -35,11 +35,11 @@ namespace P37.Course.MVC5.Controllers
             return View();
         }
 
-        public ActionResult UserLogin(CurrentUser user)
+        public ActionResult UserLoginCheck(CurrentUser user)
         {
             if (user.Account == "user1" && user.Password == "dafd")
             {
-                Session["user"] = user;
+                Session["CurUser"] = user;
                 HttpCookie cookie = new HttpCookie("userstr");
                 cookie.Expires = DateTime.Now.AddMinutes(3);
                 Response.Cookies.Add(cookie);

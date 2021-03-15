@@ -16,13 +16,14 @@
     <h3>user info: </h3>
     @{
         CurrentUser user = null;
-        if (Session["users"] != null)
+        if (Session["CurUser"] != null)
         {
-            user = Session["users"] as CurrentUser;
+            user = Session["CurUser"] as CurrentUser;
             if (user != null)
             {
                 <h3>user Id: @user.Id </h3>;
                 <h3>user Id: @user.Account</h3>;
+                <lable>User Name: </lable> @user.Name
             }
 
         }

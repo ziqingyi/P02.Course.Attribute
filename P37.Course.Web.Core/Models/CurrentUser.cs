@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using P37.Course.Web.Core.Attributes;
 
@@ -11,8 +12,11 @@ namespace P37.Course.Web.Core.Models
     public class CurrentUser
     {
         public int Id { get; set; }
+        [DisplayName("User Name")]
         public string Name { get; set; }
         public string Account { get; set; }
+
+        [DisplayName("User Password")]
         public string Password { get; set; }
 
         [DataType(DataType.EmailAddress)]
