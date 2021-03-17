@@ -35,5 +35,10 @@ namespace P37.Course.Web.Core.Models
         [DisplayName("Company Id")]
         public int CompanyId { get; set; }
 
+        public string Sex { get; set; }
+        [DisplayName("Hobby: ")]
+        public string Hobby { get; set; }
+
+        public string Remark { get; set; }
     }
 }

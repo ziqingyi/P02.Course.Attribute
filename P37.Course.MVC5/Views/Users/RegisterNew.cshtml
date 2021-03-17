@@ -10,13 +10,46 @@
     <title>Register New</title>
 </head>
 <body>
-@using (Html.BeginForm("RegisterNew", "Users", FormMethod.Post))
-{
-    <div>
-        @Html.DisplayNameFor(Model =>Model.CompanyId) @*show the field's display name*@
-        @Html.DropDownListFor(Model => Model.CompanyId,ViewData["companyIdList"] as List<SelectListItem>) @*id is value, name is field*@
-    </div>
-}
+    @using (Html.BeginForm("RegisterNew", "Users", FormMethod.Post))
+    {
+        <div>
+            @Html.DisplayNameFor(model => model.CompanyId) @*show the field's display name*@
+            @Html.DropDownListFor(model => model.CompanyId, ViewData["companyIdList"] as List<SelectListItem>) @*id is value, name is field*@
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Account)
+            @Html.TextBoxFor(model => model.Account, new { @class = "input" })
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Password1)
+            @Html.PasswordFor(model => model.Password1, new { @class = "input-lg" })
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Password2)
+            @Html.PasswordFor(model => model.Password2, new { @class = "input-lg" })
+        </div>
+
+        <div>
+            @Html.LabelFor(model=>model.Sex)
+            @Html.RadioButtonFor(model=>model.Sex,"Male", new{@checked=true}) Male
+            @Html.RadioButtonFor(model=>model.Sex,"Female") Female
+            @Html.RadioButtonFor(model=>model.Sex,"hide") hide
+        </div>
+        <div>
+            @Html.LabelFor(model=>model.Hobby)
+            basketball <input type="checkbox" name="Hobby" value="basketball">
+            football <input type="checkbox" name="Hobby" value="football">
+            Soccer <input type="checkbox" name="Hobby" value="Soccer">
+        </div>
+        <div>
+            @Html.LabelFor(model=>model.Remark);
+            @Html.TextAreaFor(model=>model.Remark,new{})
+        </div>
+
+
+    }
 
 
 </body>
