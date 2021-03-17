@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using P37.Course.Web.BLL;
 
 namespace P37.Course.Web.ServiceEF.DBFirst
 {
@@ -10,13 +11,11 @@ namespace P37.Course.Web.ServiceEF.DBFirst
     {
         //use P37.Course.Web.BLL 
 
-        UserInfoService userInfoService = new UserInfoService();
+        UserInfoManager userInfoManager = new UserInfoManager();
 
         public bool Register()
         {
-
-
-            return userInfoService.Register();
+            return userInfoManager.AddUser();
         }
 
 

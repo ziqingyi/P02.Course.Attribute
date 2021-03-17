@@ -32,5 +32,8 @@ namespace P37.Course.Web.Core.Models
         [Required(ErrorMessage = "Email ( {0}  ) cannot be empty")]
         public string Email { get; set; }
 
+        [DisplayName("Company Id")]
+        public int CompanyId { get; set; }
+
     }
 }

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompanyInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInfoService.cs" />
   </ItemGroup>
@@ -49,6 +50,17 @@
       <Project>{f53b543c-e00f-4aaf-84fd-e129f11a08b9}</Project>
       <Name>P37.Course.Web.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\P37.Course.Web.Core\P37.Course.Web.Core.csproj">
+      <Project>{40F9C49F-3864-4DEC-B1D8-F65AB8151E37}</Project>
+      <Name>P37.Course.Web.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P37.Course.Web.DAL.EF.DBFirst\P37.Course.Web.DAL.EF.DBFirst.csproj">
+      <Project>{4fbb16a5-4409-4bb9-890b-7da6e267c892}</Project>
+      <Name>P37.Course.Web.DAL.EF.DBFirst</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

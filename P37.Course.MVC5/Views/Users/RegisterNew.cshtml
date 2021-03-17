@@ -1,0 +1,24 @@
+﻿@model P37.Course.Web.Core.Models.RegUser
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register New</title>
+</head>
+<body>
+@using (Html.BeginForm("RegisterNew", "Users", FormMethod.Post))
+{
+    <div>
+        @Html.DisplayNameFor(Model =>Model.CompanyId) @*show the field's display name*@
+        @Html.DropDownListFor(Model => Model.CompanyId,ViewData["companyIdList"] as List<SelectListItem>) @*id is value, name is field*@
+    </div>
+}
+
+
+</body>
+
+</html>

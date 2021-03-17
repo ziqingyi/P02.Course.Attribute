@@ -6,8 +6,10 @@ using System.Web;
 using System.Web.Mvc;
 using P37.Course.Web.Core.Models;
 using Newtonsoft.Json;
+using P34.Course.Business.Service;
 using P37.Course.Web.Core.DAL;
 using P37.Course.Web.Core.Filters;
+using P37.Course.Web.ServiceEF.DBFirst;
 
 namespace P37.Course.MVC5.Controllers
 {
@@ -110,6 +112,20 @@ namespace P37.Course.MVC5.Controllers
             return View("Register1");
         }
 
+        CompanyInfoService companyInfoService = new CompanyInfoService();
+        public ActionResult RegisterNew()
+        {
+
+            List<CompanyModel> cList = companyInfoService.GetCompanyList();
+            ViewData["companyIdList"] = ConvertModeltoSelectListItems(cList);
+
+
+            return View(new RegUser());
+        }
+
+
+
+
         public string CheckUserEmail(string email)
         {
             return "1";
@@ -199,7 +215,27 @@ namespace P37.Course.MVC5.Controllers
         #endregion
 
 
+        #region tools
 
+        //convert model to SelectListItem
+
+        public List<SelectListItem> ConvertModeltoSelectListItems(List<CompanyModel> clist)
+        {
+            List<SelectListItem> sList = new List<SelectListItem>();
+            foreach (CompanyModel cm in clist)
+            {
+                SelectListItem sl = new SelectListItem();
+                sl.Text = cm.Name;
+                sl.Value = cm.Id.ToString();
+                sList.Add(sl);
+            }
+
+            return sList;
+        }
+
+
+
+        #endregion
 
 
 
