@@ -10,7 +10,7 @@
     <title>Register New</title>
 </head>
 <body>
-    @using (Html.BeginForm("RegisterNew", "Users", FormMethod.Post))
+    @using (Html.BeginForm("AddUser", "Users", FormMethod.Post))
     {
         <div>
             @Html.DisplayNameFor(model => model.CompanyId) @*show the field's display name*@
@@ -47,7 +47,10 @@
             @Html.LabelFor(model=>model.Remark);
             @Html.TextAreaFor(model=>model.Remark,new{})
         </div>
+        <div>
+            <input type="submit" value="Register User">
 
+        </div>
 
     }
 

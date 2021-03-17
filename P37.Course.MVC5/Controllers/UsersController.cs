@@ -113,6 +113,7 @@ namespace P37.Course.MVC5.Controllers
         }
 
         CompanyInfoService companyInfoService = new CompanyInfoService();
+        UserInfoService userInfoService = new UserInfoService();
         public ActionResult RegisterNew()
         {
 
@@ -123,13 +124,28 @@ namespace P37.Course.MVC5.Controllers
             return View(new RegUser());
         }
 
-
-
-
         public string CheckUserEmail(string email)
         {
             return "1";
         }
+
+        public ActionResult AddUser(RegUser user)
+        {
+            if (userInfoService.Register(user))
+            {
+                Session["users"] = new CurrentUser
+                {
+                    Id = 100,
+                    Account = user.Account,
+                    Password = user.Password1
+                };
+
+                return View("UsersCentre",new { account =user.Account,  pwd=user.Password1 });
+            }
+            return View("RegisterNew");
+        }
+
+
 
         #endregion
 
