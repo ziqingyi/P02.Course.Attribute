@@ -42,6 +42,10 @@ namespace P34.Course.Business.Service
 
         public IQueryable<T> Query<T>(Expression<Func<T, bool>> funcWhere) where T : class
         {
+            if (funcWhere == null)
+            {
+                return this.Context.Set<T>();
+            }
             return this.Context.Set<T>().Where<T>(funcWhere);
         }
 

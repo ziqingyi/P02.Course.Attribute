@@ -61,7 +61,7 @@
             }
         </table>
         @Html.Br()
-        @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+        Total: @Model.Count()
         @*@Html.PagedListPager(Model, pageIndex => Url.Action("Index",
             new { pageIndex, searchString = ViewBag.SearchString,lastOrderBy = ViewBag.OrderBy}))*@
         @*@Html.PagedListPager(Model, pageIndex => $"/Fourth/Index?pageIndex={pageIndex}&searchString={base.ViewBag.SearchString}&url={base.ViewBag.Url}")*@
@@ -71,20 +71,20 @@
 @section scriptsXXX{
     <script TYPE="text/javascript">
         $(document).ready(function() {
-            //new ajax request, load twice
-            var listData = '@ViewBag.ListData';
+                //new ajax request, load twice
+                var listData = '@ViewBag.ListData';
             }
-        )
+        );
 
         function ajaxDelete(obj) {
             $.ajax({
                 type:"POST",
-                url: '/Third/AjaxDelete',
+                url: '/Fourth/AjaxDelete',
                 data: {id: obj.id},
                 datatype:"text",
                 success: function(data) {
                     if (data.CanPlayTypeResult == 1) {
-                        alert("delete successfully " + obj.id + " refresh page manually")
+                        alert("delete successfully " + obj.id + " refresh page manually");
                     }
                     else if (data.CanPlayTypeResult == 2) {
                         alert("log on overtime, log in again");

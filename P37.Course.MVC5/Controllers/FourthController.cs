@@ -42,9 +42,12 @@ namespace P37.Course.MVC5.Controllers
         public ActionResult Index()
         {
             #region search condition
+            // search by expression, no search string , default 
+            Expression<Func<JD_Commodity_001, bool>> funcWhere = c => c.Id < 200;
+            IQueryable<JD_Commodity_001> commodityList = this._commodityService.Query<JD_Commodity_001>(funcWhere); 
+            
+            //search by search string from form, and make pages if there search string is not empty
             string searchString = base.HttpContext.Request.Form["searchString"];
-            Expression<Func<JD_Commodity_001, bool>> funcWhere = null;
-            IQueryable<JD_Commodity_001> commodityList = this._commodityService.Query<JD_Commodity_001>(c => c.Id < 200);
             if (!string.IsNullOrEmpty(searchString))
             {
                 return IndexPaging(searchString,"",1);
