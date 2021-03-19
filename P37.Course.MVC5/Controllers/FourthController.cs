@@ -63,24 +63,23 @@ namespace P37.Course.MVC5.Controllers
             Expression<Func<JD_Commodity_001, bool>> funcWhere = null;
             if (!string.IsNullOrEmpty(searchString))
             {
-                funcWhere = c => c.Title.Contains(searchString);
+                #region get search string and prepare expression tree for filtering data
 
+                funcWhere = c => c.Title.Contains(searchString);
+                //put search string back to ViewBag, will pass to form text box again.
                 base.ViewBag.SearchString = searchString;
 
-                //P05.Course.ExpressionSty.Extend, combine the expression tree
-                //add filter for url column as well. 
+                //P05.Course.ExpressionSty.Extend, combine the expression tree for filtering 
+                //can also add filter for url column as well. 
                 if (!string.IsNullOrEmpty(url))
                 {
                     funcWhere = funcWhere.And(c => c.Url.Contains(url));
+                    //put search string back to ViewBag, will pass to form text box again.
                     base.ViewBag.Url = url;
                 }
 
-                #region no paging and ranking
-
-                //commodityList = this._commodityService.Query<JD_Commodity_001>(funcWhere);
-                //return View(commodityList);
                 #endregion
-
+                
 
                 #region paging and ranking
 
@@ -99,7 +98,20 @@ namespace P37.Course.MVC5.Controllers
             }
             else
             {
-                return Index();
+
+                #region no paging and ranking
+
+                funcWhere = c => c.Id < 2000;
+                Expression<Func<JD_Commodity_001, int>> funcOrderby = c => c.Id;
+                int index = pageIndex ?? 1;
+
+                PageResult<JD_Commodity_001> commodityList = this._commodityService.QueryPage(funcWhere,pageSize,index, funcOrderby, true);
+
+                StaticPagedList<JD_Commodity_001> pageList = new StaticPagedList<JD_Commodity_001>(commodityList.DataList,index,pageSize,commodityList.TotalCount);
+
+                return View(pageList);
+                #endregion
+
             }
 
         }
