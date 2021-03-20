@@ -14,6 +14,11 @@ namespace P05.Course.ExpressionSty.Extend
         public static Expression<Func<T, bool>> And<T>(this Expression<Func<T, bool>> expr1,
             Expression<Func<T, bool>> expr2)
         {
+            if (expr1 == null)
+            {
+                return expr2;
+            }
+
             ParameterExpression newParameter = Expression.Parameter(typeof(T),"c");
             NewExpressionVisitor visitor = new NewExpressionVisitor(newParameter);
 
@@ -26,6 +31,11 @@ namespace P05.Course.ExpressionSty.Extend
         public static Expression<Func<T, bool>> Or<T>(this Expression<Func<T, bool>> expr1,
             Expression<Func<T, bool>> expr2)
         {
+            if (expr1 == null)
+            {
+                return expr2;
+            }
+
             ParameterExpression newParameter = Expression.Parameter(typeof(T), "c");
             NewExpressionVisitor visitor = new NewExpressionVisitor(newParameter);
 
@@ -37,6 +47,8 @@ namespace P05.Course.ExpressionSty.Extend
 
         public static Expression<Func<T, bool>> Not<T>(this Expression<Func<T, bool>> expr)
         {
+            if (expr == null) throw new Exception("expr is null");
+
             ParameterExpression candidateExpr = expr.Parameters[0];
             Expression body = Expression.Not(expr.Body);
 
