@@ -11,7 +11,7 @@
 
 <h2>Index Fourth Paging</h2>
 
-
+@*if no action and controller nominated, the page index will be submit to the default action with pageIndex*@
 @using (Html.BeginForm("IndexPaging", "Fourth"))
 {
     <p>
@@ -26,7 +26,7 @@
             <tr>
                 <th>Id</th>
                 <th>Topic</th>
-                <th>@Html.ActionLink("Price", "Index", new { orderBy = ViewBag.OrderBy, searchString = ViewBag.SearchString, page = 1 })</th>
+                <th>@Html.ActionLink("Price", "IndexPaging", new { orderBy = ViewBag.OrderBy, searchString = ViewBag.SearchString, page = 1 })</th>
                 <th>Url</th>
                 <th>Action</th>
                 <th>Picture</th>
