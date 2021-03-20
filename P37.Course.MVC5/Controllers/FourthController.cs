@@ -61,15 +61,19 @@ namespace P37.Course.MVC5.Controllers
         public ActionResult IndexPaging(string searchString,string url, int? pageIndex)
         {
             Expression<Func<JD_Commodity_001, bool>> funcWhere = null;
-            if (!string.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString)|| !string.IsNullOrEmpty(url))
             {
                 #region get search string and prepare expression tree for filtering data
 
-                funcWhere = c => c.Title.Contains(searchString);
-                //put search string back to ViewBag, will pass to form text box again.
-                base.ViewBag.SearchString = searchString;
-
                 //P05.Course.ExpressionSty.Extend, combine the expression tree for filtering 
+                // can also have a separate project to assemble the expression tree
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    funcWhere= funcWhere.And(c => c.Title.Contains(searchString));
+                    //put search string back to ViewBag, will pass to form text box again.
+                    base.ViewBag.SearchString = searchString;
+                }
+
                 //can also add filter for url column as well. 
                 if (!string.IsNullOrEmpty(url))
                 {
