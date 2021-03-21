@@ -184,7 +184,9 @@ namespace P37.Course.MVC5.Controllers
 
 
 
-        #region Create
+        #region Create, two request: 1 HTTP Get 2 HTTP Post
+        //the parameters may come from url or form submit, so MVC cannot use parameter to distinguish methods WITH same name.
+        //must use HttpVerbs. 
 
         [HttpGet]
         public ActionResult Create()
@@ -194,7 +196,7 @@ namespace P37.Course.MVC5.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]//Represents an attribute that is used to prevent forgery of a request. Key should be same. 
+        [ValidateAntiForgeryToken]//Represents an attribute that is used to prevent forgery of a request. Key in the session should be same. 
         public ActionResult Create([Bind(Include = "ProductId, CategoryId, Title, Price, Url, ImageUrl")]JD_Commodity_001 commodity)
         {
             //Bind limited fields from frontend, otherwise some fields may be updated by front end users. 
@@ -211,7 +213,7 @@ namespace P37.Course.MVC5.Controllers
                 throw new Exception("ModelState is not correct ");
             }
         }
-
+        //Bind: only accept these fields from front end. 
         [HttpPost]
         public ActionResult AjaxCreate([Bind(Include = "ProductId, CategoryId, Title, Price, Url, ImageUrl")]
             JD_Commodity_001 commodity)
