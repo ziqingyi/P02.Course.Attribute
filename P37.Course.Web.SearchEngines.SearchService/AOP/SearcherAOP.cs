@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using P32.Course.LuceneProject.DataService;
 using P32.Course.LuceneProject.Model;
 using P34.Course.Business.Interface;
+using P37.Course.Web.Core.Models;
 
 namespace P37.Course.Web.SearchEngines.SearchService.AOP
 {
