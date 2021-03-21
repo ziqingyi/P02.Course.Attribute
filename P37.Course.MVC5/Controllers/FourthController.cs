@@ -64,9 +64,9 @@ namespace P37.Course.MVC5.Controllers
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult IndexPaging(string searchString,string url, int? pageIndex)
         {
-            string searchStringFromForm = base.HttpContext.Request.Form["searchString"];//null
+            string searchStringFromForm = base.HttpContext.Request.Form["searchString"];//
 
-            string searchStringFromUrl = base.HttpContext.Request["searchString"];//null
+            string searchStringFromUrl = base.HttpContext.Request["searchString"];//
 
             Expression<Func<JD_Commodity_001, bool>> funcWhere = null;
             if (!string.IsNullOrEmpty(searchString)|| !string.IsNullOrEmpty(url))
@@ -77,7 +77,7 @@ namespace P37.Course.MVC5.Controllers
                 // can also have a separate project to assemble the expression tree
                 if (!string.IsNullOrEmpty(searchString))
                 {
-                    funcWhere= funcWhere.And(c => c.Title.Contains(searchString));
+                    funcWhere= c => c.Title.Contains(searchString);
                     //put search string back to ViewBag, will pass to form text box again.
                     base.ViewBag.SearchString = searchString;
                 }
