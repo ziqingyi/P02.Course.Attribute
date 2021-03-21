@@ -46,11 +46,15 @@ namespace P37.Course.MVC5.Controllers
             Expression<Func<JD_Commodity_001, bool>> funcWhere = c => c.Id < 200;
             IQueryable<JD_Commodity_001> commodityList = this._commodityService.Query<JD_Commodity_001>(funcWhere); 
             
-            //search by search string from form, and make pages if there search string is not empty
-            string searchString = base.HttpContext.Request.Form["searchString"];
-            if (!string.IsNullOrEmpty(searchString))
+            //search by search string from [form], and make pages if there search string is not empty
+            string searchStringFromForm = base.HttpContext.Request.Form["searchString"];//null
+
+            string searchStringFromUrl = base.HttpContext.Request["searchString"];//null
+
+
+            if (!string.IsNullOrEmpty(searchStringFromForm))
             {
-                return IndexPaging(searchString,"",1);
+                return IndexPaging(searchStringFromForm, "",1);
             }
             #endregion
 
@@ -60,6 +64,10 @@ namespace P37.Course.MVC5.Controllers
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult IndexPaging(string searchString,string url, int? pageIndex)
         {
+            string searchStringFromForm = base.HttpContext.Request.Form["searchString"];//null
+
+            string searchStringFromUrl = base.HttpContext.Request["searchString"];//null
+
             Expression<Func<JD_Commodity_001, bool>> funcWhere = null;
             if (!string.IsNullOrEmpty(searchString)|| !string.IsNullOrEmpty(url))
             {
