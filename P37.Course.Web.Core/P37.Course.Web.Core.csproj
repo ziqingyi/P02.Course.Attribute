@@ -102,6 +102,7 @@
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\CurrentUser.cs" />
     <Compile Include="Models\Page.cs" />
+    <Compile Include="Models\PageResult.cs" />
     <Compile Include="Models\RegUser.cs" />
     <Compile Include="Models\Weather.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

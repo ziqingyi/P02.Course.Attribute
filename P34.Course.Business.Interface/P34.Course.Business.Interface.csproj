@@ -47,13 +47,16 @@
     <Compile Include="ICompanyService.cs" />
     <Compile Include="IUserCompanyService.cs" />
     <Compile Include="IUserService.cs" />
-    <Compile Include="PageResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\P33.Course.Model\P33.Course.Model.csproj">
       <Project>{7a8d76ed-a63f-476b-a607-b6acef6d49a7}</Project>
       <Name>P33.Course.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\P37.Course.Web.Core\P37.Course.Web.Core.csproj">
+      <Project>{40F9C49F-3864-4DEC-B1D8-F65AB8151E37}</Project>
+      <Name>P37.Course.Web.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -60,6 +60,10 @@
       <Project>{A209E807-48D7-4AC8-B58E-48859ADEE460}</Project>
       <Name>P34.Course.Business.Interface</Name>
     </ProjectReference>
+    <ProjectReference Include="..\P37.Course.Web.Core\P37.Course.Web.Core.csproj">
+      <Project>{40F9C49F-3864-4DEC-B1D8-F65AB8151E37}</Project>
+      <Name>P37.Course.Web.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\P37.Course.Web.SearchEngines.Interface\P37.Course.Web.SearchEngines.Interface.csproj">
       <Project>{7D04CE55-F689-4043-A094-F72270B78796}</Project>
       <Name>P37.Course.Web.SearchEngines.Interface</Name>

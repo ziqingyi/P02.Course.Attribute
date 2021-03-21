@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P34.Course.Business.Interface
+namespace P37.Course.Web.Core.Models
 {
     public class PageResult<T>
     {

@@ -49,6 +49,10 @@
       <Project>{A209E807-48D7-4AC8-B58E-48859ADEE460}</Project>
       <Name>P34.Course.Business.Interface</Name>
     </ProjectReference>
+    <ProjectReference Include="..\P37.Course.Web.Core\P37.Course.Web.Core.csproj">
+      <Project>{40F9C49F-3864-4DEC-B1D8-F65AB8151E37}</Project>
+      <Name>P37.Course.Web.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\P37.Course.Web.SearchEngines.Model\P37.Course.Web.SearchEngines.Model.csproj">
       <Project>{D39AF421-DDD4-4FC8-8C09-2C04D8C59455}</Project>
       <Name>P37.Course.Web.SearchEngines.Model</Name>

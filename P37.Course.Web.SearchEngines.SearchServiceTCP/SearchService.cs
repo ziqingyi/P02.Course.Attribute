@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using P37.Course.Web.Core.Models;
 
 namespace P37.Course.Web.SearchEngines.SearchServiceTCP
 {
