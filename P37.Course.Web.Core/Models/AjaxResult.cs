@@ -12,6 +12,7 @@ namespace P37.Course.Web.Core.Models
         {
 
         }
+        //show to customer
         public string DebugMessage { get; set; }
         public string PromptMsg { get; set; }
         public DoResult Result { get; set; }

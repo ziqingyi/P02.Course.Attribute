@@ -192,7 +192,8 @@ namespace P37.Course.MVC5.Controllers
         public ActionResult Create()
         {
             ViewBag.categoryList = BuildCategoryList();
-            return View();
+
+            return View(new JD_Commodity_001());
         }
 
         [HttpPost]
