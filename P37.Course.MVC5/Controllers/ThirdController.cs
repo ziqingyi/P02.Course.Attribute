@@ -124,25 +124,23 @@ namespace P37.Course.MVC5.Controllers
 
         #region XmlResult
 
-        public XmlResult XmlResult()
+        public XmlResultText XmlResult()
         {
             MyXMLData d = new MyXMLData() {Id = 222, Name = "User XmlResult"};
-            return new XmlResult(d);
+            return new XmlResultText(d);
         }
 
         #endregion
 
 
-
-
     }
 
         
-    public class XmlResult : ActionResult
+    public class XmlResultText : ActionResult
     {
         private object _data = null;
 
-        public XmlResult(object data)
+        public XmlResultText(object data)
         {
             this._data = data;
         }

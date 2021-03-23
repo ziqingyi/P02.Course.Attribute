@@ -408,7 +408,7 @@ namespace P37.Course.MVC5.Controllers
             return Newtonsoft.Json.JsonConvert.SerializeObject(new AjaxResult()
             {
                 Result = DoResult.Success,
-                DebugMessage = "this iss Json Result String"
+                DebugMessage = "this is Json Result String"
             });
         }
 
@@ -424,10 +424,10 @@ namespace P37.Course.MVC5.Controllers
             response.Write(res);
         }
 
-        public XmlResult XmlResult()
+        public XmlResultXML XmlResult()
         {
 
-            return new XmlResult(new AjaxResult()
+            return new XmlResultXML(new AjaxResult()
             {
                 Result = DoResult.Success,
                 DebugMessage = "This is Xml Result"
@@ -445,9 +445,10 @@ namespace P37.Course.MVC5.Controllers
 
     }
 }
-
-
-
+//test some new return type
+//if the return type is a derived class from ActionResult, MVC will execute the ExecuteResult method, 
+//and write serialized data to HttpResponseBase. and assign the content type
+//if the return type is not from ActionResult, then return the data as HTML
 
 public class NewtonJsonResult : ActionResult
 {
@@ -457,7 +458,7 @@ public class NewtonJsonResult : ActionResult
     {
         this._data = data;
     }
-
+    //Newtonsoft's JsonConvert has better performance than JavaScriptSerializer
     public override void ExecuteResult(ControllerContext context)
     {
         HttpResponseBase response = context.HttpContext.Response;
@@ -467,10 +468,10 @@ public class NewtonJsonResult : ActionResult
 
 }
 
-public class XmlResult : ActionResult
+public class XmlResultXML : ActionResult
 {
     private object _data = null;
-    public XmlResult(object data)
+    public XmlResultXML(object data)
     {
         this._data = data;
     }
