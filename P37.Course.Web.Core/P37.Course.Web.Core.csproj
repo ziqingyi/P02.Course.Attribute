@@ -99,6 +99,7 @@
     <Compile Include="Attributes\RemarkAttribute.cs" />
     <Compile Include="Extensions\DataAttributeExtend.cs" />
     <Compile Include="DAL\DBHelper.cs" />
+    <Compile Include="Extensions\EnumExtension.cs" />
     <Compile Include="Extensions\HtmlExtension.cs" />
     <Compile Include="Extensions\UserManager.cs" />
     <Compile Include="Filters\UsersFilterAttribute.cs" />

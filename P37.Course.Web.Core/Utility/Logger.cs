@@ -27,6 +27,19 @@ namespace P37.Course.Web.Core.Utility
             loger = LogManager.GetLogger(type);
         }
 
+        //create Logger
+        public static Logger CreateLogger(Type type)
+        {
+            return new Logger(type);
+        }
+
+        public void Fatal(string msg = "Fatal Error", Exception ex = null)
+        {
+            Console.WriteLine(msg);
+            loger.Fatal(msg,ex);
+        }
+
+
         public void Error(string msg = "Exception", Exception ex = null)
         {
             Console.WriteLine(msg);

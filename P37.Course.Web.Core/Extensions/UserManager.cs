@@ -19,20 +19,20 @@ namespace P37.Course.Web.Core.Extensions
 
         public static LoginResult Login<T>(this HttpContextBase context, string name,
             string password, string CaptchaCode, 
-            Func<T, string,string> funcToGetT, 
-            Func<T,bool> checkPassFunc, 
+            Func<string,T > funcToGetT, 
+            Func<T,string, bool> checkPassFunc, 
             Func<T, bool> checkStatusFunc)
         {
             if(context.Session["CheckCode"] != null
                && !string.IsNullOrEmpty(context.Session["CheckCode"].ToString())
                &&context.Session["CheckCode"].ToString().Equals(CaptchaCode, StringComparison.CurrentCultureIgnoreCase))
             {
-                T t = funcToGetT.Invoke();
+                T t = funcToGetT.Invoke(name);
                 if (t == null)
                 {
                     return LoginResult.NoUser;
                 }
-                else if (!checkPassFunc(t))
+                else if (!checkPassFunc(t, password))
                 {
                     return LoginResult.WrongPwd;
                 }
