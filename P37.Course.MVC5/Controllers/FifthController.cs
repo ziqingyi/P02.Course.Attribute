@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using P33.Course.Model.Models;
 using P34.Course.Business.Interface;
 using P37.Course.Web.Core.Extensions;
+using P37.Course.Web.Core.ImageHelper;
 using P37.Course.Web.Core.IOC;
 using Unity;
 
@@ -53,6 +57,14 @@ namespace P37.Course.MVC5.Controllers
         }
         #endregion
 
+        #region LogOut 
+
+        
+
+        #endregion
+
+
+
 
 
 
@@ -82,8 +94,24 @@ namespace P37.Course.MVC5.Controllers
 
         #region Captcha Verification
 
-        
-        
+        public ActionResult CreateCaptchaFile()
+        {
+            string code = "";
+            Bitmap bitmap = CaptchaHelper.CreateCaptchaObject(out code);
+            base.HttpContext.Session["CheckCode"] = code;//session is used for identify the user
+            MemoryStream stream = new MemoryStream();
+            bitmap.Save(stream, ImageFormat.Gif);
+            return File(stream.ToArray(), "image/gif");//return FileContentResult picture
+        }
+
+        public void CreateCaptchaResponse()
+        {
+            string code = "";
+            Bitmap bitmap = CaptchaHelper.CreateCaptchaObject(out code);
+            base.HttpContext.Session["CheckCode"] = code;
+            bitmap.Save(base.Response.OutputStream, ImageFormat.Gif);
+            base.Response.ContentType = "image/gif";
+        }
 
 
 
