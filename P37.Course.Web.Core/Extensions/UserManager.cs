@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using P37.Course.Web.Core.Attributes;
+using P37.Course.Web.Core.IOC;
 using P37.Course.Web.Core.Utility;
 
 namespace P37.Course.Web.Core.Extensions
@@ -15,12 +17,39 @@ namespace P37.Course.Web.Core.Extensions
         private static Logger logger = new Logger(typeof(UserManager));
 
 
-        public static LoginResult Login(this HttpContextBase context, string name,
-            string password, string verifyCode)
+        public static LoginResult Login<T>(this HttpContextBase context, string name,
+            string password, string CaptchaCode, 
+            Func<T> funcToGetT, 
+            Func<T,bool> checkPassFunc, 
+            Func<T, bool> checkStatusFunc)
         {
+            if(context.Session["CheckCode"] != null
+               && !string.IsNullOrEmpty(context.Session["CheckCode"].ToString())
+               &&context.Session["CheckCode"].ToString().Equals(CaptchaCode, StringComparison.CurrentCultureIgnoreCase))
+            {
+                T t = funcToGetT.Invoke();
+                if (t == null)
+                {
+                    return LoginResult.NoUser;
+                }
+                else if (!checkPassFunc(t))
+                {
+                    return LoginResult.WrongPwd;
+                }
+                else if (!checkStatusFunc(t))
+                {
+                    return LoginResult.Frozen;
+                }
+                else
+                {
+                    return LoginResult.Success;
+                }
 
-
-
+            }
+            else
+            {
+                return LoginResult.WrongCaptcha;
+            }
 
 
         }

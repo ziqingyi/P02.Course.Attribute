@@ -25,7 +25,7 @@ namespace P37.Course.MVC5.Controllers
 
         public ActionResult Login(string name, string password, string verify)
         {
-            string formName = base.HttpContext.Login(name, password, verify);
+            //string formName = base.HttpContext.Login(name, password, verify);
 
 
 
