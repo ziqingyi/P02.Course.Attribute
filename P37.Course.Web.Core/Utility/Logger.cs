@@ -7,8 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using log4net;
 
-
-namespace P37.Course.MVC5.Controllers.Utility
+namespace P37.Course.Web.Core.Utility
 {
     public class Logger
     {
