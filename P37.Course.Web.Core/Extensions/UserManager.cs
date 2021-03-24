@@ -19,7 +19,7 @@ namespace P37.Course.Web.Core.Extensions
 
         public static LoginResult Login<T>(this HttpContextBase context, string name,
             string password, string CaptchaCode, 
-            Func<T> funcToGetT, 
+            Func<T, string,string> funcToGetT, 
             Func<T,bool> checkPassFunc, 
             Func<T, bool> checkStatusFunc)
         {

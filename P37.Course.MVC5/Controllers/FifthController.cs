@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using P33.Course.Model.Models;
+using P34.Course.Business.Interface;
 using P37.Course.Web.Core.Extensions;
+using P37.Course.Web.Core.IOC;
+using Unity;
 
 namespace P37.Course.MVC5.Controllers
 {
@@ -35,6 +40,20 @@ namespace P37.Course.MVC5.Controllers
 
 
 
+
+        #region methods
+        [ChildActionOnly]
+        public User GetUser(string name, string password)
+        {
+            using (IUserCompanyService service = DIFactory.GetContainer().Resolve<IUserCompanyService>())
+            {
+                User user = service.Set<User>().FirstOrDefault(u => u.Name.Equals(name) && u.Password.Equals(password));
+
+                return user;
+            }
+        }
+
+        #endregion
 
 
 
