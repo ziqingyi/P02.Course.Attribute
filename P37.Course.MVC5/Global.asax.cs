@@ -7,8 +7,10 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using P37.Course.MVC5.App_Start;
-using P37.Course.MVC5.Controllers.Utility;
+
 using P37.Course.MVC5.Utility;
+using P37.Course.Web.Core.Utility;
+
 //using WebGrease.Configuration;
 
 namespace P37.Course.MVC5
