@@ -27,15 +27,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.Label("VerifyCode", "VerifyCode",new {@class="col-md-2 control-label"})
+                    @Html.Label("CreateCaptchaFile", "CreateCaptchaFile", new {@class="col-md-2 control-label"})
                     <div class="col-md-10">
-                        @Html.TextBox("verify","", new {@class="form-control"})
+                        @Html.TextBox("CreateCaptchaResponse", "", new {@class="form-control"})
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-10">
-                        <img alt="Captcha" class="img" onclick="refresh(this)" src="/Fifth/VerifyCode" title="click to refresh">
+                        <img alt="Captcha" class="img" onclick="refresh(this)" src="/Fifth/CreateCaptchaFile" title="click to refresh">
                     </div>
 
                 </div>
@@ -53,7 +53,7 @@
 
 <script>
     function refresh(obj) {
-        $(obj).attr("src", "/Fifth/Verify?random=" + Math.random());
+        $(obj).attr("src", "/Fifth/CreateCaptchaResponse?random=" + Math.random());
     }
 
 </script>

@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="AOP\LogAfterBehavior.cs" />
     <Compile Include="AOP\LogBeforeBehavior.cs" />
+    <Compile Include="Attributes\CustomAllowAnonymousAttribute.cs" />
     <Compile Include="Attributes\MappingClassAttribute.cs" />
     <Compile Include="Attributes\RemarkAttribute.cs" />
     <Compile Include="Extensions\DataAttributeExtend.cs" />

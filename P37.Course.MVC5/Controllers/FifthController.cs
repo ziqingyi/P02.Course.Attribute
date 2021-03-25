@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using P33.Course.Model.Models;
 using P34.Course.Business.Interface;
+using P37.Course.Web.Core.Attributes;
 using P37.Course.Web.Core.Extensions;
 using P37.Course.Web.Core.ImageHelper;
 using P37.Course.Web.Core.IOC;
@@ -58,14 +59,15 @@ namespace P37.Course.MVC5.Controllers
         #endregion
 
         #region LogOut 
-
-        
+        [HttpPost]
+        [CustomAllowAnonymous]
+        public ActionResult Logout()
+        {
+            this.HttpContext.UserLogout();
+            return RedirectToAction("Index", "Fifth");
+        }
 
         #endregion
-
-
-
-
 
 
         #region user check methods
@@ -93,7 +95,7 @@ namespace P37.Course.MVC5.Controllers
         #endregion
 
         #region Captcha Verification
-
+        [CustomAllowAnonymous]
         public ActionResult CreateCaptchaFile()
         {
             string code = "";
@@ -112,9 +114,6 @@ namespace P37.Course.MVC5.Controllers
             bitmap.Save(base.Response.OutputStream, ImageFormat.Gif);
             base.Response.ContentType = "image/gif";
         }
-
-
-
         #endregion
 
 

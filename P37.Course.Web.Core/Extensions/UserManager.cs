@@ -6,8 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Microsoft.Practices.Unity.Configuration;
 using P37.Course.Web.Core.Attributes;
 using P37.Course.Web.Core.IOC;
+using P37.Course.Web.Core.Models;
 using P37.Course.Web.Core.Utility;
 
 namespace P37.Course.Web.Core.Extensions
@@ -54,8 +56,38 @@ namespace P37.Course.Web.Core.Extensions
 
         }
 
+        public static void UserLogout(this HttpContextBase context)
+        {
+            #region Cookie
+
+            HttpCookie myCookie = context.Request.Cookies["CurrentUser"];
+            if (myCookie != null)
+            {
+                myCookie.Expires = DateTime.Now.AddMinutes(-1); //set expiry time
+                context.Response.Cookies.Add(myCookie);
+            }
+
+            #endregion
 
 
+            #region Session
+
+            var sessionUser = context.Session["CurrentUser"];
+            if (sessionUser != null && sessionUser is CurrentUser)
+            {
+                CurrentUser currentUser = (CurrentUser) context.Session["CurrentUser"];
+                logger.Debug(string.Format("user id={0} Name={1} leave the system", currentUser.Id, currentUser.Name));
+            }
+
+            context.Session["CurrentUser"] = null;//clear and remove key
+            context.Session.Remove("CurrentUser");
+
+            context.Session.Clear();//session is kept  but all the keys are removed.
+            context.Session.RemoveAll();
+            context.Session.Abandon();//delete session object, next time will create a new Session. 
+
+            #endregion
+        }
 
 
 
