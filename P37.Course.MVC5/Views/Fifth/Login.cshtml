@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
-            @using (Html.BeginForm("Login", "Fifth", new {sid = "123", Account = "Eleven"},
+            @using (Html.BeginForm("Login", "Fifth","" ,//new { sid = "123", Account = "Eleven" } ??
                 FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
             {
                 @Html.AntiForgeryToken()
@@ -29,7 +29,7 @@
                 <div class="form-group">
                     @Html.Label("CreateCaptchaFile", "CreateCaptchaFile", new {@class="col-md-2 control-label"})
                     <div class="col-md-10">
-                        @Html.TextBox("CreateCaptchaResponse", "", new {@class="form-control"})
+                        @Html.TextBox("captcha", "", new {@class="form-control"})
                     </div>
                 </div>
 

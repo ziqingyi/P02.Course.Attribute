@@ -35,7 +35,8 @@ namespace P37.Course.MVC5.Controllers
 
         public ActionResult Login(string name, string password, string captcha)
         {
-            LoginResult result = base.HttpContext.Login(name, password, captcha, GetUser,CheckPass,CheckStatus);
+            string formName = base.HttpContext.Request.Form["Name"];
+            LoginResult result = base.HttpContext.Login(name, password, captcha, GetUser,CheckPass, CheckStatusActive);
             if (result == LoginResult.Success)
             {
                 if (base.HttpContext.Session["CurrentUrl"] != null)
@@ -46,10 +47,10 @@ namespace P37.Course.MVC5.Controllers
                 }
                 else
                 {
-                    base.Redirect("/Home/Index");
+                    return base.Redirect("/Fifth/Index");
                 }
             }
-            
+            else
             {
                 ModelState.AddModelError("failed",result.GetRemark());
                 return View();
@@ -87,9 +88,9 @@ namespace P37.Course.MVC5.Controllers
             return user.Password == password;
         }
         [ChildActionOnly]
-        public bool CheckStatus(User user)
+        public bool CheckStatusActive(User user)
         {
-            return user.State != 1;
+            return user.State == 1;
         }
 
         #endregion
