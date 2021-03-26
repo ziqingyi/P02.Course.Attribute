@@ -98,8 +98,11 @@
     <Compile Include="AOP\LogAfterBehavior.cs" />
     <Compile Include="AOP\LogBeforeBehavior.cs" />
     <Compile Include="Attributes\CustomAllowAnonymousAttribute.cs" />
+    <Compile Include="Attributes\CustomAuthorizeAttribute.cs" />
     <Compile Include="Attributes\MappingClassAttribute.cs" />
     <Compile Include="Attributes\RemarkAttribute.cs" />
+    <Compile Include="CustomActionResult\NewtonJsonResult.cs" />
+    <Compile Include="CustomActionResult\XmlResultXML.cs" />
     <Compile Include="DAL\JsonHelper.cs" />
     <Compile Include="Extensions\DataAttributeExtend.cs" />
     <Compile Include="DAL\DBHelper.cs" />

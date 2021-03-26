@@ -9,6 +9,7 @@ using Microsoft.Ajax.Utilities;
 using P05.Course.ExpressionSty.Extend;
 using P33.Course.Model.Models;
 using P34.Course.Business.Interface;
+using P37.Course.Web.Core.CustomActionResult;
 using P37.Course.Web.Core.Models;
 using P37.Course.Web.SearchEngines.Interface;
 using P37.Course.Web.SearchEngines.Model;
@@ -382,6 +383,13 @@ namespace P37.Course.MVC5.Controllers
 
 
         #region test return
+
+        //test some new return type
+        //if the return type is a derived class from ActionResult, MVC will execute the ExecuteResult method, 
+        //and write serialized data to HttpResponseBase. and assign the content type
+        //if the return type is not from ActionResult, then return the data as HTML
+
+
         //content type is application/json
         public JsonResult JsonResultIn()
         {
@@ -445,50 +453,9 @@ namespace P37.Course.MVC5.Controllers
 
     }
 }
-//test some new return type
-//if the return type is a derived class from ActionResult, MVC will execute the ExecuteResult method, 
-//and write serialized data to HttpResponseBase. and assign the content type
-//if the return type is not from ActionResult, then return the data as HTML
-
-public class NewtonJsonResult : ActionResult
-{
-    private object _data = null;
-
-    public NewtonJsonResult(object data)
-    {
-        this._data = data;
-    }
-    //Newtonsoft's JsonConvert has better performance than JavaScriptSerializer
-    public override void ExecuteResult(ControllerContext context)
-    {
-        HttpResponseBase response = context.HttpContext.Response;
-        response.ContentType = "application/json";
-        response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(this._data));
-    }
-
-}
-
-public class XmlResultXML : ActionResult
-{
-    private object _data = null;
-    public XmlResultXML(object data)
-    {
-        this._data = data;
-    }
-
-    public override void ExecuteResult(ControllerContext context)
-    {
-        HttpResponseBase response = context.HttpContext.Response;
-        response.ContentType = "application/xml";
-        
-        XmlSerializer serializer = new XmlSerializer(_data.GetType());
-        serializer.Serialize(response.Output, _data);
 
 
-    }
 
-
-}
 
 
 
