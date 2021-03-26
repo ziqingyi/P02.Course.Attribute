@@ -49,11 +49,11 @@ namespace P37.Course.Web.Core.Extensions
                     //log in success, write in cookie and session
                     CurrentUser currentUser= new CurrentUser()
                     {
-                        Id = (int)type.GetProperty("Id")?.GetValue(t),
-                        Name=(string)type.GetProperty("Name")?.GetValue(t),
-                        Account = (string)type.GetProperty("Account")?.GetValue(t),
-                        Email = (string)type.GetProperty("Email")?.GetValue(t),
-                        Password = (string)type.GetProperty("Password")?.GetValue(t),
+                        Id = (int)(type.GetProperty("Id")?.GetValue(t)),
+                        Name=(string)(type.GetProperty("Name")?.GetValue(t)),
+                        Account = (string)(type.GetProperty("Account")?.GetValue(t)),
+                        Email = (string)(type.GetProperty("Email")?.GetValue(t)),
+                        Password = (string)(type.GetProperty("Password")?.GetValue(t)),
                         LastLoginTime  = DateTime.Now
                     };
 

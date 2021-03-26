@@ -13,6 +13,7 @@ using P37.Course.Web.Core.Attributes;
 using P37.Course.Web.Core.Extensions;
 using P37.Course.Web.Core.ImageHelper;
 using P37.Course.Web.Core.IOC;
+using P37.Course.Web.Core.Models;
 using Unity;
 
 namespace P37.Course.MVC5.Controllers
@@ -29,7 +30,9 @@ namespace P37.Course.MVC5.Controllers
         [HttpGet]//response to get
         public ViewResult Login()
         {
-            return View();
+            CurrentUser cur = new CurrentUser(){Name = "",Password = ""};
+
+            return View(cur);
         }
 
 

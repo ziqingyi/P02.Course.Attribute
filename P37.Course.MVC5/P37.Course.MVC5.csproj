@@ -385,6 +385,7 @@
     <Content Include="Views\Users\RegisterNew.cshtml" />
     <Content Include="Views\Fifth\Index.cshtml" />
     <Content Include="Views\Fifth\Login.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
