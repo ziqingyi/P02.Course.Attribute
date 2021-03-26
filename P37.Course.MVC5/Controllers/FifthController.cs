@@ -77,7 +77,7 @@ namespace P37.Course.MVC5.Controllers
         {
             using (IUserCompanyService service = DIFactory.GetContainer().Resolve<IUserCompanyService>())
             {
-                User user = service.Set<User>().FirstOrDefault(u => u.Name.Equals(name));
+                User user = service.Set<User>().FirstOrDefault(u => u.Name.Equals(name) || u.Account.Equals(name));
 
                 return user;
             }

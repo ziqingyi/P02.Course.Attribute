@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.Practices.Unity.Configuration;
 using P37.Course.Web.Core.Attributes;
+using P37.Course.Web.Core.DAL;
 using P37.Course.Web.Core.IOC;
 using P37.Course.Web.Core.Models;
 using P37.Course.Web.Core.Utility;
@@ -44,6 +45,75 @@ namespace P37.Course.Web.Core.Extensions
                 }
                 else
                 {
+                    Type type = typeof(T);
+                    //log in success, write in cookie and session
+                    CurrentUser currentUser= new CurrentUser()
+                    {
+                        Id = (int)type.GetProperty("Id")?.GetValue(t),
+                        Name=(string)type.GetProperty("Name")?.GetValue(t),
+                        Account = (string)type.GetProperty("Account")?.GetValue(t),
+                        Email = (string)type.GetProperty("Email")?.GetValue(t),
+                        Password = (string)type.GetProperty("Password")?.GetValue(t),
+                        LastLoginTime  = DateTime.Now
+                    };
+
+                    #region Request
+                   // context.Request
+                   //Header, InputStream has upload file
+
+                    #endregion
+
+                    #region Response
+
+                    //context.Response
+
+                    #endregion
+
+                    #region Server
+
+                    string encode = context.Server.HtmlEncode("<home html>");
+                    string decode = context.Server.HtmlDecode(encode);
+                    string physicalPath = context.Server.MapPath("/home/index");
+                    string encodeUrl = context.Server.UrlEncode("home url");
+                    string decodeUrl = context.Server.UrlDecode(encodeUrl);
+
+                    #endregion
+
+                    #region Application
+
+                    context.Application.Lock();
+                    context.Application.Lock();
+
+                    context.Application.Add("try","res-try");
+                    context.Application.UnLock();
+
+                    object aValue = context.Application.Get("try");
+                    aValue = context.Application["try"];
+                    context.Application.Remove("obj");
+                    context.Application.RemoveAt(0);
+                    context.Application.RemoveAll();
+                    context.Application.Clear();
+
+                    context.Items["123"] = "567";//single session
+                    #endregion
+
+                    #region Cookie
+                    HttpCookie myCookie = new HttpCookie("CurrentUser");
+                    myCookie.Value = JsonHelper.ObjectToString<CurrentUser>(currentUser);
+                    myCookie.Expires = DateTime.Now.AddMinutes(5);
+
+                    #endregion
+
+                    #region Session
+
+                    var sessionUser = context.Session["CurrentUser"];
+                    context.Session["CurrentUser"] = currentUser;
+                    context.Session.Timeout = 3;//3 minutes, session will be abandoned
+                    
+                    #endregion
+
+                    logger.Debug(string.Format("user id={0} Name={1} log in system", currentUser.Id,currentUser.Name));
+
                     return LoginResult.Success;
                 }
 
