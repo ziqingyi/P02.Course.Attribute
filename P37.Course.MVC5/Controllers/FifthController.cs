@@ -35,7 +35,7 @@ namespace P37.Course.MVC5.Controllers
             return View(cur);
         }
 
-
+        [CustomAllowAnonymous]
         public ActionResult Login(string name, string password, string captcha)
         {
             string formName = base.HttpContext.Request.Form["Name"];
