@@ -54,7 +54,8 @@ namespace P37.Course.Web.Core.Attributes
                 else
                 {
                     httpContext.Session["CurrentUrl"] = httpContext.Request.Url.AbsoluteUri;
-                    filterContext.Result = new RedirectResult(this._LoginUrl);//short-circuiter
+                    //short-circuiter, not RedirectResult(), that will execute attribute again. 
+                    filterContext.Result = new RedirectResult(this._LoginUrl);
                 }
             }
             else

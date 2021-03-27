@@ -18,10 +18,10 @@ using Unity;
 
 namespace P37.Course.MVC5.Controllers
 {
+    [CustomAuthorize]
     public class FifthController : Controller
     {
         #region Index and LogIn
-
         public ActionResult Index()
         {
             return View();
