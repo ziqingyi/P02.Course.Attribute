@@ -39,10 +39,12 @@ namespace P37.Course.Web.Core.Attributes
                 return;
             }
             else if (httpContext.Session["CurrentUser"] == null
-                     || !(httpContext.Session["CurrentUser"] is CurrentUser))
-            {
+                     || !(httpContext.Session["CurrentUser"] is CurrentUser))//session object is empty or not CurrentUser obj
+            { 
+                //if it is ajax request, need to return ajax format of data
                 if (httpContext.Request.IsAjaxRequest())
                 {
+                   
                     filterContext.Result = new NewtonJsonResult(
                         new AjaxResult() 
                         {
@@ -51,8 +53,10 @@ namespace P37.Course.Web.Core.Attributes
                             RetValue = ""
                         });
                 }
+                //if it is http request, redirect to login page
                 else
                 {
+                    //note down the current request URI 
                     httpContext.Session["CurrentUrl"] = httpContext.Request.Url.AbsoluteUri;
                     //short-circuiter, not RedirectResult(), that will execute attribute again. 
                     filterContext.Result = new RedirectResult(this._LoginUrl);

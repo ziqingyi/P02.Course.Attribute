@@ -45,6 +45,7 @@ namespace P37.Course.MVC5.Controllers
             LoginResult result = base.HttpContext.Login(name, password, captcha, GetUser,CheckPass, CheckStatusActive);
             if (result == LoginResult.Success)
             {
+                //CurrentUrl was assigned the last request URL in session by auth-attr. if not empty, need to direct.
                 if (base.HttpContext.Session["CurrentUrl"] != null)
                 {
                     string url = base.HttpContext.Session["CurrentUrl"].ToString();
@@ -112,7 +113,7 @@ namespace P37.Course.MVC5.Controllers
             bitmap.Save(stream, ImageFormat.Gif);
             return File(stream.ToArray(), "image/gif");//return FileContentResult picture
         }
-
+        [CustomAllowAnonymous]
         public void CreateCaptchaResponse()
         {
             string code = "";
