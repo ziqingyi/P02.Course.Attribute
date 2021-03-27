@@ -27,14 +27,17 @@ namespace P37.Course.MVC5.Controllers
             return View();
         }
 
+        //log in page allow anonymous
         [HttpGet]//response to get
+        [CustomAllowAnonymous]
         public ViewResult Login()
         {
             CurrentUser cur = new CurrentUser(){Name = "",Password = ""};
 
             return View(cur);
         }
-
+        //for submit for authentication
+        [HttpPost]
         [CustomAllowAnonymous]
         public ActionResult Login(string name, string password, string captcha)
         {
