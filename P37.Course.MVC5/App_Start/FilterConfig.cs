@@ -10,7 +10,7 @@ namespace P37.Course.MVC5
         {
             filters.Add(new HandleErrorAttribute());
             //attribute will take effect on all controllers
-            //filters.Add(new CustomAuthorizeAttribute());
+            //filters.Add(new CustomAuthorizeAttribute("~/Fifth/Login"));
         }
     }
 }

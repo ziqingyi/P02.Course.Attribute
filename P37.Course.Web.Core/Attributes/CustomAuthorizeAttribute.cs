@@ -19,6 +19,7 @@ namespace P37.Course.Web.Core.Attributes
 
         public CustomAuthorizeAttribute(string loginUrl ="~/Fifth/Login")
         {
+            //set default login when use. 
             this._LoginUrl = loginUrl;
         }
 
