@@ -181,6 +181,7 @@
     <Compile Include="Controllers\MVCController.cs" />
     <Compile Include="Controllers\PagingController.cs" />
     <Compile Include="Controllers\SecondController.cs" />
+    <Compile Include="Controllers\SixthController.cs" />
     <Compile Include="Controllers\ThirdController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="ForecastService.asmx.cs">
@@ -386,6 +387,7 @@
     <Content Include="Views\Fifth\Index.cshtml" />
     <Content Include="Views\Fifth\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Sixth\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
