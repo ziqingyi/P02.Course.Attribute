@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using P37.Course.Web.Core.Attributes;
 using P37.Course.Web.Core.CustomActionResult;
 using P37.Course.Web.Core.Models;
 using P37.Course.Web.Core.Utility;
 
-namespace P37.Course.Web.Core.Attributes
+namespace P37.Course.Web.Core.Filters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class CustomAuthorizeAttribute:AuthorizeAttribute

@@ -37,20 +37,52 @@ namespace P37.Course.MVC5.Controllers
         #endregion
 
 
+        #region Exception Condition
+
+
+
+        #endregion
+
+
+        #region Exception Methods
+
+        public ActionResult Exception()
+        {
+            int i = 0;
+            int k = 10 / i;
+            return View();
+        }
+
+        public ActionResult ExceptionCatch()
+        {
+            try
+            {
+                int i = 0;
+                int k = 10 / i;
+            }
+            catch (Exception e)
+            {
+                this.logger.Error(e.Message);
+            }
+
+            return View();
+
+        }
 
 
 
 
+        #endregion
 
 
 
-
-
-
-
+        #region Other
         public ActionResult Index()
         {
             return View();
         }
+        
+        #endregion
+
     }
 }

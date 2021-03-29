@@ -388,6 +388,8 @@
     <Content Include="Views\Fifth\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Sixth\Index.cshtml" />
+    <Content Include="Views\Sixth\Exception.cshtml" />
+    <Content Include="Views\Sixth\ExceptionCatch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

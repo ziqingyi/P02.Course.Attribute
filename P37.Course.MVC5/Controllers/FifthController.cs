@@ -11,6 +11,7 @@ using P33.Course.Model.Models;
 using P34.Course.Business.Interface;
 using P37.Course.Web.Core.Attributes;
 using P37.Course.Web.Core.Extensions;
+using P37.Course.Web.Core.Filters;
 using P37.Course.Web.Core.ImageHelper;
 using P37.Course.Web.Core.IOC;
 using P37.Course.Web.Core.Models;
