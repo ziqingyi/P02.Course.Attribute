@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using P34.Course.Business.Interface;
+using P37.Course.Web.Core.Filters;
 using P37.Course.Web.Core.Utility;
 using Unity;
 
@@ -46,6 +47,7 @@ namespace P37.Course.MVC5.Controllers
 
         #region Exception Methods
 
+        [CustomHandleError]
         public ActionResult Exception()
         {
             int i = 0;
