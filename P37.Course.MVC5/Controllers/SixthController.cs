@@ -47,7 +47,7 @@ namespace P37.Course.MVC5.Controllers
 
         #region Exception Methods
 
-        [CustomHandleError]
+        //[CustomHandleErrorAttribute]
         public ActionResult Exception()
         {
             int i = 0;
