@@ -113,7 +113,15 @@ namespace P37.Course.MVC5.Controllers
         {
             return View();
         }
-        
+
+        [CustomActionFilter]
+        public ActionResult ShowActionFilter()
+        {
+            return View();
+        }
+
+
+
         #endregion
 
     }

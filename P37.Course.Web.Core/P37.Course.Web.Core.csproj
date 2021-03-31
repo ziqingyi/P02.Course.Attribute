@@ -98,6 +98,7 @@
     <Compile Include="AOP\LogAfterBehavior.cs" />
     <Compile Include="AOP\LogBeforeBehavior.cs" />
     <Compile Include="Attributes\CustomAllowAnonymousAttribute.cs" />
+    <Compile Include="Filters\CustomActionFilterAttribute.cs" />
     <Compile Include="Filters\CustomAuthorizeAttribute.cs" />
     <Compile Include="Attributes\MappingClassAttribute.cs" />
     <Compile Include="Attributes\RemarkAttribute.cs" />

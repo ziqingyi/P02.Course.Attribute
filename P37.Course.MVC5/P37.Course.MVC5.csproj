@@ -395,6 +395,7 @@
     <Content Include="Views\SixthExceptionCtor\Index.cshtml" />
     <Content Include="Views\Sixth\ExceptionAuthorize.cshtml" />
     <Content Include="Views\Sixth\ExceptionView.cshtml" />
+    <Content Include="Views\Sixth\ShowActionFilter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
