@@ -39,14 +39,24 @@ namespace P37.Course.MVC5.Controllers
 
 
         #region Exception Condition
-
-
+        /* 1 error in action logic    ---T
+         * 2 error in action logic but already being caught ---F
+         * 3 error in Service
+         * 4 error in View
+         *
+         *
+         * 5 error in controller ctor
+         */
+       
 
         #endregion
 
 
+ 
+
         #region Exception Methods
 
+        //1 test error in action
         //[CustomHandleErrorAttribute]
         public ActionResult Exception()
         {
@@ -54,7 +64,7 @@ namespace P37.Course.MVC5.Controllers
             int k = 10 / i;
             return View();
         }
-
+        //2 
         public ActionResult ExceptionCatch()
         {
             try
@@ -70,8 +80,24 @@ namespace P37.Course.MVC5.Controllers
             return View();
 
         }
+        //3 test error in service 
+        public ActionResult ExceptionService()
+        {
+            this._iCompanyService.TestCompanyServiceError();
+            return View();
+        }
+        //4 error in view
+        public ActionResult ExceptionView()
+        {
+            return View();
+        }
 
-
+        //test error in authorize attribute
+        [CustomTestErrorAuthorizeAttribute]
+        public ActionResult ExceptionAuthorize()
+        {
+            return View();
+        }
 
 
         #endregion

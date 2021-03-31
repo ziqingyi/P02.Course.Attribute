@@ -182,6 +182,7 @@
     <Compile Include="Controllers\PagingController.cs" />
     <Compile Include="Controllers\SecondController.cs" />
     <Compile Include="Controllers\SixthController.cs" />
+    <Compile Include="Controllers\SixthExceptionCtorController.cs" />
     <Compile Include="Controllers\ThirdController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="ForecastService.asmx.cs">
@@ -390,6 +391,10 @@
     <Content Include="Views\Sixth\Index.cshtml" />
     <Content Include="Views\Sixth\Exception.cshtml" />
     <Content Include="Views\Sixth\ExceptionCatch.cshtml" />
+    <Content Include="Views\Sixth\ExceptionService.cshtml" />
+    <Content Include="Views\SixthExceptionCtor\Index.cshtml" />
+    <Content Include="Views\Sixth\ExceptionAuthorize.cshtml" />
+    <Content Include="Views\Sixth\ExceptionView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

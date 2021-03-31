@@ -8,5 +8,8 @@ namespace P34.Course.Business.Interface
 {
     public interface ICompanyService:IBaseService
     {
+        void TestCompanyServiceError();
+
+
     }
 }

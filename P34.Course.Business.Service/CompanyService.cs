@@ -17,7 +17,10 @@ namespace P34.Course.Business.Service
            
         }
 
-
+        public void TestCompanyServiceError()
+        {
+            throw new NotImplementedException();
+        }
 
 
     }
