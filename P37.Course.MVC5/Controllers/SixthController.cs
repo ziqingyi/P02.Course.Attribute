@@ -39,20 +39,24 @@ namespace P37.Course.MVC5.Controllers
 
 
         #region Exception Condition
-        /* 1 error in action logic    ---T
+        /*   ---ControllerActionInvoker Execute InvokeAction, try and catch these
+         * 1 error in action logic    ---T
          * 2 error in action logic but already being caught ---F
-         * 3 error in Service
-         * 4 error in View
+         * 3 error in Service   logic               T
+         * 4 error in View                     T
          *
          *
-         * 5 error in controller ctor
+         * 5 error in controller ctor  F   ---ControllerActionInvoker Execute InvokeAction after controller created.
+         * 6 error in controller name    F
+         * 7 error in wrong url address      F
+         * 8 Authorization Filter error.    T   Inside try-catch
          */
-       
+
 
         #endregion
 
 
- 
+
 
         #region Exception Methods
 

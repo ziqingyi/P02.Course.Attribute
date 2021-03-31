@@ -30,5 +30,21 @@ namespace P37.Course.MVC5
 
             this.logger.Info("website start.....");
         }
+
+        //handle errors in whole project. especially for errors not being handled by filter : handle error attributes.
+        //this will get original URL, attribute in controller can get processed url.
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+
+            this.logger.Error($"{base.Context.Request.Url.AbsoluteUri} has error now");
+
+            Response.Write("System is Error......");
+
+            Server.ClearError();
+        }
+
+
+
     }
 }
