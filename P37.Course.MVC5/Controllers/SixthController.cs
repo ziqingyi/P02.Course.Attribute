@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using P34.Course.Business.Interface;
 using P37.Course.Web.Core.Filters;
+using P37.Course.Web.Core.FiltersTest;
 using P37.Course.Web.Core.Utility;
 using Unity;
 
 namespace P37.Course.MVC5.Controllers
 {
+    [CustomControllerTestActionFilterAttribute]
     public class SixthController : Controller
     {
         #region Identity
@@ -115,6 +117,7 @@ namespace P37.Course.MVC5.Controllers
         }
 
         [CustomActionFilter]
+        [CustomActionTestActionFilter]
         public ActionResult ShowActionFilter()
         {
             return View();
