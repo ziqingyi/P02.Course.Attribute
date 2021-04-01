@@ -98,6 +98,9 @@
     <Compile Include="AOP\LogAfterBehavior.cs" />
     <Compile Include="AOP\LogBeforeBehavior.cs" />
     <Compile Include="Attributes\CustomAllowAnonymousAttribute.cs" />
+    <Compile Include="FiltersTest\CustomActionTestActionFilterAttribute.cs" />
+    <Compile Include="FiltersTest\CustomControllerTestActionFilterAttribute.cs" />
+    <Compile Include="FiltersTest\CustomGlobalTestActionFilter.cs" />
     <Compile Include="Filters\CustomActionFilterAttribute.cs" />
     <Compile Include="Filters\CustomAuthorizeAttribute.cs" />
     <Compile Include="Attributes\MappingClassAttribute.cs" />
@@ -130,6 +133,5 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
