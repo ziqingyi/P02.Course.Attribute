@@ -122,8 +122,10 @@ namespace P37.Course.MVC5.Controllers
         {
             return View();
         }
-
-
+        //OnActionExecuting() OnActionExecuted() // get action first
+        // OnResultExecuting() OnResultExecuted()//then execute result
+        // just like: var result = Action.Invoke();
+        //             result.ExecuteResult();
 
         #endregion
 
