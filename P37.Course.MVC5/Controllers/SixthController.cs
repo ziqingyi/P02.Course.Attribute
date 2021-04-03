@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using P34.Course.Business.Interface;
+﻿using P34.Course.Business.Interface;
 using P37.Course.Web.Core.Filters;
 using P37.Course.Web.Core.FiltersTest;
 using P37.Course.Web.Core.Utility;
+using System;
+using System.Web.Mvc;
 using Unity;
 
 namespace P37.Course.MVC5.Controllers
@@ -39,6 +36,13 @@ namespace P37.Course.MVC5.Controllers
 
         #endregion
 
+        #region Index
+        public ActionResult Index()
+        {
+            return View();
+        }
+        #endregion
+
 
         #region Exception Condition
         /*   ---ControllerActionInvoker Execute InvokeAction, try and catch these
@@ -56,9 +60,6 @@ namespace P37.Course.MVC5.Controllers
 
 
         #endregion
-
-
-
 
         #region Exception Methods
 
@@ -110,14 +111,11 @@ namespace P37.Course.MVC5.Controllers
 
 
 
-        #region Other
-        public ActionResult Index()
-        {
-            return View();
-        }
+
+
+        #region  tests in filters
 
         [CustomActionFilter]
-        
         public ActionResult ShowActionFilter()
         {
             return View();
@@ -136,7 +134,10 @@ namespace P37.Course.MVC5.Controllers
         /// Controller OnActionExecuted
         /// Global OnActionExecuted
 
-        [CustomActionTestActionFilter]
+            //for attributes in same methods, execute from top to bottom, if there is no order
+            //assign order: smaller, first: order by Order asc
+        [CustomActionTestActionFilter(Order = 2)]
+        [CustomActionFilter(Order=1)]
         public ActionResult ShowTestFilters()
         {
             return View();
