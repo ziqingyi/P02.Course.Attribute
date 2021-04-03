@@ -117,7 +117,7 @@ namespace P37.Course.MVC5.Controllers
         }
 
         [CustomActionFilter]
-        [CustomActionTestActionFilter]
+        
         public ActionResult ShowActionFilter()
         {
             return View();
@@ -126,6 +126,22 @@ namespace P37.Course.MVC5.Controllers
         // OnResultExecuting() OnResultExecuted()//then execute result
         // just like: var result = Action.Invoke();
         //             result.ExecuteResult();
+
+            //action and result methods are same 
+        /// Global OnActionExecuting
+        /// Controller OnActionExecuting
+        /// Action OnActionExecuting
+        ///        Action Execute.....
+        /// Action OnActionExecuted
+        /// Controller OnActionExecuted
+        /// Global OnActionExecuted
+
+        [CustomActionTestActionFilter]
+        public ActionResult ShowTestFilters()
+        {
+            return View();
+        }
+
 
         #endregion
 
