@@ -37,6 +37,7 @@ namespace P37.Course.MVC5.Controllers
         #endregion
 
         #region Index
+        [CompressActionFilter]
         public ActionResult Index()
         {
             return View();
