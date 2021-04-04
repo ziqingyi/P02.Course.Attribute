@@ -17,27 +17,27 @@ namespace P37.Course.MVC5
 
             routes.MapRoute(
                 name:"About",
-                url:"About",
-                defaults: new {controller ="Home", action="About", id = UrlParameter.Optional}
+                url: "About",
+                defaults: new {controller ="Home", action="About", id = UrlParameter.Optional }
                 );
 
 
             routes.MapRoute(
                 "product1",
-                "mvc/{action}/{id}",
-                new { controller = "MVC", action = "productlist", id = UrlParameter.Optional }
+                "mvc/{action}/{id}"
+                ,new { controller = "MVC", action = "productlist", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 "product2",
-                "mvc/{action}/{typeid}/{productid}",
-                new {controller = "MVC", action = "productlist", id = UrlParameter.Optional}
+                "mvc/{action}/{typeid}/{productid}"
+                ,new {controller = "MVC", action = "productlist", id = UrlParameter.Optional}
             );
 
             routes.MapRoute(
                 name: "paging",
-                url: "{controller}/{action}/{pageIndex}/{pageSize}",
-                defaults: new {controller="Paging", action= "PagingUsers", pageSize = UrlParameter.Optional, pageIndex=UrlParameter.Optional }
+                url: "Paging/{action}/{pageIndex}/{pageSize}"
+                , defaults: new {controller="Paging", action= "PagingUsers", pageSize = UrlParameter.Optional, pageIndex=UrlParameter.Optional }
             );
             
 
