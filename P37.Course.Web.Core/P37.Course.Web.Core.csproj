@@ -101,6 +101,7 @@
     <Compile Include="FiltersTest\CustomActionTestActionFilterAttribute.cs" />
     <Compile Include="FiltersTest\CustomControllerTestActionFilterAttribute.cs" />
     <Compile Include="FiltersTest\CustomGlobalTestActionFilter.cs" />
+    <Compile Include="Filters\CacheFilterAttribute.cs" />
     <Compile Include="Filters\CompressActionFilterAttribute.cs" />
     <Compile Include="Filters\CustomActionFilterAttribute.cs" />
     <Compile Include="Filters\CustomAuthorizeAttribute.cs" />
