@@ -397,6 +397,8 @@
     <Content Include="Views\Sixth\ExceptionView.cshtml" />
     <Content Include="Views\Sixth\ShowActionFilter.cshtml" />
     <Content Include="Views\Sixth\ShowTestFilters.cshtml" />
+    <Content Include="Views\Sixth\IndexCompressed.cshtml" />
+    <Content Include="Views\Sixth\IndexCache.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

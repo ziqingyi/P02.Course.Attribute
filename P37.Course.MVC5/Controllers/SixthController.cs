@@ -37,12 +37,25 @@ namespace P37.Course.MVC5.Controllers
         #endregion
 
         #region Index
-        [CompressActionFilter]
-        [CacheFilter]
+        
         public ActionResult Index()
         {
             return View();
         }
+
+        [CompressActionFilter]
+        public ActionResult IndexCompressed()
+        {
+            return View();
+        }
+
+        //
+        [CacheFilter]
+        public ActionResult IndexCache()
+        {
+            return View();
+        }
+
         #endregion
 
 
