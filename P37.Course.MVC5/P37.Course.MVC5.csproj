@@ -180,6 +180,7 @@
     <Compile Include="Controllers\HTMLController.cs" />
     <Compile Include="Controllers\MVCController.cs" />
     <Compile Include="Controllers\PagingController.cs" />
+    <Compile Include="Controllers\PipeController.cs" />
     <Compile Include="Controllers\SecondController.cs" />
     <Compile Include="Controllers\SixthController.cs" />
     <Compile Include="Controllers\SixthExceptionCtorController.cs" />
@@ -399,6 +400,7 @@
     <Content Include="Views\Sixth\ShowTestFilters.cshtml" />
     <Content Include="Views\Sixth\IndexCompressed.cshtml" />
     <Content Include="Views\Sixth\IndexCache.cshtml" />
+    <Content Include="Views\Pipe\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
