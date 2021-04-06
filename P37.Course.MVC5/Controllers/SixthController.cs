@@ -86,7 +86,7 @@ namespace P37.Course.MVC5.Controllers
             int k = 10 / i;
             return View();
         }
-        //2 
+        //2 test browser cache, open new page, not refreshing. notes in evernote.
         public ActionResult ExceptionCatch()
         {
             try
@@ -121,7 +121,6 @@ namespace P37.Course.MVC5.Controllers
             return View();
         }
 
-
         #endregion
 
 
@@ -135,8 +134,15 @@ namespace P37.Course.MVC5.Controllers
         {
             return View();
         }
-        //OnActionExecuting() OnActionExecuted() // get action first
-        // OnResultExecuting() OnResultExecuted()//then execute result
+        //                                                     OnException is global
+        //1 OnAuthorization()
+        //2 OnActionExecuting()
+        //3      Action
+        //4 OnActionExecuted() 
+        //5 OnResultExecuting()                              //result will be executed event it's void,string.
+        //6     ExecuteResult
+        //7 OnResultExecuted()
+        //
         // just like: var result = Action.Invoke();
         //             result.ExecuteResult();
 
