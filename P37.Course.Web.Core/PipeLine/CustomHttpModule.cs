@@ -16,7 +16,20 @@ namespace P37.Course.Web.Core.PipeLine
 
         void IHttpModule.Init(HttpApplication context)
         {
-            
+            context.BeginRequest += (s, e) =>
+            {
+                HttpContext.Current.Response.Write("CustomHttpModule.BeginRequest");
+            };
+
+            context.EndRequest += (s, e) =>
+            {
+                HttpContext.Current.Response.Write("CustomHttpModule.EndRequest");
+            };
+
+
+
         }
+
+
     }
 }

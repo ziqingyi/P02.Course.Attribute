@@ -17,7 +17,8 @@ namespace P37.Course.MVC5.Controllers
         }
 
         #region HttpModule
-
+        //C:\WINDOWS\Microsoft.NET\Framework64\v4.0.30319\Config\web.config
+        //.net framework address, a global config for all the website in the computer.
 
 
         #endregion
@@ -25,7 +26,7 @@ namespace P37.Course.MVC5.Controllers
 
         #region Http Handler
 
-        
+
 
         #endregion
 
