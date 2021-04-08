@@ -18,12 +18,12 @@ namespace P37.Course.Web.Core.PipeLine
         {
             context.BeginRequest += (s, e) =>
             {
-                HttpContext.Current.Response.Write("CustomHttpModule.BeginRequest");
+                HttpContext.Current.Response.Write("CustomHttpModule.BeginRequest" + "<br>");
             };
 
             context.EndRequest += (s, e) =>
             {
-                HttpContext.Current.Response.Write("CustomHttpModule.EndRequest");
+                HttpContext.Current.Response.Write("CustomHttpModule.EndRequest" + "<br>");
             };
 
 
