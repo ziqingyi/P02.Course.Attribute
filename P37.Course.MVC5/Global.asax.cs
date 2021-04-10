@@ -18,6 +18,8 @@ namespace P37.Course.MVC5
     public class MvcApplication : System.Web.HttpApplication
     {
         private Logger logger = new Logger(typeof(MvcApplication));
+
+        #region Applicaiton Start and Error
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -43,6 +45,44 @@ namespace P37.Course.MVC5
 
             Server.ClearError();
         }
+
+        #endregion
+
+
+        #region Session Start and Error
+
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            HttpContext.Current.Application.Lock();
+            object oValue = HttpContext.Current.Application.Get("TotalCount");
+            if (oValue == null)
+            {
+                HttpContext.Current.Application.Add("TotalCount",1);
+            }
+            else
+            {
+                HttpContext.Current.Application.Add("TotalCount",(int)oValue + 1);
+            }
+            HttpContext.Current.Application.UnLock();
+            this.logger.Debug("Session_Start() executed.....");
+        }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
+            this.logger.Debug("Session_End executed.....");
+        }
+
+        #endregion
+
+
+        //this method will be executed when CustomEventHandler is executed. 
+        protected void CustomHttpApplicationModule_CustomEventHandler(object sender, EventArgs e)
+        {
+            //Module name in web config(not the class's name) and event name
+            this.logger.Info("this is CustomHttpApplicationModule_CustomEventHandler");
+        }
+
+
 
 
 

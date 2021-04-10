@@ -4,11 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using P37.Course.Web.Core.Utility;
+
 
 namespace P37.Course.Web.Core.PipeLine
 {
+    /*
+     * 1 HttpModule is used to register event for HttpApplication(config in Web.config file)
+     *
+     * 2 ()_() methods in Global file is used for register events, when Module's EventHandler is executed.
+     *    if the EventHandler is not executed, the ()_() method in global will not executed.  
+     *
+     * 3 framework will read web config file, use reflection to check the module and event handler and execute methods in Global.
+     *
+     *
+     */
+
     public class CustomHttpApplicationModule : IHttpModule
     {
+        private Logger logger = new Logger(typeof(CustomHttpApplicationModule));
         public void Dispose()
         {
             //throw new NotImplementedException();
@@ -18,12 +32,22 @@ namespace P37.Course.Web.Core.PipeLine
 
         public void Init(HttpApplication application)
         {
-            application.BeginRequest += (s, e) =>
+
+            this.CustomEventHandler += (s, e) =>
             {
-                if (this.CustomEventHandler != null)
-                    this.CustomEventHandler.Invoke(application, e);
+                this.logger.Info("CustomEventHandler event executed.... ");
             };
 
+
+            application.BeginRequest += (s, e) =>
+            {
+                //if (this.CustomEventHandler != null)
+                //    this.CustomEventHandler.Invoke(application, e);
+                this.CustomEventHandler?.Invoke(application,e);
+            };
+
+
+            #region Register actions for all events
 
             application.AcquireRequestState += (s, e) => application.Response.Write(string.Format("<h1 style='color:#00f'>Processed by MyCustomModule，{0} request handled by {1}</h1><hr>", DateTime.Now.ToString(), "AcquireRequestState        "));
             application.AuthenticateRequest += (s, e) => application.Response.Write(string.Format("<h1 style='color:#00f'>Processed by MyCustomModule，{0} request handled by {1}</h1><hr>", DateTime.Now.ToString(), "AuthenticateRequest        "));
@@ -51,6 +75,7 @@ namespace P37.Course.Web.Core.PipeLine
             application.ResolveRequestCache += (s, e) => application.Response.Write(string.Format("<h1 style='color:#00f'>Processed by MyCustomModule，{0} request handled by {1}</h1><hr>", DateTime.Now.ToString(), "ResolveRequestCache        "));
             application.UpdateRequestCache += (s, e) => application.Response.Write(string.Format("<h1 style='color:#00f'>Processed by MyCustomModule，{0} request handled by {1}</h1><hr>", DateTime.Now.ToString(), "UpdateRequestCache         "));
 
+            #endregion
         }
 
         private void Application_BeginRequest(object sender, EventArgs e)
