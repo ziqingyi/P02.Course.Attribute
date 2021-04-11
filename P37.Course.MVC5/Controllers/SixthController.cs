@@ -135,18 +135,26 @@ namespace P37.Course.MVC5.Controllers
             return View();
         }
         //                                                     OnException is global
-        //1 OnAuthorization()
-        //2 OnActionExecuting()
+        //1 IAuthorizationFilter  -> OnAuthorization()     
+        //2 IActionFilter         -> OnActionExecuting()
         //3      Action
-        //4 OnActionExecuted() 
-        //5 OnResultExecuting()                              //result will be executed event it's void,string.
-        //6     ExecuteResult
-        //7 OnResultExecuted()
+        //4 IActionFilter         -> OnActionExecuted() 
+
+        //5 IResultFilter         -> OnResultExecuting()  //result will be executed event it's void,string.
+        //6 View
+        //7 IResultFilter         -> OnResultExecuted()
+
+        //8    *IExceptionFilter    ->OnException  //happens when error
         //
         // just like: var result = Action.Invoke();
         //             result.ExecuteResult();
 
-            //action and result methods are same 
+
+        //for authorize
+        //Controller   ->  IAuthorizationFilter  ->  OnAuthorization
+        //    Action   ->  IAuthorizationFilter  ->  OnAuthorization
+
+        //action and result methods are same 
         /// Global OnActionExecuting
         /// Controller OnActionExecuting
         /// Action OnActionExecuting
@@ -155,8 +163,16 @@ namespace P37.Course.MVC5.Controllers
         /// Controller OnActionExecuted
         /// Global OnActionExecuted
 
-            //for attributes in same methods, execute from top to bottom, if there is no order
-            //assign order: smaller, first: order by Order asc
+        //for result methods 
+        //Controller->IResultFilter          ->OnResultExecuting
+        //    Action     ->IResultFilter          ->OnActionExecuting
+        //    Action     ->IResultFilter          ->OnActionExecuted
+        //Controller->IResultFilter          ->OnActionExecuted
+
+
+
+        //for attributes in same methods, execute from top to bottom, if there is no order
+        //assign order: smaller, first: order by Order asc
         [CustomActionTestActionFilter(Order = 2)]
         [CustomActionFilter(Order=1)]
         public ActionResult ShowTestFilters()
