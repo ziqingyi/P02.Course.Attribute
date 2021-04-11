@@ -117,6 +117,7 @@
     <Compile Include="Extensions\UserManager.cs" />
     <Compile Include="Filters\CustomHandleErrorAttribute.cs" />
     <Compile Include="Filters\CustomTestErrorAuthorizeAttribute.cs" />
+    <Compile Include="Filters\LogExceptionFilterAttribute.cs" />
     <Compile Include="Filters\UsersFilterAttribute.cs" />
     <Compile Include="ImageHelper\CaptchaHelper.cs" />
     <Compile Include="IOC\DIFactory.cs" />
