@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Win32;
+using P37.Course.Web.Core.Models;
 
 namespace P37.Course.MVC5.Controllers
 {
@@ -20,6 +23,30 @@ namespace P37.Course.MVC5.Controllers
         //Module in two areas: 1 windows   2 project web.config file 
         //C:\WINDOWS\Microsoft.NET\Framework64\v4.0.30319\Config\web.config
         //.net framework address, a global config for all the website in the computer.
+
+        public ActionResult Module()
+        {
+            HttpApplication app = base.HttpContext.ApplicationInstance;
+            List<SysEvent> sysEventsList = new List<SysEvent>();
+            int i = 1;
+            foreach (EventInfo e in app.GetType().GetEvents())
+            {
+                sysEventsList.Add(new SysEvent(){
+                    Id= i++,
+                    Name =e.Name,
+                    TypeName = e.GetType().Name
+                });
+            }
+            List<string> list = new List<string>();
+            foreach (string item in app.Modules.Keys)
+            {
+                list.Add($"{item} : {app.Modules.Get(item)}");
+            }
+
+            ViewBag.Modules = string.Join(",", list);
+
+            return View(sysEventsList);
+        }
 
 
         #endregion

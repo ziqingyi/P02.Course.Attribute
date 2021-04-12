@@ -127,6 +127,7 @@
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\PageResult.cs" />
     <Compile Include="Models\RegUser.cs" />
+    <Compile Include="Models\SysEvent.cs" />
     <Compile Include="Models\Weather.cs" />
     <Compile Include="PipeLine\CustomHttpApplicationModule.cs" />
     <Compile Include="PipeLine\CustomHttpModule.cs" />
