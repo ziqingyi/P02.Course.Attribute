@@ -75,7 +75,7 @@ namespace P37.Course.MVC5
         #endregion
 
 
-        //this method will be executed when CustomEventHandler is executed. 
+        //this method will be executed after CustomEventHandler is executed. 
         protected void CustomHttpApplicationModule_CustomEventHandler(object sender, EventArgs e)
         {
             //Module name in web config(not the class's name) and event name
