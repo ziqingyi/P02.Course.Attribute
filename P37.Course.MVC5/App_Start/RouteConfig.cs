@@ -14,7 +14,7 @@ namespace P37.Course.MVC5
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("{*x}", new { x = @".*\.asmx(/.*)?" });
-
+            routes.IgnoreRoute("CustomService/{*pathInfo}");
             routes.MapRoute(
                 name:"About",
                 url: "About",
