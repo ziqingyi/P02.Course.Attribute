@@ -402,6 +402,7 @@
     <Content Include="Views\Sixth\IndexCache.cshtml" />
     <Content Include="Views\Pipe\Index.cshtml" />
     <Content Include="Views\Pipe\Module.cshtml" />
+    <Content Include="Views\Pipe\Handler.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

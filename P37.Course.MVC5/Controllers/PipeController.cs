@@ -54,7 +54,10 @@ namespace P37.Course.MVC5.Controllers
 
         #region Http Handler
 
-
+        public ActionResult Handler()
+        {
+            return View();
+        }
 
         #endregion
 
