@@ -56,6 +56,7 @@ namespace P37.Course.MVC5.Controllers
 
         public ActionResult Handler()
         {
+            base.ViewBag.HttpHandler = base.HttpContext.CurrentHandler.GetType().FullName;
             return View();
         }
 
