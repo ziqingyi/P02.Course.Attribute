@@ -274,6 +274,7 @@
     <Content Include="img\l3.png" />
     <Content Include="img\l4.png" />
     <Content Include="img\l5.png" />
+    <Content Include="img\noImage.jpg" />
     <Content Include="img\w1.png" />
     <Content Include="img\w2.png" />
     <Content Include="img\w3.png" />
