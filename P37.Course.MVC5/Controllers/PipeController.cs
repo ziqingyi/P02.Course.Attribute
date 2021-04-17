@@ -60,6 +60,11 @@ namespace P37.Course.MVC5.Controllers
             return View();
         }
 
+        public ActionResult Refuse()
+        {
+            return View();
+        }
+
         #endregion
 
     }
