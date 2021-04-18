@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using P37.Course.Web.Core.RouteExtend;
 
 namespace P37.Course.MVC5
 {
@@ -15,6 +16,11 @@ namespace P37.Course.MVC5
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("{*x}", new { x = @".*\.asmx(/.*)?" });
             routes.IgnoreRoute("CustomerService/{*pathInfo}");
+
+
+            routes.Add("chrome", new CustomRoute());
+
+
             routes.MapRoute(
                 name:"About",
                 url: "About",

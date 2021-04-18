@@ -13,7 +13,7 @@ namespace P37.Course.Web.Core.RouteExtend
     {
         public override RouteData GetRouteData(HttpContextBase httpContext)
         {
-            if (httpContext.Request.UserAgent.Contains("Chrome/74.0.3729.169"))
+            if (httpContext.Request.UserAgent.Contains("Chrome"))
             {
                 return null;//continue following logic
             }
