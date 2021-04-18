@@ -134,6 +134,8 @@
     <Compile Include="PipeLine\CustomRTMPHandler.cs" />
     <Compile Include="PipeLine\ImageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouteExtend\CustomHttpHandler.cs" />
+    <Compile Include="RouteExtend\CustomMvcRouteHandler.cs" />
     <Compile Include="RouteExtend\CustomRoute.cs" />
     <Compile Include="StaticConstraint.cs" />
     <Compile Include="Utility\Logger.cs" />

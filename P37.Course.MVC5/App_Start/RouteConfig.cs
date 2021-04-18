@@ -20,6 +20,8 @@ namespace P37.Course.MVC5
 
             routes.Add("chrome", new CustomRoute());
 
+            routes.Add("config", new Route("Config/{path}", new CustomMvcRouteHandler()));
+
 
             routes.MapRoute(
                 name:"About",

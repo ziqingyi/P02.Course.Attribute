@@ -27,7 +27,12 @@ namespace P37.Course.Web.Core.RouteExtend
 
         }
 
-
+        /// <summary>
+        /// assign virtual path
+        /// </summary>
+        /// <param name="requestContext"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
         public override VirtualPathData GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)
         {
             return null;
