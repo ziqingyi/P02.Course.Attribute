@@ -443,6 +443,19 @@ namespace P37.Course.MVC5.Controllers
 
         }
 
+        //use resharper to see the internal or private fields, otherwise these fields cannot see from other proj.
+        //internal types or members are accessible only within files in the same assembly. 
+        //private members are accessible only within the body of the class/struct in which they are delcared. 
+
+        //ResultFilter will still take effect if no ActionResult returned.
+        //(void will return EmptyResult, which implemented ActionResult)
+        //other return types which cannot convert to ActionResult, will use Convert class to convert it to string and put in ContentResult object. 
+        public EmptyResult Empty()
+        {
+            return new EmptyResult();
+        }
+
+
 
 
         #endregion
