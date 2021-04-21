@@ -405,6 +405,7 @@
     <Content Include="Views\Pipe\Module.cshtml" />
     <Content Include="Views\Pipe\Handler.cshtml" />
     <Content Include="Views\Pipe\Refuse.cshtml" />
+    <Content Include="Views\Pipe\ViewShow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

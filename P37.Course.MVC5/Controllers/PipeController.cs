@@ -70,11 +70,20 @@ namespace P37.Course.MVC5.Controllers
 
         #region Test return result in FourthController
 
-        
-
         #endregion
 
+        #region test view()
+        public ViewResult ViewShow()
+        {
+            Type type = System.Web.Compilation.BuildManager.GetCompiledType("~/Views/Pipe/ViewShow.cshtml");
 
+
+
+            return View();
+
+        }
+
+        #endregion
 
     }
 

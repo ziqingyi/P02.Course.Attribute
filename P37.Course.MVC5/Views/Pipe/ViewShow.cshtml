@@ -1,0 +1,20 @@
+﻿@using P37.Course.Web.Core
+
+@{
+    ViewBag.Title = "ViewShow";
+}
+
+<h2> ViewShow </h2>
+
+
+<div>current View Type: @this.GetType().AssemblyQualifiedName  </div>
+
+
+<div>    @{base.Response.Write("Write in Response"); }            </div>
+
+<div>   BuildManager: @ViewBag.ViewClass   </div>
+
+<div> the assembly loaded for current view: </div>
+
+@Html.ListViewAssemblies()
+
