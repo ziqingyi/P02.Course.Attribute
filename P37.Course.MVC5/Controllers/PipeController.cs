@@ -76,7 +76,7 @@ namespace P37.Course.MVC5.Controllers
         public ViewResult ViewShow()
         {
             Type type = System.Web.Compilation.BuildManager.GetCompiledType("~/Views/Pipe/ViewShow.cshtml");
-
+            ViewBag.ViewClass = type.FullName;
 
 
             return View();

@@ -139,6 +139,7 @@
     <Compile Include="RouteExtend\CustomRoute.cs" />
     <Compile Include="StaticConstraint.cs" />
     <Compile Include="Utility\Logger.cs" />
+    <Compile Include="ViewExtend\CustomViewEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

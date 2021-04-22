@@ -10,6 +10,7 @@ using P37.Course.MVC5.App_Start;
 
 using P37.Course.MVC5.Utility;
 using P37.Course.Web.Core.Utility;
+using P37.Course.Web.Core.ViewExtend;
 
 //using WebGrease.Configuration;
 
@@ -29,6 +30,17 @@ namespace P37.Course.MVC5
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             ControllerBuilder.Current.SetControllerFactory(new MyCustomControllerFactory());
+
+
+
+            #region get View Engines and replace with new 
+
+            string engineDescription = string.Join(",", ViewEngines.Engines.ToList().Select(v => v.ToString()));
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new CustomViewEngine());
+            
+            #endregion
+
 
             this.logger.Info("website start.....");
         }
