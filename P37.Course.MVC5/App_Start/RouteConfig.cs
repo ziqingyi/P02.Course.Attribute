@@ -18,7 +18,14 @@ namespace P37.Course.MVC5
             routes.IgnoreRoute("CustomerService/{*pathInfo}");
 
 
-            routes.Add("chrome", new CustomRoute());
+            #region this will block all non-chrome access, so comment out 
+
+            //routes.Add("chrome", new CustomRoute());
+
+            #endregion 
+            
+
+
 
             routes.Add("config", new Route("Config/{path}", new CustomMvcRouteHandler()));
 

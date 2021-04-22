@@ -24,27 +24,60 @@ namespace P37.Course.Web.Core.ViewExtend
         #endregion
 
 
+        #region Find Views
+
+        public override ViewEngineResult FindView(ControllerContext controllerContext, string viewName,
+            string masterName, bool useCache)
+        {
+            if (!controllerContext.HttpContext.Request.UserAgent.Contains("Chrome"))
+            {
+                this.SetEngine("NonChrome");
+            }
+            else
+            {
+                this.SetEngine("");//must set, because there is only one instance.
+            }
+
+            return base.FindView(controllerContext, viewName, masterName, useCache);
+        }
+
+
+        public override ViewEngineResult FindPartialView(ControllerContext controllerContext, string partialViewName,
+            bool useCache)
+        {
+            if (!controllerContext.HttpContext.Request.UserAgent.Contains("Chrome"))
+            {
+                this.SetEngine("NonChrome");
+            }
+            else
+            {
+                this.SetEngine(""); //must set, because there is only one instance.
+            }
+            return base.FindPartialView(controllerContext, partialViewName, useCache);
+        }
+
+
+        #endregion
+
+
+
+
+        #region Create View
+
         protected override IView CreatePartialView(ControllerContext controllerContext, string partialPath)
         {
-            if (controllerContext.HttpContext.Request.UserAgent.Contains("Chrome"))
-            {
-                this.SetEngine("Chrome");
-            }
 
             return base.CreatePartialView(controllerContext, partialPath);
         }
 
         protected override IView CreateView(ControllerContext controllerContext, string viewPath, string masterPath)
         {
-            if (controllerContext.HttpContext.Request.UserAgent.Contains("Chrome"))
-            {
-                this.SetEngine("Chrome");
-            }
+
 
             return base.CreateView(controllerContext, viewPath, masterPath);
         }
 
-
+        #endregion
 
 
         private void SetEngine(string browser)

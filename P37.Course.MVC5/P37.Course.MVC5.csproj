@@ -284,17 +284,17 @@
     <Content Include="CfgFiles\Unity.Config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ChromeView\Pipe\Handler.cshtml" />
-    <Content Include="ChromeView\Pipe\Index.cshtml" />
-    <Content Include="ChromeView\Pipe\Module.cshtml" />
-    <Content Include="ChromeView\Pipe\Refuse.cshtml" />
-    <Content Include="ChromeView\Pipe\ViewShow.cshtml" />
-    <Content Include="ChromeView\_ViewStart.cshtml" />
-    <Content Include="ChromeView\Shared\_advertisement.cshtml" />
-    <Content Include="ChromeView\Shared\_Layout.cshtml" />
-    <Content Include="ChromeView\Shared\_LoginPartial.cshtml" />
-    <Content Include="ChromeView\Shared\Error.cshtml" />
-    <Content Include="ChromeView\Web.config">
+    <Content Include="NonChromeViews\Pipe\Handler.cshtml" />
+    <Content Include="NonChromeViews\Pipe\Index.cshtml" />
+    <Content Include="NonChromeViews\Pipe\Module.cshtml" />
+    <Content Include="NonChromeViews\Pipe\Refuse.cshtml" />
+    <Content Include="NonChromeViews\Pipe\ViewShow.cshtml" />
+    <Content Include="NonChromeViews\_ViewStart.cshtml" />
+    <Content Include="NonChromeViews\Shared\_advertisement.cshtml" />
+    <Content Include="NonChromeViews\Shared\_Layout.cshtml" />
+    <Content Include="NonChromeViews\Shared\_LoginPartial.cshtml" />
+    <Content Include="NonChromeViews\Shared\Error.cshtml" />
+    <Content Include="NonChromeViews\Web.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
