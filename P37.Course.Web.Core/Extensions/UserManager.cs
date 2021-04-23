@@ -93,13 +93,22 @@ namespace P37.Course.Web.Core.Extensions
                     context.Application.RemoveAt(0);
                     context.Application.RemoveAll();
                     context.Application.Clear();
+                    
+                    #endregion
+
+                    #region  context item
 
                     context.Items["123"] = "567";//single session
+
                     #endregion
+
+                    
+                    
 
                     #region Cookie
                     HttpCookie myCookie = new HttpCookie("CurrentUser");
                     myCookie.Value = JsonHelper.ObjectToString<CurrentUser>(currentUser);
+                    //with expiry date, cookie saved in hard disk rather than save in memory
                     myCookie.Expires = DateTime.Now.AddMinutes(5);
 
                     #endregion
@@ -108,7 +117,7 @@ namespace P37.Course.Web.Core.Extensions
 
                     var sessionUser = context.Session["CurrentUser"];
                     context.Session["CurrentUser"] = currentUser;
-                    context.Session.Timeout = 3;//3 minutes, session will be abandoned
+                    context.Session.Timeout = 3;//3 minutes, session will be abandoned if "gap time" exceed 3 minutes
                     
                     #endregion
 
@@ -154,7 +163,7 @@ namespace P37.Course.Web.Core.Extensions
 
             context.Session.Clear();//session is kept  but all the keys are removed.
             context.Session.RemoveAll();
-            context.Session.Abandon();//delete session object, next time will create a new Session. 
+            context.Session.Abandon();//delete session object, next time will create a new Session.next time, new user
 
             #endregion
         }
