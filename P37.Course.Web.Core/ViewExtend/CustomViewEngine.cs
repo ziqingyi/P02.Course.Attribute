@@ -66,12 +66,24 @@ namespace P37.Course.Web.Core.ViewExtend
 
         protected override IView CreatePartialView(ControllerContext controllerContext, string partialPath)
         {
+            if (!controllerContext.HttpContext.Request.UserAgent.Contains("Chrome"))
+            {
+                //can change view path as well 
+                string newPartialPath = partialPath.Replace("/Views/", "/ChromeViews/");
+
+            }
 
             return base.CreatePartialView(controllerContext, partialPath);
         }
 
         protected override IView CreateView(ControllerContext controllerContext, string viewPath, string masterPath)
         {
+            if (!controllerContext.HttpContext.Request.UserAgent.Contains("Chrome"))
+            {
+                //can change view path as well 
+                string newMasterPath = masterPath.Replace("/Views/", "/ChromeViews/");
+                string newViewPath = viewPath.Replace("/Views/", "/ChromeViews/");
+            }
 
 
             return base.CreateView(controllerContext, viewPath, masterPath);
