@@ -15,8 +15,8 @@ namespace P37.Course.MVC5
             //filters.Add(new HandleErrorAttribute());
             filters.Add(new CustomHandleErrorAttribute());
 
-            //test global action filters
-            filters.Add(new CustomGlobalTestActionFilter());
+            //test global action filters//write in response will affect pictures  
+            //filters.Add(new CustomGlobalTestActionFilter());
 
             //attribute will take effect on all controllers
             //filters.Add(new CustomAuthorizeAttribute("~/Fifth/Login"));
