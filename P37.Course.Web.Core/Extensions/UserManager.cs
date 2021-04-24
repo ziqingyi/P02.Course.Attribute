@@ -109,7 +109,7 @@ namespace P37.Course.Web.Core.Extensions
                     HttpCookie myCookie = new HttpCookie("CurrentUser");
                     myCookie.Value = JsonHelper.ObjectToString<CurrentUser>(currentUser);
                     //with expiry date, cookie saved in hard disk rather than save in memory
-                    myCookie.Expires = DateTime.Now.AddMinutes(5);
+                    //myCookie.Expires = DateTime.Now.AddMinutes(5);
 
                     #endregion
 
