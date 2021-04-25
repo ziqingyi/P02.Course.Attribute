@@ -102,8 +102,16 @@ namespace P37.Course.Web.Core.Extensions
 
                     #endregion
 
-                    
-                    
+                    /*
+                     * Cookies store it directly on the client.
+                     *
+                     * Sessions use a cookie as a key of sorts, to associate with the data that is stored on the server side.
+                     *
+                     * It is preferred to use sessions because the actual values are hidden from the client, and you control when the data expires and becomes invalid.
+                     *
+                     * If it was all based on cookies, a user (or hacker) could manipulate their cookie data and then play requests to your site.
+                     */
+
 
                     #region Cookie
                     HttpCookie myCookie = new HttpCookie("CurrentUser");
@@ -120,6 +128,8 @@ namespace P37.Course.Web.Core.Extensions
                     context.Session.Timeout = 3;//3 minutes, session will be abandoned if "gap time" exceed 3 minutes
                     
                     #endregion
+
+
 
                     logger.Debug(string.Format("user id={0} Name={1} log in system", currentUser.Id,currentUser.Name));
 
