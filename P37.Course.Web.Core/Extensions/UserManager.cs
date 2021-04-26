@@ -145,6 +145,7 @@ namespace P37.Course.Web.Core.Extensions
 
         }
 
+
         public static void UserLogout(this HttpContextBase context)
         {
             #region Cookie
@@ -178,7 +179,47 @@ namespace P37.Course.Web.Core.Extensions
             #endregion
         }
 
+        public static LoginResult ApiLogin<T>(string name, string password, 
+            Func<string, T> funcToGetT,
+            Func<T, string, bool> checkPassFunc,
+            Func<T, bool> checkStatusFunc)
+        {
+            T t = funcToGetT.Invoke(name);
+            if (t == null)
+            {
+                return LoginResult.NoUser;
+            }
+            else if (!checkPassFunc(t, password))
+            {
+                return LoginResult.WrongPwd;
+            }
+            else if (!checkStatusFunc(t))
+            {
+                return LoginResult.Frozen;
+            }
+            else
+            {
+                Type type = typeof(T);
+                //log in success, write in cookie and session
+                CurrentUser currentUser = new CurrentUser()
+                {
+                    Id = (int)(type.GetProperty("Id")?.GetValue(t)),
+                    Name = (string)(type.GetProperty("Name")?.GetValue(t)),
+                    Account = (string)(type.GetProperty("Account")?.GetValue(t)),
+                    Email = (string)(type.GetProperty("Email")?.GetValue(t)),
+                    Password = (string)(type.GetProperty("Password")?.GetValue(t)),
+                    LastLoginTime = DateTime.Now
+                };
 
+                logger.Debug(string.Format("user id={0} Name={1} log in system", currentUser.Id, currentUser.Name));
+
+                return LoginResult.Success;
+
+            }
+
+
+
+        }
 
 
 
