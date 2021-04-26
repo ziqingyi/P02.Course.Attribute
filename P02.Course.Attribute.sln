@@ -197,6 +197,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P37.Course.Web.DAL.EF.DBFir
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P37.Course.Web.BLL", "P37.Course.Web.BLL\P37.Course.Web.BLL.csproj", "{F53B543C-E00F-4AAF-84FD-E129F11A08B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P38.Course.LayUI.WebApi", "P38.Course.LayUI.WebApi\P38.Course.LayUI.WebApi.csproj", "{05139365-D231-47DD-BD36-032C58125C33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -579,6 +581,10 @@ Global
 		{F53B543C-E00F-4AAF-84FD-E129F11A08B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F53B543C-E00F-4AAF-84FD-E129F11A08B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F53B543C-E00F-4AAF-84FD-E129F11A08B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05139365-D231-47DD-BD36-032C58125C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05139365-D231-47DD-BD36-032C58125C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05139365-D231-47DD-BD36-032C58125C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05139365-D231-47DD-BD36-032C58125C33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
