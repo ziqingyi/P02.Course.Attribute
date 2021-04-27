@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace P38.Course.LayUI.WebApi
 {
@@ -10,6 +11,13 @@ namespace P38.Course.LayUI.WebApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+
+
+
+            //only one cors header can be added, otherwise error.
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+
+
 
             // Web API routes
             config.MapHttpAttributeRoutes();

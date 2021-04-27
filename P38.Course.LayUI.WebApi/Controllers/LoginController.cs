@@ -42,7 +42,15 @@ namespace P38.Course.LayUI.WebApi.Controllers
                     Message = "Log in successful",
                     Ticket = ticket
                 };
-                return Newtonsoft.Json.JsonConvert.SerializeObject(resultS);
+                string JsondataS = Newtonsoft.Json.JsonConvert.SerializeObject(resultS);
+
+                JsonResult j = new JsonResult()
+                {
+                    Data = JsondataS,
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+
+                return JsondataS;
 
             }
             else
@@ -54,7 +62,15 @@ namespace P38.Course.LayUI.WebApi.Controllers
                     Ticket = string.Empty
                 };
 
-                return Newtonsoft.Json.JsonConvert.SerializeObject(resultF);
+                string JsondataF = Newtonsoft.Json.JsonConvert.SerializeObject(resultF);
+
+                JsonResult j = new JsonResult()
+                {
+                    Data = JsondataF,
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+
+                return JsondataF;
             }
 
 
