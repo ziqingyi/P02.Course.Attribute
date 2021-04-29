@@ -124,6 +124,7 @@
     <Compile Include="Models\AjaxResult.cs" />
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\CurrentUser.cs" />
+    <Compile Include="Models\MenuInfo.cs" />
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\PageResult.cs" />
     <Compile Include="Models\RegUser.cs" />
