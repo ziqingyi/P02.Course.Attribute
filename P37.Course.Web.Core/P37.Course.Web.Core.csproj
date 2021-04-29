@@ -121,6 +121,7 @@
     <Compile Include="Filters\UsersFilterAttribute.cs" />
     <Compile Include="ImageHelper\CaptchaHelper.cs" />
     <Compile Include="IOC\DIFactory.cs" />
+    <Compile Include="Models\AjaxApiModel.cs" />
     <Compile Include="Models\AjaxResult.cs" />
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\CurrentUser.cs" />
