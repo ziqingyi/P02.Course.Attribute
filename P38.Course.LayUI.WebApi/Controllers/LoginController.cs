@@ -16,7 +16,8 @@ using Unity;
 namespace P38.Course.LayUI.WebApi.Controllers
 {
     //need to reference all dll the Unity need to use
-
+    //localStorage: Key-Value pair stored in browser, no expiry time and cleaned manually.
+    //SessionStorage: cleaned after browser close;( Session will not be removed when browser closed if not expired)
     public class LoginController : ApiController
     {
         [System.Web.Http.HttpGet]
