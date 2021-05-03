@@ -14,7 +14,7 @@ namespace P38.Course.LayUI.WebApi.Controllers
     {
         [CustomAllowAnonymous]
         [HttpGet]
-        [Route("api/UserManager/GetAjaxUserPageList")]
+        [Route("api/Users/GetAjaxUserPageList")]
         public string GetAjaxUserPageList(int page, int limit, string keyWord, string starDate)
         {
 
