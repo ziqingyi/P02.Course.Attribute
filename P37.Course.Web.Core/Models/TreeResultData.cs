@@ -4,19 +4,31 @@ using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace P37.Course.Web.Core.Models
 {
+    //LayUI require property name using lower case letter 
+    //C# property start with capital letter, so use JsonProperty for converting to Json.
     public class TreeResultData
     {
-        public Guid id { get; set; }
-        public string title { get; set; }
-        public string href { get; set; }
+        [JsonProperty("id")]
+        public Guid Id { get; set; }
+        [JsonProperty("title")]
+        public string Title { get; set; }
+        [JsonProperty("href")]
+        public string Href { get; set; }
   
-        //public bool isChecked { get; set; }
-        public bool disabled { get; set; }
+        [JsonProperty("checked")]
+        public bool Checked { get; set; }
+        [JsonProperty("disabled")]
+        public bool Disabled { get; set; }   //whether able to select or tick
 
-        public List<TreeResultData> children { get; set; }
+        [JsonProperty("spread")]
+        public bool Spread { get; set; } // Spread the tree by default? 
+
+        [JsonProperty("children")]
+        public List<TreeResultData> Children { get; set; }
 
 
     }
