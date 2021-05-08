@@ -6,7 +6,20 @@ namespace P39.Course.dotnetCore.TestProject
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("**************Text C# 6************************"); ;
+            CSharp6 six = new CSharp6();
+            People peopleSix = new People()
+            {
+                Id=505,
+                Name = "Test6"
+            };
+            six.Show(peopleSix);
+
+            Console.WriteLine("**************Text C# 7************************"); ;
+
+
+
+
         }
     }
 }
