@@ -18,11 +18,12 @@ namespace P37.Course.Web.Core.Models
         public string Title { get; set; }
         [JsonProperty("href")]
         public string Href { get; set; }
-  
-        [JsonProperty("checked")]
-        public bool Checked { get; set; }
-        [JsonProperty("disabled")]
-        public bool Disabled { get; set; }   //whether able to select or tick
+
+        [JsonProperty("checked")] 
+        public bool Checked { get; set; } = false;
+
+        [JsonProperty("disabled")] 
+        public bool Disabled { get; set; } = true;   //whether able to select or tick
 
         [JsonProperty("spread")]
         public bool Spread { get; set; } // Spread the tree by default? 

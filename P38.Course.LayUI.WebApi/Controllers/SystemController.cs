@@ -136,43 +136,43 @@ namespace P38.Course.LayUI.WebApi.Controllers
             List<TreeResultData> treeList = new List<TreeResultData>()
             {
                 new TreeResultData(){
-                    id=Guid.NewGuid(),
-                    title="TreeNode 1",
-                    href=null,
-                    disabled=false,
-                    children=new List<TreeResultData>(){
+                    Id=Guid.NewGuid(),
+                    Title="TreeNode 1",
+                    Href=null,
+                    Disabled=false,
+                    Children=new List<TreeResultData>(){
                         new TreeResultData(){
-                            id=Guid.NewGuid(),
-                            title="TreeNode1-1",
-                            href="http://www.google.com",
-                            disabled=false
+                            Id=Guid.NewGuid(),
+                            Title="TreeNode1-1",
+                            Href="http://www.google.com",
+                            Disabled=false
                         },
                         new TreeResultData(){
-                            id=Guid.NewGuid(),
-                            title="TreeNode1-2",
-                            href="http://www.google.com",
-                            disabled=false
+                            Id=Guid.NewGuid(),
+                            Title="TreeNode1-2",
+                            Href="http://www.google.com",
+                            Disabled=false
                         }
 
                     }
                 },
                 new TreeResultData(){
-                    id=Guid.NewGuid(),
-                    title="TreeNode2",
-                    href=null,
-                    disabled=false,
-                    children=new List<TreeResultData>(){
+                    Id=Guid.NewGuid(),
+                    Title="TreeNode2",
+                    Href=null,
+                    Disabled=false,
+                    Children=new List<TreeResultData>(){
                         new TreeResultData(){
-                            id=Guid.NewGuid(),
-                            title="TreeNode2-1",
-                            href="http://www.google.com",
-                            disabled=false
+                            Id=Guid.NewGuid(),
+                            Title="TreeNode2-1",
+                            Href="http://www.google.com",
+                            Disabled=false
                         },
                         new TreeResultData(){
-                            id=Guid.NewGuid(),
-                            title="TreeNode2-2",
-                            href="http://www.google.com",
-                            disabled=true
+                            Id=Guid.NewGuid(),
+                            Title="TreeNode2-2",
+                            Href="http://www.google.com",
+                            Disabled=true
                         }
                     }
                 }
