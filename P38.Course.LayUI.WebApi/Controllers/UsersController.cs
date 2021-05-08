@@ -83,8 +83,21 @@ namespace P38.Course.LayUI.WebApi.Controllers
 
 
 
+        public string UserDetail(Guid? userGuid)
+        {
+            string JsonResult = Newtonsoft.Json.JsonConvert.SerializeObject(
 
+                new CurrentUser()
+                {
+                    Id = 123,
+                    Name = "test",
+                    Account = "testaccount",
+                    LastLoginTime = DateTime.Now
+                }
+            );
 
+            return JsonResult;
+        }
 
 
 
