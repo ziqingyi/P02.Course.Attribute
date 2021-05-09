@@ -17,7 +17,8 @@ namespace P39.Course.dotnetCore.TestProject
 
             Console.WriteLine("**************Text C# 7************************"); ;
 
-
+            CSharp7 seven = new CSharp7();
+            seven.Show();
 
 
         }
