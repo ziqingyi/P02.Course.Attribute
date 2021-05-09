@@ -34,19 +34,56 @@ namespace P39.Course.dotnetCore.TestProject
 
             #endregion
 
-            #region
+            #region Null-conditional operators
+
+            int? iValue = null;
+            Console.WriteLine(iValue.ToString());//no error 
+
+            string name = null;
+            Console.WriteLine(name?.ToString());//if null,will not execute ToString() method. name.ToString() will cause error.
 
             #endregion
 
-            #region
+
+
+            #region Index Initializers
+
+            IDictionary<int,string> dictOld = new Dictionary<int, string>()
+            {
+                {1,"first"},
+                {2,"second" }
+            };
+
+            IDictionary<int,string> dicNew = new Dictionary<int, string>()
+            {
+                [4] = "fourth",
+                [5] ="second"
+            };
 
             #endregion
 
-            #region
+
+
+            #region Exception Filters
+
+            int exceptionValue = 10;
+            try
+            {
+                Int32.Parse("s");
+            }
+            catch (Exception e) when (exceptionValue > 1)
+            {
+                Console.WriteLine(e);
+                //throw;
+            }
 
             #endregion
 
-            #region
+
+
+            #region  name of expression
+
+            Console.WriteLine(nameof(peopleTest));// return just the name of variable "peopleTest"
 
             #endregion
 
