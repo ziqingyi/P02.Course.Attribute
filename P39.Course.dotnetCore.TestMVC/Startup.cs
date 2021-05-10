@@ -51,6 +51,14 @@ namespace P39.Course.dotnetCore.TestMVC
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                ////same to old format
+                //endpoints.MapControllerRoute(
+                //    name: "old_default",
+                //    pattern: "{controller}/{action}/{id}",
+                //    defaults: new { controller = "Home", action = "Index", Id = -1 }
+                //    );
+
             });
         }
     }

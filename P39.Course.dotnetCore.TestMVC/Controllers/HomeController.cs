@@ -17,7 +17,7 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
         {
             _logger = logger;
         }
-
+        //[Route("Test/Index")]//this attribute will make this url link to the action/controller
         public IActionResult Index()
         {
             return View();
