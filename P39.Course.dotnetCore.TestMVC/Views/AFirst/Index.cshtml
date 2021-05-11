@@ -1,8 +1,45 @@
-﻿
+﻿@model P37.Course.Web.Core.Models.CurrentUser
+@using P37.Course.Web.Core.Models;
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["TitleTitle"] = "Index";
+
+    ViewBag.Title = "Index";
+
+    CurrentUser userViewData = ViewData["User1"] as CurrentUser;//ViewData need to convert
+    CurrentUser userViewBag = ViewBag.User;//ViewBag 
+    CurrentUser userOther = ViewBag.User1;
 }
 
 <h1>Index</h1>
 
+@for(int i =0;i<5;i++)
+{
+    <p> @i </p>
+    @: 123 &nbsp;23456
+    <text>
+            123456
+    </text>
+}
 
+
+<div class="row">
+
+
+    <h2>Print Module</h2>
+    @base.Model.Name
+    <p>  @(   (  (CurrentUser)ViewData["User1"]   ).Name   )</p>
+
+    <p>  @userViewData.Name  </p>
+
+    <p>  @userViewBag.Account    </p>
+
+    <p>  @userOther.Name </p>
+
+    <p>  @(  ((CurrentUser)ViewBag.User ).Name     )   </p>
+
+    <p>   @(  ( (CurrentUser)TempData["User"]   ).Name          )   </p>
+
+    <p>   @base.Model.Name  </p>
+
+</div>

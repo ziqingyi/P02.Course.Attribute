@@ -62,7 +62,7 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
             if (id == null)
             {
-                return this.Redirect("~/AFirst/TempDataPage");
+                return this.RedirectToAction("TempDataPage");
             }
             else
             {
