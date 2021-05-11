@@ -112,6 +112,7 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
 
         /*
+         *https://stackoverflow.com/questions/56528508/asp-net-core-tempdata-and-redirecttoaction-not-working
          *
          1 This changed totally from asp.net to asp.net core ? – BrilBroeder Jun 13 '19 at 6:24
          
