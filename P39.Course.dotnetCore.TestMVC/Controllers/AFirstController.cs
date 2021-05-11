@@ -89,5 +89,29 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
 
         }
+
+
+
+        public ActionResult TempDataPage()
+        {
+            base.ViewBag.User = base.TempData["User"];
+
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
