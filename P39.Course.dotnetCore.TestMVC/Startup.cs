@@ -23,6 +23,19 @@ namespace P39.Course.dotnetCore.TestMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region set up the in-memory session provider with a default in-memory implementation of IDistributedCache:
+            
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            #endregion
+  
+
             services.AddControllersWithViews();
         }
 
@@ -46,6 +59,9 @@ namespace P39.Course.dotnetCore.TestMVC
 
             app.UseAuthorization();
 
+            //app.UseSession() must be added after UseRouting() and before app.UseEndpoints()
+            app.UseSession();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -60,6 +76,15 @@ namespace P39.Course.dotnetCore.TestMVC
                 //    );
 
             });
+
+
+
+
+
+
+
+
+
         }
     }
 }

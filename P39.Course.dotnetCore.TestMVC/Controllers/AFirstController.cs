@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using P37.Course.Web.Core.Models;
@@ -71,6 +72,8 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
             if (id == null)
             {
+                HttpContext.Session.SetString("testSession", "test session value");
+
                 return base.RedirectToAction("TempDataPage");
             }
             else
@@ -103,12 +106,16 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
         public ActionResult TempDataPage()
         {
+
+            //The cookie-based TempData provider is used by default to store TempData in cookies.
             base.ViewBag.User = JsonConvert.DeserializeObject<CurrentUser>(base.TempData["User"].ToString());
 
             return View();
         }
 
 
+
+        //Session: https://docs.microsoft.com/en-us/aspnet/core/fundamentals/app-state?view=aspnetcore-3.1#tempdata
 
 
         /*
