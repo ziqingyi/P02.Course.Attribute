@@ -153,7 +153,16 @@ both of which are not good for production. – Chris Pratt Jun 12 '20 at 13:07
 
 
 
-
+        /** deploy
+         * 1 right click and deploy
+         *
+         * 2 add website in IIS
+         *
+         * 3 install Windows Hosting In IIS module (file: dotnet-hosting)(IIS runtime support (ASP.NET Core Module v2))
+         *
+         * 4 In Application Pool, change to No Managed Code. 
+         *
+         */
 
 
 
