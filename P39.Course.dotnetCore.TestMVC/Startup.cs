@@ -52,6 +52,23 @@ namespace P39.Course.dotnetCore.TestMVC
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            #region read configuration file
+
+            string option1 = this.Configuration["option1"];
+            string option2 = this.Configuration["option2"];
+
+            string suboption1 = this.Configuration["subsection:suboption1"];
+
+            //test wizards
+            string wName1 = this.Configuration["wizards:0:Name"];
+            string age1 = this.Configuration["wizards:0:Age"];
+
+            string wName2 = this.Configuration["wizards:1:Name"];
+            string age2 = this.Configuration["wizards:1:Age"];
+            #endregion
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -59,8 +76,11 @@ namespace P39.Course.dotnetCore.TestMVC
 
             app.UseAuthorization();
 
+            #region add session
             //app.UseSession() must be added after UseRouting() and before app.UseEndpoints()
             app.UseSession();
+
+            #endregion
 
             app.UseEndpoints(endpoints =>
             {
@@ -76,12 +96,6 @@ namespace P39.Course.dotnetCore.TestMVC
                 //    );
 
             });
-
-
-
-
-
-
 
 
 
