@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace P39.Course.dotnetCore.TestMVC
 {
@@ -40,7 +41,7 @@ namespace P39.Course.dotnetCore.TestMVC
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory factory)
         {
             if (env.IsDevelopment())
             {
@@ -67,6 +68,14 @@ namespace P39.Course.dotnetCore.TestMVC
             string wName2 = this.Configuration["wizards:1:Name"];
             string age2 = this.Configuration["wizards:1:Age"];
             #endregion
+
+            #region Configure Log
+
+            ILogger<Startup> logger = factory.CreateLogger<Startup>();
+            logger.LogError("This is start up logger ");
+
+            #endregion
+
 
 
             app.UseHttpsRedirection();
