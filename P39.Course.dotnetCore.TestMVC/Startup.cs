@@ -72,7 +72,7 @@ namespace P39.Course.dotnetCore.TestMVC
             #region Configure Log
 
             ILogger<Startup> logger = factory.CreateLogger<Startup>();
-            logger.LogError("This is start up logger ");
+            logger.LogInformation("This is start up logger ");
 
             #endregion
 

@@ -32,7 +32,7 @@ namespace P39.Course.dotnetCore.TestMVC
                     {
                         loggingBuilder.AddFilter("System", LogLevel.Warning);
                         loggingBuilder.AddFilter("Microsoft", LogLevel.Warning);
-                        loggingBuilder.AddLog4Net();
+                        loggingBuilder.AddLog4Net("CfgFiles\\log4net.config");
                     }
                 )
                 .ConfigureWebHostDefaults(webBuilder =>
