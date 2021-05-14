@@ -21,7 +21,7 @@ namespace P39.Course.dotnetCore.TestMVC
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtime. Use this method to add services to the container. //DI and IOC. 
         public void ConfigureServices(IServiceCollection services)
         {
             #region set up the in-memory session provider with a default in-memory implementation of IDistributedCache:
@@ -41,6 +41,7 @@ namespace P39.Course.dotnetCore.TestMVC
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        //DI and IOC. 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory factory)
         {
             if (env.IsDevelopment())

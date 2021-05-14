@@ -13,10 +13,16 @@ namespace P39.Course.dotnetCore.TestMVC
      *   1 Nuget:  log4net +  Logging.Log4Net.AspNetCore
      *   2 config files
      *   3 configure in CreateHostBuilder
-     *
+     *   4 ILoggerFactory and ILogger<BSecondController> can be sued to log.  DI and IOC. 
      */
 
-
+    /*
+     *
+     *
+     *
+     *
+     *
+     */
 
 
     public class Program
@@ -30,7 +36,7 @@ namespace P39.Course.dotnetCore.TestMVC
             Host.CreateDefaultBuilder(args)
                 .ConfigureLogging((context, loggingBuilder) =>
                     {
-                        loggingBuilder.AddFilter("System", LogLevel.Warning);
+                        loggingBuilder.AddFilter("System", LogLevel.Warning);//remove low level system and Microsoft logging 
                         loggingBuilder.AddFilter("Microsoft", LogLevel.Warning);
                         loggingBuilder.AddLog4Net("CfgFiles\\log4net.config");
                     }

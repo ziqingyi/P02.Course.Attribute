@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\P34.Course.Business.Interface\P34.Course.Business.Interface.csproj" />
     <ProjectReference Include="..\P37.Course.Web.Core\P37.Course.Web.Core.csproj" />
   </ItemGroup>
 

@@ -48,6 +48,10 @@
     <Compile Include="IUserCompanyService.cs" />
     <Compile Include="IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCore\ITestServiceA.cs" />
+    <Compile Include="TestCore\ITestServiceB.cs" />
+    <Compile Include="TestCore\ITestServiceC.cs" />
+    <Compile Include="TestCore\ITestServiceD.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\P33.Course.Model\P33.Course.Model.csproj">
