@@ -18,7 +18,7 @@ namespace P39.Course.dotnetCore.TestMVC
      */
 
     /* Autofac
-     * 1 install packages
+     * 1 install packages, Autofac, AutofacDI.
      * 2  .UseServiceProviderFactory(new AutofacServiceProviderFactory())  in CreateHostBuilder
      * 3 ConfigureContainer in Startup class
      *
