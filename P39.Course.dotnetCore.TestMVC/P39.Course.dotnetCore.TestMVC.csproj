@@ -9,6 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.2.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="log4net" Version="2.0.12" />
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="5.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
@@ -16,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\P34.Course.Business.Interface\P34.Course.Business.Interface.csproj" />
+    <ProjectReference Include="..\P34.Course.Business.Service\P34.Course.Business.Service.csproj" />
     <ProjectReference Include="..\P37.Course.Web.Core\P37.Course.Web.Core.csproj" />
   </ItemGroup>
 

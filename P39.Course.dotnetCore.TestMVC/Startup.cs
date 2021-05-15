@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using P39.Course.dotnetCore.TestMVC.Utility;
 
 namespace P39.Course.dotnetCore.TestMVC
 {
@@ -21,11 +24,14 @@ namespace P39.Course.dotnetCore.TestMVC
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container. //DI and IOC. 
+        // ConfigureServices method gets called by the runtime. Use this method to add services to the container.
+        // //DI and IOC. 
+
+        #region 1 Core default way of ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
             #region set up the in-memory session provider with a default in-memory implementation of IDistributedCache:
-            
+
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
@@ -35,10 +41,28 @@ namespace P39.Course.dotnetCore.TestMVC
             });
 
             #endregion
-  
 
             services.AddControllersWithViews();
         }
+
+        #endregion
+
+        #region 2 ConfigureServices with Autofac
+        public void ConfigureContainer(ContainerBuilder containerBuilder)
+        {
+           
+            #region autofac container
+
+            containerBuilder.RegisterModule<CustomAutofacModule>();
+
+            #endregion
+
+        }
+
+        #endregion
+
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         //DI and IOC. 

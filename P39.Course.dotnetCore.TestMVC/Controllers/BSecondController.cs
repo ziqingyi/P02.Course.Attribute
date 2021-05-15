@@ -21,19 +21,19 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
         public BSecondController(ILoggerFactory loggerFactory,
             ILogger<BSecondController> logger
-            //,
-            //ITestServiceA testServiceA,
-            //ITestServiceB testServiceB,
-            //ITestServiceC testServiceC,
-            //ITestServiceD testServiceD
+            ,
+            ITestServiceA testServiceA,
+            ITestServiceB testServiceB,
+            ITestServiceC testServiceC,
+            ITestServiceD testServiceD
             )
         {
             this._Factory = loggerFactory;
             this._logger = logger;
-            //this._ITestServiceA = testServiceA;
-            //this._ITestServiceB = testServiceB;
-            //this._ITestServiceC = testServiceC;
-            //this._ITestServiceD = testServiceD;
+            this._ITestServiceA = testServiceA;
+            this._ITestServiceB = testServiceB;
+            this._ITestServiceC = testServiceC;
+            this._ITestServiceD = testServiceD;
 
         }
 

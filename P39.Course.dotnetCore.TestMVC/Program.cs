@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -16,10 +17,10 @@ namespace P39.Course.dotnetCore.TestMVC
      *   4 ILoggerFactory and ILogger<BSecondController> can be sued to log.  DI and IOC. 
      */
 
-    /*
-     *
-     *
-     *
+    /* Autofac
+     * 1 install packages
+     * 2  .UseServiceProviderFactory(new AutofacServiceProviderFactory())  in CreateHostBuilder
+     * 3 ConfigureContainer in Startup class
      *
      *
      */
@@ -44,6 +45,7 @@ namespace P39.Course.dotnetCore.TestMVC
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory());
     }
 }
