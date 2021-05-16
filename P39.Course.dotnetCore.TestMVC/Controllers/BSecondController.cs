@@ -44,15 +44,15 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
         {
             this._logger.LogInformation("this is  ILogger<BSecondController>");
             this._Factory.CreateLogger<BSecondController>().LogInformation(" this is  ILoggerFactory  create logger ");
-            //this._logger.LogWarning($"_ITestServiceA = {this._ITestServiceA.GetHashCode()}");
-            //this._logger.LogWarning($"_ITestServiceB = {this._ITestServiceB.GetHashCode()}");
-            //this._logger.LogWarning($"_ITestServiceC = {this._ITestServiceC.GetHashCode()}");
-            //this._logger.LogWarning($"_ITestServiceD = {this._ITestServiceD.GetHashCode()}");
+            this._logger.LogWarning($"_ITestServiceA = {this._ITestServiceA.GetHashCode()}");
+            this._logger.LogWarning($"_ITestServiceB = {this._ITestServiceB.GetHashCode()}");
+            this._logger.LogWarning($"_ITestServiceC = {this._ITestServiceC.GetHashCode()}");
+            this._logger.LogWarning($"_ITestServiceD = {this._ITestServiceD.GetHashCode()}");
 
-            //this._ITestServiceA.Show();
-            //this._ITestServiceB.Show();
-            //this._ITestServiceC.Show();
-            //this._ITestServiceD.Show();
+            this._ITestServiceA.Show();
+            this._ITestServiceB.Show();
+            this._ITestServiceC.Show();
+            this._ITestServiceD.Show();
 
             return View();
         }
