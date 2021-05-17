@@ -46,10 +46,21 @@ namespace P39.Course.dotnetCore.TestMVC
             Host.CreateDefaultBuilder(args)
                 .ConfigureLogging((context, loggingBuilder) =>
                     {
-                        loggingBuilder.AddFilter("System", LogLevel.Warning);//remove low level system and Microsoft logging 
-                        loggingBuilder.AddFilter("Microsoft", LogLevel.Warning);
-                        loggingBuilder.AddLog4Net("CfgFiles\\log4net.config");
-                        //Log4Extension.InitLog4(loggingBuilder);
+                        #region config logging builder directly
+
+                        //loggingBuilder.AddFilter("System", LogLevel.Warning);//remove low level system and Microsoft logging 
+                        //loggingBuilder.AddFilter("Microsoft", LogLevel.Warning);
+                        //loggingBuilder.AddLog4Net("CfgFiles\\log4net.config");
+
+                        #endregion
+
+                        #region Use extend method to config logging builder
+
+                        Log4Extension.InitLog4(loggingBuilder);
+
+                        #endregion
+
+                        
                     }
                 )
                 .ConfigureWebHostDefaults(webBuilder =>

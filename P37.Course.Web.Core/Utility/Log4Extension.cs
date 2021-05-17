@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System;
+using Microsoft.Extensions.Logging;
+
 
 namespace P37.Course.Web.Core.Utility
 {
@@ -36,14 +38,24 @@ namespace P37.Course.Web.Core.Utility
         //        loggingBuilder.AddLog4Net("CfgFiles\\log4net.config");
         //    };
         //}
-
-        //public static void InitLog4(ILoggingBuilder loggingBuilder)
+        ////try action extension
+        //public static Action<ILoggingBuilder> InitLog4()
         //{
-        //    loggingBuilder.AddFilter("System", LogLevel.Warning);//remove low level system and Microsoft logging 
-        //    loggingBuilder.AddFilter("Microsoft", LogLevel.Warning);
-        //    loggingBuilder.AddLog4Net("CfgFiles\\log4net.config");
-
+        //    return ( loggingBuilder) =>
+        //    {
+        //        loggingBuilder.AddFilter("System", LogLevel.Warning); //remove low level system and Microsoft logging 
+        //        loggingBuilder.AddFilter("Microsoft", LogLevel.Warning);
+        //        loggingBuilder.AddLog4Net("CfgFiles\\log4net.config");
+        //    };
         //}
+
+        ////just config logging builder
+        public static void InitLog4(ILoggingBuilder loggingBuilder)
+        {
+            loggingBuilder.AddFilter("System", LogLevel.Warning);//remove low level system and Microsoft logging 
+            loggingBuilder.AddFilter("Microsoft", LogLevel.Warning);
+            loggingBuilder.AddLog4Net("CfgFiles\\log4net.config");
+        }
 
     }
 }
