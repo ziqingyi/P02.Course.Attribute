@@ -11,16 +11,20 @@ namespace P34.Course.Business.Service.TestCore
     public class TestServiceB : ITestServiceB
     {
         private ILogger<TestServiceB> _logger = null;
-        public TestServiceB(ITestServiceA iTestServiceA)//, ILogger<TestServiceB> logger)
+        public TestServiceB(ITestServiceA iTestServiceA, ILogger<TestServiceB> logger)
         {
-            Console.WriteLine("initialize TestServiceB with ITestServiceA");
-            //this._logger = logger;
+            //Console.WriteLine("initialize TestServiceB with ITestServiceA");
+            //use logger instead of Console
+            this._logger = logger;
+            logger.LogInformation("initialize TestServiceB with ITestServiceA");
         }
 
         public void Show()
         {
-            //this._logger.LogDebug($"This is TestServiceB B123456");
-            Console.WriteLine($"This is TestServiceB B123456");
+            //Console.WriteLine($"This is TestServiceB B123456");
+            //use logger instead of Console
+            this._logger.LogInformation($"This is TestServiceB show() B123456");
+            
         }
     }
 }

@@ -63,6 +63,9 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
             this._ITestServiceD.Show();
 
             this._IA.Show(1,"test AOP in interface IA");
+
+            this._ITestServiceB.Show();
+
             return View();
         }
 
