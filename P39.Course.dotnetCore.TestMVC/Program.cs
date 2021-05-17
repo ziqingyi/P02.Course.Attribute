@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using P37.Course.Web.Core.Utility;
 
 namespace P39.Course.dotnetCore.TestMVC
 {
@@ -48,6 +49,7 @@ namespace P39.Course.dotnetCore.TestMVC
                         loggingBuilder.AddFilter("System", LogLevel.Warning);//remove low level system and Microsoft logging 
                         loggingBuilder.AddFilter("Microsoft", LogLevel.Warning);
                         loggingBuilder.AddLog4Net("CfgFiles\\log4net.config");
+                        //Log4Extension.InitLog4(loggingBuilder);
                     }
                 )
                 .ConfigureWebHostDefaults(webBuilder =>
