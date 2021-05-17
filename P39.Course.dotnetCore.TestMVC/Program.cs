@@ -24,6 +24,13 @@ namespace P39.Course.dotnetCore.TestMVC
      * 3 register interface and service in CustomAutofacModule based on Module.
      * 4 ConfigureContainer method in Startup class, RegisterModule<CustomAutofacModule>();
      *
+     *
+     *AOP:
+     * 1 package: Autofac.Extras.DynamicProxy
+     * 2 create class: CustomAutofacAop
+     * 3 create test interface IA and class A.
+     * 4 update CustomAutofacModule, for registering CustomAutofacAop and IA and A.
+     *
      */
 
 

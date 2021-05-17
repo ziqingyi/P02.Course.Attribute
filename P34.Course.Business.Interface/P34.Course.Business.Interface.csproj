@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestCore\IA.cs" />
     <Compile Include="IBaseService.cs" />
     <Compile Include="ICategoryService.cs" />
     <Compile Include="ICommodityService.cs" />

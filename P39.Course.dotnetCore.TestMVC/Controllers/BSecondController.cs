@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac.Extras.DynamicProxy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using P34.Course.Business.Interface.TestCore;
+using P39.Course.dotnetCore.TestMVC.Utility;
 
 namespace P39.Course.dotnetCore.TestMVC.Controllers
 {
@@ -19,6 +21,10 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
         private ITestServiceC _ITestServiceC = null;
         private ITestServiceD _ITestServiceD = null;
 
+        //test AOP
+        private IA _IA = null;
+
+
         public BSecondController(ILoggerFactory loggerFactory,
             ILogger<BSecondController> logger
             ,
@@ -26,7 +32,9 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
             ITestServiceB testServiceB,
             ITestServiceC testServiceC,
             ITestServiceD testServiceD
-            )
+            ,
+            IA a
+        )
         {
             this._Factory = loggerFactory;
             this._logger = logger;
@@ -34,7 +42,7 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
             this._ITestServiceB = testServiceB;
             this._ITestServiceC = testServiceC;
             this._ITestServiceD = testServiceD;
-
+            this._IA = a;
         }
 
         #endregion
@@ -54,7 +62,35 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
             this._ITestServiceC.Show();
             this._ITestServiceD.Show();
 
+            this._IA.Show(1,"test AOP in interface IA");
             return View();
         }
+
+
     }
+
+
+
+    #region test area
+
+    [Intercept(typeof(CustomAutofacAop))]
+    public class A : IA
+    {
+        private ILoggerFactory _Factory = null;
+        private ILogger<A> _logger = null;
+        public A(ILoggerFactory loggerFactory,
+            ILogger<A> logger)
+        {
+            this._Factory = loggerFactory;
+            this._logger = logger;
+        }
+        public void Show(int id, string name)
+        {
+            _logger.LogInformation($"This is {id} _ {name}");
+        }
+
+    }
+
+    #endregion
+
 }
