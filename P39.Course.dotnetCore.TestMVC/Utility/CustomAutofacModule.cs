@@ -21,9 +21,11 @@ namespace P39.Course.dotnetCore.TestMVC.Utility
             containerBuilder.Register(c => new CustomAutofacAop());
 
             containerBuilder.RegisterType<A>().As<IA>().EnableInterfaceInterceptors();
+
             #endregion
 
 
+            #region Register for IOC
 
             containerBuilder.RegisterType<TestServiceA>().As<ITestServiceA>()
                 .SingleInstance();
@@ -32,6 +34,9 @@ namespace P39.Course.dotnetCore.TestMVC.Utility
             containerBuilder.RegisterType<TestServiceB>().As<ITestServiceB>();
 
             containerBuilder.RegisterType<TestServiceD>().As<ITestServiceD>();
+            
+            #endregion
+
 
         }
 
