@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using P37.Course.Web.Core.Models;
 using P37.Course.Web.Core.Utility;
@@ -52,6 +53,19 @@ namespace P37.Course.Web.Core.Filters
                 filterContext.ExceptionHandled = true;
             }
         }
+
+        #region For Core project, check Ajax request.
+
+        private bool IsAjaxRequestInCore(HttpRequest request)
+        {
+            string header = request.Headers["X-Requested-With"];
+            bool res = "XMLHttpRequest".Equals(header);
+            return res;
+        }
+
+        #endregion
+
+
     }
 
 
