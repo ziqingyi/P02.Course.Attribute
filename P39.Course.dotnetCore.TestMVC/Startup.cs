@@ -7,11 +7,13 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using P39.Course.dotnetCore.TestMVC.Utility;
+using P39.Course.dotnetCoreLib.Filters;
 
 namespace P39.Course.dotnetCore.TestMVC
 {
@@ -43,6 +45,17 @@ namespace P39.Course.dotnetCore.TestMVC
             #endregion
 
             services.AddControllersWithViews();
+
+            #region add filters globally 
+
+            services.AddControllers(
+                o => o.Filters.Add(typeof(CustomExceptionFilterAttribute))
+            )
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+  
+
+            #endregion
+    
         }
 
         #endregion

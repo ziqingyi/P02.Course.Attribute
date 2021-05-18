@@ -70,6 +70,14 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
         }
 
 
+        public ActionResult Exception()
+        {
+            int i = 0;
+            int k = 10 / i;
+            return View();
+        }
+
+
     }
 
 

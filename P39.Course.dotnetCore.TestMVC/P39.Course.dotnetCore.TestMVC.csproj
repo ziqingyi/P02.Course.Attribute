@@ -22,6 +22,7 @@
     <ProjectReference Include="..\P34.Course.Business.Interface\P34.Course.Business.Interface.csproj" />
     <ProjectReference Include="..\P34.Course.Business.Service\P34.Course.Business.Service.csproj" />
     <ProjectReference Include="..\P37.Course.Web.Core\P37.Course.Web.Core.csproj" />
+    <ProjectReference Include="..\P39.Course.dotnetCoreLib\P39.Course.dotnetCoreLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

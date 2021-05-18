@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace P39.Course.dotnetCoreLib
+namespace P39.Course.dotnetCoreLib.Filters
 {
     /// <summary>
     /// handling exceptions. 
@@ -19,7 +19,7 @@ namespace P39.Course.dotnetCoreLib
         private readonly IModelMetadataProvider _modelMetadataProvider;
 
         public CustomExceptionFilterAttribute(
-            IHostingEnvironment hostingEnvironment, 
+            IHostingEnvironment hostingEnvironment,
             IModelMetadataProvider modelMetadataProvider)
         {
             _modelMetadataProvider = modelMetadataProvider;
