@@ -54,16 +54,7 @@ namespace P37.Course.Web.Core.Filters
             }
         }
 
-        #region For Core project, check Ajax request.
 
-        private bool IsAjaxRequestInCore(HttpRequest request)
-        {
-            string header = request.Headers["X-Requested-With"];
-            bool res = "XMLHttpRequest".Equals(header);
-            return res;
-        }
-
-        #endregion
 
 
     }
