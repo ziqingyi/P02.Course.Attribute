@@ -32,6 +32,10 @@ namespace P39.Course.dotnetCore.TestMVC
      * 3 create test interface IA and class A.
      * 4 update CustomAutofacModule, for registering CustomAutofacAop and IA and A.
      *
+     *
+     *Filters: add in Startup, ConfigureServices. 
+     *
+     *
      */
 
 
