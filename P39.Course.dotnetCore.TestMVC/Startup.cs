@@ -33,7 +33,6 @@ namespace P39.Course.dotnetCore.TestMVC
         public void ConfigureServices(IServiceCollection services)
         {
             #region set up the in-memory session provider with a default in-memory implementation of IDistributedCache:
-
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
@@ -41,13 +40,13 @@ namespace P39.Course.dotnetCore.TestMVC
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
-
             #endregion
+
 
             services.AddControllersWithViews();
 
-            #region add filters globally 
 
+            #region add filters globally 
             services.AddControllers(
                 options =>
                 {
@@ -55,10 +54,16 @@ namespace P39.Course.dotnetCore.TestMVC
                     options.Filters.Add(typeof(CustomGlobalActionFilterAttribute));
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-  
+            #endregion
+
+            #region for filter services
+
+            services.AddScoped<CustomActionFilterAttribute>();
 
             #endregion
-    
+
+
+
         }
 
         #endregion
