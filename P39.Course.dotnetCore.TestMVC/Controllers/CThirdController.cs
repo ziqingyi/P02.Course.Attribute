@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using P39.Course.dotnetCoreLib.Filters;
 
 namespace P39.Course.dotnetCore.TestMVC.Controllers
 {
 
-    //[CustomControllerActionFilter]
+
     [TypeFilter(typeof(CustomControllerActionFilterAttribute), Order = 1)]
     public class CThirdController : Controller
     {
-
+        public CThirdController(ILogger<BSecondController> logger)
+        {
+            logger.LogInformation("initialize third controller");
+        }
 
 
 
@@ -22,6 +26,8 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
         [CustomResourceFilter]
         public IActionResult Index()
         {
+            base.ViewBag.Now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff");
+
             return View();
         }
     }

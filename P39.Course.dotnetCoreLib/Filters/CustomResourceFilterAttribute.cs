@@ -23,7 +23,7 @@ namespace P39.Course.dotnetCoreLib.Filters
                 var cachedValue = _cache[_cacheKey] as ViewResult;
                 if (cachedValue != null)
                 {
-                    context.Result = cachedValue;
+                    context.Result = cachedValue;//block the following steps
                 }
             }
         }
