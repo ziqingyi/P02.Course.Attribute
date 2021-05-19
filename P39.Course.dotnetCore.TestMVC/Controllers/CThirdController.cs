@@ -19,6 +19,7 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
         [ServiceFilter(typeof(CustomActionFilterAttribute), Order = 1)] //default order is 0. must add in startup for the filter.
         //[CustomActionFilter]
         [CustomResultFilter]
+        [CustomResourceFilter]
         public IActionResult Index()
         {
             return View();
