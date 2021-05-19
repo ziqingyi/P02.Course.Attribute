@@ -46,6 +46,13 @@ namespace P39.Course.dotnetCore.TestMVC
      *
      *  Order: smaller, executed first.
      *
+     *
+     *  Asp.net MVC: initialise controller first, then authentication, exception filters etc .
+     *  Core MVC: initialise authentication, exception filters etc, then  controller first.
+     *  So resource filter can be used for caching. 
+     *  
+     *
+     *
      */
 
 
