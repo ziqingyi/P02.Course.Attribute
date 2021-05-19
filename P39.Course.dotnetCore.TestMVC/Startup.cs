@@ -51,12 +51,12 @@ namespace P39.Course.dotnetCore.TestMVC
                 options =>
                 {
                     options.Filters.Add(typeof(CustomExceptionFilterAttribute));
-                    options.Filters.Add(typeof(CustomGlobalActionFilterAttribute));
+                    options.Filters.Add(typeof(CustomGlobalActionFilterAttribute), 1);
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             #endregion
 
-            #region for filter services
+            #region for filter services, use framwork DI 
 
             services.AddScoped<CustomActionFilterAttribute>();
 

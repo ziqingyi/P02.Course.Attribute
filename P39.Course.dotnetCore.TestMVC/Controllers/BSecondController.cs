@@ -13,7 +13,8 @@ using P39.Course.dotnetCoreLib.Filters;
 namespace P39.Course.dotnetCore.TestMVC.Controllers
 {
 
-    [CustomControllerActionFilter]
+    //[CustomControllerActionFilter]
+    [TypeFilter(typeof(CustomControllerActionFilterAttribute), Order = 1)]
     public class BSecondController : Controller
     {
         #region Identity

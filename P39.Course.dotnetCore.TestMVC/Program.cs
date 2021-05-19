@@ -34,11 +34,17 @@ namespace P39.Course.dotnetCore.TestMVC
      *
      *
      *Filters: add in Startup, ConfigureServices method for Global filters, can inject automatically.
-     *         (for old mvc, not by injecting)
+     *         (for old mvc, not by injecting, as it's attribute and fix by ctor)
      *
-     *Execute Order: global filter executing, controller filter executing, action filter executing,
+     * Execute Order: global filter executing, controller filter executing, action filter executing,
      *               action filter executed, controller  filter executed, global  filter executed,
      *               result  filter executing,  filter executed. 
+     * Add filter: for parameter-less filters, add directly to controller, action, etc, test with CustomResultFilter
+     *             for filter attribute with parameter, add globally
+     *                  or (ServiceFilter with addScope, test with CustomActionFilterAttribute.)
+     *                  or (use TypeFilter, test with CustomControllerActionFilterAttribute)
+     *
+     *  Order: smaller, executed first.
      *
      */
 
