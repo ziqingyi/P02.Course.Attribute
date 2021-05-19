@@ -6,10 +6,10 @@ using Microsoft.Extensions.Logging;
 
 namespace P39.Course.dotnetCoreLib.Filters
 {
-    public class CustomControllerActionFilterAttribute: Attribute, IActionFilter
+    public class CustomControllerFilterAttribute: Attribute, IActionFilter
     {
-        private ILogger<CustomControllerActionFilterAttribute> _logger = null;
-        public CustomControllerActionFilterAttribute(ILogger<CustomControllerActionFilterAttribute> logger)
+        private ILogger<CustomControllerFilterAttribute> _logger = null;
+        public CustomControllerFilterAttribute(ILogger<CustomControllerFilterAttribute> logger)
         {
             this._logger = logger;
         }
