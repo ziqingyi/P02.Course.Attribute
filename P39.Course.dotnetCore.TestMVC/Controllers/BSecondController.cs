@@ -14,7 +14,7 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 {
 
     //[CustomControllerActionFilter]
-    [TypeFilter(typeof(CustomControllerFilterAttribute), Order = 1)]
+    [TypeFilter(typeof(CustomControllerActionFilterAttribute), Order = 1)]
     public class BSecondController : Controller
     {
         #region Identity

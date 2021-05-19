@@ -10,7 +10,7 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 {
 
 
-    [TypeFilter(typeof(CustomControllerFilterAttribute), Order = 1)]
+    [TypeFilter(typeof(CustomControllerActionFilterAttribute), Order = 1)]
     public class CThirdController : Controller
     {
         public CThirdController(ILogger<BSecondController> logger)
