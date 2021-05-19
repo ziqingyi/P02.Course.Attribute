@@ -49,8 +49,11 @@ namespace P39.Course.dotnetCore.TestMVC
             #region add filters globally 
 
             services.AddControllers(
-                o => o.Filters.Add(typeof(CustomExceptionFilterAttribute))
-            )
+                options =>
+                {
+                    options.Filters.Add(typeof(CustomExceptionFilterAttribute));
+                    options.Filters.Add(typeof(CustomGlobalActionFilterAttribute));
+                })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
   
 

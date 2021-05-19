@@ -33,8 +33,10 @@ namespace P39.Course.dotnetCore.TestMVC
      * 4 update CustomAutofacModule, for registering CustomAutofacAop and IA and A.
      *
      *
-     *Filters: add in Startup, ConfigureServices. 
-     *
+     *Filters: add in Startup, ConfigureServices method for Global filters
+     *Execute Order: global filter executing, controller filter executing, action filter executing,
+     *               action filter executed, controller  filter executed, global  filter executed,
+     *               result  filter executing,  filter executed. 
      *
      */
 

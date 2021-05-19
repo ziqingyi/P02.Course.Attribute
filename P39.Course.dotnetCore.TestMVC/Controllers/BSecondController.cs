@@ -7,9 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using P34.Course.Business.Interface.TestCore;
 using P39.Course.dotnetCore.TestMVC.Utility;
+using P39.Course.dotnetCoreLib.Filters;
+
 
 namespace P39.Course.dotnetCore.TestMVC.Controllers
 {
+
+    [CustomControllerActionFilter]
     public class BSecondController : Controller
     {
         #region Identity
@@ -47,7 +51,8 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
         #endregion
 
-
+        [CustomActionFilter]
+        [CustomResultFilter]
         public IActionResult Index()
         {
             this._logger.LogInformation("this is  ILogger<BSecondController>");
