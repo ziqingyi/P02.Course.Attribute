@@ -93,75 +93,75 @@ namespace P39.Course.dotnetCore.TestMVC
 
             #region add 2 test middle ware
 
-            //build middleware first
-            Func<RequestDelegate, RequestDelegate> middleware1 = new Func<RequestDelegate, RequestDelegate>(
-                    next =>
-            {
-                Console.WriteLine("this is middleware 1");
+            ////build middleware first
+            //Func<RequestDelegate, RequestDelegate> middleware1 = new Func<RequestDelegate, RequestDelegate>(
+            //        next =>
+            //{
+            //    Console.WriteLine("this is middleware 1");
 
-                RequestDelegate newRd = new RequestDelegate(async context =>
-                {
-                    await context.Response.WriteAsync("<h3>This is Middleware1 start</h3>");
-                    await next.Invoke(context);// this will use next from the middleware Func. 
-                    await context.Response.WriteAsync("<h3>This is Middleware1 end</h3>");
-                });
+            //    RequestDelegate newRd = new RequestDelegate(async context =>
+            //    {
+            //        await context.Response.WriteAsync("<h3>This is Middleware1 start</h3>");
+            //        await next.Invoke(context);// this will use next from the middleware Func. 
+            //        await context.Response.WriteAsync("<h3>This is Middleware1 end</h3>");
+            //    });
 
-                return newRd;
-            }
+            //    return newRd;
+            //}
 
-            );
+            //);
 
-            // use the middleware in app
-            app.Use(middleware1);
-
-
-
-            //build middleware first
-            Func<RequestDelegate, RequestDelegate> middleware2 = new Func<RequestDelegate, RequestDelegate>(
-                next =>
-                {
-                    Console.WriteLine("this is middleware2");
-
-                    RequestDelegate newRd = new RequestDelegate(async context =>
-                    {
-                        await context.Response.WriteAsync("<h3>This is Middleware2 start</h3>");
-                        await next.Invoke(context);// this will use next from the middleware Func. 
-                        await context.Response.WriteAsync("<h3>This is Middleware2 end</h3>");
-                    });
-
-                    return newRd;
-                }
-
-            );
-
-            // use the middleware in app
-            app.Use(middleware2);
+            //// use the middleware in app
+            //app.Use(middleware1);
 
 
 
+            ////build middleware first
+            //Func<RequestDelegate, RequestDelegate> middleware2 = new Func<RequestDelegate, RequestDelegate>(
+            //    next =>
+            //    {
+            //        Console.WriteLine("this is middleware2");
+
+            //        RequestDelegate newRd = new RequestDelegate(async context =>
+            //        {
+            //            await context.Response.WriteAsync("<h3>This is Middleware2 start</h3>");
+            //            await next.Invoke(context);// this will use next from the middleware Func. 
+            //            await context.Response.WriteAsync("<h3>This is Middleware2 end</h3>");
+            //        });
+
+            //        return newRd;
+            //    }
+
+            //);
+
+            //// use the middleware in app
+            //app.Use(middleware2);
 
 
-            //build middleware first
-            Func<RequestDelegate, RequestDelegate> middleware3 = new Func<RequestDelegate, RequestDelegate>(
-                next =>
-                {
-                    Console.WriteLine("this is middleware3");
 
-                    RequestDelegate newRd = new RequestDelegate(async context =>
-                    {
-                        await context.Response.WriteAsync("<h3>This is Middleware3 start</h3>");
-                        //comment out will blocking all following for app
-                        //await next.Invoke(context);// this will use next from the middleware Func. 
-                        await context.Response.WriteAsync("<h3>This is Middleware3 end</h3>");
-                    });
 
-                    return newRd;
-                }
 
-            );
+            ////build middleware first
+            //Func<RequestDelegate, RequestDelegate> middleware3 = new Func<RequestDelegate, RequestDelegate>(
+            //    next =>
+            //    {
+            //        Console.WriteLine("this is middleware3");
 
-            // use the middleware in app
-            app.Use(middleware3);
+            //        RequestDelegate newRd = new RequestDelegate(async context =>
+            //        {
+            //            await context.Response.WriteAsync("<h3>This is Middleware3 start</h3>");
+            //            //comment out will blocking all following for app
+            //            //await next.Invoke(context);// this will use next from the middleware Func. 
+            //            await context.Response.WriteAsync("<h3>This is Middleware3 end</h3>");
+            //        });
+
+            //        return newRd;
+            //    }
+
+            //);
+
+            //// use the middleware in app
+            //app.Use(middleware3);
 
             /*
              * <h3>This is Middleware1 start</h3>
