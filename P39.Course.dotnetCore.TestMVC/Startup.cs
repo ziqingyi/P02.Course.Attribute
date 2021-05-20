@@ -6,6 +6,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -89,6 +90,139 @@ namespace P39.Course.dotnetCore.TestMVC
         //DI and IOC. 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory factory)
         {
+
+            #region add 2 test middle ware
+
+            //build middleware first
+            Func<RequestDelegate, RequestDelegate> middleware1 = new Func<RequestDelegate, RequestDelegate>(
+                    next =>
+            {
+                Console.WriteLine("this is middleware 1");
+
+                RequestDelegate newRd = new RequestDelegate(async context =>
+                {
+                    await context.Response.WriteAsync("<h3>This is Middleware1 start</h3>");
+                    await next.Invoke(context);// this will use next from the middleware Func. 
+                    await context.Response.WriteAsync("<h3>This is Middleware1 end</h3>");
+                });
+
+                return newRd;
+            }
+
+            );
+
+            // use the middleware in app
+            app.Use(middleware1);
+
+
+
+            //build middleware first
+            Func<RequestDelegate, RequestDelegate> middleware2 = new Func<RequestDelegate, RequestDelegate>(
+                next =>
+                {
+                    Console.WriteLine("this is middleware2");
+
+                    RequestDelegate newRd = new RequestDelegate(async context =>
+                    {
+                        await context.Response.WriteAsync("<h3>This is Middleware2 start</h3>");
+                        await next.Invoke(context);// this will use next from the middleware Func. 
+                        await context.Response.WriteAsync("<h3>This is Middleware2 end</h3>");
+                    });
+
+                    return newRd;
+                }
+
+            );
+
+            // use the middleware in app
+            app.Use(middleware2);
+
+
+
+
+
+            //build middleware first
+            Func<RequestDelegate, RequestDelegate> middleware3 = new Func<RequestDelegate, RequestDelegate>(
+                next =>
+                {
+                    Console.WriteLine("this is middleware3");
+
+                    RequestDelegate newRd = new RequestDelegate(async context =>
+                    {
+                        await context.Response.WriteAsync("<h3>This is Middleware3 start</h3>");
+                        //comment out will blocking all following for app
+                        //await next.Invoke(context);// this will use next from the middleware Func. 
+                        await context.Response.WriteAsync("<h3>This is Middleware3 end</h3>");
+                    });
+
+                    return newRd;
+                }
+
+            );
+
+            // use the middleware in app
+            app.Use(middleware3);
+
+            /*
+             * <h3>This is Middleware1 start</h3>
+             * <h3>This is Middleware2 start</h3>
+             * <h3>This is Middleware3 start</h3>
+             * <h3>This is Middleware3 end</h3>
+             * <h3>This is Middleware2 end</h3>
+             * <h3>This is Middleware1 end</h3>
+             */
+
+            #endregion
+
+            #region Middleware register in 3 ways
+
+            //// 1 Run() method,  finish at this point. 
+            //app.Run(async (HttpContext context) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World Run");
+            //});
+            //    //will never execute
+            //app.Run(async (HttpContext context) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World Run Again");
+            //});
+            //// 2 app.Use(), another Extend method, execute order same to first Use()
+            //app.Use(async (context, next) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World Use1 <br/>");
+            //    await next();
+            //    await context.Response.WriteAsync("Hello World Use1 End <br/>");
+            //});
+
+            //app.Use(async (context, next) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World Use2 <br/>");
+            //    await next();
+            //    await context.Response.WriteAsync("Hello World Use2 End <br/>");
+            //});
+
+            //app.Use(async (context, next) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World Use2 <br/>");
+            //    //await next();//block here
+            //    await context.Response.WriteAsync("Hello World Use2 End <br/>");
+            //});
+
+            //// 3 UseWhen(), check HttpContext and process
+            app.UseWhen(context => { return context.Request.Query.ContainsKey("name"); },
+                appBuilder =>
+                {
+                    appBuilder.Use(async (context, next) =>
+                    {
+                        await context.Response.WriteAsync("Hello World Use3 Again Again Again <br/>");
+                        await next();
+                    });
+                });
+
+
+            #endregion
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
