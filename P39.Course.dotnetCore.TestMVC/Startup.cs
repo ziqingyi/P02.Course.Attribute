@@ -208,19 +208,29 @@ namespace P39.Course.dotnetCore.TestMVC
             //    await context.Response.WriteAsync("Hello World Use2 End <br/>");
             //});
 
-            //// 3 UseWhen(), check HttpContext and process
-            app.UseWhen(context => { return context.Request.Query.ContainsKey("name"); },
-                appBuilder =>
-                {
-                    appBuilder.Use(async (context, next) =>
-                    {
-                        await context.Response.WriteAsync("Hello World Use3 Again Again Again <br/>");
-                        await next();
-                    });
-                });
-
+            ////// 3 UseWhen(), check HttpContext and process,if predicate is false, other process will not be affected. 
+            //app.UseWhen(context => { return context.Request.Query.ContainsKey("name"); },
+            //    appBuilder =>
+            //    {
+            //        appBuilder.Use(async (context, next) =>
+            //        {
+            //            await context.Response.WriteAsync("Hello World Use3 Again Again Again <br/>");
+            //            await next();
+            //        });
+            //    });
 
             #endregion
+
+
+
+
+
+
+
+
+
+
+
 
 
             if (env.IsDevelopment())
