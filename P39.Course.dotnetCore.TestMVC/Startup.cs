@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using P39.Course.dotnetCore.TestMVC.Utility;
 using P39.Course.dotnetCoreLib.Filters;
+using P39.Course.dotnetCoreLib.Middleware;
 
 namespace P39.Course.dotnetCore.TestMVC
 {
@@ -254,8 +255,28 @@ namespace P39.Course.dotnetCore.TestMVC
 
             #region Middleware Class
 
-            app.UseMiddleware<>();
-            
+            /*
+             * CustomMiddleware CustomStopMiddleware <br/>
+             * CustomMiddleware CustomMiddleware <br/>
+             * CustomMiddleware CustomSecondMiddleware <br/>
+             * middleware Class test <br/>
+             * CustomMiddleware CustomSecondMiddleware <br/>
+             * CustomMiddleware CustomMiddleware <br/>
+             * CustomMiddleware CustomStopMiddleware <br/>
+             */
+
+            app.UseMiddleware<CustomStopMiddleware>();
+            app.UseMiddleware<CustomMiddleware>();
+            app.UseMiddleware<CustomSecondMiddleware>();
+
+            Func<HttpContext, Func<Task>, Task> myMiddleWare = new Func<HttpContext, Func<Task>, Task>(
+                async (context, next) =>
+                {
+                    await context.Response.WriteAsync("middleware Class test <br/>");
+                }); 
+
+
+            app.Use(myMiddleWare);
 
 
             #endregion

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace P39.Course.dotnetCoreLib.Middleware
 {
-    public class CustomMiddleware
+    public class CustomMiddleware //:IMiddleware
     {
         private readonly RequestDelegate _next;
 
