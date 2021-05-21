@@ -252,7 +252,13 @@ namespace P39.Course.dotnetCore.TestMVC
             #endregion
 
 
+            #region Middleware Class
 
+            app.UseMiddleware<>();
+            
+
+
+            #endregion
 
 
 
