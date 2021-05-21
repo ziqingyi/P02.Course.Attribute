@@ -90,6 +90,11 @@ namespace P39.Course.dotnetCore.TestMVC
         //DI and IOC. 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory factory)
         {
+            /*
+             * note: it's better to  do one thing in one middleware 
+             *
+             *
+             */
 
             #region add 2 test middle ware
 
@@ -222,7 +227,29 @@ namespace P39.Course.dotnetCore.TestMVC
             #endregion
 
 
+            #region Test Map, execute and stop following process.
+            ////https://localhost:44326/test
+            //app.Map("/test", MapTest);
 
+            ////https://localhost:44326/test2
+            //app.Map("/test2", a => a.Run(
+            //    async context =>
+            //    {
+            //        await context.Response.WriteAsync("This is Advanced Test Site");
+            //        //
+            //    }
+            //));
+            ////if true, the following steps will not be executed.eg:https://localhost:44326/?name=123
+            //app.MapWhen(context =>
+            //{
+            //    bool result = context.Request.Query.ContainsKey("Name");
+            //    return result;
+            //    //check browser
+            //    //language
+            //    //ajax process
+            //}, MapTest);
+
+            #endregion
 
 
 
@@ -299,5 +326,23 @@ namespace P39.Course.dotnetCore.TestMVC
 
 
         }
+
+
+
+        private static void MapTest(IApplicationBuilder app)
+        {
+            app.Run(async context =>
+            {
+                //
+                await context.Response.WriteAsync($"Url is {context.Request.Path.Value}");
+            });
+        }
+
+
+
+
+
+
+
     }
 }
