@@ -54,6 +54,12 @@ namespace P39.Course.dotnetCore.TestMVC
      * Execute Sequence: 
      *  Resource Filter --> initialize controller class --> global ->..........->global -> Result Executing -> Result Executed    -->Resource Filter --> result
      *
+     *
+     * Check Session :
+     * 1 startup Configure--> add  app.UseSession();
+     * 2 startup  ConfigureServices --> add session.
+     *
+     *
      */
 
 
