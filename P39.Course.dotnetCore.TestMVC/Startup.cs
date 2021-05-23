@@ -265,18 +265,18 @@ namespace P39.Course.dotnetCore.TestMVC
              * CustomMiddleware CustomStopMiddleware <br/>
              */
 
-            app.UseMiddleware<CustomStopMiddleware>();
-            app.UseMiddleware<CustomMiddleware>();
-            app.UseMiddleware<CustomSecondMiddleware>();
+            //app.UseMiddleware<CustomStopMiddleware>();
+            //app.UseMiddleware<CustomMiddleware>();
+            //app.UseMiddleware<CustomSecondMiddleware>();
 
-            Func<HttpContext, Func<Task>, Task> myMiddleWare = new Func<HttpContext, Func<Task>, Task>(
-                async (context, next) =>
-                {
-                    await context.Response.WriteAsync("middleware Class test <br/>");
-                }); 
+            //Func<HttpContext, Func<Task>, Task> myMiddleWare = new Func<HttpContext, Func<Task>, Task>(
+            //    async (context, next) =>
+            //    {
+            //        await context.Response.WriteAsync("middleware Class test <br/>");
+            //    }); 
 
 
-            app.Use(myMiddleWare);
+            //app.Use(myMiddleWare);
 
 
             #endregion
