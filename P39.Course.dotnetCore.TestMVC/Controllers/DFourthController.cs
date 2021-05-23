@@ -49,11 +49,7 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
             if (result == LoginResult.Success)
             {
-                TempDatabaseUser LoggedInUser = GetUser(name);
-
-                base.HttpContext.Session.SetString("CurrentUser", 
-                    Newtonsoft.Json.JsonConvert.SerializeObject(LoggedInUser));
-
+               
                 return base.Redirect("/DFourth/Index");
 
             }
