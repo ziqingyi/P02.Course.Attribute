@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -63,6 +64,15 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
 
         }
+
+        public ActionResult Logout()
+        {
+            base.HttpContext.SignOutAsync().Wait();
+            return this.Redirect("~/Fourth/Login");
+        }
+
+
+
 
         #region user check methods
 
