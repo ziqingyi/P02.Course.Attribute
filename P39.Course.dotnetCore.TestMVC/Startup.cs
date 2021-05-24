@@ -97,6 +97,26 @@ namespace P39.Course.dotnetCore.TestMVC
              *
              */
 
+            #region Authorisation and Authentication
+
+            
+
+
+
+
+            #endregion
+
+
+
+
+
+
+
+
+
+
+
+
             #region add 2 test middle ware
 
             ////build middleware first
