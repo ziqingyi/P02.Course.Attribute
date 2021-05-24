@@ -15,7 +15,13 @@ using P39.Course.dotnetCoreLib.Models;
 
 namespace P39.Course.dotnetCore.TestMVC.Controllers
 {
-   
+    /* 1 test CustomAuthorityActionFilterAttribute and log in process, update and check session in attribute, UserManagerCore and view pages. 
+     *
+     *
+     *
+     **/
+
+
     public class DFourthController : Controller
     {
         #region Identity
