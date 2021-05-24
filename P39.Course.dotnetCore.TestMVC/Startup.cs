@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -99,9 +101,75 @@ namespace P39.Course.dotnetCore.TestMVC
 
             #region Authorisation and Authentication
 
-            
+            string claimName = "ClaimUser1";
+            string schemeName = "eScheme";
+            //Log in
+            app.Map("/Login", builder =>
+                builder.Use(
+                    next =>
+                    {
+                        return async (context) =>
+                        {
+                            var claimIdentity = new ClaimsIdentity();
+                            claimIdentity.AddClaim(new Claim(ClaimTypes.Name, claimName));
+                            await context.SignInAsync(schemeName, new ClaimsPrincipal(claimIdentity));
+                            await context.Response.WriteAsync($"Hello, {context.User.Identity.Name} Login");
+                        };
+                    }
+                    )
+                );
 
+            //Log out
+            app.Map("/Logout",
+                builder => builder.Use(next =>
+                    {
+                        return async (context) =>
+                        {
+                            await context.SignOutAsync(schemeName);
+                        };
+                    }));
 
+            //authentication
+            app.Use(
+                async (context, next) =>
+                {
+                    var user = context.User;
+                    if (user.Identity.Name.Equals(claimName))
+                    {
+                        await next();
+                    }
+                    else
+                    {
+                        await context.ForbidAsync(schemeName);
+                    }
+
+                    //if (user?.Identity?.IsAuthenticated ?? false)
+                    //{
+                    //    if (user.Identity.Name != "jim") await context.ForbidAsync("eScheme");
+                    //    else await next();
+                    //}
+                    //else
+                    //{
+                    //    await context.ChallengeAsync("eScheme");
+                    //}
+                }
+            );
+
+            //access protected resource
+            app.Map("/resource",
+                builder =>
+                    builder.Run(
+                        async (context) =>
+                        {
+                            await context.Response.WriteAsync($"Hello, {context.User.Identity.Name}");
+                        }
+                    ));
+
+            app.Run(
+                async (HttpContext context) =>
+                {
+                    await context.Response.WriteAsync("Hello world, success !");
+                });
 
 
             #endregion
