@@ -41,12 +41,12 @@ namespace P39.Course.dotnetCoreLib.Authentications
             {
                 return AuthenticateResult.NoResult();
             }
-            return AuthenticateResult.Success(this.Deserialize(cookie));
+            return  AuthenticateResult.Success(this.Deserialize(cookie));
         }
 
         public Task ChallengeAsync(AuthenticationProperties properties)
         {
-            Context.Response.Redirect("/Login");
+            Context.Response.Redirect("/login");
             return Task.CompletedTask;
         }
 

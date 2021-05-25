@@ -70,7 +70,7 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
         public ActionResult Logout()
         {
             base.HttpContext.SignOutAsync().Wait();
-            return this.Redirect("~/Fourth/Login");
+            return this.Redirect("~/DFourth/Login");
         }
 
 
