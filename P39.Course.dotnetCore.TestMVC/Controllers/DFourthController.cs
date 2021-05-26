@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -35,11 +37,16 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
         #endregion
 
         [TypeFilter(typeof(CustomAuthorityActionFilterAttribute), Order = -999)]//make smaller order to execute first.
+        //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         public IActionResult Index()
         {
+            this._logger.LogInformation("This is ILogger<FourthController>  ");
+            this._factory.CreateLogger<DFourthController>().LogError("This is ILoggerFactory DFourthController");
+            this._logger.LogInformation($"User Name { base.HttpContext.User?.Identity?.Name}");
+
             return View();
         }
-
+        //[Authorize(Roles = "Admin")]
         public ViewResult Login()
         {
             return View();

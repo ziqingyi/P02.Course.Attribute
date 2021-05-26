@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -47,11 +48,26 @@ namespace P39.Course.dotnetCore.TestMVC
         public void ConfigureServices(IServiceCollection services)
         {
 
-            #region Set customised schema
+            #region Set customised Authentication schema : MyAuthenticationHandler
 
             //services.AddAuthenticationCore(options => options.AddScheme<MyAuthenticationHandler>(schemeName, "demo scheme"));
 
             #endregion
+
+
+            #region MVC Authentication
+
+            services.AddAuthentication(option =>
+                {
+                    option.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                })
+                .AddCookie(options =>
+                {
+                    options.ClaimsIssuer = "Cookie";
+                });
+
+            #endregion
+
 
 
 
@@ -452,6 +468,15 @@ namespace P39.Course.dotnetCore.TestMVC
 
             app.UseRouting();
 
+
+            #region Cookie
+
+            app.UseCookiePolicy();
+            
+            #endregion
+
+
+
             app.UseAuthorization();
 
             #region add session
@@ -459,6 +484,8 @@ namespace P39.Course.dotnetCore.TestMVC
             app.UseSession();
 
             #endregion
+
+
 
             app.UseEndpoints(endpoints =>
             {

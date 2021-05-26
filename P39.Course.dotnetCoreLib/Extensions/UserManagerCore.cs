@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Authentication;
 using P39.Course.dotnetCoreLib.Models;
 using Microsoft.AspNetCore.Http;
 
@@ -113,6 +115,20 @@ namespace P39.Course.dotnetCoreLib.Extensions
                     ////with expiry date, cookie saved in hard disk rather than save in memory
                     ////myCookie.Expires = DateTime.Now.AddMinutes(5);
 
+                    //cookie in core , use claimIdentity
+                    {
+                        var claimIdentity = new ClaimsIdentity("Cookie");
+                        claimIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, currentUser.Id.ToString()));
+                        claimIdentity.AddClaim(new Claim(ClaimTypes.Name, currentUser.Name));
+                        claimIdentity.AddClaim(new Claim(ClaimTypes.Email, currentUser.Email));
+
+                        var claimsPrincipal = new ClaimsPrincipal(claimIdentity);
+
+                        context.SignInAsync(claimsPrincipal).Wait();//write into cookie.
+                    }
+
+
+
                     #endregion
 
                     #region Session
@@ -121,9 +137,9 @@ namespace P39.Course.dotnetCoreLib.Extensions
                     //context.Session["CurrentUser"] = currentUser;
                     //context.Session.Timeout = 3;//3 minutes, session will be abandoned if "gap time" exceed 3 minutes
 
-                    //set session in core
-                    context.Session.SetString("CurrentUser",
-                        Newtonsoft.Json.JsonConvert.SerializeObject(currentUser));
+                    ////set session in core
+                    //context.Session.SetString("CurrentUser",
+                    //    Newtonsoft.Json.JsonConvert.SerializeObject(currentUser));
 
                     #endregion
 
