@@ -24,6 +24,7 @@ namespace P39.Course.dotnetCoreLib.Models
         public string Email { get; set; }
         public bool State { get; set; }
 
+        public string Role { get; set; }
         public DateTime LastLoginTime { get; set; }
         public DateTime CreateTime { get; set; }
 
