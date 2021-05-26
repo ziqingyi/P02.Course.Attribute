@@ -84,7 +84,7 @@ namespace P39.Course.dotnetCore.TestMVC
 
             services.AddControllersWithViews();
 
-
+            
             #region add filters globally 
             services.AddControllers(
                 options =>
@@ -226,16 +226,6 @@ namespace P39.Course.dotnetCore.TestMVC
 
 
             #endregion
-
-
-
-
-
-
-
-
-
-
 
 
             #region add 2 test middle ware
@@ -421,10 +411,6 @@ namespace P39.Course.dotnetCore.TestMVC
 
 
             #endregion
-
-
-
-
 
 
 
