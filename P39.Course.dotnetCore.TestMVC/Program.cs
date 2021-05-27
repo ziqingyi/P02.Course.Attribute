@@ -60,6 +60,15 @@ namespace P39.Course.dotnetCore.TestMVC
      * 2 startup  ConfigureServices --> add session.
      *
      *
+     *
+     * Area:
+     * 1 MapAreaControllerRoute in Startup Configure method
+     * 2 Add area folders, add Area and Route attributes in controllers.
+     *    (So can have base area controller class for all controllers, then do not write every time)
+     *
+     *
+     *
+     *
      */
 
 

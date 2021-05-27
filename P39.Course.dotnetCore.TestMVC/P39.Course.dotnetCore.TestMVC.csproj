@@ -31,4 +31,9 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\System\Data\" />
+    <Folder Include="Areas\System\Models\" />
+  </ItemGroup>
+
 </Project>

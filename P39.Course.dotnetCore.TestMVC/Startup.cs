@@ -472,12 +472,23 @@ namespace P39.Course.dotnetCore.TestMVC
             #endregion
 
 
-
+            //end point, after map route, then find controller to follow MVC steps
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "areas",
+                    areaName: "System",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                
+
+
 
                 ////same to old format
                 //endpoints.MapControllerRoute(
