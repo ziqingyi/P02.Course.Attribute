@@ -11,7 +11,7 @@ namespace P39.Course.dotnetCore.TestMVC.Areas.System.Controllers
 
         //must add area nad route for area controllers.
         [Area("System")]
-        [Route("System/[controller]/[action]")]
+        [Route("System/[controller]")]//remove mapping for /[action] 
         public IActionResult Index()
         {
             return View();
