@@ -137,7 +137,7 @@ namespace P39.Course.dotnetCore.TestMVC
             #region Authorisation and Authentication simple model
 
             //string claimName = "ClaimUser1";
-            
+
             ////Log in
             //app.Map("/login", builder =>
             //    builder.Use(
@@ -228,6 +228,39 @@ namespace P39.Course.dotnetCore.TestMVC
             #endregion
 
 
+
+            #region test custom middleware
+
+            Func<RequestDelegate, RequestDelegate> middleWareTest1 = rd =>
+            {
+                RequestDelegate requestDelegate = new RequestDelegate(async context =>
+                    {
+                        await Task.CompletedTask;
+                    }
+                );
+                return requestDelegate;
+            };
+
+            //add more await, change parameter name from rd to next
+
+            Func<RequestDelegate, RequestDelegate> middleWareTest2 = next =>
+            {
+                RequestDelegate requestDelegate = new RequestDelegate(async context =>
+                    {
+                        await context.Response.WriteAsync("<h3>This is Middleware start</h3>");
+                        await next.Invoke(context);
+                        await context.Response.WriteAsync("<h3>This is Middleware End</h3>");
+                    }
+                );
+                return requestDelegate;
+            };
+
+
+            app.Use(middleWareTest2);
+
+            #endregion
+
+
             #region add 2 test middle ware
 
             ////build middleware first
@@ -310,6 +343,9 @@ namespace P39.Course.dotnetCore.TestMVC
              */
 
             #endregion
+
+
+
 
             #region Middleware register in 3 ways
 
@@ -411,6 +447,9 @@ namespace P39.Course.dotnetCore.TestMVC
 
 
             #endregion
+
+
+
 
 
 
