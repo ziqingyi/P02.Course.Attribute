@@ -230,33 +230,56 @@ namespace P39.Course.dotnetCore.TestMVC
 
 
             #region test custom middleware
+            ////finish everything at here, Run is Extension method, will call use method.
+            //app.Run(c =>c.Response.WriteAsync("testtest"));
 
-            Func<RequestDelegate, RequestDelegate> middleWareTest1 = rd =>
-            {
-                RequestDelegate requestDelegate = new RequestDelegate(async context =>
-                    {
-                        await Task.CompletedTask;
-                    }
-                );
-                return requestDelegate;
-            };
+            ////use is the only way to register delegate
 
-            //add more await, change parameter name from rd to next
-
-            Func<RequestDelegate, RequestDelegate> middleWareTest2 = next =>
-            {
-                RequestDelegate requestDelegate = new RequestDelegate(async context =>
-                    {
-                        await context.Response.WriteAsync("<h3>This is Middleware start</h3>");
-                        await next.Invoke(context);
-                        await context.Response.WriteAsync("<h3>This is Middleware End</h3>");
-                    }
-                );
-                return requestDelegate;
-            };
+            //Func<RequestDelegate, RequestDelegate> middleWareTest1 = rd =>
+            //{
+            //    System.Diagnostics.Debug.WriteLine("This is middleWareTest1");
+            //    RequestDelegate requestDelegate = new RequestDelegate(async context =>
+            //        {
+            //            await Task.CompletedTask;
+            //        }
+            //    );
+            //    return requestDelegate;
+            //};
 
 
-            app.Use(middleWareTest2);
+            ////add more await, change parameter name from rd to next
+
+            //Func<RequestDelegate, RequestDelegate> middleWareTest2 = next =>
+            //{
+            //    System.Diagnostics.Debug.WriteLine("This is middleWareTest2");
+            //    RequestDelegate requestDelegate = new RequestDelegate(async context =>
+            //        {
+            //            await context.Response.WriteAsync("<h3>This is middleWareTest2 start</h3>");
+            //            await next.Invoke(context);
+            //            await context.Response.WriteAsync("<h3>This is middleWareTest2 End</h3>");
+            //        }
+            //    );
+            //    return requestDelegate;
+            //};
+
+            //app.Use(middleWareTest2);
+
+            ////add more await, change parameter name from rd to next
+
+            //Func<RequestDelegate, RequestDelegate> middleWareTest3 = next =>
+            //{
+            //    System.Diagnostics.Debug.WriteLine("This is middleWareTest3");
+            //    RequestDelegate requestDelegate = new RequestDelegate(async context =>
+            //        {
+            //            await context.Response.WriteAsync("<h3>This is middleWareTest3 start</h3>");
+            //            //await next.Invoke(context);
+            //            await context.Response.WriteAsync("<h3>This is middleWareTest3 End</h3>");
+            //        }
+            //    );
+            //    return requestDelegate;
+            //};
+
+            //app.Use(middleWareTest3);
 
             #endregion
 
