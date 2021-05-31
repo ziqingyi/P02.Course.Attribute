@@ -67,8 +67,12 @@ namespace P39.Course.dotnetCore.TestMVC
      *    (So can have base area controller class for all controllers, then do not write every time)
      *
      *
-     *
-     *
+     *Entity Framework:
+     * nuget: EFcore + EFcore sql server. 
+     * 1 Move from EF6 project classes. remove System.Data.Entity.Spatial; 
+     * 2 DbContext constructor will not assign db connection string. 
+     * 3 add new  method: OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+     * 4 update method parameter: OnModelCreating(ModelBuilder modelBuilder)
      */
 
 
