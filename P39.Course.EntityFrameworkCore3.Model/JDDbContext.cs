@@ -22,7 +22,7 @@ namespace P39.Course.EntityFrameworkCore3
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=advanced11;User id=adrian;password=adrian");
+            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=advanced7;User ID=adrian;Password=adrian");
         }
 
 

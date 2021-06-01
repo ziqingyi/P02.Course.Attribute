@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using P34.Course.Business.Interface.TestCore;
+using P39.Course.EntityFrameworkCore3;
 
 namespace P39.Course.dotnetCore.TestMVC.Controllers
 {
@@ -70,7 +72,11 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
         public IActionResult Info()
         {
-
+            using (JDDbContext dbContext = new JDDbContext())
+            {
+                var list = dbContext.Users.Where(u => u.Id > 10);
+                base.ViewBag.Users = Newtonsoft.Json.JsonConvert.SerializeObject(list);
+            }
 
 
             return View();
