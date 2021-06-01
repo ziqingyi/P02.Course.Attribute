@@ -3,7 +3,7 @@
 using P39.Course.EntityFrameworkCore3.Model;
 
 
-namespace P39.Course.Core3.Interface
+namespace P39.Course.dotnetCore.Interface
 {
     public interface IUserService :IBaseService
     {

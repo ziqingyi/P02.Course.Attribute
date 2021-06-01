@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using P39.Course.dotnetCoreLib.Models;
 
-namespace P39.Course.Core3.Interface
+namespace P39.Course.dotnetCore.Interface
 {
     public interface IBaseService: IDisposable// for releasing Context
     {

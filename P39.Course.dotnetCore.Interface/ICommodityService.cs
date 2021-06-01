@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P39.Course.Core3.Interface
+namespace P39.Course.dotnetCore.Interface
 {
     public interface ICommodityService: IBaseService
     {
