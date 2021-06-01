@@ -209,6 +209,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P39.Course.EntityFrameworkC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P39.Course.dotnetCore.Interface", "P39.Course.dotnetCore.Interface\P39.Course.dotnetCore.Interface.csproj", "{9ED24E10-5B02-4BEC-94A9-4B724DDBB2E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P39.Course.dotnetCore.Service", "P39.Course.dotnetCore.Service\P39.Course.dotnetCore.Service.csproj", "{07B16F6A-C62D-4708-AA6B-A67E2A2FBB88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -615,6 +617,10 @@ Global
 		{9ED24E10-5B02-4BEC-94A9-4B724DDBB2E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9ED24E10-5B02-4BEC-94A9-4B724DDBB2E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9ED24E10-5B02-4BEC-94A9-4B724DDBB2E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07B16F6A-C62D-4708-AA6B-A67E2A2FBB88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07B16F6A-C62D-4708-AA6B-A67E2A2FBB88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07B16F6A-C62D-4708-AA6B-A67E2A2FBB88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07B16F6A-C62D-4708-AA6B-A67E2A2FBB88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
