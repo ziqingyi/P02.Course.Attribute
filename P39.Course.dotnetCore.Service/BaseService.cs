@@ -169,7 +169,14 @@ namespace P39.Course.dotnetCore.Service
 
         public IQueryable<T> ExecuteQuery<T>(string sql, SqlParameter[] parameters) where T : class
         {
-            return this.Context.Database.SqlQuery<T>(sql, parameters).AsQueryable();
+            ////Entity Framework Version
+            //return this.Context.Database.SqlQuery<T>(sql, parameters).AsQueryable();
+
+
+            //Entity Framework Core Version
+            return this.Context.Set<T>().FromSqlRaw<T>(sql, parameters);
+
+
         }
 
         public void Execute<T>(string sql, SqlParameter[] parameters) where T : class
