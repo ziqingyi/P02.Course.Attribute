@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using P39.Course.dotnetCore.Interface;
+using P39.Course.dotnetCoreLib.Extensions;
 using P39.Course.EntityFrameworkCore3.Model;
 
 namespace P39.Course.dotnetCore.Service
@@ -35,7 +36,7 @@ namespace P39.Course.dotnetCore.Service
 
         public List<Category> CacheAllCategory()
         {
-            List<Category> cachedList = CacheManager.Get<List<Category>>("AllCateogry",
+            List<Category> cachedList = CacheManagerCore.Get<List<Category>>("AllCateogry",
                 () => base.Set<Category>().ToList());
             return cachedList;
         }
