@@ -4,9 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extras.DynamicProxy;
+using Microsoft.EntityFrameworkCore;
 using P34.Course.Business.Interface.TestCore;
 using P34.Course.Business.Service.TestCore;
+using P39.Course.dotnetCore.Interface;
+using P39.Course.dotnetCore.Service;
 using P39.Course.dotnetCore.TestMVC.Controllers;
+using P39.Course.EntityFrameworkCore3;
 
 namespace P39.Course.dotnetCore.TestMVC.Utility
 {
@@ -34,8 +38,21 @@ namespace P39.Course.dotnetCore.TestMVC.Utility
             containerBuilder.RegisterType<TestServiceB>().As<ITestServiceB>();
 
             containerBuilder.RegisterType<TestServiceD>().As<ITestServiceD>();
-            
+
             #endregion
+
+
+            #region Register service for IOC for Entity Framework
+
+            containerBuilder.RegisterType<JDDbContext>().As<DbContext>();//parameter used for service
+            containerBuilder.RegisterType<UserService>().As<IUserService>();
+
+
+
+            #endregion
+
+
+
 
 
         }

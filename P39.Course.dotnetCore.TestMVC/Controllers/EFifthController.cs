@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 using P34.Course.Business.Interface.TestCore;
-using P39.Course.EntityFrameworkCore3;
+using P39.Course.dotnetCore.Interface;
+using P39.Course.EntityFrameworkCore3.Model;
 
 namespace P39.Course.dotnetCore.TestMVC.Controllers
 {
@@ -25,6 +26,9 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
         //test AOP
         private IA _IA = null;
 
+        //test Entity Framework Core
+        private IUserService _userService = null;
+
 
         public EFifthController(ILoggerFactory loggerFactory,
             ILogger<EFifthController> logger
@@ -35,6 +39,8 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
             ITestServiceD testServiceD
             ,
             IA a
+            ,
+            IUserService userService
         )
         {
             this._Factory = loggerFactory;
@@ -43,7 +49,11 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
             this._ITestServiceB = testServiceB;
             this._ITestServiceC = testServiceC;
             this._ITestServiceD = testServiceD;
+
+            //test AOP
             this._IA = a;
+            //test Entity Framework Core
+            this._userService = userService;
         }
 
         #endregion
@@ -72,11 +82,17 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
         public IActionResult Info()
         {
-            using (JDDbContext dbContext = new JDDbContext())
-            {
-                var list = dbContext.Users.Where(u => u.Id > 10);
-                base.ViewBag.Users = Newtonsoft.Json.JsonConvert.SerializeObject(list);
-            }
+            ////1 instal EF packages and Use DbContext to execute
+            //using (JDDbContext dbContext = new JDDbContext())
+            //{
+            //    var list = dbContext.Users.Where(u => u.Id < 10);
+            //    base.ViewBag.Users = Newtonsoft.Json.JsonConvert.SerializeObject(list);
+            //}
+
+
+            //2 Register service in CustomAutofacModule, use service in controller. Service + DAL +  ORM + IOC
+            var list = this._userService.Query<User>(u => u.Id < 10);
+            base.ViewBag.Users = Newtonsoft.Json.JsonConvert.SerializeObject(list);
 
 
             return View();

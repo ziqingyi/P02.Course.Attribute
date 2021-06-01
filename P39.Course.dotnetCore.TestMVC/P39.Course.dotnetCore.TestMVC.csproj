@@ -22,6 +22,8 @@
     <ProjectReference Include="..\P34.Course.Business.Interface\P34.Course.Business.Interface.csproj" />
     <ProjectReference Include="..\P34.Course.Business.Service\P34.Course.Business.Service.csproj" />
     <ProjectReference Include="..\P37.Course.Web.Core\P37.Course.Web.Core.csproj" />
+    <ProjectReference Include="..\P39.Course.dotnetCore.Interface\P39.Course.dotnetCore.Interface.csproj" />
+    <ProjectReference Include="..\P39.Course.dotnetCore.Service\P39.Course.dotnetCore.Service.csproj" />
     <ProjectReference Include="..\P39.Course.dotnetCoreLib\P39.Course.dotnetCoreLib.csproj" />
     <ProjectReference Include="..\P39.Course.EntityFrameworkCore3.Model\P39.Course.EntityFrameworkCore3.Model.csproj" />
   </ItemGroup>
