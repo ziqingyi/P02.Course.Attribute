@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P39.Course.EntityFrameworkCore3
+namespace P39.Course.EntityFrameworkCore3.Model
 {
     [Table("SysRole")]
     public partial class SysRole

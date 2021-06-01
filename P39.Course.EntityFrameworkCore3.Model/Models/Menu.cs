@@ -1,4 +1,4 @@
-namespace P39.Course.EntityFrameworkCore3
+namespace P39.Course.EntityFrameworkCore3.Model
 {
     using System;
     using System.Collections.Generic;

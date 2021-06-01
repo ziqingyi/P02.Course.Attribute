@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\P39.Course.EntityFrameworkCore3.Model\P39.Course.EntityFrameworkCore3.Model.csproj" />
+  </ItemGroup>
+
+</Project>

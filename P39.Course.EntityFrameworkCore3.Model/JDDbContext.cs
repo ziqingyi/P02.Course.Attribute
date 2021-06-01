@@ -1,6 +1,7 @@
 
 
 using Microsoft.EntityFrameworkCore;
+using P39.Course.EntityFrameworkCore3.Model;
 
 
 namespace P39.Course.EntityFrameworkCore3
