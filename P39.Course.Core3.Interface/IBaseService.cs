@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using P39.Course.dotnetCoreLib.Models;
 
 namespace P39.Course.Core3.Interface
 {
