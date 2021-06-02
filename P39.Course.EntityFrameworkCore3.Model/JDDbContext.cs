@@ -15,7 +15,7 @@ namespace P39.Course.EntityFrameworkCore3
 
     public partial class JDDbContext : DbContext
     {
-        //difference with EF6
+        //core version is different with EF6
         //public JDDbContext()
         //    : base("name=JDDbContext")
         //{
@@ -23,17 +23,30 @@ namespace P39.Course.EntityFrameworkCore3
         //    System.Data.Entity.Database.SetInitializer<JDDbContext>(null);
         //}
 
+        private IConfiguration _configuration = null;
+
+        public JDDbContext(IConfiguration configuration)
+        {
+            this._configuration = configuration;
+        }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            ////way of reading connection string 2 : read from json file
+            ////way of reading connection string 2 : read from json file, but file location maybe changed. 
             //var builder = new ConfigurationBuilder()
             //    .SetBasePath(Directory.GetCurrentDirectory())
             //    .AddJsonFile("appsettings.json");
             //var configuration = builder.Build();
-            //var conn = configuration.GetConnectionString("JDDbConnection");
+            //var conn = configuration.GetConnectionString("JDDbConnectionString");
+
+            //// read connection string 1
+            //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=advanced7;User ID=adrian;Password=adrian");
 
 
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=advanced7;User ID=adrian;Password=adrian");
+            //read connection string 3, use configuration to get connection string. configuration is injected by container. 
+            optionsBuilder.UseSqlServer(this._configuration.GetConnectionString("JDDbConnectionString"));
+
 
         }
 
