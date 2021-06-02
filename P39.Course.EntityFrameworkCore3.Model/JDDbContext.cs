@@ -1,6 +1,8 @@
 
 
+using System.IO;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using P39.Course.EntityFrameworkCore3.Model;
 
 
@@ -23,7 +25,16 @@ namespace P39.Course.EntityFrameworkCore3
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            ////way of reading connection string 2 : read from json file
+            //var builder = new ConfigurationBuilder()
+            //    .SetBasePath(Directory.GetCurrentDirectory())
+            //    .AddJsonFile("appsettings.json");
+            //var configuration = builder.Build();
+            //var conn = configuration.GetConnectionString("JDDbConnection");
+
+
             optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=advanced7;User ID=adrian;Password=adrian");
+
         }
 
 
