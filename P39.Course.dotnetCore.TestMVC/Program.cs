@@ -85,6 +85,11 @@ namespace P39.Course.dotnetCore.TestMVC
      *
      *Build EF logger and factory and add to DbContext, for logging EF queries. 
      *
+     *
+     *WebAPI: must have  [Route("api/[controller]"), ApiController], configure route in startup will not work. 
+     *
+     *
+     *
      */
 
 

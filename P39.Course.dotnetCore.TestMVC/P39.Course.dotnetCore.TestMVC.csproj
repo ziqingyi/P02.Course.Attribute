@@ -9,10 +9,120 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="wwwroot\Scripts\bootstrap.bundle.js" />
+    <None Remove="wwwroot\Scripts\bootstrap.bundle.js.map" />
+    <None Remove="wwwroot\Scripts\bootstrap.bundle.min.js" />
+    <None Remove="wwwroot\Scripts\bootstrap.bundle.min.js.map" />
+    <None Remove="wwwroot\Scripts\bootstrap.js" />
+    <None Remove="wwwroot\Scripts\bootstrap.js.map" />
+    <None Remove="wwwroot\Scripts\bootstrap.min.js" />
+    <None Remove="wwwroot\Scripts\bootstrap.min.js.map" />
+    <None Remove="wwwroot\Scripts\esm\popper-utils.js" />
+    <None Remove="wwwroot\Scripts\esm\popper-utils.js.map" />
+    <None Remove="wwwroot\Scripts\esm\popper-utils.min.js" />
+    <None Remove="wwwroot\Scripts\esm\popper-utils.min.js.map" />
+    <None Remove="wwwroot\Scripts\esm\popper.js" />
+    <None Remove="wwwroot\Scripts\esm\popper.js.map" />
+    <None Remove="wwwroot\Scripts\esm\popper.min.js" />
+    <None Remove="wwwroot\Scripts\esm\popper.min.js.map" />
+    <None Remove="wwwroot\Scripts\index.d.ts" />
+    <None Remove="wwwroot\Scripts\index.js.flow" />
+    <None Remove="wwwroot\Scripts\jquery-3.5.1.js" />
+    <None Remove="wwwroot\Scripts\jquery-3.5.1.min.js" />
+    <None Remove="wwwroot\Scripts\jquery-3.5.1.min.map" />
+    <None Remove="wwwroot\Scripts\jquery-3.5.1.slim.js" />
+    <None Remove="wwwroot\Scripts\jquery-3.5.1.slim.min.js" />
+    <None Remove="wwwroot\Scripts\jquery-3.5.1.slim.min.map" />
+    <None Remove="wwwroot\Scripts\modernizr-2.8.3.js" />
+    <None Remove="wwwroot\Scripts\popper-utils.js" />
+    <None Remove="wwwroot\Scripts\popper-utils.js.map" />
+    <None Remove="wwwroot\Scripts\popper-utils.min.js" />
+    <None Remove="wwwroot\Scripts\popper-utils.min.js.map" />
+    <None Remove="wwwroot\Scripts\popper.js" />
+    <None Remove="wwwroot\Scripts\popper.js.map" />
+    <None Remove="wwwroot\Scripts\popper.min.js" />
+    <None Remove="wwwroot\Scripts\popper.min.js.map" />
+    <None Remove="wwwroot\Scripts\README.md" />
+    <None Remove="wwwroot\Scripts\src\index.js" />
+    <None Remove="wwwroot\Scripts\src\methods\defaults.js" />
+    <None Remove="wwwroot\Scripts\src\methods\destroy.js" />
+    <None Remove="wwwroot\Scripts\src\methods\disableEventListeners.js" />
+    <None Remove="wwwroot\Scripts\src\methods\enableEventListeners.js" />
+    <None Remove="wwwroot\Scripts\src\methods\placements.js" />
+    <None Remove="wwwroot\Scripts\src\methods\update.js" />
+    <None Remove="wwwroot\Scripts\src\modifiers\applyStyle.js" />
+    <None Remove="wwwroot\Scripts\src\modifiers\arrow.js" />
+    <None Remove="wwwroot\Scripts\src\modifiers\computeStyle.js" />
+    <None Remove="wwwroot\Scripts\src\modifiers\flip.js" />
+    <None Remove="wwwroot\Scripts\src\modifiers\hide.js" />
+    <None Remove="wwwroot\Scripts\src\modifiers\index.js" />
+    <None Remove="wwwroot\Scripts\src\modifiers\inner.js" />
+    <None Remove="wwwroot\Scripts\src\modifiers\keepTogether.js" />
+    <None Remove="wwwroot\Scripts\src\modifiers\offset.js" />
+    <None Remove="wwwroot\Scripts\src\modifiers\preventOverflow.js" />
+    <None Remove="wwwroot\Scripts\src\modifiers\shift.js" />
+    <None Remove="wwwroot\Scripts\src\utils\clockwise.js" />
+    <None Remove="wwwroot\Scripts\src\utils\computeAutoPlacement.js" />
+    <None Remove="wwwroot\Scripts\src\utils\debounce.js" />
+    <None Remove="wwwroot\Scripts\src\utils\find.js" />
+    <None Remove="wwwroot\Scripts\src\utils\findCommonOffsetParent.js" />
+    <None Remove="wwwroot\Scripts\src\utils\findIndex.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getBordersSize.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getBoundaries.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getBoundingClientRect.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getClientRect.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getFixedPositionOffsetParent.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getOffsetParent.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getOffsetRect.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getOffsetRectRelativeToArbitraryNode.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getOppositePlacement.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getOppositeVariation.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getOuterSizes.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getParentNode.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getPopperOffsets.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getReferenceNode.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getReferenceOffsets.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getRoot.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getRoundedOffsets.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getScroll.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getScrollParent.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getStyleComputedProperty.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getSupportedPropertyName.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getViewportOffsetRectRelativeToArtbitraryNode.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getWindow.js" />
+    <None Remove="wwwroot\Scripts\src\utils\getWindowSizes.js" />
+    <None Remove="wwwroot\Scripts\src\utils\includeScroll.js" />
+    <None Remove="wwwroot\Scripts\src\utils\index.js" />
+    <None Remove="wwwroot\Scripts\src\utils\isBrowser.js" />
+    <None Remove="wwwroot\Scripts\src\utils\isFixed.js" />
+    <None Remove="wwwroot\Scripts\src\utils\isFunction.js" />
+    <None Remove="wwwroot\Scripts\src\utils\isIE.js" />
+    <None Remove="wwwroot\Scripts\src\utils\isModifierEnabled.js" />
+    <None Remove="wwwroot\Scripts\src\utils\isModifierRequired.js" />
+    <None Remove="wwwroot\Scripts\src\utils\isNumeric.js" />
+    <None Remove="wwwroot\Scripts\src\utils\isOffsetContainer.js" />
+    <None Remove="wwwroot\Scripts\src\utils\removeEventListeners.js" />
+    <None Remove="wwwroot\Scripts\src\utils\runModifiers.js" />
+    <None Remove="wwwroot\Scripts\src\utils\setAttributes.js" />
+    <None Remove="wwwroot\Scripts\src\utils\setStyles.js" />
+    <None Remove="wwwroot\Scripts\src\utils\setupEventListeners.js" />
+    <None Remove="wwwroot\Scripts\umd\popper-utils.js" />
+    <None Remove="wwwroot\Scripts\umd\popper-utils.js.map" />
+    <None Remove="wwwroot\Scripts\umd\popper-utils.min.js" />
+    <None Remove="wwwroot\Scripts\umd\popper-utils.min.js.map" />
+    <None Remove="wwwroot\Scripts\umd\popper.js" />
+    <None Remove="wwwroot\Scripts\umd\popper.js.flow" />
+    <None Remove="wwwroot\Scripts\umd\popper.js.map" />
+    <None Remove="wwwroot\Scripts\umd\popper.min.js" />
+    <None Remove="wwwroot\Scripts\umd\popper.min.js.map" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="6.2.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
     <PackageReference Include="log4net" Version="2.0.12" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="5.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
@@ -32,11 +142,16 @@
     <None Include="CfgFiles\log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="wwwroot\Scripts\jquery-3.5.1.intellisense.js" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\System\Data\" />
     <Folder Include="Areas\System\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\Scripts\index.d.ts" />
   </ItemGroup>
 
 </Project>
