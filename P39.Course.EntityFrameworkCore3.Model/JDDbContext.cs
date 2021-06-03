@@ -4,6 +4,7 @@ using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using P39.Course.EntityFrameworkCore3.Model;
+using P39.Course.EntityFrameworkCore3.Model.EFSqlLog;
 
 
 namespace P39.Course.EntityFrameworkCore3
@@ -54,7 +55,11 @@ namespace P39.Course.EntityFrameworkCore3
             //StaticConstraint is Init at project start up, so can read  here. 
             optionsBuilder.UseSqlServer(StaticConstraint.connectionString);
 
+            #region Configure Logger for DBcontext
 
+            optionsBuilder.UseLoggerFactory(new CustomEFLoggerFactory());
+
+            #endregion
 
 
         }

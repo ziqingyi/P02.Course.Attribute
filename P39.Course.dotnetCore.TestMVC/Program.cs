@@ -82,6 +82,9 @@ namespace P39.Course.dotnetCore.TestMVC
      *build static class: StaticConstraint
      *
      *
+     *
+     *Build EF logger and factory and add to DbContext, for logging EF queries. 
+     *
      */
 
 
