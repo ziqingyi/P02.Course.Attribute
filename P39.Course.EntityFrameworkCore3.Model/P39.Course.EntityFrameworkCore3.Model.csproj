@@ -10,4 +10,8 @@
     <PackageReference Include="System.Runtime.Caching" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\P39.Course.dotnetCoreLib\P39.Course.dotnetCoreLib.csproj" />
+  </ItemGroup>
+
 </Project>

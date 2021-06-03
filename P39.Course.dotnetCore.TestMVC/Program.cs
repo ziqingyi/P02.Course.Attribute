@@ -73,6 +73,15 @@ namespace P39.Course.dotnetCore.TestMVC
      * 2 DbContext constructor will not assign db connection string. 
      * 3 add new  method: OnConfiguring(DbContextOptionsBuilder optionsBuilder)
      * 4 update method parameter: OnModelCreating(ModelBuilder modelBuilder)
+     *
+     *
+     *Get connection string by IOC,configure in JDDbContext
+     *    What if static class? 1 use singleton, not static class, in service. 
+     *one issue is : library class have to have log file address, configuration address, but in project, it might in different location.
+     *
+     *build static class: StaticConstraint
+     *
+     *
      */
 
 

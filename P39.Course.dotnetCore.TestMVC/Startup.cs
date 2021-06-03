@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using P39.Course.dotnetCore.TestMVC.Utility;
+using P39.Course.dotnetCoreLib;
 using P39.Course.dotnetCoreLib.Authentications;
 using P39.Course.dotnetCoreLib.Filters;
 using P39.Course.dotnetCoreLib.Middleware;
@@ -34,9 +35,16 @@ namespace P39.Course.dotnetCore.TestMVC
 
             #endregion
             
-
-
             Configuration = configuration;
+
+            #region  static class use delegate passed and string parameter    to read from configuration
+
+            //only need to keep the way to access configuration, library know what to read
+
+            StaticConstraint.Init(s=>configuration[s]);
+
+            #endregion
+
         }
 
         public IConfiguration Configuration { get; }

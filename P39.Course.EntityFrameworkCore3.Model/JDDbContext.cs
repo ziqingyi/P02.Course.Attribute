@@ -8,6 +8,7 @@ using P39.Course.EntityFrameworkCore3.Model;
 
 namespace P39.Course.EntityFrameworkCore3
 {
+    using P39.Course.dotnetCoreLib;
     using System;
     
     using System.ComponentModel.DataAnnotations.Schema;
@@ -28,6 +29,7 @@ namespace P39.Course.EntityFrameworkCore3
         public JDDbContext(IConfiguration configuration)
         {
             this._configuration = configuration;
+            
         }
 
 
@@ -44,8 +46,15 @@ namespace P39.Course.EntityFrameworkCore3
             //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=advanced7;User ID=adrian;Password=adrian");
 
 
-            //read connection string 3, use configuration to get connection string. configuration is injected by container. 
-            optionsBuilder.UseSqlServer(this._configuration.GetConnectionString("JDDbConnectionString"));
+            ////read connection string 3, use configuration to get connection string. configuration is injected by container. 
+            //optionsBuilder.UseSqlServer(this._configuration.GetConnectionString("JDDbConnectionString"));
+
+
+            //read connection string 4, try to avoid read configuration directly.
+            //StaticConstraint is Init at project start up, so can read  here. 
+            optionsBuilder.UseSqlServer(StaticConstraint.connectionString);
+
+
 
 
         }
