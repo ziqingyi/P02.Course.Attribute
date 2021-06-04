@@ -74,6 +74,7 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
         #region HttpGet
 
+        // this is the rest way. but for test, we have multiple get names. 
         //GET api/User
         [HttpGet]
         public IEnumerable<User> Get()

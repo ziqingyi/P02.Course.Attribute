@@ -87,7 +87,7 @@ namespace P39.Course.dotnetCore.TestMVC
      *
      *
      *WebAPI: must have  [Route("api/[controller]"), ApiController], configure route in startup will not work. 
-     *
+     *    in core, no global router, so config in controller. 
      *
      *
      */
