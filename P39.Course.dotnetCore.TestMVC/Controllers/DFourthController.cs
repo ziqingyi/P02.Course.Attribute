@@ -36,8 +36,8 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
         }
         #endregion
 
-        [TypeFilter(typeof(CustomAuthorityActionFilterAttribute), Order = -999)]//make smaller order to execute first.
-        //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+        //[TypeFilter(typeof(CustomAuthorityActionFilterAttribute), Order = -999)]//make smaller order to execute first.
+        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         public IActionResult Index()
         {
             this._logger.LogInformation("This is ILogger<FourthController>  ");

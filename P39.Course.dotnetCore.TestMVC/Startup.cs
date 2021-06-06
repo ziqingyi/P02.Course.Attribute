@@ -63,7 +63,7 @@ namespace P39.Course.dotnetCore.TestMVC
             #endregion
 
 
-            #region MVC Authentication
+            #region MVC Authentication, Scheme Authentication
 
             services.AddAuthentication(option =>
                 {
@@ -71,6 +71,7 @@ namespace P39.Course.dotnetCore.TestMVC
                 })
                 .AddCookie(options =>
                 {
+                    options.LoginPath = new PathString("/DFourth/Login");// if authentication failed 
                     options.ClaimsIssuer = "Cookie";
                 });
 

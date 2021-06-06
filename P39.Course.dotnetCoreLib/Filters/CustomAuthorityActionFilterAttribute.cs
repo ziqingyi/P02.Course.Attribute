@@ -23,6 +23,7 @@ namespace P39.Course.dotnetCoreLib.Filters
         {
             this._logger.LogInformation("CustomAuthorityActionFilterAttribute Executing!");
             string userString = context.HttpContext.Session.GetString("CurrentUser");
+            
             if (!string.IsNullOrWhiteSpace(userString))
             {
                 CurrentUserCore currentUser =
