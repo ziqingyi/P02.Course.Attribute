@@ -147,7 +147,7 @@ namespace P39.Course.dotnetCore.TestMVC
             //string claimName = "ClaimUser1";
 
             ////Log in
-            //app.Map("/login", builder =>
+            //app.Map("/DFourth/login", builder =>
             //    builder.Use(
             //        next =>
             //        {
@@ -163,7 +163,7 @@ namespace P39.Course.dotnetCore.TestMVC
             //    );
 
             ////Log out
-            //app.Map("/logout",
+            //app.Map("/DFourth/logout",
             //    builder => builder.Use(next =>
             //        {
             //            return async (context) =>
@@ -531,7 +531,7 @@ namespace P39.Course.dotnetCore.TestMVC
             
             #endregion
 
-
+            //app.UseAuthentication();
 
             app.UseAuthorization();
 
@@ -545,10 +545,10 @@ namespace P39.Course.dotnetCore.TestMVC
             //end point, after map route, then find controller to follow MVC steps
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapAreaControllerRoute(
-                    name: "areas",
-                    areaName: "System",
-                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                //endpoints.MapAreaControllerRoute(
+                //    name: "areas",
+                //    areaName: "System",
+                //    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 
 
@@ -556,16 +556,13 @@ namespace P39.Course.dotnetCore.TestMVC
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                
 
-
-
-                ////same to old format
-                //endpoints.MapControllerRoute(
-                //    name: "old_default",
-                //    pattern: "{controller}/{action}/{id}",
-                //    defaults: new { controller = "Home", action = "Index", Id = -1 }
-                //    );
+                //same to old format
+                endpoints.MapControllerRoute(
+                    name: "old_default",
+                    pattern: "{controller}/{action}/{id}",
+                    defaults: new { controller = "Home", action = "Index", Id = -1 }
+                    );
 
             });
 

@@ -138,8 +138,8 @@ namespace P39.Course.dotnetCoreLib.Extensions
                     //context.Session.Timeout = 3;//3 minutes, session will be abandoned if "gap time" exceed 3 minutes
 
                     ////set session in core
-                    //context.Session.SetString("CurrentUser",
-                    //    Newtonsoft.Json.JsonConvert.SerializeObject(currentUser));
+                    context.Session.SetString("CurrentUser",
+                        Newtonsoft.Json.JsonConvert.SerializeObject(currentUser));
 
                     #endregion
 

@@ -46,7 +46,7 @@ namespace P39.Course.dotnetCoreLib.Authentications
 
         public Task ChallengeAsync(AuthenticationProperties properties)
         {
-            Context.Response.Redirect("/login");
+            Context.Response.Redirect("/DFourth/login");
             return Task.CompletedTask;
         }
 
