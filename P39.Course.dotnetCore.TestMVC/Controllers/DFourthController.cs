@@ -48,13 +48,14 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
             return View();
         }
-
+        [CustomAllowAnonymous]//by pass authorize if authorize is configured globally or whole controller. 
         public ViewResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [CustomAllowAnonymous]
         public ActionResult Login(string name, string password)
         {
             string formName = base.HttpContext.Request.Form["Name"];
@@ -75,7 +76,7 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
 
         }
-
+        [CustomAllowAnonymous]
         public ActionResult Logout()
         {
             base.HttpContext.SignOutAsync().Wait();
