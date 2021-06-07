@@ -50,6 +50,7 @@ namespace P39.Course.dotnetCoreLib.Extensions
                         Account = (string)(type.GetProperty("Account")?.GetValue(t)),
                         Email = (string)(type.GetProperty("Email")?.GetValue(t)),
                         Password = (string)(type.GetProperty("Password")?.GetValue(t)),
+                        Role = (string)(type.GetProperty("Role")?.GetValue(t)),
                         LastLoginTime = DateTime.Now
                     };
 
@@ -124,6 +125,9 @@ namespace P39.Course.dotnetCoreLib.Extensions
                         claimIdentity.AddClaim(new Claim(ClaimTypes.Email, currentUser.Email));
                         //role is used for checking [Authorize(Roles = "Admin")]
                         claimIdentity.AddClaim(new Claim(ClaimTypes.Role,currentUser.Role ));
+
+                        claimIdentity.AddClaim(new Claim(ClaimTypes.Sid, currentUser.Id.ToString()));
+
                         var claimsPrincipal = new ClaimsPrincipal(claimIdentity);
 
                         context.SignInAsync(claimsPrincipal).Wait();//write into cookie. from //app.UseAuthentication(); in start up

@@ -8,6 +8,7 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -81,7 +82,26 @@ namespace P39.Course.dotnetCore.TestMVC
 
             #region Policy Authentication
 
+            //add policy class AdvancedRequirement, policy check in the class
             services.AddSingleton<IAuthorizationHandler, AdvancedRequirement>();
+
+            services.AddAuthorization(options =>
+                {
+                    //add a policy to authorization, have a name AdvancedStudent
+                    options.AddPolicy("AdvancedStudent",
+                        policy => { policy.AddRequirements(new NameAuthorizationRequirement("000")); });//user 000 is not allowed
+                })
+                .AddAuthentication(options =>
+                {
+                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                })
+                .AddCookie(options =>
+                {
+                    options.LoginPath = new PathString("/DFourth/Login");
+                    options.ClaimsIssuer = "Cookie";
+                });
+
+
 
             #endregion
 
@@ -540,7 +560,7 @@ namespace P39.Course.dotnetCore.TestMVC
             
             #endregion
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

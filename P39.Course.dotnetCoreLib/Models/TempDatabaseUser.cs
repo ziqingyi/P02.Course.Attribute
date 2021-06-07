@@ -23,6 +23,7 @@ namespace P39.Course.dotnetCoreLib.Models
 
         public string Mobile { get; set; }
 
+        public string Role { get; set; }
         public int? CompanyId { get; set; }
 
         public string CompanyName { get; set; }

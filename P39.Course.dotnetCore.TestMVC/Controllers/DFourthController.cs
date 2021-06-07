@@ -37,7 +37,9 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
         #endregion
 
         //[TypeFilter(typeof(CustomAuthorityActionFilterAttribute), Order = -999)]//make smaller order to execute first.
-        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+        //[Authorize(Roles = "Admin")]//only allow Admin roles to log in 
+        [Authorize(Policy = "AdvancedStudent")]//only allow user with the policy to log in 
         public IActionResult Index()
         {
             this._logger.LogInformation("This is ILogger<FourthController>  ");
@@ -46,8 +48,7 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
             return View();
         }
-        //[Authorize(Roles = "Admin")]//only allow Admin roles to log in 
-        [Authorize(Policy = "AdvancedStudent")]//only allow user with the policy to log in 
+
         public ViewResult Login()
         {
             return View();
@@ -110,6 +111,7 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
                 Account = "Administrator",
                 Password = "123456",
                 Email = "werqfasdf@gmail.com",
+                Role = "Admin",
                 LastLoginTime = DateTime.Now,
                 State = 1
             };
