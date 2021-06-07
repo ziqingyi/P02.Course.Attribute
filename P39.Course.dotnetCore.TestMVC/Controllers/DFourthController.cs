@@ -46,7 +46,8 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
             return View();
         }
-        //[Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]//only allow Admin roles to log in 
+        [Authorize(Policy = "AdvancedStudent")]//only allow user with the policy to log in 
         public ViewResult Login()
         {
             return View();

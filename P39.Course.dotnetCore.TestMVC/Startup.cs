@@ -7,6 +7,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -65,15 +66,22 @@ namespace P39.Course.dotnetCore.TestMVC
 
             #region MVC Authentication, Scheme Authentication
 
-            services.AddAuthentication(option =>
-                {
-                    option.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                })
-                .AddCookie(options =>
-                {
-                    options.LoginPath = new PathString("/DFourth/Login");// if authentication failed 
-                    options.ClaimsIssuer = "Cookie";
-                });
+            //services.AddAuthentication(option =>
+            //    {
+            //        option.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            //    })
+            //    .AddCookie(options =>
+            //    {
+            //        options.LoginPath = new PathString("/DFourth/Login");// if authentication failed 
+            //        options.ClaimsIssuer = "Cookie";
+            //    });
+
+            #endregion
+
+
+            #region Policy Authentication
+
+            services.AddSingleton<IAuthorizationHandler, AdvancedRequirement>();
 
             #endregion
 
