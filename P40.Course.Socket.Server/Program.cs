@@ -6,7 +6,19 @@ namespace P40.Course.Socket.Server
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+            try
+            {
+                Console.WriteLine("Socket Server Test");
+                SocketServer.Process();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+
         }
     }
 }
