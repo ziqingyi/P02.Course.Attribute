@@ -213,7 +213,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P39.Course.dotnetCore.Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P40.Course.Socket.Server", "P40.Course.Socket.Server\P40.Course.Socket.Server.csproj", "{FCC54D3B-653D-4546-86BE-69A32DF4345F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P40.Course.Socket.Client", "P40.Course.Socket.Client\P40.Course.Socket.Client.csproj", "{80E96392-BC57-4D03-BF5E-A1F82B4CB729}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P40.Course.Socket.Client", "P40.Course.Socket.Client\P40.Course.Socket.Client.csproj", "{80E96392-BC57-4D03-BF5E-A1F82B4CB729}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P41.Course.SuperSocket.Server", "P41.Course.SuperSocket.Server\P41.Course.SuperSocket.Server.csproj", "{759A576C-05A2-446C-9F6E-1D99F060C523}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -633,6 +635,10 @@ Global
 		{80E96392-BC57-4D03-BF5E-A1F82B4CB729}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80E96392-BC57-4D03-BF5E-A1F82B4CB729}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80E96392-BC57-4D03-BF5E-A1F82B4CB729}.Release|Any CPU.Build.0 = Release|Any CPU
+		{759A576C-05A2-446C-9F6E-1D99F060C523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{759A576C-05A2-446C-9F6E-1D99F060C523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{759A576C-05A2-446C-9F6E-1D99F060C523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{759A576C-05A2-446C-9F6E-1D99F060C523}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
