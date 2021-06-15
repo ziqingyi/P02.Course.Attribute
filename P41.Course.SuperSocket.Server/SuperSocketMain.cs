@@ -10,7 +10,9 @@ namespace P41.Course.SuperSocket.Server
 {
     public class SuperSocketMain
     {
-
+        /// <summary>
+        /// Config file: class name and DLL name(do not include folder name)
+        /// </summary>
         public static void Init()
         {
             try
@@ -23,6 +25,7 @@ namespace P41.Course.SuperSocket.Server
                 }
 
                 Console.WriteLine("Start the Server");
+                var result = bootstrap.Start();
 
                 foreach (var server in bootstrap.AppServers)
                 {
