@@ -14,7 +14,7 @@ namespace P41.Course.SuperSocket.Server
             Console.WriteLine("**********************Super Socket ********************");
 
 
-            SuperSocketServer.Init();
+            SuperSocketMain.Init();
             
 
 

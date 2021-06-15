@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P41.Course.SuperSocket.Server
 {
-    public class SuperSocketServer
+    public class SuperSocketMain
     {
 
         public static void Init()

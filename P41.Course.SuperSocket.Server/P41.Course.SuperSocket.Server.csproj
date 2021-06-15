@@ -56,9 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppServer\ChatServer.cs" />
+    <Compile Include="CommandFilter\CustomAuthorize.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SuperSocketServer.cs" />
+    <Compile Include="Session\ChatSession.cs" />
+    <Compile Include="SuperSocketMain.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
