@@ -41,6 +41,7 @@ namespace P41.Course.SuperSocket.Server.Session
 
         protected override void OnInit()
         {
+            Console.WriteLine("ChatSession is OnInit.... ");
             this.Charset = Encoding.GetEncoding("gb2312");
             base.OnInit();
         }

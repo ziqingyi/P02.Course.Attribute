@@ -16,7 +16,29 @@ namespace P41.Course.SuperSocket.Server.Commands
         {
             if (requestInfo.Parameters != null && requestInfo.Parameters.Length == 2)
             {
+                #region Database Authentication Process
+                #endregion
 
+                #region log off other sessions
+
+                ChatSession oldSession = session.AppServer.GetAllSessions()
+                    .FirstOrDefault(a => requestInfo.Parameters[0].Equals(a.Id));
+                if (oldSession != null)
+                {
+                    oldSession.Send("a new session will be created, your session is expired...");
+                    oldSession.Close();
+                }
+
+                #endregion
+
+                #region Create new Session
+
+                session.Id = requestInfo.Parameters[0];
+                session.PassWord = requestInfo.Parameters[1];
+                session.IsLogin = true;
+                session.LoginTime = DateTime.Now;
+                
+                #endregion
 
 
 
