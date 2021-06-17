@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="AppServer\ChatServer.cs" />
     <Compile Include="CommandFilter\CustomAuthorize.cs" />
+    <Compile Include="Commands\Chat.cs" />
     <Compile Include="Commands\CheckLogin.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
