@@ -37,8 +37,11 @@ namespace P41.Course.SuperSocket.Server.DataCenter
             {
                 foreach (ChatModel chatModel in dictionary[userId])
                 {
-                    action.Invoke(chatModel);
-                    chatModel.State = ChatState.Sent;
+                    if (chatModel.State == ChatState.UnSent)
+                    {
+                        action.Invoke(chatModel);
+                        chatModel.State = ChatState.Sent;
+                    }
                 }
             }
         }

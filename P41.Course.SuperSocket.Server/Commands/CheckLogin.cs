@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using P41.Course.SuperSocket.Server.DataCenter;
 using P41.Course.SuperSocket.Server.Session;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
@@ -37,11 +38,22 @@ namespace P41.Course.SuperSocket.Server.Commands
                 session.PassWord = requestInfo.Parameters[1];
                 session.IsLogin = true;
                 session.LoginTime = DateTime.Now;
+
+                #endregion
+                
+                session.Send("Login Successfully");
+
+                #region get all message based on session id, and send when log in
+                ChatDataManager.SendLogin(session.Id, c =>
+                {
+                    session.Send($"{c.FromId}  send you message: {c.Message} {c.Id} ");
+                });
                 
                 #endregion
 
 
 
+                
             }
             else
             {

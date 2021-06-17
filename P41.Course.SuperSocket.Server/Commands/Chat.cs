@@ -47,6 +47,7 @@ namespace P41.Course.SuperSocket.Server.Commands
                         Id = MessageId,
                         State = ChatState.UnSent //just send, not sure whether receive or not.
                     };
+                    ChatDataManager.Add(toId, chatModel);
                     //send message to current session
                     session.Send("Message is not sent, session is not available");
                 }
