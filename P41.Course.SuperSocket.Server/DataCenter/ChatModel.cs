@@ -19,14 +19,9 @@ namespace P41.Course.SuperSocket.Server.DataCenter
     
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// message state  0 undelivered  1 sent   2 received
+        /// message state undelivered 0  sent 1   received 2 
         /// </summary>
-        public int State { get; set; }
-
-
-
-
-
+        public ChatState State { get; set; }
 
     }
 }

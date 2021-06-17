@@ -38,12 +38,18 @@ namespace P41.Course.SuperSocket.Server.DataCenter
                 foreach (ChatModel chatModel in dictionary[userId])
                 {
                     action.Invoke(chatModel);
-                    chatModel.State = 1;
+                    chatModel.State = ChatState.Sent;
                 }
             }
         }
 
     }
 
+    public enum ChatState
+    {
+        Sent = 1,
+        Received = 2,
+        Undelivered = 0
+    }
 
 }
