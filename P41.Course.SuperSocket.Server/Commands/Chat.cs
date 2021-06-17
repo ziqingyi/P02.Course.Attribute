@@ -36,23 +36,25 @@ namespace P41.Course.SuperSocket.Server.Commands
                     };
 
                     ChatDataManager.Add(toId,chatModel);
-
-
                 }
                 else
                 {
-                    
-
-                    session.Send("Message is not delivered");
+                    ChatModel chatModel = new ChatModel()
+                    {
+                        FromId = session.Id,
+                        ToId = toId,
+                        Message = message,
+                        Id = MessageId,
+                        State = ChatState.UnSent //just send, not sure whether receive or not.
+                    };
+                    //send message to current session
+                    session.Send("Message is not sent, session is not available");
                 }
-
-
-
-
-
             }
-
-
+            else
+            {
+                session.Send("parameter error");
+            }
 
         }
     }

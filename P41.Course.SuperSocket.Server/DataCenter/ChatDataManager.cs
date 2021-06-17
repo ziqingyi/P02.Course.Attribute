@@ -45,11 +45,4 @@ namespace P41.Course.SuperSocket.Server.DataCenter
 
     }
 
-    public enum ChatState
-    {
-        Sent = 1,
-        Received = 2,
-        Undelivered = 0
-    }
-
 }

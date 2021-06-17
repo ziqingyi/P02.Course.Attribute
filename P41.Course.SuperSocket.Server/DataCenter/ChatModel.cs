@@ -24,4 +24,14 @@ namespace P41.Course.SuperSocket.Server.DataCenter
         public ChatState State { get; set; }
 
     }
+
+
+    public enum ChatState
+    {
+        Sent = 1,
+        Received = 2,
+        UnSent = 0
+    }
+
+
 }
