@@ -66,6 +66,8 @@
     <Compile Include="CommandFilter\CustomAuthorize.cs" />
     <Compile Include="Commands\Chat.cs" />
     <Compile Include="Commands\CheckLogin.cs" />
+    <Compile Include="DataCenter\ChatDataManager.cs" />
+    <Compile Include="DataCenter\ChatModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session\ChatSession.cs" />
