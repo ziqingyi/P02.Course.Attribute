@@ -4,12 +4,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using P41.Course.SuperSocket.Server.CommandFilter;
 using P41.Course.SuperSocket.Server.Utility;
 using SuperSocket.SocketBase;
 using SuperSocket.SocketBase.Protocol;
 
 namespace P41.Course.SuperSocket.Server.Session
 {
+    //[CustomAuthorize] //affect locally, if global, assign to Chat Server
     public class ChatSession :AppSession<ChatSession>
     {
         public string Id { get; set; }

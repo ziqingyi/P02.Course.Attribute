@@ -41,7 +41,7 @@ namespace P41.Course.SuperSocket.Server.Commands
 
                 #endregion
                 
-                session.Send("Login Successfully");
+                session.Send($"Login Successfully for Id: {session.Id}");
 
                 #region get all message based on session id, and send when log in
                 ChatDataManager.SendLogin(session.Id, c =>

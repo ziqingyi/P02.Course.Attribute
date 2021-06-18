@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using P41.Course.SuperSocket.Server.CommandFilter;
 using P41.Course.SuperSocket.Server.Session;
 using SuperSocket.SocketBase;
 using SuperSocket.SocketBase.Config;
 
 namespace P41.Course.SuperSocket.Server.AppServer
 {
-    
+    [CustomAuthorize]
     public class ChatServer:AppServer<ChatSession>
     {
         protected override bool Setup(IRootConfig rootConfig, IServerConfig config)
