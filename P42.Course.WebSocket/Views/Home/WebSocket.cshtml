@@ -11,8 +11,84 @@
     <title>WebSocket</title>
 </head>
 <body>
-            <h1>WebSocket</h1>
-<div>
-</div>
+<h1>WebSocket</h1>
+
+<form id="form1" runat="server">
+    <div>
+        <input id="userName" type="text" />
+        <input id="conn" type="button" value="Connect" />
+        <input id="close" type="button" value="Close" />
+        <span id="tips"></span>
+        <input id="content" type="text" />
+        <input id="send" type="button" value="Send" />
+    </div>
+    <div id="view">
+        <ul></ul>
+    </div>
+</form>
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+    
+<script type ="text/javascript">
+    $(loadFunc);
+
+    function loadFunc() {
+        var socket;
+        //ws: web socket  wss: secure web socket
+        var url = "ws://localhost:44389/Home/MyWebSocket";
+        function connect() {
+            var socketurl = url = "?name=" + $("#userName").val();
+
+            //initialise a handshake steps. can be MVC controller, can be WebAPI, other exe program
+            socket = new WebSocket(socketurl);
+
+            socket.onopen = function() {
+                $("#tips").text("connection is open");
+            }
+
+            socket.onmessage = function(evt) {
+                $("#view ul").append("<li>" + evt.data + "</li>");
+            }
+
+            socket.onerror = function(evt) {
+                $("#tips").text(JSON.stringify(evt));
+            }
+
+            socket.onclose = function() {
+                $("#tips").text("connection closed");
+            }
+
+        }
+
+        $("#conn").on("click",
+            function() {
+                connect();
+            });
+
+        $("#close").on("click",
+            function() {
+                connect();
+            });
+
+        $("#send").on("click",
+            function() {
+                if (socket.ReadyState.isEqual(WebSocket.OPEN) ) {
+                    socket.send($("#content").val());
+                } else {
+                    alert("connection closed");
+                }
+            });
+
+
+    }
+
+
+
+
+</script>
+
+
+
+
 </body>
 </html>
