@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.WebSockets;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
@@ -37,8 +39,12 @@ namespace P42.Course.WebSocket.Controllers
 
             string socketGuid = Guid.NewGuid().ToString();
 
+            byte[] testMessage = Encoding.UTF8.GetBytes("message from server");
 
+            ArraySegment<byte> buffer = new ArraySegment<byte>(testMessage);
+            //WebSocketReceiveResult result = await socket.ReceiveAsync(buffer, token);
 
+            await socket.SendAsync(buffer, WebSocketMessageType.Text, true, token);
 
 
 

@@ -30,22 +30,23 @@
 <script src="~/Scripts/jquery-3.4.1.js"></script>
     
 <script type ="text/javascript">
+  
     $(loadFunc);
-
     function loadFunc() {
         var socket;
         //ws: web socket  wss: secure web socket
-        var url = "ws://localhost:44389/Home/MyWebSocket";
+        var url = "wss://localhost:44389/Home/MyWebSocket";
         function connect() {
-            var socketurl = url = "?name=" + $("#userName").val();
+            var socketurl = url + "?name=" + $("#userName").val();
 
             //initialise a handshake steps. can be MVC controller, can be WebAPI, other exe program
             socket = new WebSocket(socketurl);
 
+            //socket start connection
             socket.onopen = function() {
                 $("#tips").text("connection is open");
             }
-
+            //receive message from server
             socket.onmessage = function(evt) {
                 $("#view ul").append("<li>" + evt.data + "</li>");
             }
