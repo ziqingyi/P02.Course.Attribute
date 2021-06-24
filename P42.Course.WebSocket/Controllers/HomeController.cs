@@ -34,18 +34,32 @@ namespace P42.Course.WebSocket.Controllers
 
         public async Task ProcessChat(AspNetWebSocketContext socketContext)
         {
+            //each socket is a user. 
+
+
             System.Net.WebSockets.WebSocket socket = socketContext.WebSocket;
             CancellationToken token = new CancellationToken();
 
-            string socketGuid = Guid.NewGuid().ToString();
 
-            byte[] testMessage = Encoding.UTF8.GetBytes("message from server");
 
-            ArraySegment<byte> buffer = new ArraySegment<byte>(testMessage);
-            //WebSocketReceiveResult result = await socket.ReceiveAsync(buffer, token);
 
-            await socket.SendAsync(buffer, WebSocketMessageType.Text, true, token);
+            while (socket.State == WebSocketState.Open)
+            {
 
+                #region test  send
+                string socketGuid = Guid.NewGuid().ToString();
+                byte[] serverMessage = Encoding.UTF8.GetBytes("message from server: Server Listening.....");
+                ArraySegment<byte> buffer1 = new ArraySegment<byte>(serverMessage);
+                await socket.SendAsync(buffer1, WebSocketMessageType.Text, true, token);
+                #endregion
+
+                #region Wait for receive
+                ArraySegment<byte> buffer2 = new ArraySegment<byte>(new byte[4096]);
+                WebSocketReceiveResult result = await socket.ReceiveAsync(buffer2, token);
+                string userMessage = Encoding.UTF8.GetString(buffer2.Array, 0, buffer2.Count);
+                #endregion
+
+            }
 
 
 

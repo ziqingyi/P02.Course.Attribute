@@ -73,10 +73,12 @@
 
         $("#send").on("click",
             function() {
-                if (socket.ReadyState.isEqual(WebSocket.OPEN) ) {
+                if (socket.readyState == WebSocket.OPEN) {
+                    $("#view ul").append("<li>" + "send message to server: " + $("#content").val() + "</li>");
                     socket.send($("#content").val());
                 } else {
-                    alert("connection closed");
+                    $("#tips").text("connection is closed");
+                    //alert("connection closed");
                 }
             });
 
