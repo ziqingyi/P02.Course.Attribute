@@ -15,9 +15,10 @@ namespace P42.Course.WebSocket.Utility
     {
         public static List<SocketModel> socketList = new List<SocketModel>();
 
+        //message format:   user1:hello
         public static void SendOne(string message, CancellationToken cancellationToken)
         {
-            string[] messageArray = message.Split(';');
+            string[] messageArray = message.Split(':');
             string toUser = messageArray[0];
             string toMessage = messageArray[1];
             SocketModel socketModel = socketList.FirstOrDefault(a => toUser.Equals(a.UserName));
