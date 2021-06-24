@@ -34,8 +34,8 @@ namespace P42.Course.WebSocket.Controllers
 
         public async Task ProcessChat(AspNetWebSocketContext socketContext)
         {
-            //each socket connection is a user. initialised by front end: socket = new WebSocket(socketurl);
-
+            //each web socket connection is a user. initialised by front end: socket = new WebSocket(socketurl);
+            //super socket is implemented by session, but web socket is Socket. 
 
             System.Net.WebSockets.WebSocket socket = socketContext.WebSocket;
             CancellationToken token = new CancellationToken();
