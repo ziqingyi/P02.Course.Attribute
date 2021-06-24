@@ -34,7 +34,7 @@ namespace P42.Course.WebSocket.Controllers
 
         public async Task ProcessChat(AspNetWebSocketContext socketContext)
         {
-            //each socket is a user. 
+            //each socket connection is a user. initialised by front end: socket = new WebSocket(socketurl);
 
 
             System.Net.WebSockets.WebSocket socket = socketContext.WebSocket;
