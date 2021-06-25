@@ -43,7 +43,9 @@
             socket = new WebSocket(socketurl);
 
             //socket start connection
-            socket.onopen = function() {
+            socket.onopen = function () {
+                var time = new Date();
+                $("#view ul").append("<li> connection is open " + time +"</li>");
                 $("#tips").text("connection is open");
             }
             //receive message from server
@@ -55,7 +57,9 @@
                 $("#tips").text(JSON.stringify(evt));
             }
 
-            socket.onclose = function() {
+            socket.onclose = function () {
+                var time = new Date();
+                $("#view ul").append("<li> connection closed " + time +"<</li>");
                 $("#tips").text("connection closed");
             }
 

@@ -25,7 +25,7 @@ namespace P42.Course.WebSocket.Controllers
             if (HttpContext.IsWebSocketRequest)
             {
                 this._userName = name;
-                HttpContext.AcceptWebSocketRequest(ProcessChatForMultipleUser);
+                HttpContext.AcceptWebSocketRequest(ProcessChatBetweenTwoUsers);
             }
             else
             {
@@ -35,7 +35,7 @@ namespace P42.Course.WebSocket.Controllers
 
 
 
-        public async Task ProcessChatForMultipleUser(AspNetWebSocketContext socketContext)
+        public async Task ProcessChatBetweenTwoUsers(AspNetWebSocketContext socketContext)
         {
             //each web socket connection is a user. initialised by front end: socket = new WebSocket(socketurl);
             //super socket is implemented by session, but web socket is Socket. 
