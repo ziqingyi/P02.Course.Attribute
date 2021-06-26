@@ -217,7 +217,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P40.Course.Socket.Client", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P41.Course.SuperSocket.Server", "P41.Course.SuperSocket.Server\P41.Course.SuperSocket.Server.csproj", "{759A576C-05A2-446C-9F6E-1D99F060C523}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P42.Course.WebSocket", "P42.Course.WebSocket\P42.Course.WebSocket.csproj", "{6CABF256-FE02-4DD2-B708-627762623DAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P42.Course.WebSocketProj", "P42.Course.WebSocketProj\P42.Course.WebSocketProj.csproj", "{6CABF256-FE02-4DD2-B708-627762623DAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace P42.Course.WebSocket
+namespace P42.Course.WebSocketProj
 {
     public class RouteConfig
     {

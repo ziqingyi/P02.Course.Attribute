@@ -126,6 +126,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ChatManager.cs" />
+    <Compile Include="Utility\ChatManagerForGroup.cs" />
     <Compile Include="Utility\SocketModel.cs" />
   </ItemGroup>
   <ItemGroup>

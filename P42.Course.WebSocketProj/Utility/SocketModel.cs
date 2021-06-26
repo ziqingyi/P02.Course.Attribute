@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace P42.Course.WebSocket.Utility
+namespace P42.Course.WebSocketProj.Utility
 {
     public class SocketModel
     {

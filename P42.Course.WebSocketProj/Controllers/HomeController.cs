@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebSockets;
-using P42.Course.WebSocket.Utility;
+using P42.Course.WebSocketProj.Utility;
 
-namespace P42.Course.WebSocket.Controllers
+namespace P42.Course.WebSocketProj.Controllers
 {
     public class HomeController : Controller
     {

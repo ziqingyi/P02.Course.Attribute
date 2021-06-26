@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace P42.Course.WebSocket
+namespace P42.Course.WebSocketProj
 {
     public class BundleConfig
     {

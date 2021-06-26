@@ -4,12 +4,12 @@ using System.Linq;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
-using System.Net.WebSockets;
 using System.Threading.Tasks;
+using P42.Course.WebSocketProj.Utility;
 
 //your namespace is WebSocket so must declare
 
-namespace P42.Course.WebSocket.Utility
+namespace P42.Course.WebSocketProj.Utility
 {
     public class ChatManager
     {
