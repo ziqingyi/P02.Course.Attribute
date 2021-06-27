@@ -24,7 +24,7 @@ namespace P42.Course.WebSocketProj.Utility
         //if the user is offline (no socket now), we keep the message from others in a list. 
         public static Dictionary<string, List<ArraySegment<byte>>> userMessageBuffer = new Dictionary<string, List<ArraySegment<byte>>>();
 
-        public static void AddUser(string socketGuid, string userName, WebSocket socket, CancellationToken token)
+        public static void AddUserSocket(string socketGuid, string userName, WebSocket socket, CancellationToken token)
         {
             #region If the user is in the group, add the socket to it.
             userGroup.ForEach(item =>
@@ -37,17 +37,16 @@ namespace P42.Course.WebSocketProj.Utility
             });
             #endregion
 
-            #region send message to the user's socket
+            #region send history message to the user's socket when user log in 
 
             if( userMessageBuffer.ContainsKey(userName) && userMessageBuffer[userName].Count > 0 )
             {
-                foreach (var msg in userMessageBuffer[userName])
+                foreach (ArraySegment<byte> msg in userMessageBuffer[userName])
                 {
                     socket.SendAsync(msg, WebSocketMessageType.Text, true, token);
-
-                    //remove the message from buffer
-                    userMessageBuffer[userName].Remove(msg);
-                }
+                } 
+                //remove all the history message from buffer
+                userMessageBuffer[userName].Clear();
             }
             #endregion
         }
@@ -76,6 +75,7 @@ namespace P42.Course.WebSocketProj.Utility
                 // if user is offline
                 if (userModel.Socket == null)
                 {
+                    //if the user's message buffer has build, just add
                     if (userMessageBuffer.ContainsKey(userModel.UserName))
                     {
                         userMessageBuffer[userModel.UserName].Add(messageSeg);

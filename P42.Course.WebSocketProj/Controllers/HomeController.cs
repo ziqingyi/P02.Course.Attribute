@@ -25,7 +25,10 @@ namespace P42.Course.WebSocketProj.Controllers
             if (HttpContext.IsWebSocketRequest)
             {
                 this._userName = name;
-                HttpContext.AcceptWebSocketRequest(ProcessChatBetweenTwoUsers);
+                //HttpContext.AcceptWebSocketRequest(ProcessChatForOne);
+                //HttpContext.AcceptWebSocketRequest(ProcessChatBetweenTwoUsers);
+                HttpContext.AcceptWebSocketRequest(ProcessChatInGroup);
+
             }
             else
             {
@@ -34,6 +37,38 @@ namespace P42.Course.WebSocketProj.Controllers
         }
 
 
+        public async Task ProcessChatInGroup(AspNetWebSocketContext socketContext)
+        {
+            WebSocket socket = socketContext.WebSocket;
+            CancellationToken token = new CancellationToken();
+            string socketGuid = Guid.NewGuid().ToString();
+            ChatManagerForGroup.AddUserSocket(socketGuid, this._userName, socket, token);
+            await ChatManagerForGroup.SendGroupMessage(token, this._userName, this._userName + " Enter Chat Room");
+
+            //check socket state and wait for message
+            while (socket.State == WebSocketState.Open)
+            {
+                ArraySegment<byte> buffer = new ArraySegment<byte>(new byte[2048]);
+                WebSocketReceiveResult result = await socket.ReceiveAsync(buffer, token);
+
+                //if the user close the socket
+                if (result.MessageType == WebSocketMessageType.Close)
+                {
+                    ChatManagerForGroup.RemoveUser(socketGuid);
+                    await ChatManagerForGroup.SendGroupMessage(token, this._userName, "leave Chat Room");
+                    await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, string.Empty, token);
+                }
+                else
+                {                
+                    string userMessage = Encoding.UTF8.GetString(buffer.Array, 0, result.Count);
+                    await ChatManagerForGroup.SendGroupMessage(token, this._userName, userMessage);
+                }
+
+
+            }
+
+
+        }
 
         public async Task ProcessChatBetweenTwoUsers(AspNetWebSocketContext socketContext)
         {
@@ -81,7 +116,7 @@ namespace P42.Course.WebSocketProj.Controllers
             //each web socket connection is a user. initialised by front end: socket = new WebSocket(socketurl);
             //super socket is implemented by session, but web socket is Socket. 
 
-            System.Net.WebSockets.WebSocket socket = socketContext.WebSocket;
+            WebSocket socket = socketContext.WebSocket;
             CancellationToken token = new CancellationToken();
 
             while (socket.State == WebSocketState.Open)
