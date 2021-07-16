@@ -513,7 +513,12 @@ namespace P04.Course.Lambda
                 //linq to sql
                 IQueryable<Student> list = studentlist.AsQueryable();
                 list.Where<Student>(s => s.Age > 30);
-
+                ////a lambda expression with expression body cannot be converted to expression tree
+                //list.Where<Student>(s =>
+                //{
+                //    Console.WriteLine("3242");
+                //    return s.Age > 10;
+                //});
 
 
                 studentlist.Where<Student>(s =>// this cannnot be used to linq to sql,case that is Expressions
