@@ -66,6 +66,7 @@
     <Compile Include="DBExtend\ObjectQueryExtension.cs" />
     <Compile Include="DBExtend\SqlOperator.cs" />
     <Compile Include="ExpressionTest.cs" />
+    <Compile Include="ExpressionTreeBlockExpression.cs" />
     <Compile Include="ExpressionTreeVisualizer.cs" />
     <Compile Include="ExpressionVisitorTest.cs" />
     <Compile Include="Extend\ExpressionExtend.cs" />

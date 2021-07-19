@@ -27,6 +27,10 @@ namespace P05.Course.ExpressionSty
             {
                 Console.WriteLine("---------Expression Visitor  test ------------------");
                 ExpressionVisitorTest.Show();
+            }
+            {
+                Console.WriteLine("---------Expression Visitor  test ------------------");
+                ExpressionTreeBlockExpression.Show();
 
 
             }
