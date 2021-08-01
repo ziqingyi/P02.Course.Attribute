@@ -13,6 +13,11 @@ namespace P27.Course.IteratorPattern
     {
         static void Main(string[] args)
         {
+
+            {
+                PersonShow.Show();
+            }
+
             {
                 //KFC Menu is Array
                 Console.WriteLine("**************kfc Show*************");

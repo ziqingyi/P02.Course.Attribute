@@ -49,11 +49,14 @@
     <Compile Include="Menu\MacDonaldMenu.cs" />
     <Compile Include="Menu\Food.cs" />
     <Compile Include="Menu\KFCMenu.cs" />
+    <Compile Include="PersonTest\People.cs" />
+    <Compile Include="PersonTest\Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Show\CustomCollection.cs" />
     <Compile Include="Show\LinqExtend.cs" />
     <Compile Include="Show\LinqExtendShow.cs" />
+    <Compile Include="Show\PersonShow.cs" />
     <Compile Include="Show\Student.cs" />
     <Compile Include="Show\YieldShow.cs" />
   </ItemGroup>
