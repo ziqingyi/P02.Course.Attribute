@@ -231,10 +231,11 @@ namespace P05.Course.ExpressionSty
             {
 
                 Console.WriteLine("-------3 expression lambda 2,simplify the possible input combination from users-----------------------");
-                //Expression<Func<People, bool>> lambda = p => p.Name.Contains("Tom") && p.Age > 5;
+                Expression<Func<People, bool>> lambdaExample = p => p.Name.Contains("Tom") && p.Age > 5;
 
+                #region if the user type in name field
 
-                // 1 paramter p
+                 // 1 paramter p
                 ParameterExpression pe = Expression.Parameter(typeof(People), "p");
 
                 // 2 get property Name and assemble with p
@@ -248,6 +249,10 @@ namespace P05.Course.ExpressionSty
                 ConstantExpression tom = Expression.Constant("Tom", typeof(string));
                 MethodCallExpression containsExp = Expression.Call(nameExp, contains, tom);
 
+                #endregion
+
+                #region if the user type in Age field
+
                 //4  get property Age and ssemble with p
                 //(MethodInfo)MethodBase.GetMethodFromHandle((RuntimeMethodHandle))/*OpCode not supported: LdMemberToken*/
                 PropertyInfo age = typeof(People).GetProperty("Age");
@@ -257,6 +262,11 @@ namespace P05.Course.ExpressionSty
                 ConstantExpression constant5 = Expression.Constant(5, typeof(int));
                 BinaryExpression greaterThan = Expression.GreaterThan(ageExp, constant5);
 
+                #endregion
+
+
+                #region Combine and build Expression tree
+
                 //6 Binary
                 BinaryExpression body = Expression.AndAlso(containsExp, greaterThan);
 
@@ -265,6 +275,9 @@ namespace P05.Course.ExpressionSty
                     body, 
                     new ParameterExpression[1] {pe}
                     );
+                
+                #endregion
+
 
                 var test =lambda.Compile().Invoke(new People()
                 {

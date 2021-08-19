@@ -10,6 +10,7 @@ namespace P04.Course.Lambda
 {
     class Program
     {
+        //lambda ---(shortcut)---> func ----extend method---->  linq (library)  -----enumerator(yield)---->
         static void Main(string[] args)
         {
             #region .net 3.0 anonymous class and delegate
