@@ -14,63 +14,63 @@ namespace P05.Course.ExpressionSty
     {
         public static void Show()
         {
-            //{
-            //    Console.WriteLine("---------modify expression tree---------------");
-            //    Expression<Func<int,int,int>> exp = (m,n) =>n* m * n * n + 2;
-            //    OperationsVisitor visitor = new OperationsVisitor();
+            {
+                Console.WriteLine("---------modify expression tree---------------");
+                Expression<Func<int, int, int>> exp = (m, n) => n * m * n * n + 2;
+                OperationsVisitor visitor = new OperationsVisitor();
 
-            //    Expression expNew = visitor.Modify(exp);
+                Expression expNew = visitor.Modify(exp);
 
-            //    double result = ((Expression<Func<int, int, int>>)expNew).Compile().Invoke(2,3);
-            //    Console.WriteLine(result);
-            //}
-            //{
-            //    Console.WriteLine("------------visitor to visit labmda, and transfer to sql-----");
-            //    Expression<Func<People, bool >> lambda = x => x.Age > 5 && x.Id > 6;
-            //    var test = new List<People>().AsQueryable().Where(lambda);
-            //    // select * from people where age > 5 and id > 6
+                double result = ((Expression<Func<int, int, int>>)expNew).Compile().Invoke(2, 3);
+                Console.WriteLine(result);
+            }
+            {
+                Console.WriteLine("------------visitor to visit labmda, and transfer to sql-----");
+                Expression<Func<People, bool>> lambda = x => x.Age > 5 && x.Id > 6;
+                var test = new List<People>().AsQueryable().Where(lambda);
+                // select * from people where age > 5 and id > 6
 
-            //    ConditionBuilderVisitor visitor = new ConditionBuilderVisitor();
-            //    visitor.Visit(lambda);
+                ConditionBuilderVisitor visitor = new ConditionBuilderVisitor();
+                visitor.Visit(lambda);
 
-            //    Console.WriteLine(visitor.Condition());
+                Console.WriteLine(visitor.Condition());
 
-            //}
-            //{
-            //    Console.WriteLine("------------visitor to visit labmda, and transfer to sql, a complex case-----");
-            //    Expression<Func<People, bool>> lambda = x => x.Age > 5 && x.Id < 5
-            //                                                           && x.Id == 3
-            //                                                           && x.Name.StartsWith("1")
-            //                                                           && x.Name.EndsWith("1")
-            //                                                           && x.Name.Contains("1");
-            //    string sql = string.Format("Delete From [{0}] Where {1}"
-            //        , typeof(People).Name
-            //        , " [Age]>5 And [ID] > 5");
+            }
+            {
+                Console.WriteLine("------------visitor to visit labmda, and transfer to sql, a complex case-----");
+                Expression<Func<People, bool>> lambda = x => x.Age > 5 && x.Id < 5
+                                                                       && x.Id == 3
+                                                                       && x.Name.StartsWith("1")
+                                                                       && x.Name.EndsWith("1")
+                                                                       && x.Name.Contains("1");
+                string sql = string.Format("Delete From [{0}] Where {1}"
+                    , typeof(People).Name
+                    , " [Age]>5 And [ID] > 5");
 
-            //    ConditionBuilderVisitor visitor = new ConditionBuilderVisitor();
-            //    visitor.Visit(lambda);
+                ConditionBuilderVisitor visitor = new ConditionBuilderVisitor();
+                visitor.Visit(lambda);
 
-            //    Console.WriteLine(visitor.Condition());
+                Console.WriteLine(visitor.Condition());
 
-            //}
+            }
 
-            //{
-            //    Console.WriteLine("-------------test visitor priority-------------------");
-            //    Expression<Func<People, bool>> lambda1 = x => x.Age > 5 && x.Name == "A" || x.Id > 5;
-            //    ConditionBuilderVisitor visitor1 = new ConditionBuilderVisitor();
-            //    visitor1.Visit(lambda1);
-            //    Console.WriteLine(visitor1.Condition());
+            {
+                Console.WriteLine("-------------test visitor priority-------------------");
+                Expression<Func<People, bool>> lambda1 = x => x.Age > 5 && x.Name == "A" || x.Id > 5;
+                ConditionBuilderVisitor visitor1 = new ConditionBuilderVisitor();
+                visitor1.Visit(lambda1);
+                Console.WriteLine(visitor1.Condition());
 
-            //    Expression<Func<People, bool>> lambda2 = x => x.Age > 5 && (x.Name == "A" || x.Id > 5);
-            //    ConditionBuilderVisitor visitor2 = new ConditionBuilderVisitor();
-            //    visitor2.Visit(lambda2);
-            //    Console.WriteLine(visitor2.Condition());
+                Expression<Func<People, bool>> lambda2 = x => x.Age > 5 && (x.Name == "A" || x.Id > 5);
+                ConditionBuilderVisitor visitor2 = new ConditionBuilderVisitor();
+                visitor2.Visit(lambda2);
+                Console.WriteLine(visitor2.Condition());
 
-            //    Expression<Func<People, bool>> lambda3 = x => (x.Age > 5 && x.Name == "A" )|| x.Id > 5;
-            //    ConditionBuilderVisitor visitor3 = new ConditionBuilderVisitor();
-            //    visitor3.Visit(lambda3);
-            //    Console.WriteLine(visitor3.Condition());
-            //}
+                Expression<Func<People, bool>> lambda3 = x => (x.Age > 5 && x.Name == "A") || x.Id > 5;
+                ConditionBuilderVisitor visitor3 = new ConditionBuilderVisitor();
+                visitor3.Visit(lambda3);
+                Console.WriteLine(visitor3.Condition());
+            }
             {
                 Console.WriteLine("--------------combine expression ---------------------------");
                 Expression<Func<People, bool>> lambda1 = x => x.Age > 5;
