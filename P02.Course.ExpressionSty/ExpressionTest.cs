@@ -14,13 +14,18 @@ namespace P05.Course.ExpressionSty
 {
     class ExpressionTest
     {
-        public static void Show()
+        public static void ShowBasicLambdaToExpressionToDelegate()
         {
             {
                 Console.WriteLine("---------compare-----------");
-                Func<int, int, int> func = new Func<int, int, int>((m, n) => m * n + 2);//lambda
+                Func<int, int, int> func1 = new Func<int, int, int>((m, n) => m * n + 2);//lambda to delegate
 
-                Expression<Func<int, int, int>> exp = (m, n) => m * n + 2;//fast way
+                Expression<Func<int, int, int>> exp = (m, n) => m * n + 2;//lambda to expression tree to delegate
+
+                Func<int, int, int> func2 = exp.Compile();
+
+                int result1 = func1(1, 2);
+                int result2 = func2(1, 2);
             }
 
 
@@ -189,6 +194,9 @@ namespace P05.Course.ExpressionSty
                 );
 
             }
+        }
+        public static void ShowTestCaseForExpressionToDelegate()
+        {
             {
                 Console.WriteLine("-------------1  assemble sql with user input, old way----------------------");
                 string sql = @"SELECT * FROM USER WHERE 1=1";
@@ -233,15 +241,17 @@ namespace P05.Course.ExpressionSty
                 Console.WriteLine("-------3 expression lambda 2,simplify the possible input combination from users-----------------------");
                 Expression<Func<People, bool>> lambdaExample = p => p.Name.Contains("Tom") && p.Age > 5;
 
-                #region if the user type in name field
+                //Example: use type in different fields in the program: 
 
                  // 1 paramter p
                 ParameterExpression pe = Expression.Parameter(typeof(People), "p");
 
+                #region if the user type in name field
+
                 // 2 get property Name and assemble with p
                 //compiler:  MethodBase name2 = (MethodInfo) MethodBase.GetMethodFromHandle((RuntimeMethodHandle))  /*OpCode not supported: LdMemberToken*/
                 PropertyInfo name = typeof(People).GetProperty("Name");
-                  MemberExpression nameExp = Expression.Property(pe, name);
+                MemberExpression nameExp = Expression.Property(pe, name);
 
                 //3 Get the method name Contains, assemble with expression, add with parameter Tom.
                      //compiler: (MethodInfo)MethodBase.GetMethodFromHandle((RuntimeMethodHandle)), /*OpCode not supported: LdMemberToken*/
@@ -275,9 +285,10 @@ namespace P05.Course.ExpressionSty
                     body, 
                     new ParameterExpression[1] {pe}
                     );
-                
+
                 #endregion
 
+                Func<People, bool> funcResult = lambda.Compile();
 
                 var test =lambda.Compile().Invoke(new People()
                 {
