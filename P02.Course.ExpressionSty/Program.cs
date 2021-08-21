@@ -14,7 +14,7 @@ namespace P05.Course.ExpressionSty
             {
                 Console.WriteLine("-----------Basic Expression---------------");
                 ExpressionTest.ShowBasicLambdaToExpressionToDelegate();
-                ExpressionTest.ShowTestCaseForExpressionToDelegate();
+                //ExpressionTest.ShowTestCaseForExpressionToDelegate();
                 ExpressionTreeVisualizer.Show();
             }
             {

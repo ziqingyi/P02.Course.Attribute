@@ -18,8 +18,10 @@ namespace P05.Course.ExpressionSty
         {
             {
                 Console.WriteLine("---------compare-----------");
+                //lambda is a method
                 Func<int, int, int> func1 = new Func<int, int, int>((m, n) => m * n + 2);//lambda to delegate
 
+                //lambda is a data structure
                 Expression<Func<int, int, int>> exp = (m, n) => m * n + 2;//lambda to expression tree to delegate
 
                 Func<int, int, int> func2 = exp.Compile();
@@ -281,16 +283,16 @@ namespace P05.Course.ExpressionSty
                 BinaryExpression body = Expression.AndAlso(containsExp, greaterThan);
 
                 // 7 assemble labmda
-                Expression<Func<People, bool>> lambda = Expression.Lambda<Func<People, bool>>(
+                Expression<Func<People, bool>> assembledExpression = Expression.Lambda<Func<People, bool>>(
                     body, 
                     new ParameterExpression[1] {pe}
                     );
 
                 #endregion
 
-                Func<People, bool> funcResult = lambda.Compile();
+                Func<People, bool> funcResult = assembledExpression.Compile();
 
-                var test =lambda.Compile().Invoke(new People()
+                var test = assembledExpression.Compile().Invoke(new People()
                 {
                     Id=10,
                     Age = 10,
