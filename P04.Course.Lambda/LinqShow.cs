@@ -257,7 +257,7 @@ namespace P04.Course.Lambda
                 }
             }
             {
-                Console.WriteLine("***********Linq ****************");
+                Console.WriteLine("***********Linq, IL same to Lambda ****************");
                 int i = 1;
                 var list = from s in studentlist
                            where s.Age < 30 && s.Name.Length > 2
