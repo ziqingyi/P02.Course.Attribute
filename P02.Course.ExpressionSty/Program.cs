@@ -23,7 +23,7 @@ namespace P05.Course.ExpressionSty
             }
             {
                 Console.WriteLine("-----------Mapping performance---------------");
-                ExpressionTest.TestExpressionPerformance();
+                //ExpressionTest.TestExpressionPerformance();
             }
             {
                 Console.WriteLine("---------Expression Visitor  test ------------------");
