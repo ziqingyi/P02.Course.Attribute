@@ -61,8 +61,8 @@ namespace P39.Course.dotnetCore.TestMVC.Controllers
 
         public IActionResult Index()
         {
-            this._logger.LogInformation("this is  ILogger<BSecondController>");
-            this._Factory.CreateLogger<BSecondController>().LogInformation(" this is  ILoggerFactory  create logger ");
+            this._logger.LogInformation("this is  ILogger<EFifthController>");
+            this._Factory.CreateLogger<EFifthController>().LogInformation(" this is  ILoggerFactory  create logger ");
             this._logger.LogWarning($"_ITestServiceA = {this._ITestServiceA.GetHashCode()}");
             this._logger.LogWarning($"_ITestServiceB = {this._ITestServiceB.GetHashCode()}");
             this._logger.LogWarning($"_ITestServiceC = {this._ITestServiceC.GetHashCode()}");
