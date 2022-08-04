@@ -494,6 +494,7 @@ namespace P39.Course.dotnetCore.TestMVC
 
             //app.UseMiddleware<CustomStopMiddleware>();
             //app.UseMiddleware<CustomMiddleware>();
+            //app.UseCustomMiddleware();//use extend method
             //app.UseMiddleware<CustomSecondMiddleware>();
 
             //Func<HttpContext, Func<Task>, Task> myMiddleWare = new Func<HttpContext, Func<Task>, Task>(
