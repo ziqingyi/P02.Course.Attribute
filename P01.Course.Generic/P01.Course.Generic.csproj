@@ -8,10 +8,12 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>P01.Course.Generic</RootNamespace>
     <AssemblyName>P01.Course.Generic</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>8.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -43,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayExpandable\ArrayExpandableByObject.cs" />
+    <Compile Include="ArrayExpandable\ArrayExpandableTest.cs" />
     <Compile Include="CommonMethod.cs" />
     <Compile Include="Extend\GenericCacheTest.cs" />
     <Compile Include="Extend\variantTest.cs" />
